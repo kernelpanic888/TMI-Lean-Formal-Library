@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this library, please cite it using this metadata."
+title: "TMI-Lean Formal Library (TLFL) 0.1: Formal Library for Interface-Event Theory in Lean 4"
+version: "0.1"
+date-released: "2026-06-20"
+type: software
+authors:
+  - family-names: "Salkutsan"
+    given-names: "Aleksey"
+    orcid: "https://orcid.org/0009-0006-8717-0492"
+keywords:
+  - "TMI"
+  - "Lean 4"
+  - "formal library"
+  - "interface-event theory"
+  - "OLean"
+  - "formal verification"
+  - "proof-chain self-model"
+abstract: "TMI-Lean Formal Library (TLFL) 0.1 is an exportable Lean 4 library for encoding core TMI definitions, event structures, bridge surfaces, interface mathematics, the OLean connection interface to Lean-kernel checking, and the Vampire/Z3/E/TLFL proof-chain self-model layer."
