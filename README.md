@@ -50,6 +50,9 @@ inputs missing TLFL classification return `fail`.
 The certification-status layer maps complete, non-overclaiming requests to
 `proofStateCertified`, missing-boundary requests to `unadmitted`, and forbidden
 jump requests to `overclaimBlocked`.
+`ClaimPassportCertificate` packages the certified passport, proof-state
+certification, verdict, status, ceiling, and forbidden-jump map into one public
+proof-status object.
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.

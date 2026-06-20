@@ -116,6 +116,8 @@ unsat
 unsat
 unsat
 unsat
+unsat
+unsat
 sat
 sat
 sat
@@ -315,7 +317,9 @@ Interpretation:
 
 ```text
 Claim + evidence bundle + TLFL classification + proof-state self-model
--> allowed claim ceiling + forbidden jump map + claim passport.
+-> allowed claim ceiling + forbidden jump map + claim passport
+-> claim-passport certificate
+-> public certificate surface.
 ```
 
 The same mirror now also checks the verdict layer:
@@ -331,6 +335,14 @@ It also checks the public certification-status layer:
 pass + no forbidden jump -> proof-state-certified status
 fail + no forbidden jump -> unadmitted status
 forbidden jump request -> overclaim-blocked status
+```
+
+And it checks the packaged certificate layer:
+
+```text
+claim passport + proof-state certification + certified status + guards
+-> claim-passport certificate
+-> public certificate surface.
 ```
 
 The claim passport is a proof-status certification surface. It does not imply

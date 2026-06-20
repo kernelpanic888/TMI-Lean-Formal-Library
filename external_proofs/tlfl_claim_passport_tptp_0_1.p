@@ -44,6 +44,16 @@ fof(fail_no_jump_status_axiom, axiom,
 fof(forbidden_jump_status_axiom, axiom,
   (forbidden_jump_request => overclaim_blocked_status)).
 
+fof(certificate_axiom, axiom,
+  ((claim_passport
+    & proof_state_certification
+    & proof_state_certified_status
+    & forbidden_jump_map)
+    => claim_passport_certificate)).
+
+fof(public_certificate_surface_axiom, axiom,
+  (claim_passport_certificate => public_certificate_surface)).
+
 fof(complete_claim_facts, axiom,
   (claim_presented
     & lean_kernel_trace
@@ -69,4 +79,6 @@ fof(tlfl_claim_passport_bundle, conjecture,
     & unadmitted_ceiling
     & proof_state_certified_status
     & unadmitted_status
-    & overclaim_blocked_status)).
+    & overclaim_blocked_status
+    & claim_passport_certificate
+    & public_certificate_surface)).
