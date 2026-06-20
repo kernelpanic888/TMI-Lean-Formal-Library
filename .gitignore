@@ -4,4 +4,15 @@
 *.c
 *.o
 .DS_Store
+
+# Zenodo publication/export artifacts belong outside the source-first Git repo.
+publications/zenodo/
+zenodo/
+exports/zenodo/
+tmp/zenodo/
 *_zenodo_export_*.zip
+CHECKSUMS_SHA256.txt
+docs/*ZENODO_SUMMARY*.pdf
+docs/ZENODO_METADATA*.md
+docs/ZENODO_FILE_TABLE*.md
+docs/ZENODO_UPDATE_NOTE*.md
