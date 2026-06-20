@@ -101,6 +101,38 @@ fof(review_gate_forbidden_boundary_axiom, axiom,
 fof(review_ready_surface_axiom, axiom,
   (claim_passport_review_gate => review_ready_surface)).
 
+fof(release_gate_axiom, axiom,
+  ((claim_passport_review_gate
+    & review_ready_surface
+    & review_gate_external_proof_layer
+    & review_gate_certified_status
+    & review_gate_allowed_ceiling
+    & review_gate_forbidden_jump_map
+    & external_mirror_verified
+    & public_docs_synchronized)
+    => claim_passport_release_gate)).
+
+fof(release_gate_review_ready_axiom, axiom,
+  (claim_passport_release_gate => release_gate_review_ready)).
+
+fof(release_gate_external_mirror_axiom, axiom,
+  (claim_passport_release_gate => release_gate_external_mirror_verified)).
+
+fof(release_gate_public_docs_axiom, axiom,
+  (claim_passport_release_gate => release_gate_public_docs_synchronized)).
+
+fof(release_gate_certified_status_axiom, axiom,
+  (claim_passport_release_gate => release_gate_certified_status)).
+
+fof(release_gate_allowed_ceiling_axiom, axiom,
+  (claim_passport_release_gate => release_gate_allowed_ceiling)).
+
+fof(release_gate_forbidden_boundary_axiom, axiom,
+  (claim_passport_release_gate => release_gate_forbidden_jump_map)).
+
+fof(release_candidate_surface_axiom, axiom,
+  (claim_passport_release_gate => release_candidate_surface)).
+
 fof(complete_claim_facts, axiom,
   (claim_presented
     & lean_kernel_trace
@@ -113,7 +145,9 @@ fof(complete_claim_facts, axiom,
     & complete_claim_passport_input
     & missing_tlfl_classification_input
     & no_forbidden_jump_request
-    & forbidden_jump_request)).
+    & forbidden_jump_request
+    & external_mirror_verified
+    & public_docs_synchronized)).
 
 fof(tlfl_claim_passport_bundle, conjecture,
   (claim_passport
@@ -142,4 +176,12 @@ fof(tlfl_claim_passport_bundle, conjecture,
     & review_gate_certified_status
     & review_gate_allowed_ceiling
     & review_gate_forbidden_jump_map
-    & review_ready_surface)).
+    & review_ready_surface
+    & claim_passport_release_gate
+    & release_gate_review_ready
+    & release_gate_external_mirror_verified
+    & release_gate_public_docs_synchronized
+    & release_gate_certified_status
+    & release_gate_allowed_ceiling
+    & release_gate_forbidden_jump_map
+    & release_candidate_surface)).

@@ -16,6 +16,7 @@ Claim
 -> public certificate surface
 -> audit sheet / public audit surface
 -> review gate / review-ready surface
+-> release gate / release-candidate surface
 ```
 
 ## What Is New
@@ -49,6 +50,9 @@ canonicalClaimPassportAuditSheet
 ClaimPassportReviewGate
 ClaimPassportReviewReady
 canonicalClaimPassportReviewGate
+ClaimPassportReleaseGate
+ClaimPassportReleaseReady
+canonicalClaimPassportReleaseGate
 ```
 
 ## Main Theorem Surfaces
@@ -105,6 +109,17 @@ review_gate_gives_allowed_ceiling
 review_gate_gives_forbidden_jump_map
 review_gate_is_review_ready_surface
 canonical_review_gate_is_review_ready
+review_gate_with_mirrors_gives_release_gate
+claim_passport_release_gate_exists
+release_gate_gives_review_gate
+release_gate_is_review_ready
+release_gate_records_external_mirror_verification
+release_gate_records_public_docs_sync
+release_gate_gives_certification_status
+release_gate_gives_allowed_ceiling
+release_gate_gives_forbidden_jump_map
+release_gate_is_release_candidate_surface
+canonical_release_gate_is_release_ready
 canonical_claim_passport_certificate_verdict_is_pass
 canonical_claim_passport_certificate_status_is_proof_state_certified
 ```
@@ -130,6 +145,10 @@ review gate does not imply empirical truth
 review gate does not imply physical validation
 review gate does not imply consciousness
 review gate does not imply empirical closure
+release gate does not imply empirical truth
+release gate does not imply physical validation
+release gate does not imply consciousness
+release gate does not imply empirical closure
 ```
 
 ## External Mirror
@@ -144,8 +163,8 @@ external_proofs/tlfl_claim_passport_tptp_0_1.p
 Expected Z3 shape:
 
 ```text
-positive theorem checks: 27 x unsat
-non-claim guards: 18 x sat
+positive theorem checks: 35 x unsat
+non-claim guards: 22 x sat
 ```
 
 Expected Vampire/E shape:

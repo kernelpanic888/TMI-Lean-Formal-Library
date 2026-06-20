@@ -235,6 +235,34 @@ def ClaimPassportReviewReady (gate : ClaimPassportReviewGate) : Prop :=
   gate.reviewAllowedClaimCeiling = ClaimCeiling.tlflProofStateCertified /\
   gate.reviewReadySurface
 
+structure ClaimPassportReleaseGate where
+  reviewGate : ClaimPassportReviewGate
+  reviewReady : ClaimPassportReviewReady reviewGate
+  releaseCertificationStatus : ClaimCertificationStatus
+  statusWitness :
+    releaseCertificationStatus = reviewGate.reviewCertificationStatus
+  releaseAllowedClaimCeiling : ClaimCeiling
+  ceilingWitness :
+    releaseAllowedClaimCeiling = reviewGate.reviewAllowedClaimCeiling
+  releaseForbiddenJumpMap : ForbiddenJumpMap
+  forbiddenJumpMapWitness :
+    releaseForbiddenJumpMap.empiricalTruthForbidden /\
+    releaseForbiddenJumpMap.physicalValidationForbidden /\
+    releaseForbiddenJumpMap.consciousnessForbidden /\
+    releaseForbiddenJumpMap.empiricalClosureForbidden
+  externalMirrorVerified : Prop
+  externalMirrorWitness : externalMirrorVerified
+  publicDocsSynchronized : Prop
+  publicDocsWitness : publicDocsSynchronized
+  releaseCandidateSurface : Prop
+  releaseCandidateSurfaceWitness : releaseCandidateSurface
+
+def ClaimPassportReleaseReady (gate : ClaimPassportReleaseGate) : Prop :=
+  ClaimPassportReviewReady gate.reviewGate /\
+  gate.externalMirrorVerified /\
+  gate.publicDocsSynchronized /\
+  gate.releaseCandidateSurface
+
 def canonicalClaimObject : ClaimObject :=
   { name := "TLFL 0.2 claim passport and proof-state certification"
     presented := True
@@ -736,6 +764,114 @@ theorem canonical_review_gate_is_review_ready :
     ClaimPassportReviewReady canonicalClaimPassportReviewGate := by
   exact ⟨rfl, rfl, canonicalClaimPassportReviewGate.reviewReadySurfaceWitness⟩
 
+def releaseGateOf
+    (gate : ClaimPassportReviewGate)
+    (hReady : ClaimPassportReviewReady gate)
+    (externalMirrorVerified : Prop)
+    (hExternalMirror : externalMirrorVerified)
+    (publicDocsSynchronized : Prop)
+    (hPublicDocs : publicDocsSynchronized)
+    (releaseCandidateSurface : Prop)
+    (hReleaseCandidate : releaseCandidateSurface) :
+    ClaimPassportReleaseGate :=
+  { reviewGate := gate
+    reviewReady := hReady
+    releaseCertificationStatus := gate.reviewCertificationStatus
+    statusWitness := rfl
+    releaseAllowedClaimCeiling := gate.reviewAllowedClaimCeiling
+    ceilingWitness := rfl
+    releaseForbiddenJumpMap := gate.forbiddenJumpMap
+    forbiddenJumpMapWitness := gate.forbiddenJumpMapWitness
+    externalMirrorVerified := externalMirrorVerified
+    externalMirrorWitness := hExternalMirror
+    publicDocsSynchronized := publicDocsSynchronized
+    publicDocsWitness := hPublicDocs
+    releaseCandidateSurface := releaseCandidateSurface
+    releaseCandidateSurfaceWitness := hReleaseCandidate }
+
+def canonicalClaimPassportReleaseGate : ClaimPassportReleaseGate :=
+  releaseGateOf canonicalClaimPassportReviewGate
+    canonical_review_gate_is_review_ready
+    True (by trivial)
+    True (by trivial)
+    True (by trivial)
+
+theorem review_gate_with_mirrors_gives_release_gate
+    (gate : ClaimPassportReviewGate)
+    (hReady : ClaimPassportReviewReady gate)
+    (externalMirrorVerified : Prop)
+    (hExternalMirror : externalMirrorVerified)
+    (publicDocsSynchronized : Prop)
+    (hPublicDocs : publicDocsSynchronized)
+    (releaseCandidateSurface : Prop)
+    (hReleaseCandidate : releaseCandidateSurface) :
+    exists releaseGate : ClaimPassportReleaseGate,
+      releaseGate.reviewGate = gate := by
+  exact ⟨releaseGateOf gate hReady externalMirrorVerified hExternalMirror
+      publicDocsSynchronized hPublicDocs releaseCandidateSurface hReleaseCandidate,
+    rfl⟩
+
+theorem claim_passport_release_gate_exists :
+    exists releaseGate : ClaimPassportReleaseGate,
+      ClaimPassportReleaseReady releaseGate := by
+  exact ⟨canonicalClaimPassportReleaseGate,
+    canonicalClaimPassportReleaseGate.reviewReady,
+    canonicalClaimPassportReleaseGate.externalMirrorWitness,
+    canonicalClaimPassportReleaseGate.publicDocsWitness,
+    canonicalClaimPassportReleaseGate.releaseCandidateSurfaceWitness⟩
+
+def release_gate_gives_review_gate
+    (gate : ClaimPassportReleaseGate) :
+    ClaimPassportReviewGate := by
+  exact gate.reviewGate
+
+theorem release_gate_is_review_ready
+    (gate : ClaimPassportReleaseGate) :
+    ClaimPassportReviewReady gate.reviewGate := by
+  exact gate.reviewReady
+
+theorem release_gate_records_external_mirror_verification
+    (gate : ClaimPassportReleaseGate) :
+    gate.externalMirrorVerified := by
+  exact gate.externalMirrorWitness
+
+theorem release_gate_records_public_docs_sync
+    (gate : ClaimPassportReleaseGate) :
+    gate.publicDocsSynchronized := by
+  exact gate.publicDocsWitness
+
+theorem release_gate_gives_certification_status
+    (gate : ClaimPassportReleaseGate) :
+    gate.releaseCertificationStatus =
+      gate.reviewGate.reviewCertificationStatus := by
+  exact gate.statusWitness
+
+theorem release_gate_gives_allowed_ceiling
+    (gate : ClaimPassportReleaseGate) :
+    gate.releaseAllowedClaimCeiling =
+      gate.reviewGate.reviewAllowedClaimCeiling := by
+  exact gate.ceilingWitness
+
+theorem release_gate_gives_forbidden_jump_map
+    (gate : ClaimPassportReleaseGate) :
+    gate.releaseForbiddenJumpMap.empiricalTruthForbidden /\
+    gate.releaseForbiddenJumpMap.physicalValidationForbidden /\
+    gate.releaseForbiddenJumpMap.consciousnessForbidden /\
+    gate.releaseForbiddenJumpMap.empiricalClosureForbidden := by
+  exact gate.forbiddenJumpMapWitness
+
+theorem release_gate_is_release_candidate_surface
+    (gate : ClaimPassportReleaseGate) :
+    gate.releaseCandidateSurface := by
+  exact gate.releaseCandidateSurfaceWitness
+
+theorem canonical_release_gate_is_release_ready :
+    ClaimPassportReleaseReady canonicalClaimPassportReleaseGate := by
+  exact ⟨canonicalClaimPassportReleaseGate.reviewReady,
+    canonicalClaimPassportReleaseGate.externalMirrorWitness,
+    canonicalClaimPassportReleaseGate.publicDocsWitness,
+    canonicalClaimPassportReleaseGate.releaseCandidateSurfaceWitness⟩
+
 theorem canonical_claim_passport_certificate_verdict_is_pass :
     canonicalClaimPassportCertificate.verdict = ClaimPassportVerdict.pass := by
   rfl
@@ -1050,6 +1186,61 @@ theorem review_gate_does_not_imply_empirical_closure :
       Not s.empiricalClosure := by
   let s : ClaimPassportReviewGateScenario :=
     { reviewReadySurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+structure ClaimPassportReleaseGateScenario where
+  releaseCandidateSurface : Prop
+  empiricalTruth : Prop
+  physicalValidation : Prop
+  consciousness : Prop
+  empiricalClosure : Prop
+
+theorem release_gate_does_not_imply_empirical_truth :
+    exists s : ClaimPassportReleaseGateScenario,
+      s.releaseCandidateSurface /\
+      Not s.empiricalTruth := by
+  let s : ClaimPassportReleaseGateScenario :=
+    { releaseCandidateSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem release_gate_does_not_imply_physical_validation :
+    exists s : ClaimPassportReleaseGateScenario,
+      s.releaseCandidateSurface /\
+      Not s.physicalValidation := by
+  let s : ClaimPassportReleaseGateScenario :=
+    { releaseCandidateSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem release_gate_does_not_imply_consciousness :
+    exists s : ClaimPassportReleaseGateScenario,
+      s.releaseCandidateSurface /\
+      Not s.consciousness := by
+  let s : ClaimPassportReleaseGateScenario :=
+    { releaseCandidateSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem release_gate_does_not_imply_empirical_closure :
+    exists s : ClaimPassportReleaseGateScenario,
+      s.releaseCandidateSurface /\
+      Not s.empiricalClosure := by
+  let s : ClaimPassportReleaseGateScenario :=
+    { releaseCandidateSurface := True
       empiricalTruth := False
       physicalValidation := False
       consciousness := False

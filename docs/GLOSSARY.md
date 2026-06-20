@@ -113,6 +113,14 @@ boundary. It means the claim-passport report is review-ready inside TLFL. It
 does not mean empirical truth, physical validation, consciousness, or empirical
 closure.
 
+## Claim Passport Release Gate
+
+The TLFL 0.2 release-candidate surface built from a review-ready gate,
+represented external mirror verification, synchronized public documentation,
+and the same forbidden-jump boundary. It means the claim-passport package is
+ready as a proof-status release candidate. It does not mean empirical truth,
+physical validation, consciousness, or empirical closure.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input

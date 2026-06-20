@@ -71,6 +71,13 @@ inside TLFL. It does not convert proof-status review readiness into empirical
 validation.
 ```
 
+```text
+The claim-passport release gate means the review-ready public audit sheet has
+external mirrors and public documentation synchronized for a TLFL
+release-candidate surface. It does not convert proof-status release readiness
+into empirical validation.
+```
+
 ## What Is Not Claimed
 
 ```text
@@ -133,6 +140,11 @@ validation reports.
 ```text
 Claim-passport review gates are review-entry surfaces, not empirical truth,
 physical validation, consciousness, or empirical closure.
+```
+
+```text
+Claim-passport release gates are release-candidate proof-status surfaces, not
+empirical truth, physical validation, consciousness, or empirical closure.
 ```
 
 ## Recommended Public Wording

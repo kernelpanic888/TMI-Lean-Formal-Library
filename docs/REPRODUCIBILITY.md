@@ -132,6 +132,7 @@ TLFL claim-passport certificate object: pass
 TLFL claim-passport public certificate surface: pass
 TLFL claim-passport audit sheet: pass
 TLFL claim-passport review gate: pass
+TLFL claim-passport release gate: pass
 ```
 
 Sanity check:
