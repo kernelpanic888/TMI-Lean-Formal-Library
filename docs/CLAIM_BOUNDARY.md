@@ -1,112 +1,108 @@
 # Claim Boundary
 
-This document fixes the public claim boundary of **TMI-Lean Formal Library
-(TLFL) 0.1**.
+This Zenodo package publishes a formal Lean 4 library snapshot.
 
-## What TLFL 0.1 Claims
-
-TLFL 0.1 claims that this repository contains a Lean 4 formal library with a
-checked public boundary:
+## What Is Claimed
 
 ```text
-TMI artifact
--> OLean encoding interface
--> Lean object
--> Lean kernel check
--> formal Lean status
+TMI-Lean Formal Library (TLFL) 0.1 is an exportable Lean 4 library.
 ```
 
-It also claims a selected external proof mirror:
-
 ```text
-Lean/Lake
-+ Z3
-+ Vampire
-+ E prover
-+ TLFL classification
--> proof-chain self-model
+OLean is a connection interface by which TMI artifacts can be encoded as Lean
+objects and receive formal Lean status after Lean-kernel checking.
 ```
 
-The canonical displayed chain is:
-
 ```text
-Vampire/Z3/E/TLFL
+The package compiles through ordinary Lean/Lake commands.
 ```
 
-## What TLFL Means By Proof Self-Model
-
-`ProofChainSelfModel` is structured knowledge of proof status:
-
 ```text
-which prover traces exist;
-which verification boundary was used;
-which prover compatibility was represented;
-which non-claim guards are active;
-which epistemic status is allowed.
+The external proof layer verifies the small release-boundary mirror for
+OLean + TMI.Library in Z3, Vampire, and E prover.
 ```
 
-Short formula:
-
 ```text
-ProofSelfModel != empirical truth
-ProofSelfModel = structured knowledge of proof status
+The OLean self-check layer translates complete boundary verification into an
+internal interface frequency. G4/749 means Lean + Z3 + Vampire + E boundary
+verification is represented as passed.
 ```
 
-## What `pass` Means
-
-`OLean.CheckVerdict.pass` means that the represented boundary check is complete
-inside the TLFL 0.1 release model:
-
 ```text
-encoded in Lean
-+ Lean-kernel checked
-+ Lake build passed
-+ Z3 passed
-+ Vampire passed
-+ E prover passed
-+ no new kernel introduced
+OLean.SelfCheckAsThinker verifies the complete OLean self-check as a TMI
+thinker interface and as a guarded mathematical external prover interface.
 ```
 
-`pass` does not mean empirical closure.
-
-## What TLFL 0.1 Does Not Claim
-
-TLFL 0.1 does not claim:
-
 ```text
-full empirical proof of TMI as a physical theory;
-that the universe has been empirically proven to be the carrier of the full chain;
-that a proof self-model is consciousness;
-that TLFL replaces Lean, Z3, Vampire, or E;
-that internal interface frequency is a physical speed-of-light theorem;
-that guarded branches are already final physical laws.
+The canonical TLFL + Z3 + Vampire + E proof layer chain builds a proof-chain self-model:
+external proof traces plus TLFL classification of proof path, verification
+boundary, prover compatibility, and allowed epistemic status.
 ```
 
-## Role Of TLFL Relative To External Provers
-
-Vampire, Z3, and E are proof engines.
-
-TLFL is not a stronger proof search engine than Vampire. It is a higher-order
-classification interface around proof traces. In this repository:
-
 ```text
-Vampire/Z3/E produce proof traces.
-TLFL classifies the proof state.
+The TLFL reality-cognition layer formalizes guarded cognition of externally
+presented reality-traces through internal TLFL interfaces. This is a
+proof-status cognition claim, not empirical truth.
 ```
 
-So TLFL stands one order higher as a meta-interface of proof status, not as a
-replacement for the proof engines themselves.
+```text
+The TLFL consciousness-limit layer formalizes consciousness as an unreachable
+limit-horizon of self-modeling: complete self-model plus perfect predictive
+power. This is a guarded language layer, not a consciousness proof.
+```
 
-## Guarded Branches
-
-The public branch names `MD`, `QC`, `QG`, `LIFE`, and `OPS` are guarded branch
-surfaces. They are part of the formal library vocabulary and organization.
-
-Their presence in the library does not imply that their corresponding empirical
-physical claims are already validated.
-
-## One-Line Boundary
+## What Is Not Claimed
 
 ```text
-TLFL 0.1 is a formal proof-status library, not a claim of empirical closure.
+OLean is not a new proof kernel.
+```
+
+```text
+TMI-Lean is not a fork of Lean.
+```
+
+```text
+This package does not empirically prove TMI as a physical theory.
+```
+
+```text
+This package does not claim full empirical closure of the universe-level TMI
+interpretation.
+```
+
+```text
+Internal interface frequency is not a physical speed-of-light theorem and does
+not claim physical light emission.
+```
+
+```text
+The thinker-check layer is not empirical physical validation.
+```
+
+```text
+The proof-chain self-model is structured knowledge of proof status, not
+empirical truth or physical validation.
+```
+
+```text
+Guarded reality cognition does not imply empirical truth, physical validation,
+consciousness, or empirical closure.
+```
+
+```text
+TLFL does not prove consciousness. Guarded consciousness approximation,
+consciousness-limit horizon, and proof-state self-modeling do not imply reached
+consciousness, empirical consciousness, absolute consciousness, or achieved
+100% predictive power.
+```
+
+```text
+TLFL classification does not replace Z3, Vampire, or E proof search.
+```
+
+## Recommended Public Wording
+
+```text
+TMI-Lean Formal Library (TLFL) 0.1 exports the current TMI formal surfaces as a Lean 4
+library and introduces OLean as a connection interface to Lean-kernel checking.
 ```
