@@ -51,6 +51,13 @@ limit-horizon of self-modeling: complete self-model plus perfect predictive
 power. This is a guarded language layer, not a consciousness proof.
 ```
 
+```text
+The TLFL claim-passport layer formalizes proof-status certification: a claim
+receives a passport only through an admitted evidence bundle, TLFL
+classification, proof-state self-model, allowed claim ceiling, and forbidden
+jump map.
+```
+
 ## What Is Not Claimed
 
 ```text
@@ -98,6 +105,11 @@ consciousness, empirical consciousness, absolute consciousness, or achieved
 
 ```text
 TLFL classification does not replace Z3, Vampire, or E proof search.
+```
+
+```text
+Claim passport certification does not imply empirical truth, physical
+validation, consciousness, or empirical closure.
 ```
 
 ## Recommended Public Wording

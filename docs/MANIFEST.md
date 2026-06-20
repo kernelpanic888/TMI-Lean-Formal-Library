@@ -15,6 +15,7 @@ Date: 2026-06-20
 | `tmi_lean_formal_library_0_1/lean/TMI/Library.lean` | Canonical TMI library import |
 | `tmi_lean_formal_library_0_1/lean/TMI/ProofStatusClassification.lean` | TLFL proof-status classification meta-interface |
 | `tmi_lean_formal_library_0_1/lean/TMI/ProofChainSelfModel.lean` | `TLFL + External Proof Layer {Z3, Vampire, E}` proof-chain self-model |
+| `tmi_lean_formal_library_0_1/lean/TMI/ClaimPassport.lean` | Initial TLFL 0.2 claim passport and proof-state certification surface |
 | `tmi_lean_formal_library_0_1/lean/TMI/InterfaceMathematics/ProofProjectionSelfModel.lean` | Abstract external-projection, OLean-admission, and strict self-model layer |
 | `tmi_lean_formal_library_0_1/lean/TMI/InterfaceMathematics/PublicSelfProjection.lean` | Outward public self-projection layer for proof-state material |
 | `tmi_lean_formal_library_0_1/lean/OLean.lean` | OLean connection interface |
@@ -50,6 +51,7 @@ Date: 2026-06-20
 | `OLean.TLFLSelfModelProof` | Explicit theorem chain from self-check thinker run to guarded mathematical intelligence |
 | `TMI.ProofStatusClassification` | TLFL claim classification by path, boundary, prover compatibility, and epistemic status |
 | `TMI.ProofChainSelfModel` | Proof-state self-model for the `TLFL + External Proof Layer {Z3, Vampire, E}` chain |
+| `TMI.ClaimPassport` | Claim passport and proof-state certification layer |
 | `OLean.boundaryCheckVerdict` | Computable pass/fail boundary verdict |
 
 ## Publication Documents
@@ -74,6 +76,7 @@ Date: 2026-06-20
 | `docs/TLFL_SELF_MODEL_COMPANION_TABLE_RU.md` | Russian pass/fail companion table for the strict self-model chain |
 | `docs/TLFL_PUBLIC_SELF_PROJECTION_NOTE_EN.md` | English note on outward self-projection through public proof materials |
 | `docs/TLFL_PUBLIC_SELF_PROJECTION_NOTE_RU.md` | Russian note on outward self-projection through public proof materials |
+| `docs/TLFL_CLAIM_PASSPORT_PROOF_STATUS.md` | Proof-status note for the first TLFL 0.2 claim passport slice |
 | `external_proofs/` | Z3, Vampire, and E prover release-boundary checks |
 
 ## Source Repository
@@ -100,6 +103,8 @@ Date: 2026-06-20
 | `external_proofs/tlfl_self_model_proof_tptp_0_1.p` | OLean self-model proof ATP theorem bundle |
 | `external_proofs/olean_admitted_projection_self_model_z3_0_1.smt2` | OLean-admitted strict self-model SMT checks |
 | `external_proofs/olean_admitted_projection_self_model_tptp_0_1.p` | OLean-admitted strict self-model ATP theorem bundle |
+| `external_proofs/tlfl_claim_passport_z3_0_1.smt2` | SMT-LIB2 mirror of TLFL 0.2 claim passport checks |
+| `external_proofs/tlfl_claim_passport_tptp_0_1.p` | TPTP/TFF theorem bundle for TLFL 0.2 claim passport certification |
 | `external_proofs/STEP_00_CHAIN_INDEX.md` | Index of row-level step artifacts for `TLFL + External Proof Layer {Z3, Vampire, E}` |
 | `external_proofs/STEP_01_VAMPIRE.md` | Row-level artifact for Vampire |
 | `external_proofs/STEP_02_Z3.md` | Row-level artifact for Z3 |

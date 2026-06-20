@@ -56,6 +56,18 @@ Structured knowledge of proof status: external proof traces, verification
 boundary map, prover compatibility map, epistemic status map, and non-claim
 guard map. A proof-chain self-model is not empirical truth.
 
+## Claim Passport
+
+A TLFL proof-status certificate for a claim. It records the claim object,
+evidence bundle, proof-state self-model, claim classification, allowed claim
+ceiling, and forbidden jump map. It does not imply empirical truth.
+
+## Claim Ceiling
+
+The strongest status a claim is allowed to support inside TLFL. For the first
+TLFL 0.2 slice, the canonical passport ceiling is proof-state certification,
+not empirical closure.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input

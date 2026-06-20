@@ -17,6 +17,7 @@ import TMI.Bridge
 import TMI.ExternalProverBoundary
 import TMI.ProofStatusClassification
 import TMI.ProofChainSelfModel
+import TMI.ClaimPassport
 import TMI.WrapperTop
 import TMI.TruthChain
 import TMI.CollectiveIntelligence

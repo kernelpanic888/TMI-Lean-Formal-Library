@@ -36,6 +36,7 @@ lake env lean lean/OLean/SelfCheck.lean
 lake env lean lean/OLean/SelfCheckAsThinker.lean
 lake env lean lean/TMI/ProofStatusClassification.lean
 lake env lean lean/TMI/ProofChainSelfModel.lean
+lake env lean lean/TMI/ClaimPassport.lean
 ```
 
 Optional verdict check:
@@ -73,6 +74,9 @@ eprover --auto --cpu-limit=10 external_proofs/olean_internal_frequency_tptp_0_1.
 z3 external_proofs/tlfl_proof_self_model_z3_0_1.smt2
 vampire --mode casc --time_limit 10 external_proofs/tlfl_proof_self_model_tptp_0_1.p
 eprover --auto --cpu-limit=10 external_proofs/tlfl_proof_self_model_tptp_0_1.p
+z3 external_proofs/tlfl_claim_passport_z3_0_1.smt2
+vampire --mode casc --time_limit 10 external_proofs/tlfl_claim_passport_tptp_0_1.p
+eprover --auto --cpu-limit=10 external_proofs/tlfl_claim_passport_tptp_0_1.p
 ```
 
 If these tools are not on `PATH`, use their local absolute binary paths. The
@@ -92,6 +96,7 @@ import OLean.SelfCheck
 import OLean.SelfCheckAsThinker
 import TMI.ProofStatusClassification
 import TMI.ProofChainSelfModel
+import TMI.ClaimPassport
 ```
 
 The `OLean.SelfCheck` import translates the existing G0..G4 light-gradient
@@ -113,11 +118,15 @@ lake env lean lean/OLean/SelfCheckAsThinker.lean: pass
 OLean SelfCheck thinker test: pass
 TMI.ProofStatusClassification: pass
 TMI.ProofChainSelfModel: pass
+TMI.ClaimPassport: pass
 OLean boundaryCheckVerdict complete input: pass
 OLean boundaryCheckVerdict Lean-only input: fail
 Z3 external proof layer: pass
 Vampire external proof layer: SZS status Theorem
 E prover external proof layer: SZS status Theorem
+TLFL claim-passport Z3 mirror: pass
+TLFL claim-passport Vampire bundle: SZS status Theorem
+TLFL claim-passport E prover bundle: SZS status Theorem
 ```
 
 Sanity check:

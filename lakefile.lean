@@ -19,6 +19,7 @@ lean_lib TMI where
     `TMI.ExternalProverBoundary,
     `TMI.ProofStatusClassification,
     `TMI.ProofChainSelfModel,
+    `TMI.ClaimPassport,
     `TMI.WrapperTop,
     `TMI.TruthChain,
     `TMI.CollectiveIntelligence,
