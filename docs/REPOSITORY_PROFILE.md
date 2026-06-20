@@ -35,6 +35,12 @@ https://orcid.org/0009-0006-8717-0492
 https://doi.org/10.5281/zenodo.20773095
 ```
 
+## License
+
+```text
+Apache-2.0
+```
+
 ## Public Tagline
 
 ```text
