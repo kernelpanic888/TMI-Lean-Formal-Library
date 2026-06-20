@@ -1,0 +1,7 @@
+.lake/
+*.olean
+*.ilean
+*.c
+*.o
+.DS_Store
+*_zenodo_export_*.zip
