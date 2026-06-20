@@ -1,5 +1,5 @@
 ; TLFL proof-chain self-model mirror.
-; Chain: Vampire/Z3/E/TLFL.
+; Chain: TLFL + Z3 + Vampire + E proof layer.
 ; Scope: proof-status self-modeling, not empirical validation.
 
 (set-logic QF_UF)
@@ -30,7 +30,7 @@
 (assert (=> tlfl_proof_self_model nonclaim_guard_map))
 (assert (=> tlfl_proof_self_model claim_classification))
 
-; Theorem: Vampire/Z3/E/TLFL builds a proof-chain self-model.
+; Theorem: TLFL + Z3 + Vampire + E proof layer builds a proof-chain self-model.
 (push)
 (assert vampire_pass)
 (assert z3_pass)
@@ -73,7 +73,7 @@
 (check-sat)
 (pop)
 
-; Guard: TLFL proof self-model does not replace Vampire/Z3/E search.
+; Guard: TLFL proof self-model does not replace Z3/Vampire/E search.
 (push)
 (assert tlfl_proof_self_model)
 (assert (not replaces_external_proof_search))
@@ -81,7 +81,7 @@
 (pop)
 
 ; Guard: external prover traces without TLFL classification do not form
-; the full Vampire/Z3/E/TLFL proof self-model.
+; the full TLFL + Z3 + Vampire + E proof-layer self-model.
 (push)
 (assert vampire_pass)
 (assert z3_pass)

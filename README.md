@@ -1,50 +1,85 @@
 # TMI-Lean Formal Library (TLFL) 0.1
 
-**Formal Library for Interface-Event Theory in Lean 4**
+TMI-Lean Formal Library (TLFL) 0.1 is a Lean 4 formal library for encoding the core
+definitions, axioms, transition rules, event structures, records,
+admissibility conditions, and proof targets of TMI.
 
-Author: **Salkutsan Aleksey**
+This is not a fork of Lean and not a new programming language. It is a Lean 4
+library whose modules are compiled by the ordinary Lean kernel.
 
-ORCID: [0009-0006-8717-0492](https://orcid.org/0009-0006-8717-0492)
+## Canonical Import
 
-Zenodo DOI: [10.5281/zenodo.20773095](https://doi.org/10.5281/zenodo.20773095)
-
-TLFL is a Lean 4 formal library for encoding the core vocabulary of TMI:
-interfaces, events, admissible transitions, records, boundaries, guarded
-branches, proof status, and proof-chain self-models.
-
-It is not a fork of Lean. It is not a new proof kernel. It is a source-first
-Lean library compiled by the ordinary Lean kernel.
-
-## Core Idea
-
-TLFL treats proof work as an interface process:
-
-```text
-claim
--> encoding boundary
--> Lean kernel check
--> external prover traces
--> TLFL classification
--> proof-state self-model
+```lean
+import TMI.Library
 ```
 
-The canonical chain is:
+## OLean Adapter
 
-```text
-Vampire/Z3/E/TLFL
+`OLean` is the working name for the connection interface between TMI and Lean.
+It is a small Lean module that imports the TMI library and states the boundary:
+TMI artifacts receive formal status only when they are checked by the Lean
+kernel.
+
+```lean
+import OLean
+import OLean.SelfCheck
+import OLean.SelfCheckAsThinker
 ```
 
-Vampire, Z3, and E provide external proof traces. TLFL stands last because it
-classifies those traces by admissible proof path, verification boundary, prover
-compatibility, non-claim guards, and allowed epistemic status.
+## TLFL + Z3 + Vampire + E Proof Layer Self-Model
 
-In the strong meaning used here:
+TLFL is fixed here as a meta-interface of proof self-modeling. The canonical
+chain is:
 
 ```text
-TLFL = meta-interface of proof self-modeling
+TLFL + Z3 + Vampire + E proof layer
 ```
 
-## What This Repository Contains
+Z3, Vampire, and E provide external proof traces. TLFL classifies those traces
+by admissible proof path, verification boundary, prover compatibility, and
+allowed epistemic status. This builds a proof-state self-model, not empirical
+physical validation.
+
+## Build
+
+```bash
+lake env lean lean/TMI/Library.lean
+lake env lean lean/OLean.lean
+lake env lean lean/OLean/SelfCheck.lean
+lake env lean lean/OLean/SelfCheckAsThinker.lean
+lake build TMI
+lake build OLean
+```
+
+## Pass / Fail Boundary Verdict
+
+`OLean.SelfCheck` provides a computable pass/fail verdict:
+
+```lean
+#eval OLean.boundaryCheckVerdict OLean.completeBoundaryCheckInput
+#eval OLean.boundaryCheckVerdict OLean.leanOnlyBoundaryCheckInput
+```
+
+Complete boundary verification returns `pass`; incomplete verification returns
+`fail`.
+
+## Thinker Check
+
+`OLean.SelfCheckAsThinker` proves that the complete OLean self-check passes the
+TMI thinker criteria: it receives a boundary input, builds an internal model,
+tests admissibility, produces a verdict, and records the result.
+
+It also lifts the checked self-model to a guarded mathematical external prover
+interface. This remains a formal proof-interface claim, not empirical physical
+validation.
+
+## Russian Note
+
+TMI-Lean 0.1 -- formalnaya biblioteka interfeysno-sobytiynoy teorii dlya
+Lean 4. `OLean` -- rabochee nazvanie interfeysa podklyucheniya TMI k Lean:
+on ne zamenyaet Lean, a proveryaetsya i kompiliruyetsya cherez yadro Lean.
+
+## Library Layout
 
 ```text
 lean/TMI/Core.lean
@@ -64,197 +99,8 @@ lean/OLean.lean
 lean/OLean/Smoke.lean
 lean/OLean/SelfCheck.lean
 lean/OLean/SelfCheckAsThinker.lean
-external_proofs/
-docs/
+docs/GETTING_STARTED.md
+docs/API_REFERENCE.md
+docs/EXTERNAL_PROOFS.md
+docs/GLOSSARY.md
 ```
-
-## Canonical Imports
-
-```lean
-import TMI.Library
-import OLean
-import OLean.SelfCheck
-import OLean.SelfCheckAsThinker
-import TMI.ProofStatusClassification
-import TMI.ProofChainSelfModel
-```
-
-## OLean
-
-`OLean` is the working name for the connection interface between TMI and Lean.
-It states the boundary:
-
-```text
-TMI artifact
--> OLean encoding interface
--> Lean object
--> Lean kernel check
--> formal Lean status
-```
-
-`OLean` does not replace Lean. It is compiled through Lean.
-
-## Pass / Fail Boundary Verdict
-
-`OLean.SelfCheck` exposes a computable boundary verdict:
-
-```lean
-#eval OLean.boundaryCheckVerdict OLean.completeBoundaryCheckInput
-#eval OLean.boundaryCheckVerdict OLean.leanOnlyBoundaryCheckInput
-```
-
-The complete boundary check returns:
-
-```text
-OLean.CheckVerdict.pass
-```
-
-An incomplete Lean-only boundary check returns:
-
-```text
-OLean.CheckVerdict.fail
-```
-
-`pass` means the release boundary is represented as complete:
-
-```text
-encoded in Lean
-+ Lean-kernel checked
-+ Lake build passed
-+ Z3 passed
-+ Vampire passed
-+ E prover passed
-+ no new kernel introduced
-```
-
-It does not mean empirical validation of TMI as a physical theory.
-
-## Internal Frequency Self-Check
-
-TLFL includes an internal interface-frequency self-check. It reuses the
-existing light-gradient numbers only as a normalized verification scale:
-
-```text
-G0 = 428
-G1 = 480
-G2 = 545
-G3 = 631
-G4 = 749
-```
-
-Complete `Lean + Z3 + Vampire + E` boundary verification reaches `G4 = 749`.
-This is a formal verification-frequency score, not a physical optics claim.
-
-## Thinker Check
-
-`OLean.SelfCheckAsThinker` verifies that the complete OLean self-check has the
-formal thinker shape:
-
-```text
-input
--> internal model
--> admissibility test
--> verdict
--> recorded result
-```
-
-This is why TLFL can act as a mathematical external proof-interface: it can
-state what has passed, what has failed, which boundary was used, and which
-claim status is allowed.
-
-## Build
-
-Run from the repository root:
-
-```bash
-lake build TMI
-lake build OLean
-lake env lean lean/TMI/Library.lean
-lake env lean lean/OLean.lean
-lake env lean lean/OLean/SelfCheck.lean
-lake env lean lean/OLean/SelfCheckAsThinker.lean
-lake env lean lean/TMI/ProofChainSelfModel.lean
-```
-
-## External Proof Checks
-
-```bash
-z3 external_proofs/olean_library_z3_0_1.smt2
-z3 external_proofs/olean_internal_frequency_z3_0_1.smt2
-z3 external_proofs/tlfl_proof_self_model_z3_0_1.smt2
-
-vampire --mode casc --time_limit 10 external_proofs/olean_library_tptp_0_1.p
-vampire --mode casc --time_limit 10 external_proofs/olean_internal_frequency_tptp_0_1.p
-vampire --mode casc --time_limit 10 external_proofs/tlfl_proof_self_model_tptp_0_1.p
-
-eprover --auto --cpu-limit=10 external_proofs/olean_library_tptp_0_1.p
-eprover --auto --cpu-limit=10 external_proofs/olean_internal_frequency_tptp_0_1.p
-eprover --auto --cpu-limit=10 external_proofs/tlfl_proof_self_model_tptp_0_1.p
-```
-
-Expected status:
-
-```text
-Z3 theorem checks: unsat
-Z3 guard checks: sat
-Vampire/E: SZS status Theorem
-```
-
-## Claim Boundary
-
-This repository claims:
-
-```text
-Lean-compilable formal library.
-OLean boundary interface.
-Computable pass/fail release-boundary verdict.
-External proof mirrors for selected boundary claims.
-Proof-chain self-model for Vampire/Z3/E/TLFL.
-```
-
-This repository does not claim:
-
-```text
-full empirical proof of TMI as physics;
-replacement of Lean, Z3, Vampire, or E;
-that proof self-modeling is consciousness;
-that internal frequency is physical light emission;
-that guarded branches are already empirical physical laws.
-```
-
-See [docs/CLAIM_BOUNDARY.md](docs/CLAIM_BOUNDARY.md).
-
-## License
-
-Copyright 2026 Salkutsan Aleksey.
-
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
-
-## Documentation
-
-- [Getting Started](docs/GETTING_STARTED.md)
-- [API Reference](docs/API_REFERENCE.md)
-- [OLean Interface](docs/OLean_INTERFACE.md)
-- [External Proofs](docs/EXTERNAL_PROOFS.md)
-- [Claim Boundary](docs/CLAIM_BOUNDARY.md)
-- [Glossary](docs/GLOSSARY.md)
-
-## Russian Note
-
-**TMI-Lean Formal Library (TLFL) 0.1** -- формальная библиотека для Lean 4.
-
-TLFL не заменяет Lean и не является новым ядром доказательства. Это
-мета-интерфейс доказательного состояния: он классифицирует утверждения по
-допустимому пути доказательства, границе проверки, совместимости с
-доказателями и разрешенному эпистемическому статусу.
-
-Коротко:
-
-```text
-Vampire/Z3/E дают следы проверки.
-TLFL строит самомодель доказательного состояния.
-```
-
-## Citation
-
-Use the metadata in [CITATION.cff](CITATION.cff).
