@@ -6,6 +6,7 @@ date-released: "2026-06-20"
 type: software
 doi: "10.5281/zenodo.20773095"
 url: "https://doi.org/10.5281/zenodo.20773095"
+license: "Apache-2.0"
 authors:
   - family-names: "Salkutsan"
     given-names: "Aleksey"

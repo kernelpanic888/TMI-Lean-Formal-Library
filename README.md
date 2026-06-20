@@ -224,6 +224,12 @@ that guarded branches are already empirical physical laws.
 
 See [docs/CLAIM_BOUNDARY.md](docs/CLAIM_BOUNDARY.md).
 
+## License
+
+Copyright 2026 Salkutsan Aleksey.
+
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
+
 ## Documentation
 
 - [Getting Started](docs/GETTING_STARTED.md)
