@@ -53,6 +53,9 @@ jump requests to `overclaimBlocked`.
 `ClaimPassportCertificate` packages the certified passport, proof-state
 certification, verdict, status, ceiling, and forbidden-jump map into one public
 proof-status object.
+`ClaimPassportPublicCertificateSurface` exposes that certificate as an
+outward-facing proof-status surface for inspection without raising the claim
+ceiling.
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.

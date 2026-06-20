@@ -39,6 +39,8 @@ ClaimPassport
 ClaimPassportCertified
 ClaimPassportCertificate
 canonicalClaimPassportCertificate
+ClaimPassportPublicCertificateSurface
+canonicalClaimPassportPublicCertificateSurface
 ```
 
 ## Main Theorem Surfaces
@@ -68,6 +70,14 @@ claim_passport_certificate_gives_verdict
 claim_passport_certificate_gives_certification_status
 claim_passport_certificate_gives_allowed_ceiling
 claim_passport_certificate_gives_forbidden_jump_map
+claim_passport_certificate_gives_public_certificate_surface
+public_certificate_surface_gives_certified_passport
+public_certificate_surface_gives_verdict
+public_certificate_surface_gives_certification_status
+public_certificate_surface_gives_allowed_ceiling
+public_certificate_surface_gives_forbidden_jump_map
+public_certificate_surface_is_public_proof_status_surface
+canonical_public_certificate_surface_status_is_proof_state_certified
 canonical_claim_passport_certificate_verdict_is_pass
 canonical_claim_passport_certificate_status_is_proof_state_certified
 ```
@@ -81,6 +91,10 @@ claim passport does not imply empirical truth
 claim passport does not imply physical validation
 claim passport does not imply consciousness
 claim passport does not imply empirical closure
+public certificate surface does not imply empirical truth
+public certificate surface does not imply physical validation
+public certificate surface does not imply consciousness
+public certificate surface does not imply empirical closure
 ```
 
 ## External Mirror
@@ -95,8 +109,8 @@ external_proofs/tlfl_claim_passport_tptp_0_1.p
 Expected Z3 shape:
 
 ```text
-positive theorem checks: 13 x unsat
-non-claim guards: 6 x sat
+positive theorem checks: 15 x unsat
+non-claim guards: 10 x sat
 ```
 
 Expected Vampire/E shape:

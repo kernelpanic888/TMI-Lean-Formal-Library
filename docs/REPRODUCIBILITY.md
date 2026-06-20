@@ -129,6 +129,7 @@ TLFL claim-passport Vampire bundle: SZS status Theorem
 TLFL claim-passport E prover bundle: SZS status Theorem
 TLFL claim-passport verdict/status layer: pass
 TLFL claim-passport certificate object: pass
+TLFL claim-passport public certificate surface: pass
 ```
 
 Sanity check:

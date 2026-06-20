@@ -90,6 +90,14 @@ passport, proof-state certification, request, verdict, certification status,
 allowed claim ceiling, and forbidden-jump map. It is a public proof-status
 surface, not empirical validation.
 
+## Claim Passport Public Certificate Surface
+
+The outward-facing TLFL 0.2 proof-status surface built from a claim-passport
+certificate. It exposes the certified passport, verdict, certification status,
+allowed claim ceiling, and forbidden-jump boundary in a form meant for public
+inspection. It still does not imply empirical truth, physical validation,
+consciousness, or empirical closure.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input
