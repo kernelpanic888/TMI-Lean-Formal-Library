@@ -73,6 +73,11 @@ It also lifts the checked self-model to a guarded mathematical external prover
 interface. This remains a formal proof-interface claim, not empirical physical
 validation.
 
+## GitHub Publication Text
+
+A copy-ready bilingual repository/release announcement is available in
+[`docs/GITHUB_PUBLICATION_TEXT.md`](docs/GITHUB_PUBLICATION_TEXT.md).
+
 ## Russian Note
 
 TMI-Lean 0.1 -- formalnaya biblioteka interfeysno-sobytiynoy teorii dlya

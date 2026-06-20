@@ -66,6 +66,7 @@ Date: 2026-06-20
 | `docs/REPRODUCIBILITY.md` | Build verification instructions |
 | `docs/CLAIM_BOUNDARY.md` | Claims and non-claims |
 | `docs/PUBLICATION_NOTE.md` | Human-readable summary |
+| `docs/GITHUB_PUBLICATION_TEXT.md` | Copy-ready GitHub repository/release publication text |
 | `docs/ZENODO_UPDATE_NOTE_2026_06_20.md` | Recommended Zenodo revision note |
 | `docs/TLFL_SELF_MODEL_THEOREM_SHEET_EN.md` | English process matrix sheet for the strict self-model chain |
 | `docs/TLFL_SELF_MODEL_THEOREM_SHEET_RU.md` | Russian process matrix sheet for the strict self-model chain |
