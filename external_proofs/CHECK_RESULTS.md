@@ -269,7 +269,8 @@ power.
 
 ## TLFL 0.2 Claim Passport Addendum
 
-The first TLFL 0.2 claim-passport mirror was checked on 2026-06-20.
+The first TLFL 0.2 claim-passport mirror was checked on 2026-06-20 and
+rerun after adding the claim-passport review-gate layer.
 
 Commands:
 
@@ -302,6 +303,13 @@ unsat
 unsat
 unsat
 unsat
+unsat
+unsat
+unsat
+unsat
+unsat
+unsat
+unsat
 sat
 sat
 sat
@@ -316,6 +324,17 @@ sat
 sat
 sat
 sat
+sat
+sat
+sat
+sat
+```
+
+This is:
+
+```text
+positive theorem checks: 27 x unsat
+non-claim guards: 18 x sat
 ```
 
 Vampire observed:
@@ -381,6 +400,19 @@ claim-passport audit sheet -> public audit surface
 claim-passport audit sheet -> represented external proof layer
 claim-passport audit sheet -> certified-status / forbidden-jump views
 claim-passport audit sheet does not imply empirical truth, physical validation,
+consciousness, or empirical closure
+```
+
+And it checks the review-gate layer:
+
+```text
+claim-passport audit sheet + external proof layer + certified status +
+certified ceiling + forbidden boundary
+-> claim-passport review gate
+-> public audit surface / external proof layer / certified status /
+allowed ceiling / forbidden boundary / review-ready surface
+
+claim-passport review gate does not imply empirical truth, physical validation,
 consciousness, or empirical closure
 ```
 

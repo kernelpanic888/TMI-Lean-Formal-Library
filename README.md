@@ -59,6 +59,9 @@ ceiling.
 `ClaimPassportAuditSheet` then packages the public surface into a reader-facing
 audit report: verdict, status, ceiling, forbidden jumps, and represented
 external proof layer.
+`ClaimPassportReviewGate` marks that audit report as review-ready when the
+certified status, certified ceiling, external proof layer, and forbidden-jump
+boundary are present.
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.

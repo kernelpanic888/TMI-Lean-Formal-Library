@@ -65,6 +65,12 @@ jumps, and represented external proof layer. They do not raise the claim
 ceiling.
 ```
 
+```text
+The claim-passport review gate means the public audit sheet is review-ready
+inside TLFL. It does not convert proof-status review readiness into empirical
+validation.
+```
+
 ## What Is Not Claimed
 
 ```text
@@ -122,6 +128,11 @@ validation, consciousness, or empirical closure.
 ```text
 Claim-passport audit sheets are public proof-status reports, not empirical
 validation reports.
+```
+
+```text
+Claim-passport review gates are review-entry surfaces, not empirical truth,
+physical validation, consciousness, or empirical closure.
 ```
 
 ## Recommended Public Wording

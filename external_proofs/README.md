@@ -130,6 +130,7 @@ Claim
 -> public certificate surface
 -> public certified-status / forbidden-boundary view
 -> audit sheet / public audit surface
+-> review gate / review-ready surface
 ```
 
 The claim-passport files mirror the first TLFL 0.2 certification surface. They
@@ -186,6 +187,10 @@ claim-passport audit sheet does not imply empirical truth
 claim-passport audit sheet does not imply physical validation
 claim-passport audit sheet does not imply consciousness
 claim-passport audit sheet does not imply empirical closure
+claim-passport review gate does not imply empirical truth
+claim-passport review gate does not imply physical validation
+claim-passport review gate does not imply consciousness
+claim-passport review gate does not imply empirical closure
 ```
 
 ## Step Artifacts

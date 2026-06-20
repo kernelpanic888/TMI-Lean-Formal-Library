@@ -37,6 +37,13 @@
 (declare-fun audit_sheet_external_proof_layer () Bool)
 (declare-fun audit_sheet_certified_status () Bool)
 (declare-fun audit_sheet_forbidden_jump_map () Bool)
+(declare-fun claim_passport_review_gate () Bool)
+(declare-fun review_gate_public_audit_surface () Bool)
+(declare-fun review_gate_external_proof_layer () Bool)
+(declare-fun review_gate_certified_status () Bool)
+(declare-fun review_gate_allowed_ceiling () Bool)
+(declare-fun review_gate_forbidden_jump_map () Bool)
+(declare-fun review_ready_surface () Bool)
 
 (declare-fun empirical_truth () Bool)
 (declare-fun physical_validation () Bool)
@@ -79,6 +86,18 @@
 (assert (=> claim_passport_audit_sheet audit_sheet_external_proof_layer))
 (assert (=> claim_passport_audit_sheet audit_sheet_certified_status))
 (assert (=> claim_passport_audit_sheet audit_sheet_forbidden_jump_map))
+(assert (=> (and claim_passport_audit_sheet
+                 audit_sheet_external_proof_layer
+                 audit_sheet_certified_status
+                 audit_sheet_forbidden_jump_map
+                 certified_ceiling)
+            claim_passport_review_gate))
+(assert (=> claim_passport_review_gate review_gate_public_audit_surface))
+(assert (=> claim_passport_review_gate review_gate_external_proof_layer))
+(assert (=> claim_passport_review_gate review_gate_certified_status))
+(assert (=> claim_passport_review_gate review_gate_allowed_ceiling))
+(assert (=> claim_passport_review_gate review_gate_forbidden_jump_map))
+(assert (=> claim_passport_review_gate review_ready_surface))
 
 ; Theorem: complete claim evidence + proof self-model gives claim passport.
 (push)
@@ -232,6 +251,59 @@
 (check-sat)
 (pop)
 
+; Theorem: audit sheet bundle gives claim-passport review gate.
+(push)
+(assert claim_passport_audit_sheet)
+(assert audit_sheet_external_proof_layer)
+(assert audit_sheet_certified_status)
+(assert audit_sheet_forbidden_jump_map)
+(assert certified_ceiling)
+(assert (not claim_passport_review_gate))
+(check-sat)
+(pop)
+
+; Theorem: review gate gives public audit surface.
+(push)
+(assert claim_passport_review_gate)
+(assert (not review_gate_public_audit_surface))
+(check-sat)
+(pop)
+
+; Theorem: review gate records external proof layer.
+(push)
+(assert claim_passport_review_gate)
+(assert (not review_gate_external_proof_layer))
+(check-sat)
+(pop)
+
+; Theorem: review gate gives certified status.
+(push)
+(assert claim_passport_review_gate)
+(assert (not review_gate_certified_status))
+(check-sat)
+(pop)
+
+; Theorem: review gate gives allowed ceiling.
+(push)
+(assert claim_passport_review_gate)
+(assert (not review_gate_allowed_ceiling))
+(check-sat)
+(pop)
+
+; Theorem: review gate gives forbidden-jump map.
+(push)
+(assert claim_passport_review_gate)
+(assert (not review_gate_forbidden_jump_map))
+(check-sat)
+(pop)
+
+; Theorem: review gate gives review-ready surface.
+(push)
+(assert claim_passport_review_gate)
+(assert (not review_ready_surface))
+(check-sat)
+(pop)
+
 ; Guard: claim object alone does not imply claim passport.
 (push)
 (assert claim_presented)
@@ -331,6 +403,34 @@
 ; Guard: claim-passport audit sheet does not imply empirical closure.
 (push)
 (assert claim_passport_audit_sheet)
+(assert (not empirical_closure))
+(check-sat)
+(pop)
+
+; Guard: claim-passport review gate does not imply empirical truth.
+(push)
+(assert claim_passport_review_gate)
+(assert (not empirical_truth))
+(check-sat)
+(pop)
+
+; Guard: claim-passport review gate does not imply physical validation.
+(push)
+(assert claim_passport_review_gate)
+(assert (not physical_validation))
+(check-sat)
+(pop)
+
+; Guard: claim-passport review gate does not imply consciousness.
+(push)
+(assert claim_passport_review_gate)
+(assert (not consciousness))
+(check-sat)
+(pop)
+
+; Guard: claim-passport review gate does not imply empirical closure.
+(push)
+(assert claim_passport_review_gate)
 (assert (not empirical_closure))
 (check-sat)
 (pop)

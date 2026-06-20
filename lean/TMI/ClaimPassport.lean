@@ -210,6 +210,31 @@ structure ClaimPassportAuditSheet where
 
 abbrev ClaimPassportAuditReport := ClaimPassportAuditSheet
 
+structure ClaimPassportReviewGate where
+  auditSheet : ClaimPassportAuditSheet
+  publicAuditSurface : auditSheet.publicAuditSurface
+  externalProofLayerRepresented : auditSheet.externalProofLayerRepresented
+  reviewCertificationStatus : ClaimCertificationStatus
+  statusWitness :
+    reviewCertificationStatus = auditSheet.reportCertificationStatus
+  reviewAllowedClaimCeiling : ClaimCeiling
+  ceilingWitness :
+    reviewAllowedClaimCeiling = auditSheet.reportAllowedClaimCeiling
+  forbiddenJumpMap : ForbiddenJumpMap
+  forbiddenJumpMapWitness :
+    forbiddenJumpMap.empiricalTruthForbidden /\
+    forbiddenJumpMap.physicalValidationForbidden /\
+    forbiddenJumpMap.consciousnessForbidden /\
+    forbiddenJumpMap.empiricalClosureForbidden
+  reviewReadySurface : Prop
+  reviewReadySurfaceWitness : reviewReadySurface
+
+def ClaimPassportReviewReady (gate : ClaimPassportReviewGate) : Prop :=
+  gate.reviewCertificationStatus =
+      ClaimCertificationStatus.proofStateCertified /\
+  gate.reviewAllowedClaimCeiling = ClaimCeiling.tlflProofStateCertified /\
+  gate.reviewReadySurface
+
 def canonicalClaimObject : ClaimObject :=
   { name := "TLFL 0.2 claim passport and proof-state certification"
     presented := True
@@ -620,6 +645,97 @@ theorem canonical_audit_sheet_status_is_proof_state_certified :
       ClaimCertificationStatus.proofStateCertified := by
   rfl
 
+def reviewGateOf
+    (report : ClaimPassportAuditSheet)
+    (hStatus :
+      report.reportCertificationStatus =
+        ClaimCertificationStatus.proofStateCertified)
+    (hCeiling :
+      report.reportAllowedClaimCeiling =
+        ClaimCeiling.tlflProofStateCertified) :
+    ClaimPassportReviewGate :=
+  { auditSheet := report
+    publicAuditSurface := report.publicAuditSurfaceWitness
+    externalProofLayerRepresented := report.externalProofLayerWitness
+    reviewCertificationStatus := report.reportCertificationStatus
+    statusWitness := rfl
+    reviewAllowedClaimCeiling := report.reportAllowedClaimCeiling
+    ceilingWitness := rfl
+    forbiddenJumpMap := report.reportForbiddenJumpMap
+    forbiddenJumpMapWitness := report.forbiddenJumpMapWitness
+    reviewReadySurface :=
+      report.reportCertificationStatus =
+        ClaimCertificationStatus.proofStateCertified /\
+      report.reportAllowedClaimCeiling =
+        ClaimCeiling.tlflProofStateCertified /\
+      report.publicAuditSurface
+    reviewReadySurfaceWitness := ⟨hStatus, hCeiling, report.publicAuditSurfaceWitness⟩ }
+
+def canonicalClaimPassportReviewGate : ClaimPassportReviewGate :=
+  reviewGateOf canonicalClaimPassportAuditSheet rfl rfl
+
+theorem audit_sheet_with_certified_status_gives_review_gate
+    (report : ClaimPassportAuditSheet)
+    (hStatus :
+      report.reportCertificationStatus =
+        ClaimCertificationStatus.proofStateCertified)
+    (hCeiling :
+      report.reportAllowedClaimCeiling =
+        ClaimCeiling.tlflProofStateCertified) :
+    exists gate : ClaimPassportReviewGate,
+      gate.auditSheet = report := by
+  exact ⟨reviewGateOf report hStatus hCeiling, rfl⟩
+
+theorem claim_passport_review_gate_exists :
+    exists gate : ClaimPassportReviewGate,
+      ClaimPassportReviewReady gate := by
+  exact ⟨canonicalClaimPassportReviewGate, rfl, rfl,
+    canonicalClaimPassportReviewGate.reviewReadySurfaceWitness⟩
+
+def review_gate_gives_audit_sheet
+    (gate : ClaimPassportReviewGate) :
+    ClaimPassportAuditSheet := by
+  exact gate.auditSheet
+
+theorem review_gate_gives_public_audit_surface
+    (gate : ClaimPassportReviewGate) :
+    gate.auditSheet.publicAuditSurface := by
+  exact gate.publicAuditSurface
+
+theorem review_gate_records_external_proof_layer
+    (gate : ClaimPassportReviewGate) :
+    gate.auditSheet.externalProofLayerRepresented := by
+  exact gate.externalProofLayerRepresented
+
+theorem review_gate_gives_certification_status
+    (gate : ClaimPassportReviewGate) :
+    gate.reviewCertificationStatus =
+      gate.auditSheet.reportCertificationStatus := by
+  exact gate.statusWitness
+
+theorem review_gate_gives_allowed_ceiling
+    (gate : ClaimPassportReviewGate) :
+    gate.reviewAllowedClaimCeiling =
+      gate.auditSheet.reportAllowedClaimCeiling := by
+  exact gate.ceilingWitness
+
+theorem review_gate_gives_forbidden_jump_map
+    (gate : ClaimPassportReviewGate) :
+    gate.forbiddenJumpMap.empiricalTruthForbidden /\
+    gate.forbiddenJumpMap.physicalValidationForbidden /\
+    gate.forbiddenJumpMap.consciousnessForbidden /\
+    gate.forbiddenJumpMap.empiricalClosureForbidden := by
+  exact gate.forbiddenJumpMapWitness
+
+theorem review_gate_is_review_ready_surface
+    (gate : ClaimPassportReviewGate) :
+    gate.reviewReadySurface := by
+  exact gate.reviewReadySurfaceWitness
+
+theorem canonical_review_gate_is_review_ready :
+    ClaimPassportReviewReady canonicalClaimPassportReviewGate := by
+  exact ⟨rfl, rfl, canonicalClaimPassportReviewGate.reviewReadySurfaceWitness⟩
+
 theorem canonical_claim_passport_certificate_verdict_is_pass :
     canonicalClaimPassportCertificate.verdict = ClaimPassportVerdict.pass := by
   rfl
@@ -879,6 +995,61 @@ theorem audit_sheet_does_not_imply_empirical_closure :
       Not s.empiricalClosure := by
   let s : ClaimPassportAuditSheetScenario :=
     { publicAuditSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+structure ClaimPassportReviewGateScenario where
+  reviewReadySurface : Prop
+  empiricalTruth : Prop
+  physicalValidation : Prop
+  consciousness : Prop
+  empiricalClosure : Prop
+
+theorem review_gate_does_not_imply_empirical_truth :
+    exists s : ClaimPassportReviewGateScenario,
+      s.reviewReadySurface /\
+      Not s.empiricalTruth := by
+  let s : ClaimPassportReviewGateScenario :=
+    { reviewReadySurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem review_gate_does_not_imply_physical_validation :
+    exists s : ClaimPassportReviewGateScenario,
+      s.reviewReadySurface /\
+      Not s.physicalValidation := by
+  let s : ClaimPassportReviewGateScenario :=
+    { reviewReadySurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem review_gate_does_not_imply_consciousness :
+    exists s : ClaimPassportReviewGateScenario,
+      s.reviewReadySurface /\
+      Not s.consciousness := by
+  let s : ClaimPassportReviewGateScenario :=
+    { reviewReadySurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem review_gate_does_not_imply_empirical_closure :
+    exists s : ClaimPassportReviewGateScenario,
+      s.reviewReadySurface /\
+      Not s.empiricalClosure := by
+  let s : ClaimPassportReviewGateScenario :=
+    { reviewReadySurface := True
       empiricalTruth := False
       physicalValidation := False
       consciousness := False

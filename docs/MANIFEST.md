@@ -15,7 +15,7 @@ Date: 2026-06-20
 | `tmi_lean_formal_library_0_1/lean/TMI/Library.lean` | Canonical TMI library import |
 | `tmi_lean_formal_library_0_1/lean/TMI/ProofStatusClassification.lean` | TLFL proof-status classification meta-interface |
 | `tmi_lean_formal_library_0_1/lean/TMI/ProofChainSelfModel.lean` | `TLFL + External Proof Layer {Z3, Vampire, E}` proof-chain self-model |
-| `tmi_lean_formal_library_0_1/lean/TMI/ClaimPassport.lean` | TLFL 0.2 claim passport, certificate, public surface, and audit-sheet layer |
+| `tmi_lean_formal_library_0_1/lean/TMI/ClaimPassport.lean` | TLFL 0.2 claim passport, certificate, public surface, audit-sheet layer, and review gate |
 | `tmi_lean_formal_library_0_1/lean/TMI/InterfaceMathematics/ProofProjectionSelfModel.lean` | Abstract external-projection, OLean-admission, and strict self-model layer |
 | `tmi_lean_formal_library_0_1/lean/TMI/InterfaceMathematics/PublicSelfProjection.lean` | Outward public self-projection layer for proof-state material |
 | `tmi_lean_formal_library_0_1/lean/OLean.lean` | OLean connection interface |
@@ -51,7 +51,7 @@ Date: 2026-06-20
 | `OLean.TLFLSelfModelProof` | Explicit theorem chain from self-check thinker run to guarded mathematical intelligence |
 | `TMI.ProofStatusClassification` | TLFL claim classification by path, boundary, prover compatibility, and epistemic status |
 | `TMI.ProofChainSelfModel` | Proof-state self-model for the `TLFL + External Proof Layer {Z3, Vampire, E}` chain |
-| `TMI.ClaimPassport` | Claim passport, proof-state certification, public certificate surface, and audit sheet |
+| `TMI.ClaimPassport` | Claim passport, proof-state certification, public certificate surface, audit sheet, and review gate |
 | `OLean.boundaryCheckVerdict` | Computable pass/fail boundary verdict |
 
 ## Publication Documents
@@ -78,6 +78,7 @@ Date: 2026-06-20
 | `docs/TLFL_PUBLIC_SELF_PROJECTION_NOTE_RU.md` | Russian note on outward self-projection through public proof materials |
 | `docs/TLFL_CLAIM_PASSPORT_PROOF_STATUS.md` | Proof-status note for the first TLFL 0.2 claim passport slice |
 | `docs/TLFL_CLAIM_PASSPORT_AUDIT_SHEET.md` | Audit-sheet note for the TLFL 0.2 public claim-passport surface |
+| `docs/TLFL_CLAIM_PASSPORT_REVIEW_GATE.md` | Review-gate note for the TLFL 0.2 public claim-passport audit sheet |
 | `external_proofs/` | Z3, Vampire, and E prover release-boundary checks |
 
 ## Source Repository
