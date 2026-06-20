@@ -131,6 +131,7 @@ TLFL claim-passport verdict/status layer: pass
 TLFL claim-passport certificate object: pass
 TLFL claim-passport public certificate surface: pass
 TLFL claim-passport audit sheet: pass
+TLFL claim-passport review gate: pass
 ```
 
 Sanity check:

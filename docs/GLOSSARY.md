@@ -105,6 +105,14 @@ surface. It records the claim name, verdict, certification status, allowed
 claim ceiling, forbidden-jump boundary, and represented external proof layer.
 It is a public proof-status report, not an empirical validation report.
 
+## Claim Passport Review Gate
+
+The TLFL 0.2 review-entry surface built from an audit sheet with certified
+status, certified ceiling, represented external proof layer, and forbidden-jump
+boundary. It means the claim-passport report is review-ready inside TLFL. It
+does not mean empirical truth, physical validation, consciousness, or empirical
+closure.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input

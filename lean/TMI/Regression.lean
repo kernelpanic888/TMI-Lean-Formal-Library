@@ -76,6 +76,8 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.ClaimPassportPublicCertificateSurface
 #quiet_check TMI.ClaimPassportAuditSheet
 #quiet_check TMI.ClaimPassportAuditReport
+#quiet_check TMI.ClaimPassportReviewGate
+#quiet_check TMI.ClaimPassportReviewReady
 #quiet_check TMI.canonicalClaimObject
 #quiet_check TMI.completeClaimEvidenceBundle
 #quiet_check TMI.defaultForbiddenJumpMap
@@ -132,6 +134,18 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.audit_sheet_records_external_proof_layer
 #quiet_check TMI.audit_sheet_is_public_audit_surface
 #quiet_check TMI.canonical_audit_sheet_status_is_proof_state_certified
+#quiet_check TMI.reviewGateOf
+#quiet_check TMI.canonicalClaimPassportReviewGate
+#quiet_check TMI.audit_sheet_with_certified_status_gives_review_gate
+#quiet_check TMI.claim_passport_review_gate_exists
+#quiet_check TMI.review_gate_gives_audit_sheet
+#quiet_check TMI.review_gate_gives_public_audit_surface
+#quiet_check TMI.review_gate_records_external_proof_layer
+#quiet_check TMI.review_gate_gives_certification_status
+#quiet_check TMI.review_gate_gives_allowed_ceiling
+#quiet_check TMI.review_gate_gives_forbidden_jump_map
+#quiet_check TMI.review_gate_is_review_ready_surface
+#quiet_check TMI.canonical_review_gate_is_review_ready
 #quiet_check TMI.canonical_claim_passport_certificate_verdict_is_pass
 #quiet_check TMI.canonical_claim_passport_certificate_status_is_proof_state_certified
 #quiet_check TMI.claim_passport_gives_allowed_claim_ceiling
@@ -155,6 +169,11 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.audit_sheet_does_not_imply_physical_validation
 #quiet_check TMI.audit_sheet_does_not_imply_consciousness
 #quiet_check TMI.audit_sheet_does_not_imply_empirical_closure
+#quiet_check TMI.ClaimPassportReviewGateScenario
+#quiet_check TMI.review_gate_does_not_imply_empirical_truth
+#quiet_check TMI.review_gate_does_not_imply_physical_validation
+#quiet_check TMI.review_gate_does_not_imply_consciousness
+#quiet_check TMI.review_gate_does_not_imply_empirical_closure
 
 #quiet_check OLean.InternalFrequencyLevel
 #quiet_check OLean.InternalFrequencyValue

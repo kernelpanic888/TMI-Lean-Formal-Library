@@ -75,6 +75,32 @@ fof(audit_certified_status_axiom, axiom,
 fof(audit_forbidden_boundary_axiom, axiom,
   (claim_passport_audit_sheet => audit_sheet_forbidden_jump_map)).
 
+fof(review_gate_axiom, axiom,
+  ((claim_passport_audit_sheet
+    & audit_sheet_external_proof_layer
+    & audit_sheet_certified_status
+    & audit_sheet_forbidden_jump_map
+    & certified_ceiling)
+    => claim_passport_review_gate)).
+
+fof(review_gate_public_audit_axiom, axiom,
+  (claim_passport_review_gate => review_gate_public_audit_surface)).
+
+fof(review_gate_external_proof_axiom, axiom,
+  (claim_passport_review_gate => review_gate_external_proof_layer)).
+
+fof(review_gate_certified_status_axiom, axiom,
+  (claim_passport_review_gate => review_gate_certified_status)).
+
+fof(review_gate_allowed_ceiling_axiom, axiom,
+  (claim_passport_review_gate => review_gate_allowed_ceiling)).
+
+fof(review_gate_forbidden_boundary_axiom, axiom,
+  (claim_passport_review_gate => review_gate_forbidden_jump_map)).
+
+fof(review_ready_surface_axiom, axiom,
+  (claim_passport_review_gate => review_ready_surface)).
+
 fof(complete_claim_facts, axiom,
   (claim_presented
     & lean_kernel_trace
@@ -109,4 +135,11 @@ fof(tlfl_claim_passport_bundle, conjecture,
     & public_audit_surface
     & audit_sheet_external_proof_layer
     & audit_sheet_certified_status
-    & audit_sheet_forbidden_jump_map)).
+    & audit_sheet_forbidden_jump_map
+    & claim_passport_review_gate
+    & review_gate_public_audit_surface
+    & review_gate_external_proof_layer
+    & review_gate_certified_status
+    & review_gate_allowed_ceiling
+    & review_gate_forbidden_jump_map
+    & review_ready_surface)).
