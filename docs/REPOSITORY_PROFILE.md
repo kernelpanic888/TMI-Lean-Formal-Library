@@ -29,6 +29,12 @@ tmi
 https://orcid.org/0009-0006-8717-0492
 ```
 
+## Zenodo DOI
+
+```text
+https://doi.org/10.5281/zenodo.20773095
+```
+
 ## Public Tagline
 
 ```text
