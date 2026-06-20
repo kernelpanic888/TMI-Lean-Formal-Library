@@ -54,24 +54,15 @@ Date: 2026-06-20
 | `TMI.ClaimPassport` | Claim passport, proof-state certification, public certificate surface, audit sheet, review gate, and release gate |
 | `OLean.boundaryCheckVerdict` | Computable pass/fail boundary verdict |
 
-## Publication Documents
+## Public Documents
 
 | Path | Role |
 |---|---|
-| `docs/ZENODO_METADATA.md` | Suggested Zenodo metadata |
-| `docs/ZENODO_METADATA_EN.md` | English Zenodo metadata |
-| `docs/ZENODO_METADATA_RU.md` | Russian Zenodo metadata |
-| `docs/ZENODO_FILE_TABLE_EN.md` | English file table |
-| `docs/ZENODO_FILE_TABLE_RU.md` | Russian file table |
-| `docs/TMI_LEAN_FORMAL_LIBRARY_0_1_ZENODO_SUMMARY_EN.pdf` | English PDF summary for Zenodo |
-| `docs/TMI_LEAN_FORMAL_LIBRARY_0_1_ZENODO_SUMMARY_RU.pdf` | Russian PDF summary for Zenodo |
 | `docs/REPRODUCIBILITY.md` | Build verification instructions |
 | `docs/CLAIM_BOUNDARY.md` | Claims and non-claims |
-| `docs/PUBLICATION_NOTE.md` | Human-readable summary |
 | `docs/GITHUB_PUBLICATION_TEXT.md` | Copy-ready GitHub repository/release publication text |
 | `docs/TLFL_EXTENDED_PUBLICATION_EN.md` | Extended English public explanation: what TLFL is and why it exists |
 | `docs/TLFL_EXTENDED_PUBLICATION_RU.md` | Extended Russian public explanation: what TLFL is and why it exists |
-| `docs/ZENODO_UPDATE_NOTE_2026_06_20.md` | Recommended Zenodo revision note |
 | `docs/TLFL_SELF_MODEL_THEOREM_SHEET_EN.md` | English process matrix sheet for the strict self-model chain |
 | `docs/TLFL_SELF_MODEL_THEOREM_SHEET_RU.md` | Russian process matrix sheet for the strict self-model chain |
 | `docs/TLFL_SELF_MODEL_COMPANION_TABLE_EN.md` | English pass/fail companion table for the strict self-model chain |
@@ -89,7 +80,6 @@ Date: 2026-06-20
 
 | Field | Value |
 |---|---|
-| Zenodo DOI | `https://doi.org/10.5281/zenodo.20773095` |
 | GitHub repository | `https://github.com/kernelpanic888/TMI-Lean-Formal-Library` |
 | Source commit | `4be975e37df910f45c1d38e6ac1a4dfa6ee6b211` |
 | Source author | `Salkutsan Aleksey <kernelpanic888@gmail.com>` |

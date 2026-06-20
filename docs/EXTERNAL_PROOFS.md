@@ -1,6 +1,6 @@
 # External Proofs
 
-TLFL 0.1 includes mirrored external proof files in the Zenodo package under:
+TLFL includes mirrored external proof files in the repository under:
 
 ```text
 external_proofs/
