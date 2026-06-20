@@ -1,6 +1,7 @@
 # Claim Boundary
 
-This Zenodo package publishes a formal Lean 4 library snapshot.
+This repository publishes a formal Lean 4 library and its proof-status
+documentation.
 
 ## What Is Claimed
 

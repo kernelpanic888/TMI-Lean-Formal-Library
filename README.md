@@ -15,11 +15,10 @@ The repository name is intentionally version-neutral:
 TMI-Lean-Formal-Library
 ```
 
-Versions live in releases, tags, Zenodo records, and status documents rather
-than in the repository slug. The current public archive begins with TLFL 0.1,
-and the current development line includes the first TLFL 0.2 proof-status
-slice: claim passports, public certificates, audit sheets, review gates, and
-release gates.
+Versions live in GitHub releases, tags, and status documents rather than in the
+repository slug. The current source line includes the first TLFL 0.2
+proof-status slice: claim passports, public certificates, audit sheets, review
+gates, and release gates.
 
 ## Canonical Import
 

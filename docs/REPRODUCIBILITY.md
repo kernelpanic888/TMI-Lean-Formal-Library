@@ -56,11 +56,7 @@ OLean.CheckVerdict.fail
 
 ## External Prover Commands
 
-Run from the package root:
-
-```text
-publications/zenodo/tmi_lean_formal_library_0_1_2026-06-20/
-```
+Run from the repository root.
 
 Commands:
 

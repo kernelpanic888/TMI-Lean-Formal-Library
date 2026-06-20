@@ -9,8 +9,8 @@ TMI-Lean-Formal-Library
 ```
 
 The repository name is version-neutral. Version numbers belong in GitHub
-Releases, tags, Zenodo records, CITATION metadata, and proof-status documents,
-not in the repository slug.
+releases, tags, citation metadata, and proof-status documents, not in the
+repository slug.
 
 ## Short Description
 
@@ -36,13 +36,7 @@ tmi
 ## Website
 
 ```text
-https://doi.org/10.5281/zenodo.20773095
-```
-
-## Zenodo DOI
-
-```text
-https://doi.org/10.5281/zenodo.20773095
+https://orcid.org/0009-0006-8717-0492
 ```
 
 ## License

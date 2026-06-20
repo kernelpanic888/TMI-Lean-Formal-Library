@@ -1,8 +1,8 @@
 # GitHub Publication Text
 
 This file is a copy-ready publication text for the GitHub repository page,
-GitHub release notes, or a pinned project announcement. It is separate from the
-Zenodo metadata and does not change the formal claim boundary.
+GitHub release notes, or a pinned project announcement. It does not change the
+formal claim boundary.
 
 ## English
 
@@ -158,12 +158,6 @@ ORCID:
 
 ```text
 https://orcid.org/0009-0006-8717-0492
-```
-
-Zenodo archive:
-
-```text
-https://doi.org/10.5281/zenodo.20773095
 ```
 
 License:
@@ -329,12 +323,6 @@ ORCID:
 
 ```text
 https://orcid.org/0009-0006-8717-0492
-```
-
-Архив Zenodo:
-
-```text
-https://doi.org/10.5281/zenodo.20773095
 ```
 
 Лицензия:
