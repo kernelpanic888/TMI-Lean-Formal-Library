@@ -288,6 +288,9 @@ unsat
 unsat
 unsat
 unsat
+unsat
+unsat
+unsat
 sat
 sat
 sat
@@ -320,6 +323,14 @@ The same mirror now also checks the verdict layer:
 ```text
 complete claim-passport input -> pass verdict -> certified ceiling
 missing TLFL classification input -> fail verdict -> unadmitted ceiling
+```
+
+It also checks the public certification-status layer:
+
+```text
+pass + no forbidden jump -> proof-state-certified status
+fail + no forbidden jump -> unadmitted status
+forbidden jump request -> overclaim-blocked status
 ```
 
 The claim passport is a proof-status certification surface. It does not imply

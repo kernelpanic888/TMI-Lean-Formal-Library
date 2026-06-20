@@ -27,6 +27,16 @@ inductive ClaimPassportVerdict where
   | fail
 deriving DecidableEq, Repr
 
+inductive ClaimCertificationStatus where
+  | unadmitted
+  | formalProved
+  | guardedFormal
+  | externalMirrored
+  | proofStateCertified
+  | empiricalPending
+  | overclaimBlocked
+deriving DecidableEq, Repr
+
 structure ClaimPassportInput where
   claimPresented : Bool
   leanKernelTrace : Bool
@@ -58,6 +68,30 @@ def claimPassportCeiling (input : ClaimPassportInput) : ClaimCeiling :=
   match claimPassportVerdict input with
   | ClaimPassportVerdict.pass => ClaimCeiling.tlflProofStateCertified
   | ClaimPassportVerdict.fail => ClaimCeiling.unadmitted
+
+structure ClaimCertificationRequest where
+  input : ClaimPassportInput
+  requestsEmpiricalTruth : Bool
+  requestsPhysicalValidation : Bool
+  requestsConsciousness : Bool
+  requestsEmpiricalClosure : Bool
+deriving Repr
+
+def claimCertificationRequestsForbiddenJump
+    (request : ClaimCertificationRequest) : Bool :=
+  request.requestsEmpiricalTruth ||
+  request.requestsPhysicalValidation ||
+  request.requestsConsciousness ||
+  request.requestsEmpiricalClosure
+
+def claimCertificationStatus
+    (request : ClaimCertificationRequest) : ClaimCertificationStatus :=
+  if claimCertificationRequestsForbiddenJump request then
+    ClaimCertificationStatus.overclaimBlocked
+  else
+    match claimPassportVerdict request.input with
+    | ClaimPassportVerdict.pass => ClaimCertificationStatus.proofStateCertified
+    | ClaimPassportVerdict.fail => ClaimCertificationStatus.unadmitted
 
 structure ClaimObject where
   name : String
@@ -172,6 +206,27 @@ def missingTLFLClassificationClaimPassportInput : ClaimPassportInput :=
     nonClaimGuardTrace := true
     proofSelfModelTrace := true }
 
+def certifiedProofStateRequest : ClaimCertificationRequest :=
+  { input := completeClaimPassportInput
+    requestsEmpiricalTruth := false
+    requestsPhysicalValidation := false
+    requestsConsciousness := false
+    requestsEmpiricalClosure := false }
+
+def missingClassificationCertificationRequest : ClaimCertificationRequest :=
+  { input := missingTLFLClassificationClaimPassportInput
+    requestsEmpiricalTruth := false
+    requestsPhysicalValidation := false
+    requestsConsciousness := false
+    requestsEmpiricalClosure := false }
+
+def overclaimingEmpiricalClosureRequest : ClaimCertificationRequest :=
+  { input := completeClaimPassportInput
+    requestsEmpiricalTruth := false
+    requestsPhysicalValidation := false
+    requestsConsciousness := false
+    requestsEmpiricalClosure := true }
+
 def proofStateCertificationOf
     (input : ClaimPassportInput)
     (h : claimPassportVerdict input = ClaimPassportVerdict.pass) :
@@ -225,6 +280,42 @@ theorem proof_state_certification_has_certified_ceiling :
     canonicalProofStateCertification.allowedClaimCeiling =
       ClaimCeiling.tlflProofStateCertified := by
   rfl
+
+theorem certified_proof_state_request_status_is_proof_state_certified :
+    claimCertificationStatus certifiedProofStateRequest =
+      ClaimCertificationStatus.proofStateCertified := by
+  rfl
+
+theorem missing_classification_request_status_is_unadmitted :
+    claimCertificationStatus missingClassificationCertificationRequest =
+      ClaimCertificationStatus.unadmitted := by
+  rfl
+
+theorem empirical_closure_overclaim_request_status_is_blocked :
+    claimCertificationStatus overclaimingEmpiricalClosureRequest =
+      ClaimCertificationStatus.overclaimBlocked := by
+  rfl
+
+theorem forbidden_jump_request_gives_overclaim_blocked
+    (request : ClaimCertificationRequest)
+    (h : claimCertificationRequestsForbiddenJump request = true) :
+    claimCertificationStatus request = ClaimCertificationStatus.overclaimBlocked := by
+  simp [claimCertificationStatus, h]
+
+theorem pass_without_forbidden_jump_gives_proof_state_certified
+    (request : ClaimCertificationRequest)
+    (hNoJump : claimCertificationRequestsForbiddenJump request = false)
+    (hPass : claimPassportVerdict request.input = ClaimPassportVerdict.pass) :
+    claimCertificationStatus request =
+      ClaimCertificationStatus.proofStateCertified := by
+  simp [claimCertificationStatus, hNoJump, hPass]
+
+theorem fail_without_forbidden_jump_gives_unadmitted
+    (request : ClaimCertificationRequest)
+    (hNoJump : claimCertificationRequestsForbiddenJump request = false)
+    (hFail : claimPassportVerdict request.input = ClaimPassportVerdict.fail) :
+    claimCertificationStatus request = ClaimCertificationStatus.unadmitted := by
+  simp [claimCertificationStatus, hNoJump, hFail]
 
 def claimPassportOf
     (claim : ClaimObject)

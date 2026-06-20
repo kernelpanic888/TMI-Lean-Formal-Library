@@ -47,6 +47,9 @@ surface that turns a claim, evidence bundle, TLFL classification, proof-state
 self-model, allowed claim ceiling, and forbidden jump map into a claim passport.
 It also adds a computable `ClaimPassportVerdict`: complete inputs return `pass`;
 inputs missing TLFL classification return `fail`.
+The certification-status layer maps complete, non-overclaiming requests to
+`proofStateCertified`, missing-boundary requests to `unadmitted`, and forbidden
+jump requests to `overclaimBlocked`.
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.
