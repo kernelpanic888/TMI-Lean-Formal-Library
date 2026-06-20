@@ -69,6 +69,8 @@ Date: 2026-06-20
 | `docs/CLAIM_BOUNDARY.md` | Claims and non-claims |
 | `docs/PUBLICATION_NOTE.md` | Human-readable summary |
 | `docs/GITHUB_PUBLICATION_TEXT.md` | Copy-ready GitHub repository/release publication text |
+| `docs/TLFL_EXTENDED_PUBLICATION_EN.md` | Extended English public explanation: what TLFL is and why it exists |
+| `docs/TLFL_EXTENDED_PUBLICATION_RU.md` | Extended Russian public explanation: what TLFL is and why it exists |
 | `docs/ZENODO_UPDATE_NOTE_2026_06_20.md` | Recommended Zenodo revision note |
 | `docs/TLFL_SELF_MODEL_THEOREM_SHEET_EN.md` | English process matrix sheet for the strict self-model chain |
 | `docs/TLFL_SELF_MODEL_THEOREM_SHEET_RU.md` | Russian process matrix sheet for the strict self-model chain |
@@ -88,7 +90,7 @@ Date: 2026-06-20
 | Field | Value |
 |---|---|
 | Zenodo DOI | `https://doi.org/10.5281/zenodo.20773095` |
-| GitHub repository | `https://github.com/kernelpanic888/TMI-Lean-Formal-Library-TLFL-0.1-Formal-Library-for-Interface-Event-Theory-in-Lean-4` |
+| GitHub repository | `https://github.com/kernelpanic888/TMI-Lean-Formal-Library` |
 | Source commit | `4be975e37df910f45c1d38e6ac1a4dfa6ee6b211` |
 | Source author | `Salkutsan Aleksey <kernelpanic888@gmail.com>` |
 | License | `Apache-2.0` |

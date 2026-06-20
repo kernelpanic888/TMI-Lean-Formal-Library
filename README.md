@@ -1,11 +1,25 @@
-# TMI-Lean Formal Library (TLFL) 0.1
+# TMI-Lean Formal Library (TLFL)
 
-TMI-Lean Formal Library (TLFL) 0.1 is a Lean 4 formal library for encoding the core
-definitions, axioms, transition rules, event structures, records,
-admissibility conditions, and proof targets of TMI.
+TMI-Lean Formal Library (TLFL) is a Lean 4 formal library for encoding the core
+definitions, axioms, transition rules, event structures, records, admissibility
+conditions, claim-status certificates, and proof targets of TMI.
 
 This is not a fork of Lean and not a new programming language. It is a Lean 4
 library whose modules are compiled by the ordinary Lean kernel.
+
+## Current Release And Versioning
+
+The repository name is intentionally version-neutral:
+
+```text
+TMI-Lean-Formal-Library
+```
+
+Versions live in releases, tags, Zenodo records, and status documents rather
+than in the repository slug. The current public archive begins with TLFL 0.1,
+and the current development line includes the first TLFL 0.2 proof-status
+slice: claim passports, public certificates, audit sheets, review gates, and
+release gates.
 
 ## Canonical Import
 
@@ -109,11 +123,19 @@ validation.
 A copy-ready bilingual repository/release announcement is available in
 [`docs/GITHUB_PUBLICATION_TEXT.md`](docs/GITHUB_PUBLICATION_TEXT.md).
 
+Extended bilingual explanations for readers who are new to TLFL are available
+here:
+
+- [`docs/TLFL_EXTENDED_PUBLICATION_EN.md`](docs/TLFL_EXTENDED_PUBLICATION_EN.md)
+- [`docs/TLFL_EXTENDED_PUBLICATION_RU.md`](docs/TLFL_EXTENDED_PUBLICATION_RU.md)
+
 ## Russian Note
 
-TMI-Lean 0.1 -- formalnaya biblioteka interfeysno-sobytiynoy teorii dlya
-Lean 4. `OLean` -- rabochee nazvanie interfeysa podklyucheniya TMI k Lean:
-on ne zamenyaet Lean, a proveryaetsya i kompiliruyetsya cherez yadro Lean.
+TMI-Lean Formal Library (TLFL) — формальная библиотека
+интерфейсно-событийной теории для Lean 4. Нумерованные срезы, такие как
+TLFL 0.1 и TLFL 0.2, являются релизными/статусными слоями, а не частью имени
+репозитория. `OLean` — рабочее название интерфейса подключения TLFL к Lean:
+он не заменяет Lean, а проверяется и компилируется через ядро Lean.
 
 ## Library Layout
 
