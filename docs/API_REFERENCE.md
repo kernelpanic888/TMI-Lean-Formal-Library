@@ -131,7 +131,7 @@ TMI.tlfl_meta_interface_gives_claim_classification
 Proof-state self-model layer for the canonical chain:
 
 ```text
-TLFL + Z3 + Vampire + E proof layer
+TLFL + External Proof Layer {Z3, Vampire, E}
 ```
 
 Main public surfaces:

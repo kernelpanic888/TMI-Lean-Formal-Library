@@ -53,7 +53,7 @@ theorem olean_admitted_projection_integrates_to_self_model :
 
 theorem olean_admitted_self_model_is_canonical_witness :
     selfCheckOLeanAdmittedSelfModel.selfModel.proofSelfModel.chainName =
-      "TLFL + Z3 + Vampire + E proof layer" := by
+      "TLFL + External Proof Layer {Z3, Vampire, E}" := by
   exact selfCheckOLeanAdmittedSelfModel.selfModel.chainNameIsCanonical
 
 theorem self_check_gives_olean_admitted_projection :

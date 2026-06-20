@@ -29,7 +29,7 @@ TMI-Lean Formal Library (TLFL) 0.1. It does not mirror the full Lean library.
 | `tlfl_reality_cognition_self_model_tptp_0_1.p` | TPTP/TFF theorem bundle for guarded reality-cognition self-model |
 | `tlfl_consciousness_limit_z3_0_1.smt2` | SMT-LIB2 mirror of the guarded consciousness-limit language |
 | `tlfl_consciousness_limit_tptp_0_1.p` | TPTP/TFF theorem bundle for the guarded consciousness-limit language |
-| `STEP_00_CHAIN_INDEX.md` | Row-level index of the `TLFL + Z3 + Vampire + E proof layer` step artifacts |
+| `STEP_00_CHAIN_INDEX.md` | Row-level index of the `TLFL + External Proof Layer {Z3, Vampire, E}` step artifacts |
 | `STEP_01_VAMPIRE.md` | Artifact for the Vampire step |
 | `STEP_02_Z3.md` | Artifact for the Z3 step |
 | `STEP_03_EPROVER.md` | Artifact for the E prover step |
@@ -66,7 +66,7 @@ surface: complete represented boundary verification gives `pass`; incomplete
 Lean/Lake-only verification gives `fail`.
 
 ```text
-TLFL + Z3 + Vampire + E proof layer
+TLFL + External Proof Layer {Z3, Vampire, E}
 -> proof-chain self-model.
 ```
 

@@ -236,7 +236,7 @@ E boundary verification only.
 The verdict mirror checks that complete represented boundary verification gives
 `pass`, while a Lean/Lake-only incomplete check gives `fail`.
 
-The proof-chain self-model layer checks the canonical `TLFL + Z3 + Vampire + E proof layer`
+The proof-chain self-model layer checks the canonical `TLFL + External Proof Layer {Z3, Vampire, E}`
 chain: Z3, Vampire, and E provide external proof traces; TLFL classifies those
 traces into a proof-state self-model. This does not imply empirical truth,
 physical validation, or replacement of the external proof-search engines.

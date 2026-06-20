@@ -1,5 +1,5 @@
 ; TLFL proof-chain self-model mirror.
-; Chain: TLFL + Z3 + Vampire + E proof layer.
+; Chain: TLFL + External Proof Layer {Z3, Vampire, E}.
 ; Scope: proof-status self-modeling, not empirical validation.
 
 (set-logic QF_UF)
@@ -30,7 +30,7 @@
 (assert (=> tlfl_proof_self_model nonclaim_guard_map))
 (assert (=> tlfl_proof_self_model claim_classification))
 
-; Theorem: TLFL + Z3 + Vampire + E proof layer builds a proof-chain self-model.
+; Theorem: TLFL + External Proof Layer {Z3, Vampire, E} builds a proof-chain self-model.
 (push)
 (assert vampire_pass)
 (assert z3_pass)
@@ -81,7 +81,7 @@
 (pop)
 
 ; Guard: external prover traces without TLFL classification do not form
-; the full TLFL + Z3 + Vampire + E proof-layer self-model.
+; the full TLFL + External Proof Layer {Z3, Vampire, E} self-model.
 (push)
 (assert vampire_pass)
 (assert z3_pass)

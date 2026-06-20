@@ -92,7 +92,7 @@ check into empirical physical validation.
 
 ## Proof-Chain Self-Model
 
-`TMI.ProofChainSelfModel` fixes the canonical `TLFL + Z3 + Vampire + E proof layer` chain as a
+`TMI.ProofChainSelfModel` fixes the canonical `TLFL + External Proof Layer {Z3, Vampire, E}` chain as a
 proof-state self-model. Z3, Vampire, and E provide external proof traces; TLFL
 classifies those traces by proof path, verification boundary, prover
 compatibility, and allowed epistemic status.

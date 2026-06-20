@@ -2,7 +2,7 @@
 Interface Mathematics: proof projection to self-model.
 
 This layer makes explicit a stricter reading of the canonical
-`TLFL + Z3 + Vampire + E proof layer` chain. External prover traces are not yet a strict
+`TLFL + External Proof Layer {Z3, Vampire, E}` chain. External prover traces are not yet a strict
 self-model. They must first be admitted through a formal boundary and only then
 be integrated by TLFL into an internally referential proof-state model.
 -/
@@ -25,7 +25,7 @@ structure SelfReferentialProofModel where
   integratedProjection : IntegratedProofProjection
   proofSelfModel : TMI.TLFLProofSelfModel
   chainNameIsCanonical :
-    proofSelfModel.chainName = "TLFL + Z3 + Vampire + E proof layer"
+    proofSelfModel.chainName = "TLFL + External Proof Layer {Z3, Vampire, E}"
   classificationMatches :
     proofSelfModel.claimClassification =
       integratedProjection.claimClassification
