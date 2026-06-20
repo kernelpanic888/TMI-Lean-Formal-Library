@@ -32,6 +32,11 @@
 (declare-fun public_certificate_surface () Bool)
 (declare-fun public_surface_certified_status () Bool)
 (declare-fun public_surface_forbidden_jump_map () Bool)
+(declare-fun claim_passport_audit_sheet () Bool)
+(declare-fun public_audit_surface () Bool)
+(declare-fun audit_sheet_external_proof_layer () Bool)
+(declare-fun audit_sheet_certified_status () Bool)
+(declare-fun audit_sheet_forbidden_jump_map () Bool)
 
 (declare-fun empirical_truth () Bool)
 (declare-fun physical_validation () Bool)
@@ -69,6 +74,11 @@
 (assert (=> claim_passport_certificate public_certificate_surface))
 (assert (=> public_certificate_surface public_surface_certified_status))
 (assert (=> public_certificate_surface public_surface_forbidden_jump_map))
+(assert (=> public_certificate_surface claim_passport_audit_sheet))
+(assert (=> claim_passport_audit_sheet public_audit_surface))
+(assert (=> claim_passport_audit_sheet audit_sheet_external_proof_layer))
+(assert (=> claim_passport_audit_sheet audit_sheet_certified_status))
+(assert (=> claim_passport_audit_sheet audit_sheet_forbidden_jump_map))
 
 ; Theorem: complete claim evidence + proof self-model gives claim passport.
 (push)
@@ -187,6 +197,41 @@
 (check-sat)
 (pop)
 
+; Theorem: public certificate surface gives claim-passport audit sheet.
+(push)
+(assert public_certificate_surface)
+(assert (not claim_passport_audit_sheet))
+(check-sat)
+(pop)
+
+; Theorem: claim-passport audit sheet gives public audit surface.
+(push)
+(assert claim_passport_audit_sheet)
+(assert (not public_audit_surface))
+(check-sat)
+(pop)
+
+; Theorem: claim-passport audit sheet records external proof layer.
+(push)
+(assert claim_passport_audit_sheet)
+(assert (not audit_sheet_external_proof_layer))
+(check-sat)
+(pop)
+
+; Theorem: claim-passport audit sheet gives certified-status view.
+(push)
+(assert claim_passport_audit_sheet)
+(assert (not audit_sheet_certified_status))
+(check-sat)
+(pop)
+
+; Theorem: claim-passport audit sheet gives forbidden-jump view.
+(push)
+(assert claim_passport_audit_sheet)
+(assert (not audit_sheet_forbidden_jump_map))
+(check-sat)
+(pop)
+
 ; Guard: claim object alone does not imply claim passport.
 (push)
 (assert claim_presented)
@@ -258,6 +303,34 @@
 ; Guard: public certificate surface does not imply empirical closure.
 (push)
 (assert public_certificate_surface)
+(assert (not empirical_closure))
+(check-sat)
+(pop)
+
+; Guard: claim-passport audit sheet does not imply empirical truth.
+(push)
+(assert claim_passport_audit_sheet)
+(assert (not empirical_truth))
+(check-sat)
+(pop)
+
+; Guard: claim-passport audit sheet does not imply physical validation.
+(push)
+(assert claim_passport_audit_sheet)
+(assert (not physical_validation))
+(check-sat)
+(pop)
+
+; Guard: claim-passport audit sheet does not imply consciousness.
+(push)
+(assert claim_passport_audit_sheet)
+(assert (not consciousness))
+(check-sat)
+(pop)
+
+; Guard: claim-passport audit sheet does not imply empirical closure.
+(push)
+(assert claim_passport_audit_sheet)
 (assert (not empirical_closure))
 (check-sat)
 (pop)

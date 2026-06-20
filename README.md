@@ -56,6 +56,9 @@ proof-status object.
 `ClaimPassportPublicCertificateSurface` exposes that certificate as an
 outward-facing proof-status surface for inspection without raising the claim
 ceiling.
+`ClaimPassportAuditSheet` then packages the public surface into a reader-facing
+audit report: verdict, status, ceiling, forbidden jumps, and represented
+external proof layer.
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.

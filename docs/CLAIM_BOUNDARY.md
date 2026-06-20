@@ -58,6 +58,13 @@ classification, proof-state self-model, allowed claim ceiling, and forbidden
 jump map.
 ```
 
+```text
+The public certificate surface and audit sheet expose the claim-passport status
+for inspection: verdict, certification status, allowed ceiling, forbidden
+jumps, and represented external proof layer. They do not raise the claim
+ceiling.
+```
+
 ## What Is Not Claimed
 
 ```text
@@ -110,6 +117,11 @@ TLFL classification does not replace Z3, Vampire, or E proof search.
 ```text
 Claim passport certification does not imply empirical truth, physical
 validation, consciousness, or empirical closure.
+```
+
+```text
+Claim-passport audit sheets are public proof-status reports, not empirical
+validation reports.
 ```
 
 ## Recommended Public Wording

@@ -74,6 +74,8 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.ClaimPassportCertified
 #quiet_check TMI.ClaimPassportCertificate
 #quiet_check TMI.ClaimPassportPublicCertificateSurface
+#quiet_check TMI.ClaimPassportAuditSheet
+#quiet_check TMI.ClaimPassportAuditReport
 #quiet_check TMI.canonicalClaimObject
 #quiet_check TMI.completeClaimEvidenceBundle
 #quiet_check TMI.defaultForbiddenJumpMap
@@ -119,6 +121,17 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.public_certificate_surface_gives_forbidden_jump_map
 #quiet_check TMI.public_certificate_surface_is_public_proof_status_surface
 #quiet_check TMI.canonical_public_certificate_surface_status_is_proof_state_certified
+#quiet_check TMI.auditSheetOf
+#quiet_check TMI.canonicalClaimPassportAuditSheet
+#quiet_check TMI.public_certificate_surface_gives_audit_sheet
+#quiet_check TMI.audit_sheet_gives_public_certificate_surface
+#quiet_check TMI.audit_sheet_gives_verdict
+#quiet_check TMI.audit_sheet_gives_certification_status
+#quiet_check TMI.audit_sheet_gives_allowed_ceiling
+#quiet_check TMI.audit_sheet_gives_forbidden_jump_map
+#quiet_check TMI.audit_sheet_records_external_proof_layer
+#quiet_check TMI.audit_sheet_is_public_audit_surface
+#quiet_check TMI.canonical_audit_sheet_status_is_proof_state_certified
 #quiet_check TMI.canonical_claim_passport_certificate_verdict_is_pass
 #quiet_check TMI.canonical_claim_passport_certificate_status_is_proof_state_certified
 #quiet_check TMI.claim_passport_gives_allowed_claim_ceiling
@@ -137,6 +150,11 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.public_certificate_surface_does_not_imply_physical_validation
 #quiet_check TMI.public_certificate_surface_does_not_imply_consciousness
 #quiet_check TMI.public_certificate_surface_does_not_imply_empirical_closure
+#quiet_check TMI.ClaimPassportAuditSheetScenario
+#quiet_check TMI.audit_sheet_does_not_imply_empirical_truth
+#quiet_check TMI.audit_sheet_does_not_imply_physical_validation
+#quiet_check TMI.audit_sheet_does_not_imply_consciousness
+#quiet_check TMI.audit_sheet_does_not_imply_empirical_closure
 
 #quiet_check OLean.InternalFrequencyLevel
 #quiet_check OLean.InternalFrequencyValue
