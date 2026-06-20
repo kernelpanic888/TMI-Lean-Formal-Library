@@ -98,6 +98,13 @@ allowed claim ceiling, and forbidden-jump boundary in a form meant for public
 inspection. It still does not imply empirical truth, physical validation,
 consciousness, or empirical closure.
 
+## Claim Passport Audit Sheet
+
+The reader-facing TLFL 0.2 audit report built from the public certificate
+surface. It records the claim name, verdict, certification status, allowed
+claim ceiling, forbidden-jump boundary, and represented external proof layer.
+It is a public proof-status report, not an empirical validation report.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input

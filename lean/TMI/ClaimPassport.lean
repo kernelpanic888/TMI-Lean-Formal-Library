@@ -188,6 +188,28 @@ structure ClaimPassportPublicCertificateSurface where
   publicProofStatusSurface : Prop
   publicProofStatusSurfaceWitness : publicProofStatusSurface
 
+structure ClaimPassportAuditSheet where
+  publicSurface : ClaimPassportPublicCertificateSurface
+  reportClaimName : String
+  reportVerdict : ClaimPassportVerdict
+  verdictWitness : reportVerdict = publicSurface.verdict
+  reportCertificationStatus : ClaimCertificationStatus
+  statusWitness : reportCertificationStatus = publicSurface.certificationStatus
+  reportAllowedClaimCeiling : ClaimCeiling
+  ceilingWitness : reportAllowedClaimCeiling = publicSurface.allowedClaimCeiling
+  reportForbiddenJumpMap : ForbiddenJumpMap
+  forbiddenJumpMapWitness :
+    reportForbiddenJumpMap.empiricalTruthForbidden /\
+    reportForbiddenJumpMap.physicalValidationForbidden /\
+    reportForbiddenJumpMap.consciousnessForbidden /\
+    reportForbiddenJumpMap.empiricalClosureForbidden
+  externalProofLayerRepresented : Prop
+  externalProofLayerWitness : externalProofLayerRepresented
+  publicAuditSurface : Prop
+  publicAuditSurfaceWitness : publicAuditSurface
+
+abbrev ClaimPassportAuditReport := ClaimPassportAuditSheet
+
 def canonicalClaimObject : ClaimObject :=
   { name := "TLFL 0.2 claim passport and proof-state certification"
     presented := True
@@ -526,6 +548,78 @@ theorem canonical_public_certificate_surface_status_is_proof_state_certified :
       ClaimCertificationStatus.proofStateCertified := by
   rfl
 
+def auditSheetOf
+    (surface : ClaimPassportPublicCertificateSurface) :
+    ClaimPassportAuditSheet :=
+  { publicSurface := surface
+    reportClaimName := surface.certificate.passport.claim.name
+    reportVerdict := surface.verdict
+    verdictWitness := rfl
+    reportCertificationStatus := surface.certificationStatus
+    statusWitness := rfl
+    reportAllowedClaimCeiling := surface.allowedClaimCeiling
+    ceilingWitness := rfl
+    reportForbiddenJumpMap := surface.forbiddenJumpMap
+    forbiddenJumpMapWitness := surface.forbiddenJumpMapWitness
+    externalProofLayerRepresented := True
+    externalProofLayerWitness := by trivial
+    publicAuditSurface := True
+    publicAuditSurfaceWitness := by trivial }
+
+def canonicalClaimPassportAuditSheet : ClaimPassportAuditSheet :=
+  auditSheetOf canonicalClaimPassportPublicCertificateSurface
+
+theorem public_certificate_surface_gives_audit_sheet
+    (surface : ClaimPassportPublicCertificateSurface) :
+    exists report : ClaimPassportAuditSheet,
+      report.publicSurface = surface := by
+  exact ⟨auditSheetOf surface, rfl⟩
+
+def audit_sheet_gives_public_certificate_surface
+    (report : ClaimPassportAuditSheet) :
+    ClaimPassportPublicCertificateSurface := by
+  exact report.publicSurface
+
+theorem audit_sheet_gives_verdict
+    (report : ClaimPassportAuditSheet) :
+    report.reportVerdict = report.publicSurface.verdict := by
+  exact report.verdictWitness
+
+theorem audit_sheet_gives_certification_status
+    (report : ClaimPassportAuditSheet) :
+    report.reportCertificationStatus =
+      report.publicSurface.certificationStatus := by
+  exact report.statusWitness
+
+theorem audit_sheet_gives_allowed_ceiling
+    (report : ClaimPassportAuditSheet) :
+    report.reportAllowedClaimCeiling =
+      report.publicSurface.allowedClaimCeiling := by
+  exact report.ceilingWitness
+
+theorem audit_sheet_gives_forbidden_jump_map
+    (report : ClaimPassportAuditSheet) :
+    report.reportForbiddenJumpMap.empiricalTruthForbidden /\
+    report.reportForbiddenJumpMap.physicalValidationForbidden /\
+    report.reportForbiddenJumpMap.consciousnessForbidden /\
+    report.reportForbiddenJumpMap.empiricalClosureForbidden := by
+  exact report.forbiddenJumpMapWitness
+
+theorem audit_sheet_records_external_proof_layer
+    (report : ClaimPassportAuditSheet) :
+    report.externalProofLayerRepresented := by
+  exact report.externalProofLayerWitness
+
+theorem audit_sheet_is_public_audit_surface
+    (report : ClaimPassportAuditSheet) :
+    report.publicAuditSurface := by
+  exact report.publicAuditSurfaceWitness
+
+theorem canonical_audit_sheet_status_is_proof_state_certified :
+    canonicalClaimPassportAuditSheet.reportCertificationStatus =
+      ClaimCertificationStatus.proofStateCertified := by
+  rfl
+
 theorem canonical_claim_passport_certificate_verdict_is_pass :
     canonicalClaimPassportCertificate.verdict = ClaimPassportVerdict.pass := by
   rfl
@@ -730,6 +824,61 @@ theorem public_certificate_surface_does_not_imply_empirical_closure :
       Not s.empiricalClosure := by
   let s : ClaimPassportPublicSurfaceScenario :=
     { publicCertificateSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+structure ClaimPassportAuditSheetScenario where
+  publicAuditSurface : Prop
+  empiricalTruth : Prop
+  physicalValidation : Prop
+  consciousness : Prop
+  empiricalClosure : Prop
+
+theorem audit_sheet_does_not_imply_empirical_truth :
+    exists s : ClaimPassportAuditSheetScenario,
+      s.publicAuditSurface /\
+      Not s.empiricalTruth := by
+  let s : ClaimPassportAuditSheetScenario :=
+    { publicAuditSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem audit_sheet_does_not_imply_physical_validation :
+    exists s : ClaimPassportAuditSheetScenario,
+      s.publicAuditSurface /\
+      Not s.physicalValidation := by
+  let s : ClaimPassportAuditSheetScenario :=
+    { publicAuditSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem audit_sheet_does_not_imply_consciousness :
+    exists s : ClaimPassportAuditSheetScenario,
+      s.publicAuditSurface /\
+      Not s.consciousness := by
+  let s : ClaimPassportAuditSheetScenario :=
+    { publicAuditSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem audit_sheet_does_not_imply_empirical_closure :
+    exists s : ClaimPassportAuditSheetScenario,
+      s.publicAuditSurface /\
+      Not s.empiricalClosure := by
+  let s : ClaimPassportAuditSheetScenario :=
+    { publicAuditSurface := True
       empiricalTruth := False
       physicalValidation := False
       consciousness := False

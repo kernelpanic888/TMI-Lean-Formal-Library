@@ -297,6 +297,15 @@ unsat
 unsat
 unsat
 unsat
+unsat
+unsat
+unsat
+unsat
+unsat
+sat
+sat
+sat
+sat
 sat
 sat
 sat
@@ -328,7 +337,8 @@ Claim + evidence bundle + TLFL classification + proof-state self-model
 -> allowed claim ceiling + forbidden jump map + claim passport
 -> claim-passport certificate
 -> public certificate surface
--> public certified-status / forbidden-boundary view.
+-> public certified-status / forbidden-boundary view
+-> audit sheet / public audit surface.
 ```
 
 The same mirror now also checks the verdict layer:
@@ -360,6 +370,17 @@ And it checks the public certificate surface layer:
 public certificate surface -> public certified-status view
 public certificate surface -> public forbidden-boundary view
 public certificate surface does not imply empirical truth, physical validation,
+consciousness, or empirical closure
+```
+
+And it checks the audit-sheet layer:
+
+```text
+public certificate surface -> claim-passport audit sheet
+claim-passport audit sheet -> public audit surface
+claim-passport audit sheet -> represented external proof layer
+claim-passport audit sheet -> certified-status / forbidden-jump views
+claim-passport audit sheet does not imply empirical truth, physical validation,
 consciousness, or empirical closure
 ```
 
