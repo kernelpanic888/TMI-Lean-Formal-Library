@@ -78,6 +78,8 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.ClaimPassportAuditReport
 #quiet_check TMI.ClaimPassportReviewGate
 #quiet_check TMI.ClaimPassportReviewReady
+#quiet_check TMI.ClaimPassportReleaseGate
+#quiet_check TMI.ClaimPassportReleaseReady
 #quiet_check TMI.canonicalClaimObject
 #quiet_check TMI.completeClaimEvidenceBundle
 #quiet_check TMI.defaultForbiddenJumpMap
@@ -146,6 +148,19 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.review_gate_gives_forbidden_jump_map
 #quiet_check TMI.review_gate_is_review_ready_surface
 #quiet_check TMI.canonical_review_gate_is_review_ready
+#quiet_check TMI.releaseGateOf
+#quiet_check TMI.canonicalClaimPassportReleaseGate
+#quiet_check TMI.review_gate_with_mirrors_gives_release_gate
+#quiet_check TMI.claim_passport_release_gate_exists
+#quiet_check TMI.release_gate_gives_review_gate
+#quiet_check TMI.release_gate_is_review_ready
+#quiet_check TMI.release_gate_records_external_mirror_verification
+#quiet_check TMI.release_gate_records_public_docs_sync
+#quiet_check TMI.release_gate_gives_certification_status
+#quiet_check TMI.release_gate_gives_allowed_ceiling
+#quiet_check TMI.release_gate_gives_forbidden_jump_map
+#quiet_check TMI.release_gate_is_release_candidate_surface
+#quiet_check TMI.canonical_release_gate_is_release_ready
 #quiet_check TMI.canonical_claim_passport_certificate_verdict_is_pass
 #quiet_check TMI.canonical_claim_passport_certificate_status_is_proof_state_certified
 #quiet_check TMI.claim_passport_gives_allowed_claim_ceiling
@@ -174,6 +189,11 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.review_gate_does_not_imply_physical_validation
 #quiet_check TMI.review_gate_does_not_imply_consciousness
 #quiet_check TMI.review_gate_does_not_imply_empirical_closure
+#quiet_check TMI.ClaimPassportReleaseGateScenario
+#quiet_check TMI.release_gate_does_not_imply_empirical_truth
+#quiet_check TMI.release_gate_does_not_imply_physical_validation
+#quiet_check TMI.release_gate_does_not_imply_consciousness
+#quiet_check TMI.release_gate_does_not_imply_empirical_closure
 
 #quiet_check OLean.InternalFrequencyLevel
 #quiet_check OLean.InternalFrequencyValue

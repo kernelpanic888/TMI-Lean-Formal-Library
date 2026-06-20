@@ -270,7 +270,7 @@ power.
 ## TLFL 0.2 Claim Passport Addendum
 
 The first TLFL 0.2 claim-passport mirror was checked on 2026-06-20 and
-rerun after adding the claim-passport review-gate layer.
+rerun after adding the claim-passport review-gate and release-gate layers.
 
 Commands:
 
@@ -283,58 +283,15 @@ eprover --auto --cpu-limit=10 external_proofs/tlfl_claim_passport_tptp_0_1.p
 Z3 expected and observed:
 
 ```text
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-unsat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
-sat
+unsat x 35
+sat x 22
 ```
 
 This is:
 
 ```text
-positive theorem checks: 27 x unsat
-non-claim guards: 18 x sat
+positive theorem checks: 35 x unsat
+non-claim guards: 22 x sat
 ```
 
 Vampire observed:
@@ -414,6 +371,20 @@ allowed ceiling / forbidden boundary / review-ready surface
 
 claim-passport review gate does not imply empirical truth, physical validation,
 consciousness, or empirical closure
+```
+
+And it checks the release-gate layer:
+
+```text
+claim-passport review gate + review-ready surface + external mirror
+verification + synchronized public docs
+-> claim-passport release gate
+-> review-ready status / external mirror verification / public docs sync /
+certified status / allowed ceiling / forbidden boundary /
+release-candidate surface
+
+claim-passport release gate does not imply empirical truth, physical
+validation, consciousness, or empirical closure
 ```
 
 The claim passport is a proof-status certification surface. It does not imply

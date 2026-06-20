@@ -70,8 +70,8 @@ external_proofs/tlfl_claim_passport_tptp_0_1.p
 Expected Z3 shape for the full claim-passport mirror:
 
 ```text
-positive theorem checks: 27 x unsat
-non-claim guards: 18 x sat
+positive theorem checks: 35 x unsat
+non-claim guards: 22 x sat
 ```
 
 Expected Vampire/E shape:

@@ -191,6 +191,18 @@ claim-passport review gate does not imply empirical truth
 claim-passport review gate does not imply physical validation
 claim-passport review gate does not imply consciousness
 claim-passport review gate does not imply empirical closure
+claim-passport release gate does not imply empirical truth
+claim-passport release gate does not imply physical validation
+claim-passport release gate does not imply consciousness
+claim-passport release gate does not imply empirical closure
+```
+
+The same mirror now includes the release-gate layer:
+
+```text
+claim-passport review gate + external mirror verification + synchronized docs
+-> claim-passport release gate
+-> release-candidate surface
 ```
 
 ## Step Artifacts

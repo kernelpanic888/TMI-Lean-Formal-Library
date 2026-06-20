@@ -181,10 +181,13 @@ TMI.ClaimPassportAuditSheet
 TMI.ClaimPassportAuditReport
 TMI.ClaimPassportReviewGate
 TMI.ClaimPassportReviewReady
+TMI.ClaimPassportReleaseGate
+TMI.ClaimPassportReleaseReady
 TMI.canonicalClaimPassportCertificate
 TMI.canonicalClaimPassportPublicCertificateSurface
 TMI.canonicalClaimPassportAuditSheet
 TMI.canonicalClaimPassportReviewGate
+TMI.canonicalClaimPassportReleaseGate
 ```
 
 Key theorem surfaces:
@@ -241,6 +244,17 @@ TMI.review_gate_gives_allowed_ceiling
 TMI.review_gate_gives_forbidden_jump_map
 TMI.review_gate_is_review_ready_surface
 TMI.canonical_review_gate_is_review_ready
+TMI.review_gate_with_mirrors_gives_release_gate
+TMI.claim_passport_release_gate_exists
+TMI.release_gate_gives_review_gate
+TMI.release_gate_is_review_ready
+TMI.release_gate_records_external_mirror_verification
+TMI.release_gate_records_public_docs_sync
+TMI.release_gate_gives_certification_status
+TMI.release_gate_gives_allowed_ceiling
+TMI.release_gate_gives_forbidden_jump_map
+TMI.release_gate_is_release_candidate_surface
+TMI.canonical_release_gate_is_release_ready
 TMI.canonical_claim_passport_certificate_verdict_is_pass
 TMI.canonical_claim_passport_certificate_status_is_proof_state_certified
 ```
@@ -266,6 +280,10 @@ TMI.review_gate_does_not_imply_empirical_truth
 TMI.review_gate_does_not_imply_physical_validation
 TMI.review_gate_does_not_imply_consciousness
 TMI.review_gate_does_not_imply_empirical_closure
+TMI.release_gate_does_not_imply_empirical_truth
+TMI.release_gate_does_not_imply_physical_validation
+TMI.release_gate_does_not_imply_consciousness
+TMI.release_gate_does_not_imply_empirical_closure
 ```
 
 ## Meaning Of `pass`

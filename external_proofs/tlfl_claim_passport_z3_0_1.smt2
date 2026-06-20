@@ -44,6 +44,16 @@
 (declare-fun review_gate_allowed_ceiling () Bool)
 (declare-fun review_gate_forbidden_jump_map () Bool)
 (declare-fun review_ready_surface () Bool)
+(declare-fun external_mirror_verified () Bool)
+(declare-fun public_docs_synchronized () Bool)
+(declare-fun claim_passport_release_gate () Bool)
+(declare-fun release_gate_review_ready () Bool)
+(declare-fun release_gate_external_mirror_verified () Bool)
+(declare-fun release_gate_public_docs_synchronized () Bool)
+(declare-fun release_gate_certified_status () Bool)
+(declare-fun release_gate_allowed_ceiling () Bool)
+(declare-fun release_gate_forbidden_jump_map () Bool)
+(declare-fun release_candidate_surface () Bool)
 
 (declare-fun empirical_truth () Bool)
 (declare-fun physical_validation () Bool)
@@ -98,6 +108,22 @@
 (assert (=> claim_passport_review_gate review_gate_allowed_ceiling))
 (assert (=> claim_passport_review_gate review_gate_forbidden_jump_map))
 (assert (=> claim_passport_review_gate review_ready_surface))
+(assert (=> (and claim_passport_review_gate
+                 review_ready_surface
+                 review_gate_external_proof_layer
+                 review_gate_certified_status
+                 review_gate_allowed_ceiling
+                 review_gate_forbidden_jump_map
+                 external_mirror_verified
+                 public_docs_synchronized)
+            claim_passport_release_gate))
+(assert (=> claim_passport_release_gate release_gate_review_ready))
+(assert (=> claim_passport_release_gate release_gate_external_mirror_verified))
+(assert (=> claim_passport_release_gate release_gate_public_docs_synchronized))
+(assert (=> claim_passport_release_gate release_gate_certified_status))
+(assert (=> claim_passport_release_gate release_gate_allowed_ceiling))
+(assert (=> claim_passport_release_gate release_gate_forbidden_jump_map))
+(assert (=> claim_passport_release_gate release_candidate_surface))
 
 ; Theorem: complete claim evidence + proof self-model gives claim passport.
 (push)
@@ -304,6 +330,69 @@
 (check-sat)
 (pop)
 
+; Theorem: review gate bundle gives claim-passport release gate.
+(push)
+(assert claim_passport_review_gate)
+(assert review_ready_surface)
+(assert review_gate_external_proof_layer)
+(assert review_gate_certified_status)
+(assert review_gate_allowed_ceiling)
+(assert review_gate_forbidden_jump_map)
+(assert external_mirror_verified)
+(assert public_docs_synchronized)
+(assert (not claim_passport_release_gate))
+(check-sat)
+(pop)
+
+; Theorem: release gate keeps review-ready status.
+(push)
+(assert claim_passport_release_gate)
+(assert (not release_gate_review_ready))
+(check-sat)
+(pop)
+
+; Theorem: release gate records external mirror verification.
+(push)
+(assert claim_passport_release_gate)
+(assert (not release_gate_external_mirror_verified))
+(check-sat)
+(pop)
+
+; Theorem: release gate records synchronized public docs.
+(push)
+(assert claim_passport_release_gate)
+(assert (not release_gate_public_docs_synchronized))
+(check-sat)
+(pop)
+
+; Theorem: release gate gives certified status.
+(push)
+(assert claim_passport_release_gate)
+(assert (not release_gate_certified_status))
+(check-sat)
+(pop)
+
+; Theorem: release gate gives allowed ceiling.
+(push)
+(assert claim_passport_release_gate)
+(assert (not release_gate_allowed_ceiling))
+(check-sat)
+(pop)
+
+; Theorem: release gate gives forbidden-jump map.
+(push)
+(assert claim_passport_release_gate)
+(assert (not release_gate_forbidden_jump_map))
+(check-sat)
+(pop)
+
+; Theorem: release gate gives release-candidate surface.
+(push)
+(assert claim_passport_release_gate)
+(assert (not release_candidate_surface))
+(check-sat)
+(pop)
+
 ; Guard: claim object alone does not imply claim passport.
 (push)
 (assert claim_presented)
@@ -431,6 +520,34 @@
 ; Guard: claim-passport review gate does not imply empirical closure.
 (push)
 (assert claim_passport_review_gate)
+(assert (not empirical_closure))
+(check-sat)
+(pop)
+
+; Guard: claim-passport release gate does not imply empirical truth.
+(push)
+(assert claim_passport_release_gate)
+(assert (not empirical_truth))
+(check-sat)
+(pop)
+
+; Guard: claim-passport release gate does not imply physical validation.
+(push)
+(assert claim_passport_release_gate)
+(assert (not physical_validation))
+(check-sat)
+(pop)
+
+; Guard: claim-passport release gate does not imply consciousness.
+(push)
+(assert claim_passport_release_gate)
+(assert (not consciousness))
+(check-sat)
+(pop)
+
+; Guard: claim-passport release gate does not imply empirical closure.
+(push)
+(assert claim_passport_release_gate)
 (assert (not empirical_closure))
 (check-sat)
 (pop)

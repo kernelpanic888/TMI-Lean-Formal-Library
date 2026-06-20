@@ -62,6 +62,9 @@ external proof layer.
 `ClaimPassportReviewGate` marks that audit report as review-ready when the
 certified status, certified ceiling, external proof layer, and forbidden-jump
 boundary are present.
+`ClaimPassportReleaseGate` promotes that review-ready surface to a
+release-candidate surface only when external mirrors and public documentation
+are synchronized with the proof-state-certified boundary.
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.
