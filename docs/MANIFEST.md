@@ -80,6 +80,7 @@ Date: 2026-06-20
 | `docs/TLFL_CLAIM_PASSPORT_AUDIT_SHEET.md` | Audit-sheet note for the TLFL 0.2 public claim-passport surface |
 | `docs/TLFL_CLAIM_PASSPORT_REVIEW_GATE.md` | Review-gate note for the TLFL 0.2 public claim-passport audit sheet |
 | `docs/TLFL_CLAIM_PASSPORT_RELEASE_GATE.md` | Release-gate note for the TLFL 0.2 claim-passport release-candidate surface |
+| `docs/TLFL_0_2_COMPLETION_AUDIT.md` | Completion audit for the TLFL 0.2 claim-passport and proof-state certification slice |
 | `external_proofs/` | Z3, Vampire, and E prover release-boundary checks |
 
 ## Source Repository

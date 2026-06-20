@@ -65,6 +65,8 @@ boundary are present.
 `ClaimPassportReleaseGate` promotes that review-ready surface to a
 release-candidate surface only when external mirrors and public documentation
 are synchronized with the proof-state-certified boundary.
+The completion audit for this TLFL 0.2 slice is recorded in
+[`docs/TLFL_0_2_COMPLETION_AUDIT.md`](docs/TLFL_0_2_COMPLETION_AUDIT.md).
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.
