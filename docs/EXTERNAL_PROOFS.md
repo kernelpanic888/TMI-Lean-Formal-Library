@@ -62,7 +62,7 @@ OLean uses the Lean kernel.
 OLean does not introduce a new kernel.
 TLFL is not a Lean fork.
 Complete boundary verification gives internal frequency G4/749.
-Vampire/Z3/E/TLFL builds a proof-chain self-model.
+TLFL + Z3 + Vampire + E proof layer builds a proof-chain self-model.
 ```
 
 They do not prove empirical physical validity.

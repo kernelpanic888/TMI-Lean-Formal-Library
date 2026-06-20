@@ -1,5 +1,5 @@
 /-
-Vampire/Z3/E/TLFL proof-chain self-model.
+TLFL + Z3 + Vampire + E proof-layer self-model.
 
 The external provers provide proof traces. TLFL then classifies those traces
 into a self-model of the proof state: verification boundary, prover
@@ -51,7 +51,7 @@ structure ProofChainSelfModel where
 
 structure TLFLProofSelfModel extends ProofChainSelfModel where
   chainName : String
-  chainNameIsCanonical : chainName = "Vampire/Z3/E/TLFL"
+  chainNameIsCanonical : chainName = "TLFL + Z3 + Vampire + E proof layer"
 
 def completeExternalProofTrace : ExternalProofTrace :=
   { vampirePass := True
@@ -87,7 +87,7 @@ def proofChainSelfModelOf
         guardsWitness := h.2.2.2.2.2.2.2 }
     claimClassification := classification
     classificationWitness := h
-    chainName := "Vampire/Z3/E/TLFL"
+    chainName := "TLFL + Z3 + Vampire + E proof layer"
     chainNameIsCanonical := rfl }
 
 def canonicalTLFLProofSelfModel : TLFLProofSelfModel :=
@@ -98,7 +98,7 @@ def canonicalTLFLProofSelfModel : TLFLProofSelfModel :=
 
 theorem vampire_z3_e_tlfl_chain_builds_proof_self_model :
     exists model : TLFLProofSelfModel,
-      model.chainName = "Vampire/Z3/E/TLFL" /\
+      model.chainName = "TLFL + Z3 + Vampire + E proof layer" /\
       TLFLClassifiesClaim model.claimClassification := by
   exact ⟨
     canonicalTLFLProofSelfModel,

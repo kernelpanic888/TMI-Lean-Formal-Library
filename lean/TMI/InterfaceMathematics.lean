@@ -3,3 +3,7 @@ import TMI.InterfaceMathematics.MeasurementDecoherence
 import TMI.InterfaceMathematics.InterfacehoodClasses
 import TMI.InterfaceMathematics.AIAutomaticClaimFitting
 import TMI.InterfaceMathematics.SelfModelingProver
+import TMI.InterfaceMathematics.ProofProjectionSelfModel
+import TMI.InterfaceMathematics.PublicSelfProjection
+import TMI.InterfaceMathematics.RealityCognitionSelfModel
+import TMI.InterfaceMathematics.ConsciousnessLimit

@@ -45,9 +45,9 @@ A formal non-claim boundary. Guards prevent a weaker condition from implying a
 stronger claim, for example: external prover output without Lean-kernel checking
 does not imply formal Lean status.
 
-## Vampire/Z3/E/TLFL
+## TLFL + Z3 + Vampire + E proof layer
 
-The canonical proof-chain display order. Vampire, Z3, and E provide external
+The canonical proof-chain display order. Z3, Vampire, and E provide external
 proof traces; TLFL classifies those traces into a proof-state self-model.
 
 ## Proof-Chain Self-Model
@@ -55,3 +55,27 @@ proof traces; TLFL classifies those traces into a proof-state self-model.
 Structured knowledge of proof status: external proof traces, verification
 boundary map, prover compatibility map, epistemic status map, and non-claim
 guard map. A proof-chain self-model is not empirical truth.
+
+## External Reality Trace
+
+An externally presented trace, measurement-record input, or verification input
+that can be represented at a TLFL interface boundary.
+
+## Guarded Reality Cognition
+
+The formal TLFL process in which an external trace enters internal interfaces,
+is projected into a model, mediated by the thinker role, classified by TLFL, and
+stored in the proof-state self-model. It is not empirical truth or physical
+validation.
+
+## Consciousness Limit Horizon
+
+A guarded TLFL language surface that treats consciousness as an unreachable
+limit of self-modeling: complete self-model plus perfect predictive power. It
+is not a proof that any system is conscious.
+
+## Guarded Consciousness Approximation
+
+A bounded formal approximation surface: proof-state self-model, bounded
+predictive power, and correction boundary. It does not imply empirical
+consciousness, reached consciousness, or 100% predictive power.

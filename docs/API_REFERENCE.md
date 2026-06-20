@@ -131,7 +131,7 @@ TMI.tlfl_meta_interface_gives_claim_classification
 Proof-state self-model layer for the canonical chain:
 
 ```text
-Vampire/Z3/E/TLFL
+TLFL + Z3 + Vampire + E proof layer
 ```
 
 Main public surfaces:
@@ -162,3 +162,79 @@ TMI.proof_self_model_projects_to_claim_classification
 `OLean.CheckVerdict.pass` means that the represented boundary check is complete
 inside the TLFL release model. It requires Lean/Lake plus external proof
 witnesses. It does not mean empirical closure.
+
+## `TMI.InterfaceMathematics.RealityCognitionSelfModel`
+
+Guarded cognition layer for externally presented reality-traces through
+internal TLFL interfaces.
+
+Main public surfaces:
+
+```text
+ExternalRealityTrace
+InternalTLFLInterfacePassage
+RealityProjectionModel
+SelfModelRealityCognition
+ThinkerRealityCognitionRole
+GuardedRealityCognition
+```
+
+Key theorem surfaces:
+
+```text
+external_reality_trace_enters_tlfl_as_interface_input
+tlfl_internal_interfaces_build_reality_projection_model
+thinker_mediates_reality_cognition_inside_self_model
+verified_external_chain_gives_guarded_reality_cognition
+self_model_as_reality_cognition_process
+guarded_reality_cognition_projects_to_public_self_projection
+```
+
+Guard surfaces:
+
+```text
+guarded_reality_cognition_does_not_imply_empirical_truth
+guarded_reality_cognition_does_not_imply_physical_validation
+guarded_reality_cognition_does_not_imply_consciousness
+external_reality_trace_alone_does_not_imply_self_model
+internal_model_alone_does_not_imply_reality_cognition
+```
+
+## `TMI.InterfaceMathematics.ConsciousnessLimit`
+
+Guarded language layer for consciousness as an unreachable self-model limit.
+This layer does not prove consciousness.
+
+Main public surfaces:
+
+```text
+SelfModelDepth
+PredictivePowerLevel
+ConsciousnessQualityProxy
+ConsciousnessLimitHorizon
+CompleteSelfModelClaim
+PerfectPredictivePowerClaim
+AbsoluteConsciousnessClaim
+GuardedConsciousnessApproximation
+```
+
+Key theorem surfaces:
+
+```text
+proof_self_model_gives_consciousness_approximation_language
+guarded_mathematical_intelligence_projects_to_consciousness_limit_horizon
+reality_cognition_projects_to_consciousness_limit_horizon
+consciousness_quality_proxy_requires_self_model_and_prediction
+absolute_consciousness_requires_perfect_prediction
+```
+
+Guard surfaces:
+
+```text
+proof_self_model_does_not_imply_consciousness
+guarded_mathematical_intelligence_does_not_imply_absolute_consciousness
+consciousness_approximation_does_not_imply_consciousness
+consciousness_limit_horizon_does_not_imply_reached_consciousness
+bounded_predictive_power_does_not_imply_perfect_predictive_power
+perfect_prediction_is_not_established_by_tlfl
+```
