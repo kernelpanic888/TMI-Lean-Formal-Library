@@ -12,6 +12,8 @@ Claim
 -> allowed claim ceiling
 -> forbidden jump map
 -> claim passport
+-> claim passport certificate
+-> public certificate surface
 ```
 
 ## What Is New
@@ -35,6 +37,8 @@ ClaimCertificationRequest
 ProofStateCertification
 ClaimPassport
 ClaimPassportCertified
+ClaimPassportCertificate
+canonicalClaimPassportCertificate
 ```
 
 ## Main Theorem Surfaces
@@ -58,6 +62,14 @@ empirical_closure_overclaim_request_status_is_blocked
 forbidden_jump_request_gives_overclaim_blocked
 pass_without_forbidden_jump_gives_proof_state_certified
 fail_without_forbidden_jump_gives_unadmitted
+tlfl_claim_passport_certificate_exists
+claim_passport_certificate_gives_certified_passport
+claim_passport_certificate_gives_verdict
+claim_passport_certificate_gives_certification_status
+claim_passport_certificate_gives_allowed_ceiling
+claim_passport_certificate_gives_forbidden_jump_map
+canonical_claim_passport_certificate_verdict_is_pass
+canonical_claim_passport_certificate_status_is_proof_state_certified
 ```
 
 ## Non-Claim Guards
@@ -83,7 +95,7 @@ external_proofs/tlfl_claim_passport_tptp_0_1.p
 Expected Z3 shape:
 
 ```text
-positive theorem checks: 11 x unsat
+positive theorem checks: 13 x unsat
 non-claim guards: 6 x sat
 ```
 

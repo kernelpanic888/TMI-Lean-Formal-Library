@@ -157,6 +157,19 @@ def ClaimPassportCertified (passport : ClaimPassport) : Prop :=
   passport.forbiddenJumpMap.empiricalClosureForbidden /\
   passport.certificationPass
 
+structure ClaimPassportCertificate where
+  passport : ClaimPassport
+  passportCertified : ClaimPassportCertified passport
+  proofStateCertification : ProofStateCertification
+  request : ClaimCertificationRequest
+  verdict : ClaimPassportVerdict
+  verdictWitness : verdict = claimPassportVerdict request.input
+  certificationStatus : ClaimCertificationStatus
+  statusWitness : certificationStatus = claimCertificationStatus request
+  allowedClaimCeiling : ClaimCeiling
+  ceilingWitness : allowedClaimCeiling = claimPassportCeiling request.input
+  forbiddenJumpMap : ForbiddenJumpMap
+
 def canonicalClaimObject : ClaimObject :=
   { name := "TLFL 0.2 claim passport and proof-state certification"
     presented := True
@@ -342,10 +355,8 @@ def canonicalClaimPassport : ClaimPassport :=
     vampireZ3ETLFLClaimClassification
     tlfl_meta_interface_gives_claim_classification
 
-theorem tlfl_proof_self_model_gives_claim_passport :
-    exists passport : ClaimPassport,
-      ClaimPassportCertified passport := by
-  refine ⟨canonicalClaimPassport, ?_⟩
+theorem canonical_claim_passport_is_certified :
+    ClaimPassportCertified canonicalClaimPassport := by
   exact ⟨
     canonicalClaimPassport.claim.presentedWitness,
     canonicalClaimPassport.evidenceBundle.leanKernelWitness,
@@ -362,6 +373,84 @@ theorem tlfl_proof_self_model_gives_claim_passport :
     canonicalClaimPassport.forbiddenJumpMap.empiricalClosureWitness,
     canonicalClaimPassport.certificationPassWitness
   ⟩
+
+def canonicalClaimPassportCertificate : ClaimPassportCertificate :=
+  { passport := canonicalClaimPassport
+    passportCertified := canonical_claim_passport_is_certified
+    proofStateCertification := canonicalProofStateCertification
+    request := certifiedProofStateRequest
+    verdict := ClaimPassportVerdict.pass
+    verdictWitness := rfl
+    certificationStatus := ClaimCertificationStatus.proofStateCertified
+    statusWitness := rfl
+    allowedClaimCeiling := ClaimCeiling.tlflProofStateCertified
+    ceilingWitness := rfl
+    forbiddenJumpMap := defaultForbiddenJumpMap }
+
+theorem tlfl_proof_self_model_gives_claim_passport :
+    exists passport : ClaimPassport,
+      ClaimPassportCertified passport := by
+  exact ⟨canonicalClaimPassport, canonical_claim_passport_is_certified⟩
+
+theorem tlfl_claim_passport_certificate_exists :
+    exists certificate : ClaimPassportCertificate,
+      ClaimPassportCertified certificate.passport /\
+      certificate.verdict = ClaimPassportVerdict.pass /\
+      certificate.certificationStatus =
+        ClaimCertificationStatus.proofStateCertified /\
+      certificate.allowedClaimCeiling =
+        ClaimCeiling.tlflProofStateCertified := by
+  exact ⟨
+    canonicalClaimPassportCertificate,
+    canonicalClaimPassportCertificate.passportCertified,
+    rfl,
+    rfl,
+    rfl
+  ⟩
+
+theorem claim_passport_certificate_gives_certified_passport
+    (certificate : ClaimPassportCertificate) :
+    ClaimPassportCertified certificate.passport := by
+  exact certificate.passportCertified
+
+theorem claim_passport_certificate_gives_verdict
+    (certificate : ClaimPassportCertificate) :
+    certificate.verdict = claimPassportVerdict certificate.request.input := by
+  exact certificate.verdictWitness
+
+theorem claim_passport_certificate_gives_certification_status
+    (certificate : ClaimPassportCertificate) :
+    certificate.certificationStatus =
+      claimCertificationStatus certificate.request := by
+  exact certificate.statusWitness
+
+theorem claim_passport_certificate_gives_allowed_ceiling
+    (certificate : ClaimPassportCertificate) :
+    certificate.allowedClaimCeiling =
+      claimPassportCeiling certificate.request.input := by
+  exact certificate.ceilingWitness
+
+theorem claim_passport_certificate_gives_forbidden_jump_map
+    (certificate : ClaimPassportCertificate) :
+    certificate.forbiddenJumpMap.empiricalTruthForbidden /\
+    certificate.forbiddenJumpMap.physicalValidationForbidden /\
+    certificate.forbiddenJumpMap.consciousnessForbidden /\
+    certificate.forbiddenJumpMap.empiricalClosureForbidden := by
+  exact ⟨
+    certificate.forbiddenJumpMap.empiricalTruthWitness,
+    certificate.forbiddenJumpMap.physicalValidationWitness,
+    certificate.forbiddenJumpMap.consciousnessWitness,
+    certificate.forbiddenJumpMap.empiricalClosureWitness
+  ⟩
+
+theorem canonical_claim_passport_certificate_verdict_is_pass :
+    canonicalClaimPassportCertificate.verdict = ClaimPassportVerdict.pass := by
+  rfl
+
+theorem canonical_claim_passport_certificate_status_is_proof_state_certified :
+    canonicalClaimPassportCertificate.certificationStatus =
+      ClaimCertificationStatus.proofStateCertified := by
+  rfl
 
 theorem claim_passport_gives_allowed_claim_ceiling
     (passport : ClaimPassport)

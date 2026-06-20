@@ -125,7 +125,9 @@ Claim
 -> proof-state self-model
 -> allowed claim ceiling
 -> forbidden jump map
--> claim passport.
+-> claim passport
+-> claim passport certificate
+-> public certificate surface
 ```
 
 The claim-passport files mirror the first TLFL 0.2 certification surface. They

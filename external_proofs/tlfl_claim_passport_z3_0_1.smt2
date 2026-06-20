@@ -28,6 +28,8 @@
 (declare-fun proof_state_certified_status () Bool)
 (declare-fun unadmitted_status () Bool)
 (declare-fun overclaim_blocked_status () Bool)
+(declare-fun claim_passport_certificate () Bool)
+(declare-fun public_certificate_surface () Bool)
 
 (declare-fun empirical_truth () Bool)
 (declare-fun physical_validation () Bool)
@@ -57,6 +59,12 @@
 (assert (=> (and verdict_fail no_forbidden_jump_request)
             unadmitted_status))
 (assert (=> forbidden_jump_request overclaim_blocked_status))
+(assert (=> (and claim_passport
+                 proof_state_certification
+                 proof_state_certified_status
+                 forbidden_jump_map)
+            claim_passport_certificate))
+(assert (=> claim_passport_certificate public_certificate_surface))
 
 ; Theorem: complete claim evidence + proof self-model gives claim passport.
 (push)
@@ -141,6 +149,23 @@
 (push)
 (assert forbidden_jump_request)
 (assert (not overclaim_blocked_status))
+(check-sat)
+(pop)
+
+; Theorem: certified passport bundle gives claim-passport certificate.
+(push)
+(assert claim_passport)
+(assert proof_state_certification)
+(assert proof_state_certified_status)
+(assert forbidden_jump_map)
+(assert (not claim_passport_certificate))
+(check-sat)
+(pop)
+
+; Theorem: claim-passport certificate gives public certificate surface.
+(push)
+(assert claim_passport_certificate)
+(assert (not public_certificate_surface))
 (check-sat)
 (pop)
 

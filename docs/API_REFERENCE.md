@@ -175,6 +175,8 @@ TMI.ClaimCertificationRequest
 TMI.ProofStateCertification
 TMI.ClaimPassport
 TMI.ClaimPassportCertified
+TMI.ClaimPassportCertificate
+TMI.canonicalClaimPassportCertificate
 ```
 
 Key theorem surfaces:
@@ -198,6 +200,14 @@ TMI.empirical_closure_overclaim_request_status_is_blocked
 TMI.forbidden_jump_request_gives_overclaim_blocked
 TMI.pass_without_forbidden_jump_gives_proof_state_certified
 TMI.fail_without_forbidden_jump_gives_unadmitted
+TMI.tlfl_claim_passport_certificate_exists
+TMI.claim_passport_certificate_gives_certified_passport
+TMI.claim_passport_certificate_gives_verdict
+TMI.claim_passport_certificate_gives_certification_status
+TMI.claim_passport_certificate_gives_allowed_ceiling
+TMI.claim_passport_certificate_gives_forbidden_jump_map
+TMI.canonical_claim_passport_certificate_verdict_is_pass
+TMI.canonical_claim_passport_certificate_status_is_proof_state_certified
 ```
 
 Guard surfaces:

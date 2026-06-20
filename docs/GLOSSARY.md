@@ -83,6 +83,13 @@ For the current TLFL 0.2 slice, a complete request with no forbidden jump gives
 empirical truth, physical validation, consciousness, or empirical closure gives
 `overclaimBlocked`.
 
+## Claim Passport Certificate
+
+The packaged TLFL 0.2 certificate object. It ties together the certified
+passport, proof-state certification, request, verdict, certification status,
+allowed claim ceiling, and forbidden-jump map. It is a public proof-status
+surface, not empirical validation.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input
