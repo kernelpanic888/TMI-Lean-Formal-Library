@@ -6,7 +6,7 @@ Lean and not a new proof kernel.
 TLFL is used as a proof-status meta-interface:
 
 ```text
-Vampire/Z3/E produce proof traces.
+Z3/Vampire/E produce proof traces.
 TLFL classifies the proof state.
 ```
 
@@ -92,8 +92,8 @@ check into empirical physical validation.
 
 ## Proof-Chain Self-Model
 
-`TMI.ProofChainSelfModel` fixes the canonical `Vampire/Z3/E/TLFL` chain as a
-proof-state self-model. Vampire, Z3, and E provide external proof traces; TLFL
+`TMI.ProofChainSelfModel` fixes the canonical `TLFL + Z3 + Vampire + E proof layer` chain as a
+proof-state self-model. Z3, Vampire, and E provide external proof traces; TLFL
 classifies those traces by proof path, verification boundary, prover
 compatibility, and allowed epistemic status.
 

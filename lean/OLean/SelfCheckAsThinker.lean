@@ -185,7 +185,7 @@ theorem self_check_thinker_test_does_not_claim_empirical_physical_validation :
 
 theorem self_check_builds_vampire_z3_e_tlfl_proof_self_model :
     exists model : TMI.TLFLProofSelfModel,
-      model.chainName = "Vampire/Z3/E/TLFL" /\
+      model.chainName = "TLFL + Z3 + Vampire + E proof layer" /\
       TMI.TLFLClassifiesClaim model.claimClassification := by
   exact TMI.vampire_z3_e_tlfl_chain_builds_proof_self_model
 

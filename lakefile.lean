@@ -35,5 +35,7 @@ lean_lib OLean where
     `OLean,
     `OLean.Smoke,
     `OLean.SelfCheck,
-    `OLean.SelfCheckAsThinker
+    `OLean.SelfCheckAsThinker,
+    `OLean.AdmittedProofProjection,
+    `OLean.TLFLSelfModelProof
   ]

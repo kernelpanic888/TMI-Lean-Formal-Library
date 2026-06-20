@@ -21,6 +21,19 @@ TMI-Lean Formal Library (TLFL) 0.1. It does not mirror the full Lean library.
 | `olean_internal_frequency_tptp_0_1.p` | TPTP/TFF internal-frequency theorem bundle |
 | `tlfl_proof_self_model_z3_0_1.smt2` | SMT-LIB2 proof-chain self-model checks |
 | `tlfl_proof_self_model_tptp_0_1.p` | TPTP/TFF proof-chain self-model theorem bundle |
+| `tlfl_self_model_proof_z3_0_1.smt2` | SMT-LIB2 mirror of the OLean self-model proof chain |
+| `tlfl_self_model_proof_tptp_0_1.p` | TPTP/TFF theorem bundle for the OLean self-model proof chain |
+| `olean_admitted_projection_self_model_z3_0_1.smt2` | SMT-LIB2 mirror of the OLean-admitted strict self-model chain |
+| `olean_admitted_projection_self_model_tptp_0_1.p` | TPTP/TFF theorem bundle for the OLean-admitted strict self-model chain |
+| `tlfl_reality_cognition_self_model_z3_0_1.smt2` | SMT-LIB2 mirror of guarded reality-cognition self-model checks |
+| `tlfl_reality_cognition_self_model_tptp_0_1.p` | TPTP/TFF theorem bundle for guarded reality-cognition self-model |
+| `tlfl_consciousness_limit_z3_0_1.smt2` | SMT-LIB2 mirror of the guarded consciousness-limit language |
+| `tlfl_consciousness_limit_tptp_0_1.p` | TPTP/TFF theorem bundle for the guarded consciousness-limit language |
+| `STEP_00_CHAIN_INDEX.md` | Row-level index of the `TLFL + Z3 + Vampire + E proof layer` step artifacts |
+| `STEP_01_VAMPIRE.md` | Artifact for the Vampire step |
+| `STEP_02_Z3.md` | Artifact for the Z3 step |
+| `STEP_03_EPROVER.md` | Artifact for the E prover step |
+| `STEP_04_TLFL.md` | Artifact for the TLFL classification step |
 | `CHECK_RESULTS.md` | Recorded local prover results |
 
 ## Checked Claims
@@ -53,14 +66,60 @@ surface: complete represented boundary verification gives `pass`; incomplete
 Lean/Lake-only verification gives `fail`.
 
 ```text
-Vampire/Z3/E/TLFL
+TLFL + Z3 + Vampire + E proof layer
 -> proof-chain self-model.
 ```
 
 The proof-chain self-model files mirror the TLFL role as a meta-interface of
-proof self-modeling. Vampire, Z3, and E provide external proof traces; TLFL
+proof self-modeling. Z3, Vampire, and E provide external proof traces; TLFL
 classifies those traces by admissible proof path, verification boundary, prover
 compatibility, and allowed epistemic status.
+
+```text
+OLean.SelfCheckAsThinker
+-> own proof/interface model
+-> proof-state self-model
+-> guarded mathematical intelligence.
+```
+
+The self-model proof files mirror the publication-facing theorem chain closed in
+`OLean.TLFLSelfModelProof`. They do not assert consciousness, empirical
+physical validation, or empirical closure.
+
+```text
+Strict TLFL self-model:
+externally produced prover traces become a self-model only after
+OLean boundary admission and TLFL integration.
+```
+
+The admitted-projection files mirror that stricter chain directly.
+
+```text
+ExternalRealityTrace
+-> internal TLFL interface passage
+-> thinker-mediated projection model
+-> proof-state self-model
+-> guarded reality cognition.
+```
+
+The reality-cognition files mirror this guarded cognition chain. They do not
+assert empirical truth, physical validation, or consciousness.
+
+```text
+proof-state self-model
++ bounded predictive power
+-> consciousness-limit horizon
+-> guarded consciousness approximation.
+```
+
+The consciousness-limit files mirror this guarded language layer. They do not
+assert consciousness, empirical consciousness, reached absolute consciousness,
+or achieved 100% predictive power.
+
+For a compact theorem-block view of the strict chain, see:
+
+- `docs/TLFL_SELF_MODEL_THEOREM_SHEET_EN.md`
+- `docs/TLFL_SELF_MODEL_THEOREM_SHEET_RU.md`
 
 ## Non-Claim Guards
 
@@ -74,6 +133,34 @@ external prover results without Lean-kernel checking do not imply formal Lean st
 internal frequency does not imply empirical physical proof
 proof-chain self-model does not imply empirical truth
 proof-chain self-model does not imply physical validation
-TLFL proof self-model does not replace Vampire/Z3/E proof search
+TLFL proof self-model does not replace Z3/Vampire/E proof search
 external prover traces without TLFL classification do not form a full proof self-model
+self-model does not imply consciousness
+self-model does not imply empirical physical validation
+self-model does not imply full empirical intelligence
+proof-interface self-model does not imply universe-level closure
+guarded mathematical intelligence does not imply empirical closure
+formal guarded mathematical intelligence does not imply absolute ontological finality
+guarded reality cognition does not imply empirical truth
+guarded reality cognition does not imply physical validation
+guarded reality cognition does not imply consciousness
+external reality trace alone does not imply proof-state self-model
+internal model alone does not imply guarded reality cognition
+proof self-model does not imply consciousness
+guarded mathematical intelligence does not imply absolute consciousness
+consciousness approximation does not imply consciousness
+consciousness-limit horizon does not imply reached consciousness
+bounded predictive power does not imply perfect predictive power
+perfect prediction is not established by TLFL
+```
+
+## Step Artifacts
+
+The package now includes an explicit artifact for each canonical chain step:
+
+```text
+TLFL    -> STEP_04_TLFL.md
+Z3      -> STEP_02_Z3.md
+Vampire -> STEP_01_VAMPIRE.md
+E prover-> STEP_03_EPROVER.md
 ```

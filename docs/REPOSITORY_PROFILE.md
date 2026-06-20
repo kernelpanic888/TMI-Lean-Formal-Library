@@ -5,7 +5,7 @@ Use this text for the GitHub repository description and public profile fields.
 ## Short Description
 
 ```text
-TMI-Lean Formal Library (TLFL) 0.1: a Lean 4 formal library for interface-event theory, OLean boundary checking, and Vampire/Z3/E/TLFL proof-state self-modeling.
+TMI-Lean Formal Library (TLFL) 0.1: a Lean 4 formal library for interface-event theory, OLean boundary checking, and TLFL + Z3 + Vampire + E proof-layer self-modeling.
 ```
 
 ## Topics
@@ -44,7 +44,7 @@ Apache-2.0
 ## Public Tagline
 
 ```text
-Vampire/Z3/E produce proof traces. TLFL classifies the proof state.
+Z3/Vampire/E produce proof traces. TLFL classifies the proof state.
 ```
 
 ## Boundary Tagline
