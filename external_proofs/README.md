@@ -128,6 +128,7 @@ Claim
 -> claim passport
 -> claim passport certificate
 -> public certificate surface
+-> public certified-status / forbidden-boundary view
 ```
 
 The claim-passport files mirror the first TLFL 0.2 certification surface. They
@@ -176,6 +177,10 @@ claim passport does not imply empirical truth
 claim passport does not imply physical validation
 claim passport does not imply consciousness
 claim passport does not imply empirical closure
+public certificate surface does not imply empirical truth
+public certificate surface does not imply physical validation
+public certificate surface does not imply consciousness
+public certificate surface does not imply empirical closure
 ```
 
 ## Step Artifacts

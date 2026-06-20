@@ -293,6 +293,14 @@ unsat
 unsat
 unsat
 unsat
+unsat
+unsat
+unsat
+unsat
+sat
+sat
+sat
+sat
 sat
 sat
 sat
@@ -319,7 +327,8 @@ Interpretation:
 Claim + evidence bundle + TLFL classification + proof-state self-model
 -> allowed claim ceiling + forbidden jump map + claim passport
 -> claim-passport certificate
--> public certificate surface.
+-> public certificate surface
+-> public certified-status / forbidden-boundary view.
 ```
 
 The same mirror now also checks the verdict layer:
@@ -343,6 +352,15 @@ And it checks the packaged certificate layer:
 claim passport + proof-state certification + certified status + guards
 -> claim-passport certificate
 -> public certificate surface.
+```
+
+And it checks the public certificate surface layer:
+
+```text
+public certificate surface -> public certified-status view
+public certificate surface -> public forbidden-boundary view
+public certificate surface does not imply empirical truth, physical validation,
+consciousness, or empirical closure
 ```
 
 The claim passport is a proof-status certification surface. It does not imply

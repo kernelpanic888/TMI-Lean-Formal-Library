@@ -170,6 +170,24 @@ structure ClaimPassportCertificate where
   ceilingWitness : allowedClaimCeiling = claimPassportCeiling request.input
   forbiddenJumpMap : ForbiddenJumpMap
 
+structure ClaimPassportPublicCertificateSurface where
+  certificate : ClaimPassportCertificate
+  certifiedPassport : ClaimPassportCertified certificate.passport
+  verdict : ClaimPassportVerdict
+  verdictWitness : verdict = certificate.verdict
+  certificationStatus : ClaimCertificationStatus
+  statusWitness : certificationStatus = certificate.certificationStatus
+  allowedClaimCeiling : ClaimCeiling
+  ceilingWitness : allowedClaimCeiling = certificate.allowedClaimCeiling
+  forbiddenJumpMap : ForbiddenJumpMap
+  forbiddenJumpMapWitness :
+    forbiddenJumpMap.empiricalTruthForbidden /\
+    forbiddenJumpMap.physicalValidationForbidden /\
+    forbiddenJumpMap.consciousnessForbidden /\
+    forbiddenJumpMap.empiricalClosureForbidden
+  publicProofStatusSurface : Prop
+  publicProofStatusSurfaceWitness : publicProofStatusSurface
+
 def canonicalClaimObject : ClaimObject :=
   { name := "TLFL 0.2 claim passport and proof-state certification"
     presented := True
@@ -443,6 +461,71 @@ theorem claim_passport_certificate_gives_forbidden_jump_map
     certificate.forbiddenJumpMap.empiricalClosureWitness
   ⟩
 
+def publicCertificateSurfaceOf
+    (certificate : ClaimPassportCertificate) :
+    ClaimPassportPublicCertificateSurface :=
+  { certificate := certificate
+    certifiedPassport := certificate.passportCertified
+    verdict := certificate.verdict
+    verdictWitness := rfl
+    certificationStatus := certificate.certificationStatus
+    statusWitness := rfl
+    allowedClaimCeiling := certificate.allowedClaimCeiling
+    ceilingWitness := rfl
+    forbiddenJumpMap := certificate.forbiddenJumpMap
+    forbiddenJumpMapWitness :=
+      claim_passport_certificate_gives_forbidden_jump_map certificate
+    publicProofStatusSurface := True
+    publicProofStatusSurfaceWitness := by trivial }
+
+def canonicalClaimPassportPublicCertificateSurface :
+    ClaimPassportPublicCertificateSurface :=
+  publicCertificateSurfaceOf canonicalClaimPassportCertificate
+
+theorem claim_passport_certificate_gives_public_certificate_surface
+    (certificate : ClaimPassportCertificate) :
+    exists surface : ClaimPassportPublicCertificateSurface,
+      surface.certificate = certificate := by
+  exact ⟨publicCertificateSurfaceOf certificate, rfl⟩
+
+theorem public_certificate_surface_gives_certified_passport
+    (surface : ClaimPassportPublicCertificateSurface) :
+    ClaimPassportCertified surface.certificate.passport := by
+  exact surface.certifiedPassport
+
+theorem public_certificate_surface_gives_verdict
+    (surface : ClaimPassportPublicCertificateSurface) :
+    surface.verdict = surface.certificate.verdict := by
+  exact surface.verdictWitness
+
+theorem public_certificate_surface_gives_certification_status
+    (surface : ClaimPassportPublicCertificateSurface) :
+    surface.certificationStatus = surface.certificate.certificationStatus := by
+  exact surface.statusWitness
+
+theorem public_certificate_surface_gives_allowed_ceiling
+    (surface : ClaimPassportPublicCertificateSurface) :
+    surface.allowedClaimCeiling = surface.certificate.allowedClaimCeiling := by
+  exact surface.ceilingWitness
+
+theorem public_certificate_surface_gives_forbidden_jump_map
+    (surface : ClaimPassportPublicCertificateSurface) :
+    surface.forbiddenJumpMap.empiricalTruthForbidden /\
+    surface.forbiddenJumpMap.physicalValidationForbidden /\
+    surface.forbiddenJumpMap.consciousnessForbidden /\
+    surface.forbiddenJumpMap.empiricalClosureForbidden := by
+  exact surface.forbiddenJumpMapWitness
+
+theorem public_certificate_surface_is_public_proof_status_surface
+    (surface : ClaimPassportPublicCertificateSurface) :
+    surface.publicProofStatusSurface := by
+  exact surface.publicProofStatusSurfaceWitness
+
+theorem canonical_public_certificate_surface_status_is_proof_state_certified :
+    canonicalClaimPassportPublicCertificateSurface.certificationStatus =
+      ClaimCertificationStatus.proofStateCertified := by
+  rfl
+
 theorem canonical_claim_passport_certificate_verdict_is_pass :
     canonicalClaimPassportCertificate.verdict = ClaimPassportVerdict.pass := by
   rfl
@@ -592,6 +675,61 @@ theorem claim_passport_does_not_imply_empirical_closure :
       tlflClassifies := True
       proofSelfModel := True
       claimPassport := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+structure ClaimPassportPublicSurfaceScenario where
+  publicCertificateSurface : Prop
+  empiricalTruth : Prop
+  physicalValidation : Prop
+  consciousness : Prop
+  empiricalClosure : Prop
+
+theorem public_certificate_surface_does_not_imply_empirical_truth :
+    exists s : ClaimPassportPublicSurfaceScenario,
+      s.publicCertificateSurface /\
+      Not s.empiricalTruth := by
+  let s : ClaimPassportPublicSurfaceScenario :=
+    { publicCertificateSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem public_certificate_surface_does_not_imply_physical_validation :
+    exists s : ClaimPassportPublicSurfaceScenario,
+      s.publicCertificateSurface /\
+      Not s.physicalValidation := by
+  let s : ClaimPassportPublicSurfaceScenario :=
+    { publicCertificateSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem public_certificate_surface_does_not_imply_consciousness :
+    exists s : ClaimPassportPublicSurfaceScenario,
+      s.publicCertificateSurface /\
+      Not s.consciousness := by
+  let s : ClaimPassportPublicSurfaceScenario :=
+    { publicCertificateSurface := True
+      empiricalTruth := False
+      physicalValidation := False
+      consciousness := False
+      empiricalClosure := False }
+  exact ⟨s, by trivial, fun h => h⟩
+
+theorem public_certificate_surface_does_not_imply_empirical_closure :
+    exists s : ClaimPassportPublicSurfaceScenario,
+      s.publicCertificateSurface /\
+      Not s.empiricalClosure := by
+  let s : ClaimPassportPublicSurfaceScenario :=
+    { publicCertificateSurface := True
       empiricalTruth := False
       physicalValidation := False
       consciousness := False

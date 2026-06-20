@@ -30,6 +30,8 @@
 (declare-fun overclaim_blocked_status () Bool)
 (declare-fun claim_passport_certificate () Bool)
 (declare-fun public_certificate_surface () Bool)
+(declare-fun public_surface_certified_status () Bool)
+(declare-fun public_surface_forbidden_jump_map () Bool)
 
 (declare-fun empirical_truth () Bool)
 (declare-fun physical_validation () Bool)
@@ -65,6 +67,8 @@
                  forbidden_jump_map)
             claim_passport_certificate))
 (assert (=> claim_passport_certificate public_certificate_surface))
+(assert (=> public_certificate_surface public_surface_certified_status))
+(assert (=> public_certificate_surface public_surface_forbidden_jump_map))
 
 ; Theorem: complete claim evidence + proof self-model gives claim passport.
 (push)
@@ -169,6 +173,20 @@
 (check-sat)
 (pop)
 
+; Theorem: public certificate surface gives certified status.
+(push)
+(assert public_certificate_surface)
+(assert (not public_surface_certified_status))
+(check-sat)
+(pop)
+
+; Theorem: public certificate surface gives forbidden-jump map.
+(push)
+(assert public_certificate_surface)
+(assert (not public_surface_forbidden_jump_map))
+(check-sat)
+(pop)
+
 ; Guard: claim object alone does not imply claim passport.
 (push)
 (assert claim_presented)
@@ -212,6 +230,34 @@
 ; Guard: claim passport does not imply empirical closure.
 (push)
 (assert claim_passport)
+(assert (not empirical_closure))
+(check-sat)
+(pop)
+
+; Guard: public certificate surface does not imply empirical truth.
+(push)
+(assert public_certificate_surface)
+(assert (not empirical_truth))
+(check-sat)
+(pop)
+
+; Guard: public certificate surface does not imply physical validation.
+(push)
+(assert public_certificate_surface)
+(assert (not physical_validation))
+(check-sat)
+(pop)
+
+; Guard: public certificate surface does not imply consciousness.
+(push)
+(assert public_certificate_surface)
+(assert (not consciousness))
+(check-sat)
+(pop)
+
+; Guard: public certificate surface does not imply empirical closure.
+(push)
+(assert public_certificate_surface)
 (assert (not empirical_closure))
 (check-sat)
 (pop)
