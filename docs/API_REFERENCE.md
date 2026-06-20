@@ -168,6 +168,9 @@ TMI.ClaimCeiling
 TMI.ClaimObject
 TMI.ClaimEvidenceBundle
 TMI.ForbiddenJumpMap
+TMI.ClaimPassportVerdict
+TMI.ClaimPassportInput
+TMI.ProofStateCertification
 TMI.ClaimPassport
 TMI.ClaimPassportCertified
 ```
@@ -181,6 +184,12 @@ TMI.claim_passport_gives_forbidden_jump_map
 TMI.claim_passport_projects_to_proof_state_self_model
 TMI.claim_passport_projects_to_claim_classification
 TMI.claim_passport_certification_passes
+TMI.complete_claim_passport_input_verdict_is_pass
+TMI.complete_claim_passport_input_ceiling_is_certified
+TMI.missing_tlfl_classification_claim_passport_input_verdict_is_fail
+TMI.missing_tlfl_classification_claim_passport_input_ceiling_is_unadmitted
+TMI.claim_passport_pass_gives_certified_ceiling
+TMI.claim_passport_fail_gives_unadmitted_ceiling
 ```
 
 Guard surfaces:

@@ -17,6 +17,13 @@
 (declare-fun forbidden_jump_map () Bool)
 (declare-fun proof_state_certification () Bool)
 
+(declare-fun complete_claim_passport_input () Bool)
+(declare-fun missing_tlfl_classification_input () Bool)
+(declare-fun verdict_pass () Bool)
+(declare-fun verdict_fail () Bool)
+(declare-fun certified_ceiling () Bool)
+(declare-fun unadmitted_ceiling () Bool)
+
 (declare-fun empirical_truth () Bool)
 (declare-fun physical_validation () Bool)
 (declare-fun consciousness () Bool)
@@ -36,6 +43,10 @@
 (assert (=> claim_passport allowed_claim_ceiling))
 (assert (=> claim_passport forbidden_jump_map))
 (assert (=> claim_passport proof_state_certification))
+(assert (=> complete_claim_passport_input verdict_pass))
+(assert (=> missing_tlfl_classification_input verdict_fail))
+(assert (=> verdict_pass certified_ceiling))
+(assert (=> verdict_fail unadmitted_ceiling))
 
 ; Theorem: complete claim evidence + proof self-model gives claim passport.
 (push)
@@ -69,6 +80,34 @@
 (push)
 (assert claim_passport)
 (assert (not proof_state_certification))
+(check-sat)
+(pop)
+
+; Theorem: complete claim passport input gives pass verdict.
+(push)
+(assert complete_claim_passport_input)
+(assert (not verdict_pass))
+(check-sat)
+(pop)
+
+; Theorem: missing TLFL classification gives fail verdict.
+(push)
+(assert missing_tlfl_classification_input)
+(assert (not verdict_fail))
+(check-sat)
+(pop)
+
+; Theorem: pass verdict gives certified ceiling.
+(push)
+(assert verdict_pass)
+(assert (not certified_ceiling))
+(check-sat)
+(pop)
+
+; Theorem: fail verdict gives unadmitted ceiling.
+(push)
+(assert verdict_fail)
+(assert (not unadmitted_ceiling))
 (check-sat)
 (pop)
 

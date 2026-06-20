@@ -68,6 +68,13 @@ The strongest status a claim is allowed to support inside TLFL. For the first
 TLFL 0.2 slice, the canonical passport ceiling is proof-state certification,
 not empirical closure.
 
+## Claim Passport Verdict
+
+The computable `pass/fail` verdict for a claim-passport input. A complete input
+with claim presentation, Lean trace, Z3/Vampire/E traces, TLFL classification,
+non-claim guard trace, and proof-state self-model trace returns `pass`. Missing
+TLFL classification returns `fail`.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input

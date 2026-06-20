@@ -28,6 +28,9 @@ ClaimCeiling
 ClaimObject
 ClaimEvidenceBundle
 ForbiddenJumpMap
+ClaimPassportVerdict
+ClaimPassportInput
+ProofStateCertification
 ClaimPassport
 ClaimPassportCertified
 ```
@@ -41,6 +44,12 @@ claim_passport_gives_forbidden_jump_map
 claim_passport_projects_to_proof_state_self_model
 claim_passport_projects_to_claim_classification
 claim_passport_certification_passes
+complete_claim_passport_input_verdict_is_pass
+complete_claim_passport_input_ceiling_is_certified
+missing_tlfl_classification_claim_passport_input_verdict_is_fail
+missing_tlfl_classification_claim_passport_input_ceiling_is_unadmitted
+claim_passport_pass_gives_certified_ceiling
+claim_passport_fail_gives_unadmitted_ceiling
 ```
 
 ## Non-Claim Guards
@@ -66,8 +75,8 @@ external_proofs/tlfl_claim_passport_tptp_0_1.p
 Expected Z3 shape:
 
 ```text
-positive theorem checks: unsat
-non-claim guards: sat
+positive theorem checks: 8 x unsat
+non-claim guards: 6 x sat
 ```
 
 Expected Vampire/E shape:

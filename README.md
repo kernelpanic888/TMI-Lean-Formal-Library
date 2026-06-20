@@ -45,6 +45,8 @@ physical validation.
 The first TLFL 0.2 slice adds `TMI.ClaimPassport`: a proof-status certification
 surface that turns a claim, evidence bundle, TLFL classification, proof-state
 self-model, allowed claim ceiling, and forbidden jump map into a claim passport.
+It also adds a computable `ClaimPassportVerdict`: complete inputs return `pass`;
+inputs missing TLFL classification return `fail`.
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.
