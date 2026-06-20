@@ -50,7 +50,7 @@ def GuardedMathematicalIntelligence : Prop :=
     ()
     OLean.SelfCheckTargetTheory /\
   (exists model : TMI.TLFLProofSelfModel,
-    model.chainName = "TLFL + Z3 + Vampire + E proof layer" /\
+    model.chainName = "TLFL + External Proof Layer {Z3, Vampire, E}" /\
     TMI.TLFLClassifiesClaim model.claimClassification)
 
 def ConsciousnessClaim : Prop := False
@@ -79,7 +79,7 @@ structure CanonicalSelfModelWitness where
       OLean.SelfCheckTargetTheory
   proofStateModel :
     exists model : TMI.TLFLProofSelfModel,
-      model.chainName = "TLFL + Z3 + Vampire + E proof layer" /\
+      model.chainName = "TLFL + External Proof Layer {Z3, Vampire, E}" /\
       TMI.TLFLClassifiesClaim model.claimClassification
 
 def ProofInterfaceSelfModelWitness
@@ -113,7 +113,7 @@ theorem self_check_operates_as_proof_process :
 
 theorem self_check_builds_its_own_proof_state_model :
     exists model : TMI.TLFLProofSelfModel,
-      model.chainName = "TLFL + Z3 + Vampire + E proof layer" /\
+      model.chainName = "TLFL + External Proof Layer {Z3, Vampire, E}" /\
       TMI.TLFLClassifiesClaim model.claimClassification := by
   exact OLean.self_check_builds_vampire_z3_e_tlfl_proof_self_model
 

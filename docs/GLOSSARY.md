@@ -45,7 +45,7 @@ A formal non-claim boundary. Guards prevent a weaker condition from implying a
 stronger claim, for example: external prover output without Lean-kernel checking
 does not imply formal Lean status.
 
-## TLFL + Z3 + Vampire + E proof layer
+## TLFL + External Proof Layer {Z3, Vampire, E}
 
 The canonical proof-chain display order. Z3, Vampire, and E provide external
 proof traces; TLFL classifies those traces into a proof-state self-model.

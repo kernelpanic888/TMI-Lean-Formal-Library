@@ -14,7 +14,7 @@ Date: 2026-06-20
 | `tmi_lean_formal_library_0_1/CITATION.cff` | Citation metadata |
 | `tmi_lean_formal_library_0_1/lean/TMI/Library.lean` | Canonical TMI library import |
 | `tmi_lean_formal_library_0_1/lean/TMI/ProofStatusClassification.lean` | TLFL proof-status classification meta-interface |
-| `tmi_lean_formal_library_0_1/lean/TMI/ProofChainSelfModel.lean` | `TLFL + Z3 + Vampire + E proof layer` proof-chain self-model |
+| `tmi_lean_formal_library_0_1/lean/TMI/ProofChainSelfModel.lean` | `TLFL + External Proof Layer {Z3, Vampire, E}` proof-chain self-model |
 | `tmi_lean_formal_library_0_1/lean/TMI/InterfaceMathematics/ProofProjectionSelfModel.lean` | Abstract external-projection, OLean-admission, and strict self-model layer |
 | `tmi_lean_formal_library_0_1/lean/TMI/InterfaceMathematics/PublicSelfProjection.lean` | Outward public self-projection layer for proof-state material |
 | `tmi_lean_formal_library_0_1/lean/OLean.lean` | OLean connection interface |
@@ -49,7 +49,7 @@ Date: 2026-06-20
 | `OLean.AdmittedProofProjection` | Concrete OLean witness that admits external proof traces into strict TLFL self-modeling |
 | `OLean.TLFLSelfModelProof` | Explicit theorem chain from self-check thinker run to guarded mathematical intelligence |
 | `TMI.ProofStatusClassification` | TLFL claim classification by path, boundary, prover compatibility, and epistemic status |
-| `TMI.ProofChainSelfModel` | Proof-state self-model for the `TLFL + Z3 + Vampire + E proof layer` chain |
+| `TMI.ProofChainSelfModel` | Proof-state self-model for the `TLFL + External Proof Layer {Z3, Vampire, E}` chain |
 | `OLean.boundaryCheckVerdict` | Computable pass/fail boundary verdict |
 
 ## Publication Documents
@@ -99,7 +99,7 @@ Date: 2026-06-20
 | `external_proofs/tlfl_self_model_proof_tptp_0_1.p` | OLean self-model proof ATP theorem bundle |
 | `external_proofs/olean_admitted_projection_self_model_z3_0_1.smt2` | OLean-admitted strict self-model SMT checks |
 | `external_proofs/olean_admitted_projection_self_model_tptp_0_1.p` | OLean-admitted strict self-model ATP theorem bundle |
-| `external_proofs/STEP_00_CHAIN_INDEX.md` | Index of row-level step artifacts for `TLFL + Z3 + Vampire + E proof layer` |
+| `external_proofs/STEP_00_CHAIN_INDEX.md` | Index of row-level step artifacts for `TLFL + External Proof Layer {Z3, Vampire, E}` |
 | `external_proofs/STEP_01_VAMPIRE.md` | Row-level artifact for Vampire |
 | `external_proofs/STEP_02_Z3.md` | Row-level artifact for Z3 |
 | `external_proofs/STEP_03_EPROVER.md` | Row-level artifact for E prover |

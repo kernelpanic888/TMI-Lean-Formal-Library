@@ -1,5 +1,5 @@
 % TLFL proof-chain self-model mirror.
-% Chain: TLFL + Z3 + Vampire + E proof layer.
+% Chain: TLFL + External Proof Layer {Z3, Vampire, E}.
 % Positive theorem bundle for Vampire and E.
 
 fof(chain_axiom, axiom,

@@ -26,13 +26,13 @@ import OLean.SelfCheck
 import OLean.SelfCheckAsThinker
 ```
 
-## TLFL + Z3 + Vampire + E Proof Layer Self-Model
+## TLFL + External Proof Layer {Z3, Vampire, E} Self-Model
 
 TLFL is fixed here as a meta-interface of proof self-modeling. The canonical
 chain is:
 
 ```text
-TLFL + Z3 + Vampire + E proof layer
+TLFL + External Proof Layer {Z3, Vampire, E}
 ```
 
 Z3, Vampire, and E provide external proof traces. TLFL classifies those traces

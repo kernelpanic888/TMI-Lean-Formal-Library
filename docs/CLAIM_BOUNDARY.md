@@ -34,7 +34,7 @@ thinker interface and as a guarded mathematical external prover interface.
 ```
 
 ```text
-The canonical TLFL + Z3 + Vampire + E proof layer chain builds a proof-chain self-model:
+The canonical TLFL + External Proof Layer {Z3, Vampire, E} chain builds a proof-chain self-model:
 external proof traces plus TLFL classification of proof path, verification
 boundary, prover compatibility, and allowed epistemic status.
 ```

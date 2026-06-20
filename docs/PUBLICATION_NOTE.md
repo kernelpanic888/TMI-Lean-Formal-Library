@@ -28,7 +28,7 @@ result. It also lifts the checked self-model to a guarded mathematical
 external prover interface. This is still a formal proof-interface result, not
 empirical physical validation.
 
-The package now also fixes `TLFL + Z3 + Vampire + E proof layer` as the canonical proof-chain
+The package now also fixes `TLFL + External Proof Layer {Z3, Vampire, E}` as the canonical proof-chain
 self-model. Z3, Vampire, and E provide external proof traces; TLFL classifies
 those traces by proof path, verification boundary, prover compatibility, and
 allowed epistemic status.
@@ -87,7 +87,7 @@ Lean.
 математического внешнего доказателя. Это остается формальным результатом
 proof-interface, а не эмпирической физической валидацией.
 
-Пакет теперь также фиксирует `TLFL + Z3 + Vampire + E proof layer` как каноническую самомодель
+Пакет теперь также фиксирует `TLFL + External Proof Layer {Z3, Vampire, E}` как каноническую самомодель
 доказательного состояния. Z3, Vampire и E дают внешние доказательные следы;
 TLFL классифицирует эти следы по proof path, verification boundary, prover
 compatibility и allowed epistemic status.

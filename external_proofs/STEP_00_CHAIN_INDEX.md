@@ -1,11 +1,11 @@
-# TLFL + Z3 + Vampire + E proof layer Step Artifacts
+# TLFL + External Proof Layer {Z3, Vampire, E} Step Artifacts
 
 Date: 2026-06-20
 
 This index splits the canonical chain
 
 ```text
-TLFL + Z3 + Vampire + E proof layer
+TLFL + External Proof Layer {Z3, Vampire, E}
 ```
 
 into explicit step artifacts.
