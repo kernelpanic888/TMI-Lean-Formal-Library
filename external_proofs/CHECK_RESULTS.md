@@ -284,6 +284,10 @@ unsat
 unsat
 unsat
 unsat
+unsat
+unsat
+unsat
+unsat
 sat
 sat
 sat
@@ -309,6 +313,13 @@ Interpretation:
 ```text
 Claim + evidence bundle + TLFL classification + proof-state self-model
 -> allowed claim ceiling + forbidden jump map + claim passport.
+```
+
+The same mirror now also checks the verdict layer:
+
+```text
+complete claim-passport input -> pass verdict -> certified ceiling
+missing TLFL classification input -> fail verdict -> unadmitted ceiling
 ```
 
 The claim passport is a proof-status certification surface. It does not imply

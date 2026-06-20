@@ -22,6 +22,43 @@ inductive ClaimCeiling where
   | empiricalPending
 deriving DecidableEq, Repr
 
+inductive ClaimPassportVerdict where
+  | pass
+  | fail
+deriving DecidableEq, Repr
+
+structure ClaimPassportInput where
+  claimPresented : Bool
+  leanKernelTrace : Bool
+  z3Trace : Bool
+  vampireTrace : Bool
+  eTrace : Bool
+  tlflClassificationTrace : Bool
+  nonClaimGuardTrace : Bool
+  proofSelfModelTrace : Bool
+deriving Repr
+
+def claimPassportInputComplete (input : ClaimPassportInput) : Bool :=
+  input.claimPresented &&
+  input.leanKernelTrace &&
+  input.z3Trace &&
+  input.vampireTrace &&
+  input.eTrace &&
+  input.tlflClassificationTrace &&
+  input.nonClaimGuardTrace &&
+  input.proofSelfModelTrace
+
+def claimPassportVerdict (input : ClaimPassportInput) : ClaimPassportVerdict :=
+  if claimPassportInputComplete input then
+    ClaimPassportVerdict.pass
+  else
+    ClaimPassportVerdict.fail
+
+def claimPassportCeiling (input : ClaimPassportInput) : ClaimCeiling :=
+  match claimPassportVerdict input with
+  | ClaimPassportVerdict.pass => ClaimCeiling.tlflProofStateCertified
+  | ClaimPassportVerdict.fail => ClaimCeiling.unadmitted
+
 structure ClaimObject where
   name : String
   presented : Prop
@@ -50,6 +87,14 @@ structure ForbiddenJumpMap where
   consciousnessWitness : consciousnessForbidden
   empiricalClosureForbidden : Prop
   empiricalClosureWitness : empiricalClosureForbidden
+
+structure ProofStateCertification where
+  input : ClaimPassportInput
+  verdict : ClaimPassportVerdict
+  allowedClaimCeiling : ClaimCeiling
+  forbiddenJumpMap : ForbiddenJumpMap
+  proofStateCertified : Prop
+  proofStateCertifiedWitness : proofStateCertified
 
 structure ClaimPassport where
   claim : ClaimObject
@@ -106,6 +151,80 @@ def defaultForbiddenJumpMap : ForbiddenJumpMap :=
     consciousnessWitness := by trivial
     empiricalClosureForbidden := True
     empiricalClosureWitness := by trivial }
+
+def completeClaimPassportInput : ClaimPassportInput :=
+  { claimPresented := true
+    leanKernelTrace := true
+    z3Trace := true
+    vampireTrace := true
+    eTrace := true
+    tlflClassificationTrace := true
+    nonClaimGuardTrace := true
+    proofSelfModelTrace := true }
+
+def missingTLFLClassificationClaimPassportInput : ClaimPassportInput :=
+  { claimPresented := true
+    leanKernelTrace := true
+    z3Trace := true
+    vampireTrace := true
+    eTrace := true
+    tlflClassificationTrace := false
+    nonClaimGuardTrace := true
+    proofSelfModelTrace := true }
+
+def proofStateCertificationOf
+    (input : ClaimPassportInput)
+    (h : claimPassportVerdict input = ClaimPassportVerdict.pass) :
+    ProofStateCertification :=
+  { input := input
+    verdict := claimPassportVerdict input
+    allowedClaimCeiling := claimPassportCeiling input
+    forbiddenJumpMap := defaultForbiddenJumpMap
+    proofStateCertified := claimPassportVerdict input = ClaimPassportVerdict.pass
+    proofStateCertifiedWitness := h }
+
+def canonicalProofStateCertification : ProofStateCertification :=
+  proofStateCertificationOf completeClaimPassportInput rfl
+
+theorem complete_claim_passport_input_verdict_is_pass :
+    claimPassportVerdict completeClaimPassportInput = ClaimPassportVerdict.pass := by
+  rfl
+
+theorem complete_claim_passport_input_ceiling_is_certified :
+    claimPassportCeiling completeClaimPassportInput =
+      ClaimCeiling.tlflProofStateCertified := by
+  rfl
+
+theorem missing_tlfl_classification_claim_passport_input_verdict_is_fail :
+    claimPassportVerdict missingTLFLClassificationClaimPassportInput =
+      ClaimPassportVerdict.fail := by
+  rfl
+
+theorem missing_tlfl_classification_claim_passport_input_ceiling_is_unadmitted :
+    claimPassportCeiling missingTLFLClassificationClaimPassportInput =
+      ClaimCeiling.unadmitted := by
+  rfl
+
+theorem claim_passport_pass_gives_certified_ceiling
+    (input : ClaimPassportInput)
+    (h : claimPassportVerdict input = ClaimPassportVerdict.pass) :
+    claimPassportCeiling input = ClaimCeiling.tlflProofStateCertified := by
+  simp [claimPassportCeiling, h]
+
+theorem claim_passport_fail_gives_unadmitted_ceiling
+    (input : ClaimPassportInput)
+    (h : claimPassportVerdict input = ClaimPassportVerdict.fail) :
+    claimPassportCeiling input = ClaimCeiling.unadmitted := by
+  simp [claimPassportCeiling, h]
+
+theorem proof_state_certification_has_pass_verdict :
+    canonicalProofStateCertification.verdict = ClaimPassportVerdict.pass := by
+  rfl
+
+theorem proof_state_certification_has_certified_ceiling :
+    canonicalProofStateCertification.allowedClaimCeiling =
+      ClaimCeiling.tlflProofStateCertified := by
+  rfl
 
 def claimPassportOf
     (claim : ClaimObject)
