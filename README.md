@@ -6,6 +6,8 @@ Author: **Salkutsan Aleksey**
 
 ORCID: [0009-0006-8717-0492](https://orcid.org/0009-0006-8717-0492)
 
+Zenodo DOI: [10.5281/zenodo.20773095](https://doi.org/10.5281/zenodo.20773095)
+
 TLFL is a Lean 4 formal library for encoding the core vocabulary of TMI:
 interfaces, events, admissible transitions, records, boundaries, guarded
 branches, proof status, and proof-chain self-models.
