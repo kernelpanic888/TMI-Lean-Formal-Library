@@ -61,10 +61,14 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.ClaimEvidenceBundle
 #quiet_check TMI.ForbiddenJumpMap
 #quiet_check TMI.ClaimPassportVerdict
+#quiet_check TMI.ClaimCertificationStatus
 #quiet_check TMI.ClaimPassportInput
 #quiet_check TMI.claimPassportInputComplete
 #quiet_check TMI.claimPassportVerdict
 #quiet_check TMI.claimPassportCeiling
+#quiet_check TMI.ClaimCertificationRequest
+#quiet_check TMI.claimCertificationRequestsForbiddenJump
+#quiet_check TMI.claimCertificationStatus
 #quiet_check TMI.ProofStateCertification
 #quiet_check TMI.ClaimPassport
 #quiet_check TMI.ClaimPassportCertified
@@ -73,6 +77,9 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.defaultForbiddenJumpMap
 #quiet_check TMI.completeClaimPassportInput
 #quiet_check TMI.missingTLFLClassificationClaimPassportInput
+#quiet_check TMI.certifiedProofStateRequest
+#quiet_check TMI.missingClassificationCertificationRequest
+#quiet_check TMI.overclaimingEmpiricalClosureRequest
 #quiet_check TMI.proofStateCertificationOf
 #quiet_check TMI.canonicalProofStateCertification
 #quiet_check TMI.complete_claim_passport_input_verdict_is_pass
@@ -83,6 +90,12 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.claim_passport_fail_gives_unadmitted_ceiling
 #quiet_check TMI.proof_state_certification_has_pass_verdict
 #quiet_check TMI.proof_state_certification_has_certified_ceiling
+#quiet_check TMI.certified_proof_state_request_status_is_proof_state_certified
+#quiet_check TMI.missing_classification_request_status_is_unadmitted
+#quiet_check TMI.empirical_closure_overclaim_request_status_is_blocked
+#quiet_check TMI.forbidden_jump_request_gives_overclaim_blocked
+#quiet_check TMI.pass_without_forbidden_jump_gives_proof_state_certified
+#quiet_check TMI.fail_without_forbidden_jump_gives_unadmitted
 #quiet_check TMI.claimPassportOf
 #quiet_check TMI.canonicalClaimPassport
 #quiet_check TMI.tlfl_proof_self_model_gives_claim_passport

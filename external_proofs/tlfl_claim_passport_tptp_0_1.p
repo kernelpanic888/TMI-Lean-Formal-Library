@@ -33,6 +33,17 @@ fof(pass_ceiling_axiom, axiom,
 fof(fail_ceiling_axiom, axiom,
   (verdict_fail => unadmitted_ceiling)).
 
+fof(pass_no_jump_status_axiom, axiom,
+  ((verdict_pass & no_forbidden_jump_request)
+    => proof_state_certified_status)).
+
+fof(fail_no_jump_status_axiom, axiom,
+  ((verdict_fail & no_forbidden_jump_request)
+    => unadmitted_status)).
+
+fof(forbidden_jump_status_axiom, axiom,
+  (forbidden_jump_request => overclaim_blocked_status)).
+
 fof(complete_claim_facts, axiom,
   (claim_presented
     & lean_kernel_trace
@@ -43,7 +54,9 @@ fof(complete_claim_facts, axiom,
     & nonclaim_guard_trace
     & proof_self_model
     & complete_claim_passport_input
-    & missing_tlfl_classification_input)).
+    & missing_tlfl_classification_input
+    & no_forbidden_jump_request
+    & forbidden_jump_request)).
 
 fof(tlfl_claim_passport_bundle, conjecture,
   (claim_passport
@@ -53,4 +66,7 @@ fof(tlfl_claim_passport_bundle, conjecture,
     & verdict_pass
     & verdict_fail
     & certified_ceiling
-    & unadmitted_ceiling)).
+    & unadmitted_ceiling
+    & proof_state_certified_status
+    & unadmitted_status
+    & overclaim_blocked_status)).

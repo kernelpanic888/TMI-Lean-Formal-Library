@@ -23,6 +23,11 @@
 (declare-fun verdict_fail () Bool)
 (declare-fun certified_ceiling () Bool)
 (declare-fun unadmitted_ceiling () Bool)
+(declare-fun no_forbidden_jump_request () Bool)
+(declare-fun forbidden_jump_request () Bool)
+(declare-fun proof_state_certified_status () Bool)
+(declare-fun unadmitted_status () Bool)
+(declare-fun overclaim_blocked_status () Bool)
 
 (declare-fun empirical_truth () Bool)
 (declare-fun physical_validation () Bool)
@@ -47,6 +52,11 @@
 (assert (=> missing_tlfl_classification_input verdict_fail))
 (assert (=> verdict_pass certified_ceiling))
 (assert (=> verdict_fail unadmitted_ceiling))
+(assert (=> (and verdict_pass no_forbidden_jump_request)
+            proof_state_certified_status))
+(assert (=> (and verdict_fail no_forbidden_jump_request)
+            unadmitted_status))
+(assert (=> forbidden_jump_request overclaim_blocked_status))
 
 ; Theorem: complete claim evidence + proof self-model gives claim passport.
 (push)
@@ -108,6 +118,29 @@
 (push)
 (assert verdict_fail)
 (assert (not unadmitted_ceiling))
+(check-sat)
+(pop)
+
+; Theorem: pass with no forbidden jump gives proof-state-certified status.
+(push)
+(assert verdict_pass)
+(assert no_forbidden_jump_request)
+(assert (not proof_state_certified_status))
+(check-sat)
+(pop)
+
+; Theorem: fail with no forbidden jump gives unadmitted status.
+(push)
+(assert verdict_fail)
+(assert no_forbidden_jump_request)
+(assert (not unadmitted_status))
+(check-sat)
+(pop)
+
+; Theorem: forbidden jump request gives overclaim-blocked status.
+(push)
+(assert forbidden_jump_request)
+(assert (not overclaim_blocked_status))
 (check-sat)
 (pop)
 

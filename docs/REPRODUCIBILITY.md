@@ -127,7 +127,7 @@ E prover external proof layer: SZS status Theorem
 TLFL claim-passport Z3 mirror: pass
 TLFL claim-passport Vampire bundle: SZS status Theorem
 TLFL claim-passport E prover bundle: SZS status Theorem
-TLFL claim-passport verdict layer: pass
+TLFL claim-passport verdict/status layer: pass
 ```
 
 Sanity check:

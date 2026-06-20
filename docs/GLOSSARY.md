@@ -75,6 +75,14 @@ with claim presentation, Lean trace, Z3/Vampire/E traces, TLFL classification,
 non-claim guard trace, and proof-state self-model trace returns `pass`. Missing
 TLFL classification returns `fail`.
 
+## Claim Certification Status
+
+The public status returned by the TLFL claim-passport certification interface.
+For the current TLFL 0.2 slice, a complete request with no forbidden jump gives
+`proofStateCertified`, a failed boundary gives `unadmitted`, and any request for
+empirical truth, physical validation, consciousness, or empirical closure gives
+`overclaimBlocked`.
+
 ## External Reality Trace
 
 An externally presented trace, measurement-record input, or verification input
