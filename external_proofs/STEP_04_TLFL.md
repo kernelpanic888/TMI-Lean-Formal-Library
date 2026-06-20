@@ -64,7 +64,7 @@ TLFL does not contribute:
 ## Canonical Summary
 
 ```text
-Z3/Vampire/E produce proof traces.
+TLFL classifies proof-state through the admitted boundary.
+Z3, Vampire, and E provide external proof traces.
 OLean admits those traces into the formal boundary.
-TLFL turns the admitted traces into a classified proof-state self-model.
 ```

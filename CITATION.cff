@@ -19,4 +19,4 @@ keywords:
   - "OLean"
   - "formal verification"
   - "proof-chain self-model"
-abstract: "TMI-Lean Formal Library (TLFL) 0.1 is an exportable Lean 4 library for encoding core TMI definitions, event structures, bridge surfaces, interface mathematics, the OLean connection interface to Lean-kernel checking, and the Vampire/Z3/E/TLFL proof-chain self-model layer."
+abstract: "TMI-Lean Formal Library (TLFL) 0.1 is an exportable Lean 4 library for encoding core TMI definitions, event structures, bridge surfaces, interface mathematics, the OLean connection interface to Lean-kernel checking, and the TLFL + External Proof Layer {Z3, Vampire, E} proof-chain self-model layer."

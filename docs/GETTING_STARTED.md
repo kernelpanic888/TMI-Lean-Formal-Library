@@ -1,13 +1,16 @@
 # Getting Started
 
-TMI-Lean Formal Library (TLFL) 0.1 is a Lean 4 library. It is not a fork of
-Lean and not a new proof kernel.
+TMI-Lean Formal Library (TLFL) is a Lean 4 library. It is not a fork of Lean and
+not a new proof kernel.
+
+The repository name is version-neutral. Specific numbered snapshots are tracked
+through releases, tags, Zenodo records, and status documents.
 
 TLFL is used as a proof-status meta-interface:
 
 ```text
-Z3/Vampire/E produce proof traces.
-TLFL classifies the proof state.
+TLFL classifies proof-state.
+Z3, Vampire, and E provide external proof traces.
 ```
 
 ## Build

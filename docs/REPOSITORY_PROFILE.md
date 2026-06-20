@@ -2,10 +2,20 @@
 
 Use this text for the GitHub repository description and public profile fields.
 
+## Repository Name
+
+```text
+TMI-Lean-Formal-Library
+```
+
+The repository name is version-neutral. Version numbers belong in GitHub
+Releases, tags, Zenodo records, CITATION metadata, and proof-status documents,
+not in the repository slug.
+
 ## Short Description
 
 ```text
-TMI-Lean Formal Library (TLFL) 0.1: a Lean 4 formal library for interface-event theory, OLean boundary checking, and TLFL + External Proof Layer {Z3, Vampire, E} self-modeling.
+Lean 4 formal library for interface-event theory, OLean boundary checking, claim passports, and TLFL proof-state self-modeling with Z3/Vampire/E mirrors.
 ```
 
 ## Topics
@@ -26,7 +36,7 @@ tmi
 ## Website
 
 ```text
-https://orcid.org/0009-0006-8717-0492
+https://doi.org/10.5281/zenodo.20773095
 ```
 
 ## Zenodo DOI
@@ -44,7 +54,7 @@ Apache-2.0
 ## Public Tagline
 
 ```text
-Z3/Vampire/E produce proof traces. TLFL classifies the proof state.
+TLFL classifies proof-state; Z3, Vampire, and E provide external proof traces.
 ```
 
 ## Boundary Tagline

@@ -43,7 +43,7 @@ The Zenodo package is synchronized with the canonical GitHub source
 repository:
 
 ```text
-https://github.com/kernelpanic888/TMI-Lean-Formal-Library-TLFL-0.1-Formal-Library-for-Interface-Event-Theory-in-Lean-4
+https://github.com/kernelpanic888/TMI-Lean-Formal-Library
 ```
 
 Source snapshot:
@@ -101,7 +101,7 @@ https://doi.org/10.5281/zenodo.20773095
 Zenodo-пакет синхронизирован с каноническим GitHub-репозиторием:
 
 ```text
-https://github.com/kernelpanic888/TMI-Lean-Formal-Library-TLFL-0.1-Formal-Library-for-Interface-Event-Theory-in-Lean-4
+https://github.com/kernelpanic888/TMI-Lean-Formal-Library
 ```
 
 Исходный снимок:
