@@ -264,3 +264,52 @@ self-modeling plus bounded predictive power gives a consciousness-limit
 horizon and guarded approximation. This does not prove consciousness, empirical
 consciousness, reached absolute consciousness, or achieved 100% predictive
 power.
+
+## TLFL 0.2 Claim Passport Addendum
+
+The first TLFL 0.2 claim-passport mirror was checked on 2026-06-20.
+
+Commands:
+
+```bash
+z3 external_proofs/tlfl_claim_passport_z3_0_1.smt2
+vampire --mode casc --time_limit 10 external_proofs/tlfl_claim_passport_tptp_0_1.p
+eprover --auto --cpu-limit=10 external_proofs/tlfl_claim_passport_tptp_0_1.p
+```
+
+Z3 expected and observed:
+
+```text
+unsat
+unsat
+unsat
+unsat
+sat
+sat
+sat
+sat
+sat
+sat
+```
+
+Vampire observed:
+
+```text
+tlfl_claim_passport_tptp_0_1.p: SZS status Theorem
+```
+
+E prover observed:
+
+```text
+tlfl_claim_passport_tptp_0_1.p: SZS status Theorem
+```
+
+Interpretation:
+
+```text
+Claim + evidence bundle + TLFL classification + proof-state self-model
+-> allowed claim ceiling + forbidden jump map + claim passport.
+```
+
+The claim passport is a proof-status certification surface. It does not imply
+empirical truth, physical validation, consciousness, or empirical closure.

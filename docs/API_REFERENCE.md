@@ -157,6 +157,43 @@ TMI.proof_self_model_gives_nonclaim_guard_map
 TMI.proof_self_model_projects_to_claim_classification
 ```
 
+## `TMI.ClaimPassport`
+
+Initial TLFL 0.2 proof-status certification surface.
+
+Main public surfaces:
+
+```text
+TMI.ClaimCeiling
+TMI.ClaimObject
+TMI.ClaimEvidenceBundle
+TMI.ForbiddenJumpMap
+TMI.ClaimPassport
+TMI.ClaimPassportCertified
+```
+
+Key theorem surfaces:
+
+```text
+TMI.tlfl_proof_self_model_gives_claim_passport
+TMI.claim_passport_gives_allowed_claim_ceiling
+TMI.claim_passport_gives_forbidden_jump_map
+TMI.claim_passport_projects_to_proof_state_self_model
+TMI.claim_passport_projects_to_claim_classification
+TMI.claim_passport_certification_passes
+```
+
+Guard surfaces:
+
+```text
+TMI.claim_object_alone_does_not_imply_claim_passport
+TMI.evidence_bundle_alone_does_not_imply_claim_passport
+TMI.claim_passport_does_not_imply_empirical_truth
+TMI.claim_passport_does_not_imply_physical_validation
+TMI.claim_passport_does_not_imply_consciousness
+TMI.claim_passport_does_not_imply_empirical_closure
+```
+
 ## Meaning Of `pass`
 
 `OLean.CheckVerdict.pass` means that the represented boundary check is complete

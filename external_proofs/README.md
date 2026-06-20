@@ -29,6 +29,8 @@ TMI-Lean Formal Library (TLFL) 0.1. It does not mirror the full Lean library.
 | `tlfl_reality_cognition_self_model_tptp_0_1.p` | TPTP/TFF theorem bundle for guarded reality-cognition self-model |
 | `tlfl_consciousness_limit_z3_0_1.smt2` | SMT-LIB2 mirror of the guarded consciousness-limit language |
 | `tlfl_consciousness_limit_tptp_0_1.p` | TPTP/TFF theorem bundle for the guarded consciousness-limit language |
+| `tlfl_claim_passport_z3_0_1.smt2` | SMT-LIB2 mirror of TLFL 0.2 claim passport checks |
+| `tlfl_claim_passport_tptp_0_1.p` | TPTP/TFF theorem bundle for TLFL 0.2 claim passport certification |
 | `STEP_00_CHAIN_INDEX.md` | Row-level index of the `TLFL + External Proof Layer {Z3, Vampire, E}` step artifacts |
 | `STEP_01_VAMPIRE.md` | Artifact for the Vampire step |
 | `STEP_02_Z3.md` | Artifact for the Z3 step |
@@ -116,6 +118,20 @@ The consciousness-limit files mirror this guarded language layer. They do not
 assert consciousness, empirical consciousness, reached absolute consciousness,
 or achieved 100% predictive power.
 
+```text
+Claim
+-> evidence bundle
+-> TLFL classification
+-> proof-state self-model
+-> allowed claim ceiling
+-> forbidden jump map
+-> claim passport.
+```
+
+The claim-passport files mirror the first TLFL 0.2 certification surface. They
+do not assert empirical truth, physical validation, consciousness, or empirical
+closure.
+
 For a compact theorem-block view of the strict chain, see:
 
 - `docs/TLFL_SELF_MODEL_THEOREM_SHEET_EN.md`
@@ -152,6 +168,12 @@ consciousness approximation does not imply consciousness
 consciousness-limit horizon does not imply reached consciousness
 bounded predictive power does not imply perfect predictive power
 perfect prediction is not established by TLFL
+claim object alone does not imply claim passport
+evidence bundle alone does not imply claim passport
+claim passport does not imply empirical truth
+claim passport does not imply physical validation
+claim passport does not imply consciousness
+claim passport does not imply empirical closure
 ```
 
 ## Step Artifacts

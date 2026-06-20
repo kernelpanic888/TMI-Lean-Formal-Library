@@ -40,6 +40,15 @@ by admissible proof path, verification boundary, prover compatibility, and
 allowed epistemic status. This builds a proof-state self-model, not empirical
 physical validation.
 
+## TLFL 0.2 Direction: Claim Passport
+
+The first TLFL 0.2 slice adds `TMI.ClaimPassport`: a proof-status certification
+surface that turns a claim, evidence bundle, TLFL classification, proof-state
+self-model, allowed claim ceiling, and forbidden jump map into a claim passport.
+
+The passport certifies proof status only. It does not imply empirical truth,
+physical validation, consciousness, or empirical closure.
+
 ## Build
 
 ```bash
@@ -94,6 +103,7 @@ lean/TMI/BoundaryEvent.lean
 lean/TMI/Bridge.lean
 lean/TMI/ProofStatusClassification.lean
 lean/TMI/ProofChainSelfModel.lean
+lean/TMI/ClaimPassport.lean
 lean/TMI/Branches/MD.lean
 lean/TMI/Branches/QC.lean
 lean/TMI/Branches/QG.lean

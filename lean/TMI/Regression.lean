@@ -3,6 +3,7 @@
 import Lean
 import TMI.ProofStatusClassification
 import TMI.ProofChainSelfModel
+import TMI.ClaimPassport
 import TMI.InterfaceMathematics.PublicSelfProjection
 import TMI.InterfaceMathematics.ConsciousnessLimit
 import OLean.SelfCheck
@@ -54,6 +55,30 @@ elab "#quiet_check " t:term : command => do
 #quiet_check TMI.proof_chain_self_model_does_not_imply_physical_validation
 #quiet_check TMI.tlfl_proof_self_model_does_not_replace_vampire_z3_e_search
 #quiet_check TMI.external_prover_traces_without_tlfl_classification_do_not_form_full_proof_self_model
+
+#quiet_check TMI.ClaimCeiling
+#quiet_check TMI.ClaimObject
+#quiet_check TMI.ClaimEvidenceBundle
+#quiet_check TMI.ForbiddenJumpMap
+#quiet_check TMI.ClaimPassport
+#quiet_check TMI.ClaimPassportCertified
+#quiet_check TMI.canonicalClaimObject
+#quiet_check TMI.completeClaimEvidenceBundle
+#quiet_check TMI.defaultForbiddenJumpMap
+#quiet_check TMI.claimPassportOf
+#quiet_check TMI.canonicalClaimPassport
+#quiet_check TMI.tlfl_proof_self_model_gives_claim_passport
+#quiet_check TMI.claim_passport_gives_allowed_claim_ceiling
+#quiet_check TMI.claim_passport_gives_forbidden_jump_map
+#quiet_check TMI.claim_passport_projects_to_proof_state_self_model
+#quiet_check TMI.claim_passport_projects_to_claim_classification
+#quiet_check TMI.claim_passport_certification_passes
+#quiet_check TMI.claim_object_alone_does_not_imply_claim_passport
+#quiet_check TMI.evidence_bundle_alone_does_not_imply_claim_passport
+#quiet_check TMI.claim_passport_does_not_imply_empirical_truth
+#quiet_check TMI.claim_passport_does_not_imply_physical_validation
+#quiet_check TMI.claim_passport_does_not_imply_consciousness
+#quiet_check TMI.claim_passport_does_not_imply_empirical_closure
 
 #quiet_check OLean.InternalFrequencyLevel
 #quiet_check OLean.InternalFrequencyValue
