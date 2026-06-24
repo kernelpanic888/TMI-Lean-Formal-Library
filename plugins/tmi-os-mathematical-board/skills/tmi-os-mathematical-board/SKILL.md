@@ -95,6 +95,26 @@ ProgrammingOnMathematics :=
   Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
 ```
 
+When the user says mathematics is a projection language, use:
+
+```text
+Mathematics ∈ ProjectionLanguage
+AuthorUses(Mathematics) := writes ∧ speaks ∧ thinks
+```
+
+Reading: if the author can write on mathematics, the author can also speak and
+think on that projection surface.
+
+When the user says the language boundary is the latest code version, use:
+
+```text
+LanguageBoundary(I1) := LatestCodeVersion(I1)
+Language(I1, v_current) ≡ Code(I1, v_current)
+```
+
+Guard: this identity is version-scoped and passport-scoped inside the И1
+engineering surface.
+
 Preserve the domain order when explaining or extending the board:
 
 ```text

@@ -1,10 +1,14 @@
 language "TMI-OS" version "1.0"
 progenitor "git@github.com:kernelpanic888/TMI-Lean-Formal-Library.git"
 target TLFL
+language_boundary := latest_code_version
+language_code_identity current_version
 
 import Matrix : (Я)-Я-я
 
 intent "взять виртуальное пространство и оставить только математику"
+declare Mathematics as ProjectionLanguage
+author_uses Mathematics by writing speaking thinking
 
 depend TMI_OS on Intent
 depend TMI_OS on MatrixCanonicalImport

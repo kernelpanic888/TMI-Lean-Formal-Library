@@ -527,6 +527,16 @@ Intent
 → Passport
 → GuardedAction</div>
 
+      <div class="formula definition">LanguageBoundary(I1) :=
+LatestCodeVersion(I1)
+Language(I1,v_current) ≡ Code(I1,v_current)</div>
+
+      <div class="formula definition">Mathematics ∈ ProjectionLanguage
+AuthorUses(Mathematics) :=
+writes(Author, Mathematics)
+∧ speaks(Author, Mathematics)
+∧ thinks(Author, Mathematics)</div>
+
       <div class="formula definition">≤D : DomainOrder(D)
 ≤S : SliceOrder(S)
 d₁ ≤D d₂ ⇒ π(d₁) ≤S π(d₂)</div>
@@ -759,6 +769,8 @@ diagram ≠ proof by itself</div>
           sliceOpacity: Number(editor.sliceOpacity.value),
           rotationAngle: Number(editor.rotationAngle.value),
         },
+        languageBoundary: "LanguageBoundary(I1) := LatestCodeVersion(I1)",
+        languageCodeIdentity: "Language(I1,v_current) == Code(I1,v_current)",
         selectedObject,
         passport: "SlicePassport(p,s,tau)",
         guard: [
