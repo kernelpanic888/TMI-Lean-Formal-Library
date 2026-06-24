@@ -39,6 +39,7 @@ Public passport:
 - [`docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md`](docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md)
 - [`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md)
 - [`docs/RESERVOIR_READINESS.md`](docs/RESERVOIR_READINESS.md)
+- [`docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md`](docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md)
 
 First public program:
 
@@ -60,6 +61,18 @@ Codex plugin:
 ```text
 plugins/tmi-os-mathematical-board/
 ```
+
+Experiment domain:
+
+```text
+TMI-OS-Experiment
+```
+
+The experiment domain is a small deployment sandbox for passport-gated slices,
+installer checks, and local Lean / Vampire / E smoke runs. It is separate from
+the TLFL kernel package and can be reviewed here:
+
+- [`kernelpanic888/TMI-OS-Experiment`](https://github.com/kernelpanic888/TMI-OS-Experiment)
 
 ## TLFL Kernel Lineage
 
