@@ -84,6 +84,7 @@
       margin: 12px 0 0;
       color: var(--green);
       font-weight: 800;
+      overflow-wrap: anywhere;
     }
     .status.error { color: var(--red); }
     .checklist {
@@ -232,8 +233,12 @@ theorem canonical_passport_certified :
       try {
         const text = await load(kind);
         await navigator.clipboard.writeText(text);
+        const firstLine = text.split(/\r?\n/)[0];
+        const proofMark = kind === "challenge"
+          ? "CONTROL TAIL: `sorry` theorem target"
+          : "CONTROL TAIL: `simp` proof body";
         status.classList.remove("error");
-        status.textContent = `${kind.toUpperCase()} copied. First line: ${text.split("\\n")[0]}`;
+        status.textContent = `${kind.toUpperCase()} copied. ${proofMark}. First line: ${firstLine}`;
       } catch (error) {
         status.classList.add("error");
         status.textContent = `copy failed: ${error}`;
