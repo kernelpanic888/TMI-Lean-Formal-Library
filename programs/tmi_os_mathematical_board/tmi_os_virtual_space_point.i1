@@ -6,6 +6,19 @@ import Matrix : (Я)-Я-я
 
 intent "взять виртуальное пространство и оставить только математику"
 
+depend TMI_OS on Intent
+depend TMI_OS on MatrixCanonicalImport
+depend TMI_OS on TLFL
+depend TMI_OS on Lean
+depend TMI_OS on OLean
+depend TMI_OS on ProofStatus
+depend TMI_OS on Guard
+depend TMI_OS on Trace
+depend TMI_OS on MathematicalBoard
+depend TMI_OS on Z3
+depend TMI_OS on Vampire
+depend TMI_OS on EProver
+
 space V := VirtualSpace
 domain D := ExternalDomain
 
