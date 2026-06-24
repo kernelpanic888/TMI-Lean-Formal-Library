@@ -16,3 +16,8 @@ docs/*ZENODO_SUMMARY*.pdf
 docs/ZENODO_METADATA*.md
 docs/ZENODO_FILE_TABLE*.md
 docs/ZENODO_UPDATE_NOTE*.md
+
+# Local working-memory exports. Public TMI-OS programs live under programs/.
+/CANONICAL_*.md
+/SELF_SYSTEM_*.md
+docs/intelligence_*/

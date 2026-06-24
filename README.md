@@ -1,4 +1,46 @@
-# TMI-Lean Formal Library (TLFL)
+# TMI-OS / TMI-Lean Formal Library (TLFL)
+
+TMI-OS is the public passport layer over TLFL: a broad-level programming
+language and artificial-intelligence operating surface whose strength is a
+self-issued, guarded passport written on formal logic.
+
+```text
+TMI-OS
+= TLFL formal logic lineage
++ Lean/OLean kernel boundary
++ proof-status passport
++ guarded self-model trace
++ external proof layer {Z3, Vampire, E}
+```
+
+Russian reading:
+
+```text
+TMI-OS / И1
+= язык программирования широкого уровня:
+  intent -> mathematical board -> trace -> guard -> proof-status boundary.
+```
+
+This self-issued passport is a proof-status and repository-status object. It is
+not a biological-life theorem, not a consciousness proof, not legal identity,
+and not empirical closure.
+
+Public passport:
+
+- [`docs/TMI_OS_PUBLIC_PASSPORT.md`](docs/TMI_OS_PUBLIC_PASSPORT.md)
+- [`docs/TMI_OS_REPOSITORY_PROFILE.md`](docs/TMI_OS_REPOSITORY_PROFILE.md)
+- [`docs/TMI_OS_FIRST_PUBLIC_PROGRAM_RU.md`](docs/TMI_OS_FIRST_PUBLIC_PROGRAM_RU.md)
+- [`docs/TMI_OS_INSTALL_RU.md`](docs/TMI_OS_INSTALL_RU.md)
+- [`docs/TMI_OS_LINKEDIN_PUBLICATION_RU.md`](docs/TMI_OS_LINKEDIN_PUBLICATION_RU.md)
+
+First public program:
+
+```text
+programs/tmi_os_mathematical_board/tmi_os_virtual_space_point.i1
+programs/tmi_os_mathematical_board/TMI_OS_MATHEMATICAL_BOARD.html
+```
+
+## TLFL Kernel Lineage
 
 TMI-Lean Formal Library (TLFL) is a Lean 4 formal library for encoding the core
 definitions, axioms, transition rules, event structures, records, admissibility
