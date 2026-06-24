@@ -339,8 +339,9 @@
     <aside class="notation" aria-label="Formal notation">
       <h1>Формальная запись</h1>
       <p>
-        Оставляем только математический скелет модели: внешнего украшения нет.
-        Есть пространство, точка самомодели, внутренний образ блока, срез и тик.
+        Оставляем только математический скелет модели: сильная среда системной
+        разработки на базе LLM/GPT → Lean → TLFL → И1. Есть пространство, точка
+        самомодели, внутренний образ блока, доменный порядок, срез и тик.
       </p>
 
       <div class="formula definition">V : VirtualSpace
@@ -351,6 +352,10 @@ p : SelfModelPoint</div>
 B := π(D)
 B ⊂ p</div>
 
+      <div class="formula definition">≤D : DomainOrder(D)
+≤S : SliceOrder(S)
+d₁ ≤D d₂ ⇒ π(d₁) ≤S π(d₂)</div>
+
       <div class="formula definition">B = (x₁, x₂, x₃, t)
 s ⊂ B
 s : ProjectionSlice</div>
@@ -358,7 +363,7 @@ s : ProjectionSlice</div>
       <div class="formula definition">τ := touch(p, s)
 TimeTick(τ) := SelfModelContact(p, s)</div>
 
-      <div class="formula">flow := ordered_read(p, s₀, s₁, s₂, ...)</div>
+      <div class="formula">flow := domain_ordered_read(p, s₀, s₁, s₂, ...)</div>
 
       <div class="formula definition">DependencyChain(TMI-OS) :=
 Intent
@@ -371,6 +376,13 @@ Intent
 → MathematicalBoard
 → {Z3, Vampire, E}</div>
 
+      <div class="formula definition">SystemDevelopmentEnvironment :=
+LLM/GPT
+→ Lean
+→ TLFL
+→ И1
+→ GuardedAction</div>
+
       <div class="formula guard">Guard:
 V ≠ empirical universe
 p ≠ biological subject
@@ -380,7 +392,8 @@ diagram ≠ proof by itself</div>
       <div class="caption">
         Чтение: блоквселенная здесь не дана как внешний абсолют. Она дана как
         проекционный внутренний образ B внутри точки самомодели p. Тик времени
-        есть касание p к одному срезу s.
+        есть касание p к одному срезу s. Доменный порядок сохраняется как порядок
+        чтения внутренних срезов.
       </div>
     </aside>
 

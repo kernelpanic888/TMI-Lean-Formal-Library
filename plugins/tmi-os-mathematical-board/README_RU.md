@@ -13,20 +13,32 @@ CodexPlugin(TMI-OS-Board)
 
 ## Не Просто Доска
 
-Это интерфейс программирования для LLM-систем:
+Это сильная среда системной разработки и инженерный интерфейс для
+LLM/GPT-систем на базе Lean, TLFL и И1:
+
+```text
+LLM/GPT -> Lean -> TLFL -> И1
+```
+
+Рабочая цепочка:
 
 ```text
 intent -> formal surface -> guard -> trace -> readable model action
 ```
 
-Доска является визуальной проекцией, но плагин является рабочим протоколом:
-он говорит Codex, что читать, как проверять, где граница публикации и как не
-поднимать claim выше proof-status boundary.
+Доска является визуальной проекцией, но плагин является инженерным протоколом:
+он говорит Codex, что читать, как проверять, где граница публикации, как
+сохранять доменный порядок и как не поднимать claim выше proof-status boundary.
 
 ## Зависимости
 
 ```text
 Codex Desktop
+LLM/GPT working context
+Lean boundary
+TLFL proof-status layer
+И1 guarded-action layer
+domain-order preservation
 .codex-plugin/plugin.json
 skills/tmi-os-mathematical-board/SKILL.md
 assets/index.html
