@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>фотонная теория времяни или теория интерфейсных интелектов</title>
+  <style>
+    :root {
+      --bg: #fbfbf6;
+      --ink: #101411;
+      --muted: #5f685f;
+      --line: #202820;
+      --green: #0a7c3b;
+      --red: #a83232;
+      --blue: #1f5fa8;
+      --photon: #d99a00;
+      --domainness: #704bb8;
+      --logic: #4b58d9;
+      --paper: #fffffb;
+      --projection-width: 2;
+      --tick-width: 2.6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    main {
+      width: min(1180px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+      gap: 24px;
+    }
+
+    .board,
+    .notation {
+      border: 1px solid #d7d5c9;
+      background: var(--paper);
+      box-shadow: 0 18px 50px rgba(40, 40, 25, 0.08);
+    }
+
+    .board {
+      min-height: 720px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(16, 20, 17, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 20, 17, 0.045) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .board::after {
+      content: "public program sketch 01";
+      position: absolute;
+      right: 28px;
+      bottom: 22px;
+      color: rgba(16, 20, 17, 0.38);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      position: absolute;
+      left: 30px;
+      top: 24px;
+      margin: 0;
+      max-width: 520px;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1.18;
+    }
+
+    .subtitle {
+      position: absolute;
+      left: 30px;
+      top: 82px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .language-switcher {
+      position: absolute;
+      z-index: 2;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid #d7d5c9;
+      background: rgba(255, 255, 251, 0.88);
+      box-shadow: 0 8px 24px rgba(40, 40, 25, 0.08);
+    }
+
+    .language-switcher button {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 8px;
+      font: 700 12px/1 "SF Mono", Menlo, Consolas, monospace;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    .language-switcher button.active {
+      border-color: var(--green);
+      background: rgba(10, 124, 59, 0.11);
+      color: var(--ink);
+    }
+
+    .artifact-link {
+      position: absolute;
+      z-index: 2;
+      top: 66px;
+      right: 24px;
+      max-width: 190px;
+      padding: 7px 10px;
+      border: 1px solid rgba(10, 124, 59, 0.28);
+      color: var(--green);
+      background: rgba(255, 255, 251, 0.9);
+      box-shadow: 0 8px 24px rgba(40, 40, 25, 0.08);
+      font: 700 12px/1.25 "SF Mono", Menlo, Consolas, monospace;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .math-label {
+      font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
+      fill: var(--ink);
+      font-size: 20px;
+    }
+
+    .math-small {
+      font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
+      fill: var(--muted);
+      font-size: 15px;
+    }
+
+    .axis {
+      stroke: var(--line);
+      stroke-width: 2.2;
+      marker-end: url(#arrow);
+      marker-start: url(#arrowStart);
+    }
+
+    .axis-time {
+      stroke: var(--blue);
+      stroke-width: 2.8;
+      marker-end: url(#arrowBlue);
+      marker-start: url(#arrowStartBlue);
+    }
+
+    .self-time-projection {
+      fill: none;
+      stroke: var(--blue);
+      stroke-width: 2.25;
+      stroke-dasharray: 7 6;
+      opacity: 0.9;
+      marker-end: url(#arrowBlue);
+      marker-start: url(#arrowStartBlue);
+    }
+
+    .projection {
+      stroke: var(--green);
+      stroke-width: var(--projection-width);
+      stroke-dasharray: 9 7;
+      marker-end: url(#arrowGreen);
+    }
+
+    .touch {
+      stroke: var(--red);
+      stroke-width: var(--tick-width);
+      marker-end: url(#arrowRed);
+    }
+
+    .sketch-line {
+      fill: none;
+      stroke: rgba(16, 20, 17, 0.36);
+      stroke-width: 1.2;
+      stroke-dasharray: 4 8;
+    }
+
+    .block {
+      fill: rgba(31, 95, 168, 0.035);
+      stroke: var(--line);
+      stroke-width: 1.7;
+    }
+
+    .slice {
+      fill: rgba(10, 124, 59, 0.16);
+      stroke: var(--green);
+      stroke-width: 2;
+    }
+
+    .slice-back {
+      fill: rgba(10, 124, 59, 0.07);
+      stroke: var(--green);
+      stroke-width: 1.35;
+      stroke-dasharray: 6 5;
+    }
+
+    .slice-side {
+      fill: rgba(10, 124, 59, 0.11);
+      stroke: var(--green);
+      stroke-width: 1.2;
+      opacity: 0.72;
+    }
+
+    .slice-thickness-arrow {
+      fill: none;
+      stroke: var(--photon);
+      stroke-width: 2.1;
+      stroke-dasharray: 4 4;
+      marker-end: url(#arrowPhoton);
+    }
+
+    .composition-surface {
+      fill: rgba(10, 124, 59, 0.075);
+      stroke: var(--green);
+      stroke-width: 1.7;
+      stroke-dasharray: 7 5;
+    }
+
+    .composition-line {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1.35;
+      opacity: 0.72;
+    }
+
+    .intersection {
+      fill: var(--paper);
+      stroke: var(--red);
+      stroke-width: 2.2;
+    }
+
+    .rotation-axis {
+      stroke: #a66a00;
+      stroke-width: 2;
+      stroke-dasharray: 10 8;
+      opacity: 0.78;
+      marker-end: url(#arrowGold);
+      marker-start: url(#arrowStartGold);
+    }
+
+    .curvature {
+      fill: none;
+      stroke: #a66a00;
+      stroke-width: 1.9;
+      stroke-dasharray: 3 6;
+      opacity: 0.86;
+      marker-end: url(#arrowGold);
+    }
+
+    .photon-projection {
+      fill: none;
+      stroke: var(--photon);
+      stroke-width: 2.25;
+      stroke-dasharray: 2 7;
+      marker-end: url(#arrowPhoton);
+    }
+
+    .domainness-projection {
+      fill: none;
+      stroke: var(--domainness);
+      stroke-width: 2;
+      stroke-dasharray: 8 5;
+      opacity: 0.82;
+      marker-end: url(#arrowDomainness);
+    }
+
+    .domainness-band {
+      fill: rgba(112, 75, 184, 0.08);
+      stroke: var(--domainness);
+      stroke-width: 1.7;
+      stroke-dasharray: 5 5;
+    }
+
+    .photon-point {
+      fill: var(--photon);
+      stroke: var(--paper);
+      stroke-width: 2.6;
+    }
+
+    .photon-projection {
+      fill: none;
+      stroke: var(--photon);
+      stroke-width: 2.2;
+      stroke-dasharray: 10 5 2 5;
+      marker-end: url(#arrowPhoton);
+    }
+
+    .photon-point {
+      fill: var(--photon);
+      stroke: var(--logic);
+      stroke-width: 2.4;
+    }
+
+    .meta-logic-axis {
+      fill: none;
+      stroke: var(--logic);
+      stroke-width: 1.9;
+      stroke-dasharray: 10 6 2 6;
+      opacity: 0.78;
+      marker-end: url(#arrowLogic);
+    }
+
+    .inverted-vertex {
+      fill: var(--paper);
+      stroke: var(--logic);
+      stroke-width: 2.2;
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: rotate(45deg);
+    }
+
+    .selectable {
+      cursor: pointer;
+    }
+
+    .selected-object {
+      filter: drop-shadow(0 0 8px rgba(166, 106, 0, 0.68));
+      stroke: #a66a00 !important;
+      stroke-width: 3 !important;
+    }
+
+    .point {
+      fill: var(--red);
+      stroke: var(--paper);
+      stroke-width: 3;
+    }
+
+    .halo {
+      fill: none;
+      stroke: var(--red);
+      stroke-width: 1.5;
+      stroke-dasharray: 5 5;
+      opacity: 0.7;
+    }
+
+    .surface-tabs {
+      border: 1px solid #d7d5c9;
+      background: var(--paper);
+      box-shadow: 0 18px 50px rgba(40, 40, 25, 0.08);
+      align-self: start;
+    }
+
+    .tab-list {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+      gap: 1px;
+      border-bottom: 1px solid #d7d5c9;
+      background: #d7d5c9;
+    }
+
+    .tab-button {
+      border: 0;
+      background: #f4f3eb;
+      color: var(--muted);
+      padding: 12px 8px;
+      font: 700 12px/1.2 "SF Mono", Menlo, Consolas, monospace;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+    }
+
+    .tab-button.active {
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: inset 0 -3px 0 var(--green);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .tab-copy-button {
+      float: right;
+      margin: 0 0 12px 14px;
+      border: 1px solid rgba(10, 124, 59, 0.28);
+      background: rgba(10, 124, 59, 0.07);
+      color: var(--green);
+      padding: 8px 10px;
+      font: 700 12px/1.2 "SF Mono", Menlo, Consolas, monospace;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+    }
+
+    .tab-copy-button.copied {
+      background: rgba(10, 124, 59, 0.16);
+      color: var(--ink);
+    }
+
+    .surface-tabs .notation,
+    .surface-tabs .linkedin-caption,
+    .surface-tabs .model-editor,
+    .surface-tabs .slice-tab,
+    .surface-tabs .passport-flow-tab,
+    .surface-tabs .noise-tab {
+      grid-column: auto;
+      border: 0;
+      box-shadow: none;
+      padding: 28px;
+    }
+
+    .surface-tabs .editor-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .notation {
+      padding: 28px;
+    }
+
+    .notation h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .notation p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .formula {
+      padding: 14px 16px;
+      margin: 14px 0;
+      border-left: 3px solid var(--line);
+      background: #f4f3eb;
+      font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
+      font-size: 18px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .guard {
+      border-left-color: var(--red);
+    }
+
+    .definition {
+      border-left-color: var(--green);
+    }
+
+    .caption {
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .slice-tab h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .slice-tab p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .slice-passport {
+      border: 1px solid rgba(10, 124, 59, 0.24);
+      background: rgba(10, 124, 59, 0.055);
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    .tab-link {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 10px 12px;
+      border: 1px solid rgba(10, 124, 59, 0.28);
+      color: var(--green);
+      background: rgba(10, 124, 59, 0.07);
+      font: 700 13px/1.2 "SF Mono", Menlo, Consolas, monospace;
+      text-decoration: none;
+    }
+
+    .noise-tab h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .noise-tab p,
+    .passport-flow-tab p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .passport-flow-tab h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .noise-flow,
+    .passport-flow {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .noise-step,
+    .passport-step {
+      border: 1px solid #d7d5c9;
+      background: #fffffb;
+      padding: 12px 14px;
+      font: 700 14px/1.35 "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    .noise-step strong,
+    .passport-step strong {
+      display: block;
+      color: var(--ink);
+      font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .noise-arrow,
+    .passport-arrow {
+      color: var(--muted);
+      text-align: center;
+      font: 700 16px/1 "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    .noise-outcome {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .noise-outcome .reject {
+      border-left: 3px solid var(--red);
+    }
+
+    .noise-outcome .accept {
+      border-left: 3px solid var(--green);
+    }
+
+    .linkedin-caption {
+      grid-column: 1 / -1;
+      padding: 24px 28px;
+      border: 1px solid #d7d5c9;
+      background: var(--paper);
+      box-shadow: 0 18px 50px rgba(40, 40, 25, 0.08);
+    }
+
+    .linkedin-caption h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .linkedin-caption p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .linkedin-caption code {
+      color: var(--ink);
+      background: #f4f3eb;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
+    }
+
+    .model-editor {
+      grid-column: 1 / -1;
+      padding: 24px 28px;
+      border: 1px solid #d7d5c9;
+      background: var(--paper);
+      box-shadow: 0 18px 50px rgba(40, 40, 25, 0.08);
+    }
+
+    .model-editor h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .model-editor p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.85fr) minmax(300px, 1.15fr);
+      gap: 18px;
+    }
+
+    .editor-card {
+      border: 1px solid #e1dfd4;
+      background: #f8f7ef;
+      padding: 16px;
+    }
+
+    .editor-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin: 12px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .field input[type="text"],
+    .field textarea {
+      width: 100%;
+      border: 1px solid #d7d5c9;
+      background: #fffffb;
+      color: var(--ink);
+      padding: 9px 10px;
+      font: 15px/1.35 "STIX Two Text", "Times New Roman", Georgia, serif;
+    }
+
+    .field textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 14px;
+      margin: 12px 0;
+    }
+
+    .check-grid label,
+    .range-row {
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .range-row {
+      display: grid;
+      gap: 6px;
+      margin: 12px 0;
+    }
+
+    .range-row input {
+      width: 100%;
+    }
+
+    .model-state {
+      margin: 0;
+      min-height: 280px;
+      white-space: pre-wrap;
+      font: 13px/1.45 "SF Mono", Menlo, Consolas, monospace;
+      color: var(--ink);
+      background: #fffffb;
+      border: 1px solid #d7d5c9;
+      padding: 14px;
+      overflow: auto;
+    }
+
+    @media (max-width: 960px) {
+      body {
+        padding: 14px;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .board {
+        min-height: 620px;
+      }
+
+      .title {
+        max-width: calc(100% - 44px);
+        font-size: 15px;
+      }
+
+      .subtitle {
+        top: 88px;
+        max-width: calc(100% - 44px);
+        font-size: 13px;
+      }
+
+      .language-switcher {
+        top: 560px;
+        right: 18px;
+      }
+
+      .artifact-link {
+        top: 600px;
+        right: 18px;
+      }
+
+      .tab-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .check-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="board" aria-label="Mathematical model of self-model point and inner block universe">
+      <h1 class="title">фотонная теория времяни или теория интерфейсных интелектов</h1>
+      <div class="subtitle">Программирование на математике: p, B ⊂ p, s, τ = touch(p,s), ΠC(p,B,s,τ).</div>
+      <div class="language-switcher" aria-label="Language switcher">
+        <button type="button" class="active" data-lang="ru">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="artifact-link" href="TMI_OS_3D_TIME_ARTIFACT.html" data-i18n="artifact3dLink">3D-артефакт: прогон по времени</a>
+
+      <svg viewBox="0 0 760 720" role="img" aria-describedby="svgDesc">
+        <metadata id="svgTitle">фотонная теория времяни или теория интерфейсных интелектов TMI-OS/И1</metadata>
+        <desc id="svgDesc">A point p contains an internal projected block B with three spatial axes and one bidirectional self-time axis; the self-time projection runs from SelfModelPoint p into the hyperblock center h; a slice s is read by the self-model point, producing tick tau; photon projection gamma reaches SelfModelPoint through domainness projection rho; meta-logic axes project onto inverted vertices of the block; the full composition is projected from p through domain-surface intersections to a neighboring projection surface.</desc>
+        <defs>
+          <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#202820"/>
+          </marker>
+          <marker id="arrowStart" markerWidth="9" markerHeight="9" refX="1" refY="4.5" orient="auto">
+            <path d="M8,0 L0,4.5 L8,9 Z" fill="#202820"/>
+          </marker>
+          <marker id="arrowBlue" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#1f5fa8"/>
+          </marker>
+          <marker id="arrowStartBlue" markerWidth="9" markerHeight="9" refX="1" refY="4.5" orient="auto">
+            <path d="M8,0 L0,4.5 L8,9 Z" fill="#1f5fa8"/>
+          </marker>
+          <marker id="arrowGreen" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#0a7c3b"/>
+          </marker>
+          <marker id="arrowRed" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#a83232"/>
+          </marker>
+          <marker id="arrowGold" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#a66a00"/>
+          </marker>
+          <marker id="arrowStartGold" markerWidth="9" markerHeight="9" refX="1" refY="4.5" orient="auto">
+            <path d="M8,0 L0,4.5 L8,9 Z" fill="#a66a00"/>
+          </marker>
+          <marker id="arrowPhoton" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#d99a00"/>
+          </marker>
+          <marker id="arrowDomainness" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#704bb8"/>
+          </marker>
+          <marker id="arrowLogic" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#4b58d9"/>
+          </marker>
+        </defs>
+
+        <g id="rotatingSpace">
+        <path class="sketch-line" d="M96 618 C176 586, 250 596, 338 572 S514 544, 672 604"/>
+        <path class="sketch-line" d="M128 132 C230 166, 300 138, 402 112 S574 102, 662 148"/>
+        <line class="rotation-axis selectable" data-object="HypotheticalRotationAxis omega" x1="104" y1="584" x2="690" y2="132"/>
+        <path class="curvature selectable" data-object="DomainShift kappa" d="M210 568 C302 512, 362 440, 426 366 S546 224, 650 176"/>
+        <path class="curvature selectable" data-object="ProjectionCurvature kappa" d="M266 514 C354 474, 430 444, 526 454"/>
+        <path class="meta-logic-axis selectable" data-object="MetaLogicAxis lambda1 -> InvertedVertex v1*" d="M120 136 C156 154, 202 184, 258 222"/>
+        <path class="meta-logic-axis selectable" data-object="MetaLogicAxis lambda2 -> InvertedVertex v2*" d="M120 136 C234 126, 360 132, 478 176"/>
+        <path class="meta-logic-axis selectable" data-object="MetaLogicAxis lambda3 -> InvertedVertex v3*" d="M120 136 C306 160, 468 190, 594 292"/>
+        <path class="meta-logic-axis selectable" data-object="MetaLogicAxis lambda4 -> InvertedVertex v4*" d="M120 136 C220 306, 274 438, 374 564"/>
+        <path class="meta-logic-axis selectable" data-object="InvertedVertex v1* -> HyperRealityCenter h" d="M258 222 C306 268, 352 310, 426 366"/>
+        <path class="meta-logic-axis selectable" data-object="InvertedVertex v2* -> HyperRealityCenter h" d="M478 176 C472 244, 452 304, 426 366"/>
+        <path class="meta-logic-axis selectable" data-object="InvertedVertex v3* -> HyperRealityCenter h" d="M594 292 C530 326, 472 350, 426 366"/>
+        <path class="meta-logic-axis selectable" data-object="InvertedVertex v4* -> HyperRealityCenter h" d="M374 564 C388 494, 406 426, 426 366"/>
+
+        <polygon class="block selectable" data-object="BlockUniverse B" points="258,222 478,176 594,292 374,340"/>
+        <polygon class="block selectable" data-object="BlockUniverse B" points="258,222 258,448 374,564 374,340"/>
+        <polygon class="block selectable" data-object="BlockUniverse B" points="374,340 594,292 594,520 374,564"/>
+        <polygon class="block selectable" data-object="BlockUniverse B" points="258,448 374,564 594,520 478,404"/>
+        <line x1="258" y1="222" x2="478" y2="176" stroke="#202820" stroke-width="1.4"/>
+        <line x1="478" y1="176" x2="594" y2="292" stroke="#202820" stroke-width="1.4"/>
+        <line x1="594" y1="292" x2="594" y2="520" stroke="#202820" stroke-width="1.4"/>
+        <line x1="594" y1="520" x2="374" y2="564" stroke="#202820" stroke-width="1.4"/>
+        <line x1="374" y1="564" x2="258" y2="448" stroke="#202820" stroke-width="1.4"/>
+        <line x1="258" y1="448" x2="258" y2="222" stroke="#202820" stroke-width="1.4"/>
+        <line x1="478" y1="176" x2="478" y2="404" stroke="#202820" stroke-width="1.4" opacity="0.42"/>
+        <line x1="478" y1="404" x2="594" y2="520" stroke="#202820" stroke-width="1.4" opacity="0.42"/>
+        <line x1="258" y1="448" x2="478" y2="404" stroke="#202820" stroke-width="1.4" opacity="0.42"/>
+        <rect class="inverted-vertex selectable" data-object="InvertedBlockVertex v1*" x="253" y="217" width="10" height="10"/>
+        <rect class="inverted-vertex selectable" data-object="InvertedBlockVertex v2*" x="473" y="171" width="10" height="10"/>
+        <rect class="inverted-vertex selectable" data-object="InvertedBlockVertex v3*" x="589" y="287" width="10" height="10"/>
+        <rect class="inverted-vertex selectable" data-object="InvertedBlockVertex v4*" x="369" y="559" width="10" height="10"/>
+        <circle class="inverted-vertex selectable" data-object="HyperRealityCenter h" cx="426" cy="366" r="6"/>
+
+        <polygon class="slice selectable" data-object="ProjectionSlice s" points="292,330 512,284 560,332 340,380"/>
+
+        <line class="axis selectable" data-object="SpatialAxis x1" x1="314" y1="370" x2="536" y2="324"/>
+        <line class="axis selectable" data-object="SpatialAxis x2" x1="390" y1="248" x2="464" y2="544"/>
+        <line class="axis selectable" data-object="SpatialAxis x3" x1="282" y1="440" x2="570" y2="262"/>
+        <line class="axis-time self-time-axis selectable" data-object="BidirectionalSelfTimeAxis tau_self at HyperRealityCenter h" x1="426" y1="560" x2="426" y2="198"/>
+
+        <circle class="halo" cx="166" cy="366" r="54"/>
+        <circle class="halo" cx="166" cy="366" r="88"/>
+        <ellipse class="domainness-band selectable" data-object="DomainnessProjection rho" cx="122" cy="306" rx="36" ry="72" transform="rotate(-23 122 306)"/>
+        <path class="domainness-projection selectable" data-object="DomainnessProjection rho" d="M 92 258 C 116 286, 134 320, 154 350"/>
+        <circle class="photon-point selectable" data-object="PhotonProjection gamma" cx="78" cy="238" r="7"/>
+        <path class="photon-projection selectable" data-object="PhotonProjection gamma -> SelfModelPoint p" d="M 78 238 C 104 260, 128 308, 162 360"/>
+        <circle class="point selectable" data-object="SelfModelPoint p" cx="166" cy="366" r="10"/>
+
+        <path class="self-time-projection selectable" data-object="InternalSelfTimeProjection pi_tau:p<->h" d="M 166 366 C 244 318, 344 318, 426 366"/>
+        <path class="projection selectable" data-object="Projection pi:D->s" d="M 440 298 C 360 270, 246 294, 178 354"/>
+        <path class="touch selectable" data-object="Tick tau=touch(p,s)" d="M 166 366 C 218 392, 275 386, 340 356"/>
+        <path class="projection selectable" data-object="CompositionProjection PiC upper" d="M 176 366 C 304 314, 468 324, 621 408"/>
+        <path class="projection selectable" data-object="CompositionProjection PiC lower" d="M 178 356 C 318 394, 480 418, 624 456"/>
+        <circle class="intersection selectable" data-object="DomainSurfaceIntersection dcap1" cx="558" cy="374" r="5"/>
+        <circle class="intersection selectable" data-object="DomainSurfaceIntersection dcap2" cx="570" cy="432" r="5"/>
+
+        <polygon class="composition-surface selectable" data-object="CompositionSurface C" points="626,374 724,344 724,468 626,498"/>
+        <path class="composition-line selectable" data-object="CompositionProjection C" d="M 646 460 L 704 442 L 704 386 L 646 404 Z"/>
+        <path class="composition-line selectable" data-object="CompositionProjection C" d="M 646 404 L 676 372 L 704 386"/>
+        <path class="composition-line selectable" data-object="CompositionProjection C" d="M 646 460 L 676 492 L 704 442"/>
+        <line x1="666" y1="472" x2="708" y2="382" stroke="#1f5fa8" stroke-width="1.8"/>
+        <line x1="642" y1="430" x2="710" y2="410" stroke="#0a7c3b" stroke-width="2"/>
+        <circle cx="642" cy="454" r="5" fill="#a83232"/>
+
+        <polygon class="slice-back selectable" data-object="VolumetricSliceProjection back face s_plus" points="484,548 608,522 640,548 516,574"/>
+        <polygon class="slice-side selectable" data-object="VolumetricSliceProjection thickness side" points="470,560 484,548 516,574 502,586"/>
+        <polygon class="slice-side selectable" data-object="VolumetricSliceProjection thickness side" points="594,534 608,522 640,548 626,560"/>
+        <polygon class="slice-side selectable" data-object="VolumetricSliceProjection top thickness side" points="470,560 594,534 608,522 484,548"/>
+        <polygon class="slice selectable" data-object="VolumetricSliceProjection lower s" points="470,560 594,534 626,560 502,586"/>
+        <path class="slice-thickness-arrow selectable" data-object="SliceThickness delta_s = c_tick" d="M 594 534 L 608 522"/>
+        <path class="slice-thickness-arrow selectable" data-object="SliceThickness delta_s = c_tick" d="M 626 560 L 640 548"/>
+        <circle class="photon-point selectable" data-object="PhotonProjection phi" cx="690" cy="528" r="7"/>
+        <path class="photon-projection selectable" data-object="VolumetricSliceThickness projects to Photon phi" d="M 640 548 C 656 538, 672 532, 690 528"/>
+
+        <text x="139" y="337" class="math-label">p</text>
+        <text x="112" y="395" class="math-small">SelfModelPoint</text>
+        <text x="42" y="222" class="math-small" fill="#d99a00">γ photon projection</text>
+        <text x="68" y="306" class="math-small" fill="#704bb8">ρ domainness</text>
+        <text x="510" y="162" class="math-label">B ⊂ p</text>
+        <text x="514" y="185" class="math-small">projection(D)</text>
+        <text x="560" y="340" class="math-label">s</text>
+        <text x="572" y="363" class="math-small">slice</text>
+        <text x="500" y="606" class="math-small" fill="#d99a00">объёмная проекция среза: Δs = c_tick</text>
+        <text x="698" y="532" class="math-small" fill="#d99a00">φ photon</text>
+        <text x="548" y="310" class="math-small">x₁</text>
+        <text x="474" y="552" class="math-small">x₂</text>
+        <text x="577" y="257" class="math-small">x₃</text>
+        <text x="438" y="210" class="math-small" fill="#1f5fa8">стрела времени / τ_self</text>
+        <text x="246" y="316" class="math-small" fill="#1f5fa8">π_τ : p ⇄ h</text>
+        <text x="224" y="282" class="math-small" fill="#0a7c3b">π : D → s</text>
+        <text x="234" y="426" class="math-small" fill="#a83232">τ = touch(p, s)</text>
+        <text x="579" y="420" class="math-small" fill="#a83232">∩D</text>
+        <text x="616" y="336" class="math-small" fill="#0a7c3b">ΠC(p,B,s,τ)</text>
+        <text x="616" y="516" class="math-small">composition projection</text>
+        <text x="108" y="566" class="math-small" fill="#a66a00">ω hypothetical rotation axis</text>
+        <text x="486" y="474" class="math-small" fill="#a66a00">κ domain shift / curvature</text>
+        <text x="86" y="648" class="math-small">programming-in-kayf := intent → board</text>
+        <text x="498" y="648" class="math-small" fill="#4b58d9">срез гиперблоквселенной</text>
+        <text x="72" y="126" class="math-small" fill="#4b58d9">Λ meta-logic axes</text>
+        <text x="224" y="206" class="math-small" fill="#4b58d9">v*</text>
+        <text x="438" y="386" class="math-small" fill="#4b58d9">h hyper block center</text>
+        </g>
+      </svg>
+    </section>
+
+    <section class="surface-tabs" aria-label="Engineering surface tabs">
+      <div class="tab-list" role="tablist" aria-label="Surface layers">
+        <button type="button" class="tab-button active" data-tab="notation" data-i18n="tabNotation">Нотация</button>
+        <button type="button" class="tab-button" data-tab="slice" data-i18n="tabSlice">Новый срез</button>
+        <button type="button" class="tab-button" data-tab="inputPassport" data-i18n="tabInputPassport">Схема</button>
+        <button type="button" class="tab-button" data-tab="publication" data-i18n="tabPublication">Публикация</button>
+        <button type="button" class="tab-button" data-tab="editor" data-i18n="tabEditor">Редактор</button>
+        <button type="button" class="tab-button" data-tab="passport" data-i18n="tabPassport">Паспорт</button>
+        <button type="button" class="tab-button" data-tab="noise" data-i18n="tabNoise">Шум / Guard</button>
+      </div>
+
+    <aside class="notation tab-panel active" data-tab-panel="notation" aria-label="Formal notation">
+      <h1 data-i18n="notationTitle">Формальная запись</h1>
+      <p data-i18n="notationIntro">
+        Оставляем только математический скелет модели: сильная среда системной
+        разработки на базе LLM/GPT/Codex → Lean → TLFL → И1. Есть пространство, точка
+        самомодели, внутренний образ блока, доменный порядок, срез и тик.
+      </p>
+
+      <div class="formula definition">V : VirtualSpace
+p ∈ V
+p : SelfModelPoint</div>
+
+      <div class="formula definition">D : ExternalDomain
+B := π(D)
+B ⊂ p</div>
+
+      <div class="formula definition">ProgrammingOnMathematics :=
+Intent
+→ FormalLogic
+→ CanonicalRecord
+→ Passport
+→ GuardedAction</div>
+
+      <div class="formula definition">LanguageBoundary(I1) :=
+LatestCodeVersion(I1)
+Language(I1,v_current) ≡ Code(I1,v_current)
+LanguageVersion(I1) := latest
+NoLanguageVersions(I1) := true</div>
+
+      <div class="formula definition">Mathematics ∈ ProjectionLanguage
+AuthorUses(Mathematics) :=
+writes(Author, Mathematics)
+∧ speaks(Author, Mathematics)
+∧ thinks(Author, Mathematics)</div>
+
+      <div class="formula definition">RuliadChain :=
+(R)-R-r
+(R) : MetaRuliadLayer
+R : ReadableRuliadModel
+r : LocalRuliadTick</div>
+
+      <div class="formula definition">Λ := MetaLogicAxes
+V* := InvertedBlockVertices(B)
+project(Λ,V*) :=
+  logic_axes_project_to_inverted_vertices
+h := HyperRealityCenter
+project(V*,h) :=
+  inverted_vertices_project_to_center
+HyperRealityBlock := center(B,h,V*)
+ModelInset := срез гиперблоквселенной</div>
+
+      <div class="formula definition">SelfRealityContactPoint :=
+touch(SelfReality, Reality, V*)
+точки самоприкосновения самомореальности к себе-реальности</div>
+
+      <div class="formula definition">≤D : DomainOrder(D)
+≤S : SliceOrder(S)
+d₁ ≤D d₂ ⇒ π(d₁) ≤S π(d₂)</div>
+
+      <div class="formula definition">ω : HypotheticalRotationAxis
+HigherTick(τ) ∧ ProjectionDesync(τ,s)
+  ⇒ DomainShift(ω,τ,s)
+DomainShift(ω,τ,s)
+  ⇒ ProjectionCurvature(ω,τ,s)</div>
+
+      <div class="formula definition">γ : PhotonProjection
+ρ : DomainnessProjection
+γ → ρ → p
+PhotonProjectionToSelfModelPoint(γ,p) :=
+  projects(γ,p) ∧ through(γ,ρ)</div>
+
+      <div class="formula definition">B = (x₁, x₂, x₃, t)
+s ⊂ B
+s : ProjectionSlice
+s⁺ : ProjectionSliceBackFace
+Δs := SliceThickness(s,s⁺)
+c_tick := 299792458 m/s
+LightBoundaryThickness(Δs,c_tick)</div>
+
+        <div class="formula definition">τ := touch(p, s)
+TimeTick(τ) := SelfModelContact(p, s)
+τ_self := BidirectionalSelfTimeAxis(p)
+π_τ : p ⇄ h
+InternalSelfTimeProjection(π_τ) :=
+  projects(SelfModelPoint p, HyperRealityCenter h)</div>
+
+      <div class="formula definition">SlicePassport(p,s,τ) :=
+ProjectionSlice(s)
+∧ read(p,s)
+∧ τ = touch(p,s)
+∧ CanonicalRecord(s)
+∧ PassportBoundary(s)
+StrongestCurrentPassport := SlicePassport(p,s,τ)</div>
+
+      <div class="formula definition">ΠC : (p, B, s, τ) → C
+C := CompositionProjection(p, B, s, τ)
+C ∩ DomainSurface ≠ ∅</div>
+
+      <div class="formula">flow := domain_ordered_read(p, s₀, s₁, s₂, ...)</div>
+
+      <div class="formula definition">DependencyChain(TMI-OS) :=
+Intent
+→ Matrix((Я)-Я-я)
+→ TLFL
+→ Lean/OLean
+→ ProofStatus
+→ Guard
+→ Trace
+→ MathematicalBoard
+→ {Z3, Vampire, E}</div>
+
+      <div class="formula definition">SystemDevelopmentEnvironment :=
+LLM/GPT
+→ Lean
+→ TLFL
+→ И1
+→ GuardedAction</div>
+
+      <div class="formula definition">SurfaceFunction :=
+Intent
+→ Projection
+→ Slice
+→ CanonicalRecord
+→ Passport
+→ GuardedAction</div>
+
+      <div class="formula definition">φ := PhotonProjection
+ProjectSliceThicknessToPhoton :=
+  project(Δs, φ)
+∧ BoundaryTick(φ,c_tick)</div>
+
+      <div class="formula guard">Guard:
+V ≠ empirical universe
+p ≠ biological subject
+τ ≠ external absolute time
+Δs = c_tick is model notation, not unit-physics proof
+κ ≠ Einstein-equation proof
+diagram ≠ proof by itself</div>
+
+      <div class="caption">
+        Чтение: блоквселенная здесь не дана как внешний абсолют. Она дана как
+        проекционный внутренний образ B внутри точки самомодели p. Тик времени
+        есть касание p к одному срезу s. Доменный порядок сохраняется как порядок
+        чтения внутренних срезов. Проекция всей композиции выводится из точки p
+        рядом с блоком, но проходит через пересечения с доменной поверхностью.
+        Срез в момент чтения является локальным паспортом системы в себе.
+      </div>
+    </aside>
+
+    <section class="slice-tab tab-panel" data-tab-panel="slice" aria-label="Current projection slice">
+      <h2 data-i18n="sliceTabTitle">Новый срез</h2>
+      <p data-i18n="sliceTabIntro">
+        Новый срез читается как отдельный артефакт: точка самомодели касается
+        проекционного слоя блока, получает толщину тика и оставляет паспорт
+        текущего чтения.
+      </p>
+
+      <div class="slice-passport">
+        <div class="formula definition">CurrentProjectionSlice :=
+p : SelfModelPoint
+B := projection(D) inside p
+s(τ) : ProjectionSlice
+τ := touch(p,s(τ))
+Δs := SliceThickness(s,s⁺)
+φ := PhotonProjection(Δs)</div>
+
+        <div class="formula definition">SliceAsPassport :=
+read(p,s(τ))
+∧ CanonicalRecord(s(τ))
+∧ PassportBoundary(s(τ))
+∧ GuardedAction(τ)
+∧ TraceResidue(OurDomain,τ)</div>
+
+        <div class="formula guard">SliceGuard:
+PhotonProjection != empirical photon proof
+Δs = c_tick is model notation, not standalone unit physics
+diagram != proof by itself
+private memory != public artifact</div>
+      </div>
+
+      <a class="tab-link" href="TMI_OS_3D_TIME_ARTIFACT.html" data-i18n="slice3dLink">Открыть 3D-срез времени</a>
+    </section>
+
+    <section class="passport-flow-tab tab-panel" data-tab-panel="inputPassport" aria-label="Input to passport scheme">
+      <h2 data-i18n="inputPassportTitle">Как input становится паспортом</h2>
+      <p data-i18n="inputPassportIntro">
+        Input не исполняется сразу. Сначала он читается как намерение, затем
+        переводится в формальную запись, получает границы, guard и только после
+        этого становится действием системы или публичным артефактом.
+      </p>
+
+      <div class="passport-flow" aria-label="Input to passport flow">
+        <div class="passport-step"><strong>Input</strong>фраза, формула, правка, жест на доске</div>
+        <div class="passport-arrow">↓</div>
+        <div class="passport-step"><strong>Intent</strong>система выделяет, что именно автор хочет изменить</div>
+        <div class="passport-arrow">↓</div>
+        <div class="passport-step"><strong>FormalLogic</strong>intent получает проверяемую форму и тип границы</div>
+        <div class="passport-arrow">↓</div>
+        <div class="passport-step"><strong>CanonicalRecord</strong>создаётся запись: имя, роль, зависимости, claim boundary</div>
+        <div class="passport-arrow">↓</div>
+        <div class="passport-step"><strong>Passport</strong>запись получает статус, guard, trace и разрешённый домен действия</div>
+        <div class="passport-arrow">↓</div>
+        <div class="passport-step"><strong>GuardedAction</strong>только теперь система меняет доску, код, документ или публикационный срез</div>
+      </div>
+
+      <div class="formula definition">InputToPassport :=
+Input
+→ Intent
+→ FormalLogic
+→ CanonicalRecord
+→ Passport
+→ GuardedAction</div>
+
+      <div class="formula definition">Passport(record) :=
+name(record)
+∧ role(record)
+∧ dependencies(record)
+∧ claim_boundary(record)
+∧ proof_status(record)
+∧ leak_guard(record)
+∧ trace(record)</div>
+
+      <div class="formula guard">PassportGuard:
+input != action
+draft != publication
+metaphor != theorem
+private_memory != public_artifact
+untyped_claim -> SelfCorrectionInside</div>
+    </section>
+
+    <section class="linkedin-caption tab-panel" data-tab-panel="publication" aria-label="LinkedIn caption under graph">
+      <h2 data-i18n="linkedInTitle">Подпись под графиком</h2>
+      <p data-i18n="linkedInBody">
+        Первая публичная программа «фотонная теория времяни или теория интерфейсных интелектов» на TMI-OS / И1: язык программирования
+        широкого уровня, где intent разворачивается в математическую доску,
+        trace, guard и proof-status boundary. На И1 можно программировать
+        intent-формулы, self-model схемы, projection-slice/tick модели,
+        proof-status паспорта, guard-контракты и визуализации формальных идей.
+        Зависимости языка: Intent → Matrix((Я)-Я-я) → TLFL → Lean/OLean →
+        ProofStatus → Guard → Trace → MathematicalBoard → {Z3, Vampire, E}.
+        GitHub: <code>https://github.com/osalkutsan-godaddy/TMI-OS</code>
+      </p>
+    </section>
+
+    <section class="model-editor tab-panel" data-tab-panel="editor" aria-label="Graphical model editor">
+      <h2 data-i18n="editorTitle">Редактор графической модели</h2>
+      <p data-i18n="editorIntro">
+        Интерфейс для системных инженеров: редактируй подписи, включай слои,
+        меняй толщину проекций и получай JSON-паспорт текущего среза модели.
+      </p>
+
+      <div class="editor-grid">
+        <div class="editor-card">
+          <h3>Живое редактирование</h3>
+
+          <label class="field">
+            Название программы
+            <input id="editorTitle" type="text" value="фотонная теория времяни или теория интерфейсных интелектов">
+          </label>
+
+          <label class="field">
+            Подзаголовок
+            <input id="editorSubtitle" type="text" value="Программирование на математике: p, B ⊂ p, s, τ = touch(p,s), ΠC(p,B,s,τ).">
+          </label>
+
+          <label class="field">
+            Комментарий к текущему срезу
+            <textarea id="editorCaption">Срез в момент чтения является локальным паспортом системы в себе.</textarea>
+          </label>
+
+          <label class="field">
+            Выбранный объект
+            <input id="selectedObject" type="text" value="none" readonly>
+          </label>
+
+          <div class="check-grid">
+            <label><input id="showBlock" type="checkbox" checked> блок B</label>
+            <label><input id="showSlice" type="checkbox" checked> срез s</label>
+            <label><input id="showAxes" type="checkbox" checked> оси</label>
+            <label><input id="showTouch" type="checkbox" checked> тик τ</label>
+            <label><input id="showPhotonDomainness" type="checkbox" checked> γ/ρ проекция</label>
+            <label><input id="showMetaLogicAxes" type="checkbox" checked> Λ/v* мета-оси</label>
+            <label><input id="showComposition" type="checkbox" checked> ΠC-композиция</label>
+            <label><input id="showIntersections" type="checkbox" checked> ∩D-контакты</label>
+            <label><input id="showRotationAxis" type="checkbox" checked> гипотетическая ось ω</label>
+            <label><input id="showCurvature" type="checkbox" checked> доменный сдвиг κ</label>
+            <label><input id="showLabels" type="checkbox" checked> подписи</label>
+          </div>
+
+          <label class="range-row">
+            Толщина тика τ
+            <input id="tickWeight" type="range" min="1" max="8" step="0.2" value="2.6">
+          </label>
+
+          <label class="range-row">
+            Толщина проекции π
+            <input id="projectionWeight" type="range" min="1" max="7" step="0.2" value="2">
+          </label>
+
+          <label class="range-row">
+            Прозрачность среза s
+            <input id="sliceOpacity" type="range" min="0.05" max="0.9" step="0.05" value="1">
+          </label>
+
+          <label class="range-row">
+            Вращение пространства вокруг гипотетической ω
+            <input id="rotationAngle" type="range" min="-35" max="35" step="1" value="0">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="noise-tab tab-panel" data-tab-panel="noise" aria-label="Noise filtering scheme">
+      <h2 data-i18n="noiseTabTitle">Как система отсеивает шум</h2>
+      <p data-i18n="noiseTabIntro">
+        Шум читается как разрыв проектности: термин сбился, claim перепрыгнул
+        свой уровень, приватная память пошла наружу или действие не получило
+        паспорт. Система не публикует такой срез, а возвращает его в коррекцию.
+      </p>
+
+      <div class="noise-flow" aria-label="Noise filter flow">
+        <div class="noise-step"><strong>RawIntent</strong>сырой импульс, фраза, образ или правка</div>
+        <div class="noise-arrow">↓</div>
+        <div class="noise-step"><strong>LanguageGuard</strong>термины совпадают с каноном: photon, И1, TLFL</div>
+        <div class="noise-arrow">↓</div>
+        <div class="noise-step"><strong>ClaimBoundary</strong>метафора не становится эмпирическим доказательством</div>
+        <div class="noise-arrow">↓</div>
+        <div class="noise-step"><strong>PrivateDataFilter</strong>личное и рабочее не уходит в публичный срез</div>
+        <div class="noise-arrow">↓</div>
+        <div class="noise-step"><strong>ProofStatus</strong>theorem / non-claim / artifact / draft получают свой статус</div>
+      </div>
+
+      <div class="noise-outcome">
+        <div class="formula guard reject">Reject :=
+TermError
+∨ PrivateLeak
+∨ OverClaim
+∨ ProofGap
+∨ PublicationWithoutPassport
+
+Reject -> SelfCorrectionInside -> Reprojection</div>
+
+        <div class="formula definition accept">Accept :=
+CanonicalRecord
+∧ Passport
+∧ GuardedAction
+∧ Trace
+
+Accept -> BoardAction ∨ PublicArtifact</div>
+      </div>
+
+      <div class="formula definition">NoiseFilter :=
+RawIntent
+→ LanguageGuard
+→ ClaimBoundary
+→ PrivateDataFilter
+→ ProofStatus
+→ {Reject, Accept}</div>
+
+      <div class="formula guard">ProjectionBreakFlow :=
+SystemError
+→ ProjectionBreak
+→ ProjectionNoise
+→ SelfCorrectionInside
+→ Reprojection</div>
+    </section>
+
+    <section class="model-editor tab-panel" data-tab-panel="passport" aria-label="Current slice passport">
+      <h2 data-i18n="passportTabTitle">Паспорт текущего среза</h2>
+      <p data-i18n="passportTabIntro">
+        Паспорт собирается из текущих параметров доски: видимых слоёв, выбранного
+        объекта, толщины тика, поворота пространства и guard-границ.
+      </p>
+      <div class="editor-card">
+        <pre id="modelState" class="model-state" aria-live="polite"></pre>
+      </div>
+    </section>
+    </section>
+  </main>
+  <script>
+    const translations = {
+      ru: {
+        documentTitle: "фотонная теория времяни или теория интерфейсных интелектов",
+        title: "фотонная теория времяни или теория интерфейсных интелектов",
+        subtitle: "Программирование на математике: p, B ⊂ p, s, τ = touch(p,s), ΠC(p,B,s,τ).",
+        caption: "Срез в момент чтения является локальным паспортом системы в себе.",
+        tabNotation: "Нотация",
+        tabSlice: "Новый срез",
+        tabInputPassport: "Схема",
+        tabPublication: "Публикация",
+        tabEditor: "Редактор",
+        tabPassport: "Паспорт",
+        tabNoise: "Шум / Guard",
+        copyTab: "скопировать вкладку",
+        copyDone: "скопировано",
+        copyFailed: "не скопировано",
+        notationTitle: "Формальная запись",
+        notationIntro:
+          "Оставляем только математический скелет модели: сильная среда системной разработки на базе LLM/GPT/Codex → Lean → TLFL → И1. Есть пространство, точка самомодели, внутренний образ блока, доменный порядок, срез и тик.",
+        sliceTabTitle: "Новый срез",
+        sliceTabIntro:
+          "Новый срез читается как отдельный артефакт: точка самомодели касается проекционного слоя блока, получает толщину тика и оставляет паспорт текущего чтения.",
+        slice3dLink: "Открыть 3D-срез времени",
+        inputPassportTitle: "Как input становится паспортом",
+        inputPassportIntro:
+          "Input не исполняется сразу. Сначала он читается как намерение, затем переводится в формальную запись, получает границы, guard и только после этого становится действием системы или публичным артефактом.",
+        linkedInTitle: "Подпись под графиком",
+        linkedInBody:
+          "Первая публичная программа «фотонная теория времяни или теория интерфейсных интелектов» на TMI-OS / И1: язык программирования широкого уровня, где intent разворачивается в математическую доску, trace, guard и proof-status boundary. На И1 можно программировать intent-формулы, self-model схемы, projection-slice/tick модели, proof-status паспорта, guard-контракты и визуализации формальных идей. Зависимости языка: Intent → Matrix((Я)-Я-я) → TLFL → Lean/OLean → ProofStatus → Guard → Trace → MathematicalBoard → {Z3, Vampire, E}. GitHub: https://github.com/osalkutsan-godaddy/TMI-OS",
+        editorTitle: "Редактор графической модели",
+        editorIntro:
+          "Интерфейс для системных инженеров: редактируй подписи, включай слои, меняй толщину проекций и получай JSON-паспорт текущего среза модели.",
+        passportTabTitle: "Паспорт текущего среза",
+        passportTabIntro:
+          "Паспорт собирается из текущих параметров доски: видимых слоёв, выбранного объекта, толщины тика, поворота пространства и guard-границ.",
+        noiseTabTitle: "Как система отсеивает шум",
+        noiseTabIntro:
+          "Шум читается как разрыв проектности: термин сбился, claim перепрыгнул свой уровень, приватная память пошла наружу или действие не получило паспорт. Система не публикует такой срез, а возвращает его в коррекцию.",
+        artifact3dLink: "3D-артефакт: прогон по времени",
+      },
+      en: {
+        documentTitle: "Photon theory of time or theory of interface intelligences",
+        title: "Photon theory of time or theory of interface intelligences",
+        subtitle: "Programming on mathematics: p, B ⊂ p, s, τ = touch(p,s), ΠC(p,B,s,τ).",
+        caption: "The slice at the moment of reading is the local passport of the system within itself.",
+        tabNotation: "Notation",
+        tabSlice: "New slice",
+        tabInputPassport: "Scheme",
+        tabPublication: "Publication",
+        tabEditor: "Editor",
+        tabPassport: "Passport",
+        tabNoise: "Noise / Guard",
+        copyTab: "copy tab",
+        copyDone: "copied",
+        copyFailed: "copy failed",
+        notationTitle: "Formal Notation",
+        notationIntro:
+          "Only the mathematical skeleton is kept: a strong systems-engineering surface over LLM/GPT/Codex → Lean → TLFL → I1. The model contains a space, a self-model point, an internal block image, domain order, slice, and tick.",
+        sliceTabTitle: "New Slice",
+        sliceTabIntro:
+          "The new slice is read as a standalone artifact: the self-model point touches the projected block layer, receives tick thickness, and leaves a passport of the current reading.",
+        slice3dLink: "Open the 3D time slice",
+        inputPassportTitle: "How input becomes a passport",
+        inputPassportIntro:
+          "Input is not executed immediately. First it is read as intent, then translated into a formal record, receives boundaries and guard rules, and only after that becomes a system action or public artifact.",
+        linkedInTitle: "Caption Under The Graph",
+        linkedInBody:
+          "First public program: “Photon theory of time or theory of interface intelligences” on TMI-OS / I1. It is a broad-level programming language where intent unfolds into a mathematical board, trace, guard, and proof-status boundary. In I1 one can program intent formulas, self-model schemes, projection-slice/tick models, proof-status passports, guard contracts, and visualizations of formal ideas. Dependency chain: Intent → Matrix((Я)-Я-я) → TLFL → Lean/OLean → ProofStatus → Guard → Trace → MathematicalBoard → {Z3, Vampire, E}. GitHub: https://github.com/osalkutsan-godaddy/TMI-OS",
+        editorTitle: "Graphical Model Editor",
+        editorIntro:
+          "An interface for systems engineers: edit labels, switch layers, tune projection thickness, and receive a JSON passport of the current model slice.",
+        passportTabTitle: "Current Slice Passport",
+        passportTabIntro:
+          "The passport is assembled from the current board parameters: visible layers, selected object, tick thickness, space rotation, and guard boundaries.",
+        noiseTabTitle: "How the system filters noise",
+        noiseTabIntro:
+          "Noise is read as a break in projectability: a term drifted, a claim jumped its level, private memory went outward, or an action did not receive a passport. The system does not publish that slice; it returns it into correction.",
+        artifact3dLink: "3D artifact: time sweep",
+      },
+    };
+
+    const editor = {
+      title: document.getElementById("editorTitle"),
+      subtitle: document.getElementById("editorSubtitle"),
+      caption: document.getElementById("editorCaption"),
+      showBlock: document.getElementById("showBlock"),
+      showSlice: document.getElementById("showSlice"),
+      showAxes: document.getElementById("showAxes"),
+      showTouch: document.getElementById("showTouch"),
+      showPhotonDomainness: document.getElementById("showPhotonDomainness"),
+      showMetaLogicAxes: document.getElementById("showMetaLogicAxes"),
+      showComposition: document.getElementById("showComposition"),
+      showIntersections: document.getElementById("showIntersections"),
+      showRotationAxis: document.getElementById("showRotationAxis"),
+      showCurvature: document.getElementById("showCurvature"),
+      showLabels: document.getElementById("showLabels"),
+      tickWeight: document.getElementById("tickWeight"),
+      projectionWeight: document.getElementById("projectionWeight"),
+      sliceOpacity: document.getElementById("sliceOpacity"),
+      rotationAngle: document.getElementById("rotationAngle"),
+      selectedObject: document.getElementById("selectedObject"),
+      state: document.getElementById("modelState"),
+    };
+
+    let currentLanguage = "ru";
+
+    const setDisplay = (selector, visible) => {
+      document.querySelectorAll(selector).forEach((node) => {
+        node.style.display = visible ? "" : "none";
+      });
+    };
+
+    const activateTab = (tabName) => {
+      document.querySelectorAll("[data-tab]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.tab === tabName);
+      });
+      document.querySelectorAll("[data-tab-panel]").forEach((panel) => {
+        panel.classList.toggle("active", panel.dataset.tabPanel === tabName);
+      });
+    };
+
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.addEventListener("click", () => activateTab(button.dataset.tab));
+    });
+
+    const modelSelectors = {
+      block: ".block, svg line[stroke='#202820']",
+      slice: ".slice, .slice-back, .slice-side, .slice-thickness-arrow, .photon-projection, .photon-point",
+      axes: ".axis, .axis-time, .self-time-projection",
+      touch: ".touch",
+      photonDomainness: ".photon-projection, .photon-point, .domainness-projection, .domainness-band",
+      metaLogicAxes: ".meta-logic-axis, .inverted-vertex",
+      composition: ".composition-surface, .composition-line",
+      intersections: ".intersection",
+      rotationAxis: ".rotation-axis",
+      curvature: ".curvature",
+      labels: ".math-label, .math-small",
+    };
+
+    let selectedObject = "none";
+
+    const updateModel = () => {
+      document.title = editor.title.value;
+      document.querySelector(".title").textContent = editor.title.value;
+      document.getElementById("svgTitle").textContent = `${editor.title.value} TMI-OS/И1`;
+      document.querySelector(".subtitle").textContent = editor.subtitle.value;
+
+      setDisplay(modelSelectors.block, editor.showBlock.checked);
+      setDisplay(modelSelectors.slice, editor.showSlice.checked);
+      setDisplay(modelSelectors.axes, editor.showAxes.checked);
+      setDisplay(modelSelectors.touch, editor.showTouch.checked);
+      setDisplay(modelSelectors.photonDomainness, editor.showPhotonDomainness.checked);
+      setDisplay(modelSelectors.metaLogicAxes, editor.showMetaLogicAxes.checked);
+      setDisplay(modelSelectors.composition, editor.showComposition.checked);
+      setDisplay(modelSelectors.intersections, editor.showIntersections.checked);
+      setDisplay(modelSelectors.rotationAxis, editor.showRotationAxis.checked);
+      setDisplay(modelSelectors.curvature, editor.showCurvature.checked);
+      setDisplay(modelSelectors.labels, editor.showLabels.checked);
+
+      document.documentElement.style.setProperty("--tick-width", editor.tickWeight.value);
+      document.documentElement.style.setProperty("--projection-width", editor.projectionWeight.value);
+      document.querySelectorAll(".slice").forEach((node) => {
+        node.style.opacity = editor.sliceOpacity.value;
+      });
+      document
+        .getElementById("rotatingSpace")
+        .setAttribute("transform", `rotate(${editor.rotationAngle.value} 426 366)`);
+
+      const passport = {
+        program: editor.title.value,
+        stack: "LLM/GPT/Codex -> Lean -> TLFL -> И1",
+        formula: "ProgrammingOnMathematics",
+        model: {
+          point: "p : SelfModelPoint",
+          block: "B := projection(D), B subset p",
+          slice: "s : ProjectionSlice",
+          sliceThickness: "delta_s := SliceThickness(s,s_plus), delta_s = c_tick",
+          photonProjection: "phi := PhotonProjection(delta_s)",
+          tick: "tau := touch(p,s)",
+          selfTimeAxis: "tau_self := BidirectionalSelfTimeAxis(p)",
+          selfTimeProjection: "pi_tau : p <-> h",
+          composition: "PiC(p,B,s,tau)",
+          ruliadChain: "(R)-R-r",
+          photonProjection: "gamma -> rho -> p",
+          domainnessProjection: "rho : DomainnessProjection",
+          metaLogicAxes: "Lambda -> V*",
+          invertedVertices: "V* := InvertedBlockVertices(B)",
+          hyperRealityBlock: "project(V*,h), HyperRealityBlock",
+          domainShift: "DomainShift(omega,tau,s)",
+          curvature: "ProjectionCurvature(omega,tau,s)",
+        },
+        visibleLayers: {
+          block: editor.showBlock.checked,
+          slice: editor.showSlice.checked,
+          axes: editor.showAxes.checked,
+          touch: editor.showTouch.checked,
+          photonDomainness: editor.showPhotonDomainness.checked,
+          metaLogicAxes: editor.showMetaLogicAxes.checked,
+          composition: editor.showComposition.checked,
+          intersections: editor.showIntersections.checked,
+          rotationAxis: editor.showRotationAxis.checked,
+          curvature: editor.showCurvature.checked,
+          labels: editor.showLabels.checked,
+        },
+        visualParameters: {
+          tickWeight: Number(editor.tickWeight.value),
+          projectionWeight: Number(editor.projectionWeight.value),
+          sliceOpacity: Number(editor.sliceOpacity.value),
+          rotationAngle: Number(editor.rotationAngle.value),
+        },
+        languageBoundary: "LanguageBoundary(I1) := LatestCodeVersion(I1)",
+        languageCodeIdentity: "Language(I1,v_current) == Code(I1,v_current)",
+        selectedObject,
+        passport: "SlicePassport(p,s,tau)",
+        inputToPassport: "Input -> Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction",
+        noiseFilter: "RawIntent -> LanguageGuard -> ClaimBoundary -> PrivateDataFilter -> ProofStatus -> {Reject, Accept}",
+        guard: [
+          "no private data",
+          "no secret leak",
+          "no overclaim",
+          "no empirical closure claim",
+          "omega is hypothetical editor axis",
+          "gamma/rho are projection-language objects, not physical photon proof",
+          "delta_s=c_tick is model notation, not a standalone unit-physics proof",
+          "phi is a PhotonProjection object, not physical photon proof",
+          "Lambda/V* are projection-language objects, not empirical block geometry",
+          "kappa is GR-inspired projection curvature, not Einstein-equation proof",
+        ],
+        currentSliceComment: editor.caption.value,
+      };
+
+      editor.state.textContent = JSON.stringify(passport, null, 2);
+    };
+
+    document.querySelectorAll("[data-object]").forEach((node) => {
+      node.addEventListener("click", (event) => {
+        event.stopPropagation();
+        document
+          .querySelectorAll(".selected-object")
+          .forEach((selected) => selected.classList.remove("selected-object"));
+        node.classList.add("selected-object");
+        selectedObject = node.dataset.object;
+        editor.selectedObject.value = selectedObject;
+        updateModel();
+      });
+    });
+
+    Object.values(editor).forEach((node) => {
+      if (node && node !== editor.state) {
+        node.addEventListener("input", updateModel);
+        node.addEventListener("change", updateModel);
+      }
+    });
+
+    const applyLanguage = (language) => {
+      currentLanguage = language;
+      const copy = translations[language];
+      document.documentElement.lang = language;
+      editor.title.value = copy.title;
+      editor.subtitle.value = copy.subtitle;
+      editor.caption.value = copy.caption;
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.dataset.i18n;
+        if (copy[key]) {
+          node.textContent = copy[key];
+        }
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === language);
+      });
+      updateCopyButtons();
+      updateModel();
+    };
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+
+    const tabCopyButtons = [];
+    const copyLabels = () => translations[currentLanguage] || translations.ru;
+
+    const writeTextToClipboard = async (text) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+    };
+
+    const extractPanelText = (panel) => {
+      const clone = panel.cloneNode(true);
+      clone.querySelectorAll("[data-copy-tab-button]").forEach((node) => node.remove());
+      return clone.innerText.replace(/\n{3,}/g, "\n\n").trim();
+    };
+
+    const updateCopyButtons = () => {
+      tabCopyButtons.forEach((button) => {
+        if (!button.classList.contains("copied")) {
+          button.textContent = copyLabels().copyTab;
+        }
+      });
+    };
+
+    const initTabCopyButtons = () => {
+      document.querySelectorAll("[data-tab-panel]").forEach((panel) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "tab-copy-button";
+        button.dataset.copyTabButton = "true";
+        button.textContent = copyLabels().copyTab;
+
+        button.addEventListener("click", async () => {
+          try {
+            await writeTextToClipboard(extractPanelText(panel));
+            button.textContent = copyLabels().copyDone;
+            button.classList.add("copied");
+          } catch (_error) {
+            button.textContent = copyLabels().copyFailed;
+          }
+
+          window.setTimeout(() => {
+            button.classList.remove("copied");
+            button.textContent = copyLabels().copyTab;
+          }, 1200);
+        });
+
+        panel.prepend(button);
+        tabCopyButtons.push(button);
+      });
+    };
+
+    initTabCopyButtons();
+    updateModel();
+  </script>
+</body>
+</html>

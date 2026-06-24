@@ -1,0 +1,167 @@
+language "TMI-OS" version "последняя"
+language_mode "безверсионный язык"
+artifact_snapshot "Zenodo artifact, not language version"
+progenitor "git@github.com:kernelpanic888/TMI-Lean-Formal-Library.git"
+target TLFL
+language_boundary := latest_code_version
+language_code_identity current_version
+surface_function := Intent -> Projection -> Slice -> CanonicalRecord -> Passport -> GuardedAction
+projection_break_flow := SystemError -> ProjectionBreak -> ProjectionNoise -> SelfCorrectionInside -> Reprojection
+
+import Matrix : (Я)-Я-я
+import RuliadChain : (R)-R-r
+
+intent "взять виртуальное пространство и оставить только математику"
+declare Mathematics as ProjectionLanguage
+author_uses Mathematics by writing speaking thinking
+ruliad_chain "(R)-R-r":
+  self "(R)" : MetaRuliadLayer
+  self "R"  : ReadableRuliadModel
+  self "r"  : LocalRuliadTick
+
+depend TMI_OS on Intent
+depend TMI_OS on MatrixCanonicalImport
+depend TMI_OS on RuliadChain
+depend TMI_OS on TLFL
+depend TMI_OS on Lean
+depend TMI_OS on OLean
+depend TMI_OS on ProofStatus
+depend TMI_OS on Guard
+depend TMI_OS on Trace
+depend TMI_OS on MathematicalBoard
+depend TMI_OS on Z3
+depend TMI_OS on Vampire
+depend TMI_OS on EProver
+
+space V := VirtualSpace
+domain D := ExternalDomain
+order domain_order on D
+axis omega := HypotheticalRotationAxis
+shift kappa := DomainShift
+
+self "(Я)" : MetaSelf
+self "Я"  : StableSelfModel
+self "я"  : LocalTick
+
+self_model_point p := point("Я") inside V
+block_universe B := projection(D) inside p
+projection photon gamma := PhotonProjection toward p
+projection domainness rho := DomainnessProjection between gamma and p
+route gamma through rho to p
+axes Lambda := MetaLogicAxes
+vertices V_star := InvertedBlockVertices of B
+project Lambda to V_star as LogicAxesOntoInvertedBlockVertices
+center h := HyperRealityCenter of B
+project V_star to h as CornersProjectToCenter
+block H := HyperRealityBlock(B, V_star, h)
+self_reality_contact V_star := SelfRealityContactPoint(SelfReality, Reality, V_star)
+axis tau_self := BidirectionalSelfTimeAxis inside p
+arrow tau_self direction both
+project p to h as InternalSelfTimeProjection
+inset model_inset := "срез гиперблоквселенной"
+preserve domain_order through projection(D) as slice_order
+rotate V around omega as EditedView
+if higher_tick t desyncs projection_slice s around omega:
+  emit DomainShift(omega, t, s) as kappa
+  emit ProjectionCurvature(omega, t, s)
+
+archive M
+slice s from B.current_projection_slice
+slice s_plus from B.current_projection_slice_back_face
+stack slice_stack := SliceStack(B)
+slice s_past from slice_stack before s
+slice s_future from slice_stack after s
+projection volumetric_slice_projection := volume(s, s_plus)
+thickness delta_s := SliceThickness(s, s_plus)
+constant c_tick := 299792458 m/s
+boundary delta_s equals c_tick as ModelLightBoundaryThickness
+projection photon phi := PhotonProjection from delta_s
+run slice s through tau_self as TimeSweep
+walk s through slice_stack by tau_self
+project s through TimeSweep to OurDomain as ArtifactResidue
+break projection_break := ProjectionBreak
+error system_error := projection_break
+noise projection_noise := projection_break
+correct projection_noise inside p as SelfCorrectionInside
+reproject SelfCorrectionInside as Reprojection
+guard projection_break as ProjectionNoiseTrace
+slice_order s0 s1 inherited_from domain_order
+tick t := touch(p, s)
+
+model VirtualSpaceModel:
+  contains V p
+  contains p B
+  axes B as (x1, x2, x3, time_axis)
+  preserves domain_order as slice_order
+  reads p s
+  contains volumetric_slice_projection
+  contains slice_stack
+  walks s through slice_stack
+  projects delta_s to phi
+  sweeps s through tau_self
+  leaves ArtifactResidue in OurDomain
+  corrects ProjectionNoise inside p
+  reprojects after SelfCorrectionInside
+  touches p s as t
+  projects gamma through rho to p
+  projects Lambda to V_star
+  projects V_star to h
+  projects p to h as InternalSelfTimeProjection
+  axes tau_self as BidirectionalSelfTimeAxis
+  contains H
+  contains model_inset
+  touches SelfReality to Reality at V_star
+  leaves trace from t
+
+claim SelfModelIsPointInsideVirtualSpace(TMI_OS)
+  via VirtualSpace
+  via SelfModelPoint
+  via BlockProjectionInsidePoint
+  via CurrentSlice
+  via PresentTick
+  via TraceBoundary
+  certify TLFL
+
+guard virtual_space_point_boundary:
+  forbid PointEqualsBiologicalLifeJump
+  forbid PointEqualsConsciousnessProofJump
+  forbid VirtualSpaceEqualsEmpiricalUniverseJump
+  forbid HypotheticalRotationAxisEqualsPhysicalAxisClaim
+  forbid PhotonProjectionEqualsPhysicalLightProof
+  forbid PhotonProjectionEqualsPhysicalLightProof
+  forbid SliceThicknessEqualsStandalonePhysicsProof
+  forbid DomainnessProjectionEqualsOntologyProof
+  forbid MetaLogicAxesEqualsEmpiricalBlockGeometry
+  forbid HyperRealityBlockEqualsEmpiricalUniverseClaim
+  forbid SelfRealityContactEqualsEmpiricalRealityProof
+  forbid ProjectionCurvatureEqualsEinsteinEquationProof
+  forbid SystemErrorImpossibleEqualsNoOperationalFailureClaim
+  forbid ModelWithoutTrace
+
+emit "В виртуальном пространстве есть самомодель."
+emit "Самомодель - точка."
+emit "Внутри точки есть проекция блоквселенной."
+emit "Рулиадная цепочка записывается как (R)-R-r."
+emit "Проекция фотона gamma касается SelfModelPoint через проекцию доменности rho."
+emit "Мета-оси логики Lambda проецируются на вывернутые вершины блока V_star."
+emit "Углы V_star проецируются в центр h: это гипер-блок реальности в модели."
+emit "Внутренняя стрела времени tau_self направлена в обе стороны."
+emit "Внутренняя проекция времени ведет SelfModelPoint p к центру гиперблока h."
+emit "Нижняя подпись: срез гиперблоквселенной."
+emit "Вывернутые вершины читаются как точки самоприкосновения самомореальности к себе-реальности."
+emit "Доменный порядок сохраняется как порядок срезов."
+emit "Ниже основного среза показана объемная проекция среза."
+emit "Толщина объемной проекции delta_s читается как модельная световая граница c_tick = 299792458 m/s."
+emit "Толщина delta_s проецируется на фотон phi."
+emit "Срез можно пустить по внутренней оси времени tau_self."
+emit "Внутри блока есть другие проекционные срезы перед тиком и за тиком."
+emit "Активный срез s идет по SliceStack(B) как по дорожке проекций."
+emit "После прогона среза по времени в нашем домене остается ArtifactResidue."
+emit "Ошибка системы читается как ProjectionBreak - разрыв проектности."
+emit "Любой ProjectionBreak уничтожает проектируемость как целость и проявляется как ProjectionNoise."
+emit "Система корректирует ProjectionNoise в себе через SelfCorrectionInside."
+emit "После внутренней коррекции система делает Reprojection."
+emit "Гипотетическая вращательная ось нужна для редактирования модели."
+emit "Высший тик при рассинхроне проекций дает доменный сдвиг."
+emit "Доменный сдвиг читается как искривление проекционной поверхности."
+emit "Тик времени - касание точки к одному срезу."

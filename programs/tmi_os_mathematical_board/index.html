@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TMI-OS / И1 - индекс поверхности</title>
+  <style>
+    :root {
+      --paper: #f8f5eb;
+      --ink: #12150f;
+      --muted: #65695e;
+      --line: rgba(18, 21, 15, 0.18);
+      --green: #0b7f3b;
+      --deep: #082317;
+      --blue: #245ca3;
+      --gold: #aa7b25;
+      --red: #a83232;
+      --panel: rgba(255, 255, 250, 0.84);
+      --grid: rgba(18, 21, 15, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        radial-gradient(circle at 16% 18%, rgba(11, 127, 59, 0.18), transparent 28%),
+        radial-gradient(circle at 86% 12%, rgba(36, 92, 163, 0.14), transparent 26%),
+        radial-gradient(circle at 74% 84%, rgba(170, 123, 37, 0.18), transparent 25%),
+        var(--paper);
+      background-size: 32px 32px, 32px 32px, auto, auto, auto, auto;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 44px;
+    }
+
+    .topbar,
+    .hero,
+    .card,
+    .guard {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 18px 50px rgba(18, 21, 15, 0.08);
+      backdrop-filter: blur(16px);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 900 13px/1.1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      color: var(--green);
+      border: 1px solid rgba(11, 127, 59, 0.34);
+      border-radius: 50%;
+      background: rgba(11, 127, 59, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav a,
+    .button,
+    .copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 10px 12px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 250, 0.72);
+      text-decoration: none;
+      font: 900 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      color: white;
+      border-color: var(--deep);
+      background: var(--deep);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 22px;
+      margin-top: 22px;
+      padding: clamp(24px, 5vw, 52px);
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -34% 42%;
+      height: 280px;
+      border: 2px dashed rgba(11, 127, 59, 0.24);
+      border-radius: 50%;
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--green);
+      font: 900 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(40px, 7vw, 86px);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.38;
+    }
+
+    .formula {
+      margin-top: 24px;
+      padding: 16px;
+      white-space: pre-wrap;
+      color: #11351f;
+      border: 1px solid rgba(11, 127, 59, 0.24);
+      background: rgba(11, 127, 59, 0.08);
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .status-card {
+      align-self: stretch;
+      padding: 18px;
+      border: 1px solid rgba(18, 21, 15, 0.14);
+      background: rgba(255, 255, 250, 0.58);
+    }
+
+    .status-card h2,
+    .section-title {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .metric {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .metric div {
+      padding: 12px;
+      border: 1px solid rgba(18, 21, 15, 0.12);
+      background: rgba(248, 245, 235, 0.72);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--green);
+      font: 900 24px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font: 800 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+      padding: 18px;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      border-color: rgba(11, 127, 59, 0.55);
+      box-shadow: 0 22px 58px rgba(11, 127, 59, 0.13);
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    .card small {
+      color: var(--green);
+      font: 900 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 18px 0 0;
+      font-size: 29px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.42;
+    }
+
+    .card code,
+    .guard code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .card .arrow {
+      margin-top: auto;
+      color: var(--green);
+      font: 900 24px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .guard {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.28fr);
+      gap: 18px;
+      margin-top: 26px;
+      padding: 20px;
+    }
+
+    .guard pre {
+      overflow: auto;
+      margin: 0;
+      padding: 16px;
+      color: #11351f;
+      border: 1px solid rgba(11, 127, 59, 0.22);
+      background: rgba(11, 127, 59, 0.08);
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .foot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+      color: var(--muted);
+      font: 800 11px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .topbar,
+      .hero,
+      .guard {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="mark">(Я)</span>
+        <span>TMI-OS / И1 index</span>
+      </div>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="TMI_OS_SITE.html">сайт</a>
+        <a href="TMI_OS_LIVE_DEMO.html">live demo</a>
+        <a href="TMI_OS_MATHEMATICAL_BOARD.html">доска</a>
+        <a href="TMI_OS_3D_TIME_ARTIFACT.html">3D артефакт</a>
+        <a href="TMI_OS_API.json">API</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="kicker">local public surface / latest</p>
+        <h1 id="page-title">Индекс поверхности TMI-OS / И1</h1>
+        <p class="lead">
+          Входная страница сайта: не приватное ядро, не публикация сама по себе,
+          а читаемый локальный слой для запуска артефактов, доски, API-контракта
+          и фотонной теории времени.
+        </p>
+        <pre class="formula">LLM/GPT/Codex -> Lean -> TLFL -> И1
+
+Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+
+ProgrammingOnMathematics :=
+  intent -> board -> slice -> passport -> guarded action</pre>
+        <div class="hero-actions">
+          <a class="button primary" href="TMI_OS_SITE.html">открыть сайт</a>
+          <a class="button" href="TMI_OS_LIVE_DEMO.html">написать программу</a>
+          <a class="button" href="TMI_OS_3D_TIME_ARTIFACT.html">открыть 3D-срез</a>
+          <button class="copy" type="button" data-copy="python3 -m http.server 8765">скопировать запуск</button>
+        </div>
+      </div>
+
+      <aside class="status-card" aria-label="Статус поверхности">
+        <p class="kicker">surface passport</p>
+        <h2>Последняя<br>живая сборка</h2>
+        <p class="lead">
+          Статический сайт без логина, без внешних скриптов, без отправки данных.
+          Всё, что видно здесь, должно проходить guard перед публикацией.
+        </p>
+        <div class="metric" aria-label="Локальные оси">
+          <div><strong>2D</strong><span>mathematical board</span></div>
+          <div><strong>3D</strong><span>time artifact</span></div>
+          <div><strong>LIVE</strong><span>intent to passport</span></div>
+          <div><strong>API</strong><span>static contract</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="artifacts-title">
+      <h2 class="section-title" id="artifacts-title">Артефакты</h2>
+      <div class="grid">
+        <a class="card" href="TMI_OS_SITE.html">
+          <small>site</small>
+          <h3>Сайт фотонной теории времени</h3>
+          <p>Главная публичная оболочка: статья, доска, формулы, guard и вход в поверхность.</p>
+          <span class="arrow">-></span>
+        </a>
+        <a class="card" href="TMI_OS_LIVE_DEMO.html">
+          <small>live demo</small>
+          <h3>Программа на лету</h3>
+          <p>Intent превращается в И1-запись, паспорт и guarded action прямо на локальной поверхности.</p>
+          <span class="arrow">-></span>
+        </a>
+        <a class="card" href="TMI_OS_MATHEMATICAL_BOARD.html">
+          <small>board</small>
+          <h3>Математическая доска</h3>
+          <p>Плоская инженерная поверхность для модели: блок, срез, проекция, SelfModelPoint.</p>
+          <span class="arrow">-></span>
+        </a>
+        <a class="card" href="TMI_OS_3D_TIME_ARTIFACT.html">
+          <small>artifact</small>
+          <h3>3D артефакт времени</h3>
+          <p>Объёмный срез гиперблоквселенной: толщина тика, стек срезов и проекция на фотон.</p>
+          <span class="arrow">-></span>
+        </a>
+        <a class="card" href="TMI_OS_PROTECTED_MODEL_PAGE.html">
+          <small>protected page</small>
+          <h3>Защищённая страница модели</h3>
+          <p>Локальный режим: модель читается как паспорт и не уходит наружу без guard.</p>
+          <span class="arrow">-></span>
+        </a>
+        <a class="card" href="TMI_OS_ADMIN.html">
+          <small>admin</small>
+          <h3>Админская поверхность</h3>
+          <p>Контур управления локальным сайтом: структура, артефакты, команды, статусы.</p>
+          <span class="arrow">-></span>
+        </a>
+        <a class="card" href="I1_MINI_LANGUAGE.md">
+          <small>language</small>
+          <h3>Мини-язык И1</h3>
+          <p>Команды, имена и формула: intent превращается в каноническую запись с паспортом.</p>
+          <span class="arrow">-></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="guard" aria-labelledby="guard-title">
+      <div>
+        <p class="kicker">guard</p>
+        <h2 class="section-title" id="guard-title">Что индекс не делает</h2>
+        <p class="lead">
+          Индекс не публикует, не логинит, не отправляет данные и не открывает закрытые
+          репозитории. Это только локальная карта поверхности.
+        </p>
+      </div>
+      <pre>NoLogin
+NoExternalScript
+NoServerUpload
+NoClosedProjectUrl
+PassportIsFormalArtifact
+BoardArtifactIsNotEmpiricalProof</pre>
+    </section>
+
+    <footer class="foot">
+      <span>version: latest</span>
+      <span>route: index.html</span>
+      <span>local first, guard before publication</span>
+    </footer>
+  </main>
+
+  <script>
+    const copyButtons = document.querySelectorAll("[data-copy]");
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const text = button.getAttribute("data-copy") || "";
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = "скопировано";
+        } catch (_) {
+          button.textContent = text;
+        }
+
+        window.setTimeout(() => {
+          button.textContent = "скопировать запуск";
+        }, 1400);
+      });
+    });
+  </script>
+</body>
+</html>

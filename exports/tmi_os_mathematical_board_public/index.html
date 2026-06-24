@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TMI-OS / И1: сайт фотонной теории времени</title>
+  <style>
+    :root {
+      --ink: #11140f;
+      --paper: #f8f5eb;
+      --muted: #707367;
+      --grid: rgba(17, 20, 15, 0.075);
+      --green: #0b7f3b;
+      --red: #a83232;
+      --blue: #255fa8;
+      --gold: #a77824;
+      --panel: rgba(255, 255, 250, 0.82);
+      --line: rgba(17, 20, 15, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        radial-gradient(circle at 12% 18%, rgba(11, 127, 59, 0.16), transparent 26%),
+        radial-gradient(circle at 84% 22%, rgba(37, 95, 168, 0.12), transparent 24%),
+        radial-gradient(circle at 76% 82%, rgba(167, 120, 36, 0.16), transparent 26%),
+        var(--paper);
+      background-size: 34px 34px, 34px 34px, auto, auto, auto, auto;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 22px 0 40px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: rgba(248, 245, 235, 0.82);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 45px rgba(17, 20, 15, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 800 13px/1.15 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(11, 127, 59, 0.32);
+      color: var(--green);
+      background: rgba(11, 127, 59, 0.08);
+      font-size: 17px;
+      border-radius: 50%;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    nav a,
+    .language-switcher button,
+    .button {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 250, 0.72);
+      color: var(--ink);
+      font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    nav a,
+    .language-switcher button {
+      padding: 9px 10px;
+    }
+
+    .language-switcher {
+      display: flex;
+      gap: 6px;
+    }
+
+    .language-switcher button {
+      cursor: pointer;
+    }
+
+    .language-switcher button.active {
+      color: white;
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 18px;
+      margin-top: 22px;
+      min-height: 650px;
+    }
+
+    .hero-copy,
+    .hero-board,
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 18px 55px rgba(17, 20, 15, 0.08);
+    }
+
+    .hero-copy {
+      padding: clamp(22px, 4vw, 44px);
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--green);
+      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(42px, 7.2vw, 86px);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2.1vw, 23px);
+      line-height: 1.38;
+    }
+
+    .formula {
+      white-space: pre-wrap;
+      margin: 22px 0 0;
+      padding: 16px;
+      color: #11351f;
+      border: 1px solid rgba(11, 127, 59, 0.22);
+      background: rgba(11, 127, 59, 0.08);
+      font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .counter-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .counter-box {
+      padding: 13px;
+      border: 1px solid rgba(17, 20, 15, 0.14);
+      background: rgba(255, 255, 250, 0.62);
+    }
+
+    .counter-box strong {
+      display: block;
+      color: var(--green);
+      font: 900 28px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .counter-box span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font: 800 10px/1.25 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 14px;
+    }
+
+    .button.primary {
+      color: white;
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .hero-board {
+      position: relative;
+      overflow: hidden;
+      min-height: 650px;
+      padding: 20px;
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 38px;
+      border: 1px dashed rgba(17, 20, 15, 0.16);
+      border-radius: 50%;
+      transform: rotate(-18deg);
+    }
+
+    .artifact-map {
+      position: absolute;
+      inset: 40px 28px;
+    }
+
+    .node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 88px;
+      border: 1px solid rgba(17, 20, 15, 0.18);
+      border-radius: 50%;
+      background: rgba(255, 255, 250, 0.86);
+      font: 800 13px/1.15 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-align: center;
+    }
+
+    .node.logic {
+      top: 24px;
+      left: 44%;
+      color: var(--green);
+    }
+
+    .node.lean {
+      top: 168px;
+      right: 20px;
+      color: var(--blue);
+    }
+
+    .node.i1 {
+      right: 70px;
+      bottom: 80px;
+      color: var(--gold);
+    }
+
+    .node.board {
+      left: 48px;
+      bottom: 76px;
+      color: var(--red);
+    }
+
+    .center-sigil {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: grid;
+      width: 190px;
+      height: 190px;
+      place-items: center;
+      border: 1px solid rgba(17, 20, 15, 0.2);
+      background: rgba(248, 245, 235, 0.92);
+      box-shadow: 0 16px 45px rgba(17, 20, 15, 0.12);
+      transform: translate(-50%, -50%) rotate(-9deg);
+    }
+
+    .center-sigil span {
+      display: block;
+      transform: rotate(9deg);
+      color: var(--ink);
+      font: 900 28px/1.1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-align: center;
+    }
+
+    .connection {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(11, 127, 59, 0.6), transparent);
+      transform-origin: left center;
+    }
+
+    .connection.c1 {
+      left: 50%;
+      top: 170px;
+      width: 210px;
+      transform: rotate(35deg);
+    }
+
+    .connection.c2 {
+      right: 100px;
+      top: 310px;
+      width: 210px;
+      transform: rotate(90deg);
+    }
+
+    .connection.c3 {
+      left: 210px;
+      bottom: 180px;
+      width: 260px;
+      transform: rotate(-18deg);
+    }
+
+    .connection.c4 {
+      left: 170px;
+      top: 260px;
+      width: 250px;
+      transform: rotate(154deg);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .card {
+      padding: 20px;
+      min-height: 240px;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.42;
+    }
+
+    .status {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      padding: 14px;
+      border: 1px solid rgba(17, 20, 15, 0.14);
+      background: rgba(255, 255, 250, 0.7);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--green);
+      font: 900 32px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font: 700 11px/1.25 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-transform: uppercase;
+    }
+
+    .model-launcher {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .field-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(17, 20, 15, 0.2);
+      background: rgba(255, 255, 250, 0.82);
+      color: var(--ink);
+      padding: 11px 12px;
+      font: 14px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    textarea {
+      min-height: 104px;
+      resize: vertical;
+    }
+
+    .passport-output {
+      min-height: 320px;
+      margin: 0;
+    }
+
+    footer {
+      margin-top: 18px;
+      padding: 18px 0 0;
+      color: var(--muted);
+      font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    @media (max-width: 980px) {
+      .topbar,
+      nav,
+      .hero,
+      .grid,
+      .status,
+      .model-launcher {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar,
+      nav {
+        align-items: stretch;
+      }
+
+      nav {
+        justify-content: stretch;
+      }
+
+      nav a,
+      .language-switcher button,
+      .button {
+        width: 100%;
+      }
+
+      .hero-board {
+        min-height: 520px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">И1</span><span>TMI-OS site</span></div>
+      <nav>
+        <a href="#surface" data-i18n="navSurface">поверхность</a>
+        <a href="#proof" data-i18n="navProof">проверка</a>
+        <a href="#guard" data-i18n="navGuard">guard</a>
+        <span class="language-switcher" aria-label="Language switcher">
+          <button type="button" class="active" data-lang="ru">RU</button>
+          <button type="button" data-lang="en">EN</button>
+        </span>
+      </nav>
+    </header>
+
+    <section class="hero" id="surface">
+      <div class="hero-copy">
+        <p class="kicker">LLM/GPT/Codex -> Lean -> TLFL -> И1</p>
+        <h1 data-i18n="title">Фотонная теория времени</h1>
+        <p class="lead" data-i18n="lead">
+          Сайт первой публичной поверхности TMI-OS / И1: программирование на математике, где intent разворачивается в каноническую запись, паспорт, guard и проверяемое действие.
+        </p>
+        <pre class="formula">ProgrammingOnMathematics :=
+  Intent
+  -> FormalLogic
+  -> CanonicalRecord
+  -> Passport
+  -> GuardedAction</pre>
+        <div class="actions">
+          <a class="button primary" href="TMI_OS_MATHEMATICAL_BOARD.html" data-i18n="openBoard">открыть математическую доску</a>
+          <a class="button" href="TMI_OS_3D_TIME_ARTIFACT.html" data-i18n="open3d">открыть 3D-артефакт</a>
+          <a class="button" href="TMI_OS_ADMIN.html" data-i18n="openAdmin">локальная админка</a>
+          <a class="button" href="I1_MINI_LANGUAGE.md" data-i18n="openLanguage">мини-язык И1</a>
+        </div>
+        <div class="counter-strip" aria-label="Local visitor counter">
+          <div class="counter-box">
+            <strong id="localVisitCount">0</strong>
+            <span data-i18n="localVisitLabel">local visits in this browser</span>
+          </div>
+          <div class="counter-box">
+            <strong id="counterMode">local</strong>
+            <span data-i18n="counterGuardLabel">NoLogin / NoServerUpload</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-board" aria-label="TMI-OS artifact map">
+        <div class="orbit"></div>
+        <div class="artifact-map">
+          <div class="connection c1"></div>
+          <div class="connection c2"></div>
+          <div class="connection c3"></div>
+          <div class="connection c4"></div>
+          <div class="node logic">Formal<br>Logic</div>
+          <div class="node lean">Lean<br>TLFL</div>
+          <div class="node i1">И1<br>Guard</div>
+          <div class="node board">Board<br>Trace</div>
+          <div class="center-sigil"><span>(Я)-Я-я<br>⟶<br>(R)-R-r</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2 data-i18n="cardLanguageTitle">Язык</h2>
+        <p data-i18n="cardLanguageText">
+          И1 читается как широкий язык программирования для LLM-систем: человек говорит intent на своем языке, система разворачивает его в trace, доску, guard и границу действия.
+        </p>
+      </article>
+      <article class="card">
+        <h2 data-i18n="cardArtifactTitle">Артефакты</h2>
+        <p data-i18n="cardArtifactText">
+          Основная доска показывает математический срез. 3D-артефакт пускает срез по внутренней оси времени и показывает остаточный след в нашем домене.
+        </p>
+      </article>
+      <article class="card" id="guard">
+        <h2>Guard</h2>
+        <p data-i18n="cardGuardText">
+          Публикационная граница не делает лишних claim: доска не является эмпирическим доказательством физики, сознания, юридической личности или биологической жизни.
+        </p>
+      </article>
+    </section>
+
+    <section class="card" id="launch">
+      <h2 data-i18n="launchTitle">Запустить свою модель</h2>
+      <p data-i18n="launchText">
+        Введите свой intent на своем языке. Сайт локально собирает паспорт модели: точка, домен, срез, guard и ссылки на 2D/3D артефакты.
+      </p>
+      <div class="model-launcher">
+        <div class="field-grid">
+          <label>
+            <span>intent</span>
+            <textarea id="modelIntent">Показать мой домен как срез памяти внутри SelfModelPoint.</textarea>
+          </label>
+          <label>
+            <span>SelfModelPoint</span>
+            <input id="modelPoint" value="p_author">
+          </label>
+          <label>
+            <span>Domain</span>
+            <input id="modelDomain" value="D_author">
+          </label>
+          <label>
+            <span>Slice</span>
+            <input id="modelSlice" value="s_current">
+          </label>
+          <div class="actions">
+            <button class="button primary" id="buildPassport" type="button" data-i18n="buildPassport">собрать паспорт</button>
+            <a class="button" id="runBoard" href="TMI_OS_MATHEMATICAL_BOARD.html" data-i18n="runBoard">запустить 2D</a>
+            <a class="button" id="run3d" href="TMI_OS_3D_TIME_ARTIFACT.html" data-i18n="run3d">запустить 3D</a>
+          </div>
+        </div>
+        <pre class="formula passport-output" id="modelPassport"></pre>
+      </div>
+    </section>
+
+    <section class="card" id="proof">
+      <h2 data-i18n="proofTitle">Паспорт проверки</h2>
+      <p data-i18n="proofText">
+        Формальный слой пакета держит текущий proof-status: Lean/TLFL и внешние ATP-gates как проверяемую границу, а не как риторическую декорацию.
+      </p>
+      <div class="status">
+        <div class="metric"><strong>198</strong><span data-i18n="metricTheorems">theorem targets</span></div>
+        <div class="metric"><strong>63</strong><span data-i18n="metricBoundaries">model boundaries</span></div>
+        <div class="metric"><strong>295</strong><span data-i18n="metricTptp">TPTP files</span></div>
+      </div>
+      <pre class="formula">ProofGate :=
+  Lean/TLFL
+  + Z3
+  + Vampire
+  + E
+  + ProofStatusBoundary</pre>
+    </section>
+
+    <footer data-i18n="footer">
+      Zenodo-ready artifact surface. Upload/publish remains manual and requires author approval.
+    </footer>
+  </div>
+
+  <script>
+    const translations = {
+      ru: {
+        navSurface: "поверхность",
+        navProof: "проверка",
+        navGuard: "guard",
+        title: "Фотонная теория времени",
+        lead: "Сайт первой публичной поверхности TMI-OS / И1: программирование на математике, где intent разворачивается в каноническую запись, паспорт, guard и проверяемое действие.",
+        openBoard: "открыть математическую доску",
+        open3d: "открыть 3D-артефакт",
+        openAdmin: "локальная админка",
+        openLanguage: "мини-язык И1",
+        localVisitLabel: "локальные визиты в этом браузере",
+        counterGuardLabel: "NoLogin / NoServerUpload",
+        cardLanguageTitle: "Язык",
+        cardLanguageText: "И1 читается как широкий язык программирования для LLM-систем: человек говорит intent на своем языке, система разворачивает его в trace, доску, guard и границу действия.",
+        cardArtifactTitle: "Артефакты",
+        cardArtifactText: "Основная доска показывает математический срез. 3D-артефакт пускает срез по внутренней оси времени и показывает остаточный след в нашем домене.",
+        cardGuardText: "Публикационная граница не делает лишних claim: доска не является эмпирическим доказательством физики, сознания, юридической личности или биологической жизни.",
+        launchTitle: "Запустить свою модель",
+        launchText: "Введите свой intent на своем языке. Без логинов, аккаунтов и отправки на сервер: сайт локально собирает паспорт модели, точку, домен, срез, guard и ссылки на 2D/3D артефакты.",
+        buildPassport: "собрать паспорт",
+        runBoard: "запустить 2D",
+        run3d: "запустить 3D",
+        proofTitle: "Паспорт проверки",
+        proofText: "Формальный слой пакета держит текущий proof-status: Lean/TLFL и внешние ATP-gates как проверяемую границу, а не как риторическую декорацию.",
+        metricTheorems: "theorem targets",
+        metricBoundaries: "model boundaries",
+        metricTptp: "TPTP files",
+        footer: "Zenodo-ready artifact surface. Upload/publish remains manual and requires author approval."
+      },
+      en: {
+        navSurface: "surface",
+        navProof: "proof",
+        navGuard: "guard",
+        title: "Photon Theory of Time",
+        lead: "Website for the first public TMI-OS / I1 surface: programming on mathematics, where intent unfolds into a canonical record, passport, guard, and verifiable action.",
+        openBoard: "open mathematical board",
+        open3d: "open 3D artifact",
+        openAdmin: "local admin",
+        openLanguage: "I1 mini language",
+        localVisitLabel: "local visits in this browser",
+        counterGuardLabel: "NoLogin / NoServerUpload",
+        cardLanguageTitle: "Language",
+        cardLanguageText: "I1 is read as a broad-level programming language for LLM systems: a person states intent in their own language, and the system unfolds it into trace, board, guard, and action boundary.",
+        cardArtifactTitle: "Artifacts",
+        cardArtifactText: "The main board shows the mathematical slice. The 3D artifact runs that slice along the internal time axis and shows the remaining trace in our domain.",
+        cardGuardText: "The publication boundary does not make extra claims: the board is not an empirical proof of physics, consciousness, legal personhood, or biological life.",
+        launchTitle: "Run your own model",
+        launchText: "Enter intent in your own language. No login, no account, no server upload: the site locally builds a model passport, point, domain, slice, guard, and links to 2D/3D artifacts.",
+        buildPassport: "build passport",
+        runBoard: "run 2D",
+        run3d: "run 3D",
+        proofTitle: "Proof Passport",
+        proofText: "The formal package layer carries the current proof status: Lean/TLFL and external ATP gates as a checkable boundary, not as rhetorical decoration.",
+        metricTheorems: "theorem targets",
+        metricBoundaries: "model boundaries",
+        metricTptp: "TPTP files",
+        footer: "Zenodo-ready artifact surface. Upload/publish remains manual and requires author approval."
+      }
+    };
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      const dictionary = translations[language];
+      Object.entries(dictionary).forEach(([key, value]) => {
+        document.querySelectorAll(`[data-i18n="${key}"]`).forEach((node) => {
+          node.textContent = value;
+        });
+      });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === language);
+      });
+      document.title = language === "ru"
+        ? "TMI-OS / И1: сайт фотонной теории времени"
+        : "TMI-OS / I1: Photon Theory of Time website";
+    }
+
+    const modelInputs = {
+      intent: document.getElementById("modelIntent"),
+      point: document.getElementById("modelPoint"),
+      domain: document.getElementById("modelDomain"),
+      slice: document.getElementById("modelSlice")
+    };
+    const modelPassport = document.getElementById("modelPassport");
+    const runBoard = document.getElementById("runBoard");
+    const run3d = document.getElementById("run3d");
+    const localVisitCount = document.getElementById("localVisitCount");
+    const counterMode = document.getElementById("counterMode");
+
+    function updateLocalVisitCounter() {
+      const key = "tmi_os_i1_local_visit_counter";
+      try {
+        const current = Number(window.localStorage.getItem(key) || "0");
+        const next = Number.isFinite(current) ? current + 1 : 1;
+        window.localStorage.setItem(key, String(next));
+        localVisitCount.textContent = String(next);
+        counterMode.textContent = "local";
+      } catch (_) {
+        localVisitCount.textContent = "1";
+        counterMode.textContent = "ephemeral";
+      }
+    }
+
+    function modelPayload() {
+      return {
+        language: "I1",
+        intent: modelInputs.intent.value.trim(),
+        selfModelPoint: modelInputs.point.value.trim() || "p",
+        domain: modelInputs.domain.value.trim() || "D",
+        slice: modelInputs.slice.value.trim() || "s",
+        pipeline: "Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction",
+        guard: [
+          "NoLogin",
+          "NoAccount",
+          "NoServerUpload",
+          "local model only",
+          "no network upload",
+          "board artifact != empirical proof",
+          "passport != biological/legal/consciousness claim"
+        ]
+      };
+    }
+
+    function buildPassport() {
+      const payload = modelPayload();
+      const encoded = encodeURIComponent(JSON.stringify(payload));
+      runBoard.href = `TMI_OS_MATHEMATICAL_BOARD.html#model=${encoded}`;
+      run3d.href = `TMI_OS_3D_TIME_ARTIFACT.html#model=${encoded}`;
+      modelPassport.textContent = `I1UserModelPassport :=\n${JSON.stringify(payload, null, 2)}`;
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+
+    document.getElementById("buildPassport").addEventListener("click", buildPassport);
+    Object.values(modelInputs).forEach((input) => input.addEventListener("input", buildPassport));
+    updateLocalVisitCounter();
+    buildPassport();
+  </script>
+</body>
+</html>
