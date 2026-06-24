@@ -94,6 +94,21 @@
       color: var(--muted);
       line-height: 1.55;
     }
+    .delta {
+      margin: 16px 0 0;
+      padding: 14px;
+      border: 1px solid #c8d8c2;
+      background: #f0f7ee;
+      line-height: 1.55;
+    }
+    .delta code {
+      display: block;
+      margin: 7px 0;
+      padding: 8px;
+      background: white;
+      color: var(--ink);
+      white-space: pre-wrap;
+    }
     pre {
       max-height: 44vh;
       overflow: auto;
@@ -157,11 +172,23 @@ Do not paste:
 
     <aside class="right">
       <h2>Кнопки копирования</h2>
-      <button class="button challenge" id="copyChallenge">Copy Challenge</button>
-      <button class="button solution" id="copySolution">Copy Solution</button>
+      <button class="button challenge" id="copyChallenge">Copy Challenge: theorem target</button>
+      <button class="button solution" id="copySolution">Copy Solution: proof body</button>
       <button class="button raw" id="openChallenge">Open Challenge Raw</button>
       <button class="button raw" id="openSolution">Open Solution Raw</button>
       <div id="status" class="status">ready</div>
+      <div class="delta">
+        <strong>Почему страницы похожи:</strong><br>
+        Comparator требует одну и ту же среду. Разница только в последней теореме.
+        <code>Challenge:
+theorem canonical_passport_certified :
+    PassportCertified canonicalPassport := by
+  sorry</code>
+        <code>Solution:
+theorem canonical_passport_certified :
+    PassportCertified canonicalPassport := by
+  simp [PassportCertified, canonicalPassport]</code>
+      </div>
       <div class="checklist">
         <strong>Проверка глазами:</strong><br>
         Challenge заканчивается `sorry`.<br>
