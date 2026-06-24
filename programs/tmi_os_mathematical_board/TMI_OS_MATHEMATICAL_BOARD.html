@@ -14,6 +14,8 @@
       --red: #a83232;
       --blue: #1f5fa8;
       --paper: #fffffb;
+      --projection-width: 2;
+      --tick-width: 2.6;
     }
 
     * {
@@ -130,14 +132,14 @@
 
     .projection {
       stroke: var(--green);
-      stroke-width: 2;
+      stroke-width: var(--projection-width);
       stroke-dasharray: 9 7;
       marker-end: url(#arrowGreen);
     }
 
     .touch {
       stroke: var(--red);
-      stroke-width: 2.6;
+      stroke-width: var(--tick-width);
       marker-end: url(#arrowRed);
     }
 
@@ -178,6 +180,25 @@
       fill: var(--paper);
       stroke: var(--red);
       stroke-width: 2.2;
+    }
+
+    .rotation-axis {
+      stroke: #a66a00;
+      stroke-width: 2;
+      stroke-dasharray: 10 8;
+      opacity: 0.78;
+      marker-end: url(#arrowGold);
+      marker-start: url(#arrowStartGold);
+    }
+
+    .selectable {
+      cursor: pointer;
+    }
+
+    .selected-object {
+      filter: drop-shadow(0 0 8px rgba(166, 106, 0, 0.68));
+      stroke: #a66a00 !important;
+      stroke-width: 3 !important;
     }
 
     .point {
@@ -264,6 +285,100 @@
       font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
     }
 
+    .model-editor {
+      grid-column: 1 / -1;
+      padding: 24px 28px;
+      border: 1px solid #d7d5c9;
+      background: var(--paper);
+      box-shadow: 0 18px 50px rgba(40, 40, 25, 0.08);
+    }
+
+    .model-editor h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .model-editor p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.85fr) minmax(300px, 1.15fr);
+      gap: 18px;
+    }
+
+    .editor-card {
+      border: 1px solid #e1dfd4;
+      background: #f8f7ef;
+      padding: 16px;
+    }
+
+    .editor-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      margin: 12px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .field input[type="text"],
+    .field textarea {
+      width: 100%;
+      border: 1px solid #d7d5c9;
+      background: #fffffb;
+      color: var(--ink);
+      padding: 9px 10px;
+      font: 15px/1.35 "STIX Two Text", "Times New Roman", Georgia, serif;
+    }
+
+    .field textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 14px;
+      margin: 12px 0;
+    }
+
+    .check-grid label,
+    .range-row {
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .range-row {
+      display: grid;
+      gap: 6px;
+      margin: 12px 0;
+    }
+
+    .range-row input {
+      width: 100%;
+    }
+
+    .model-state {
+      margin: 0;
+      min-height: 280px;
+      white-space: pre-wrap;
+      font: 13px/1.45 "SF Mono", Menlo, Consolas, monospace;
+      color: var(--ink);
+      background: #fffffb;
+      border: 1px solid #d7d5c9;
+      padding: 14px;
+      overflow: auto;
+    }
+
     @media (max-width: 960px) {
       body {
         padding: 14px;
@@ -275,6 +390,14 @@
 
       .board {
         min-height: 620px;
+      }
+
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .check-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -307,15 +430,23 @@
           <marker id="arrowRed" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
             <path d="M0,0 L8,4.5 L0,9 Z" fill="#a83232"/>
           </marker>
+          <marker id="arrowGold" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L8,4.5 L0,9 Z" fill="#a66a00"/>
+          </marker>
+          <marker id="arrowStartGold" markerWidth="9" markerHeight="9" refX="1" refY="4.5" orient="auto">
+            <path d="M8,0 L0,4.5 L8,9 Z" fill="#a66a00"/>
+          </marker>
         </defs>
 
+        <g id="rotatingSpace">
         <path class="sketch-line" d="M96 618 C176 586, 250 596, 338 572 S514 544, 672 604"/>
         <path class="sketch-line" d="M128 132 C230 166, 300 138, 402 112 S574 102, 662 148"/>
+        <line class="rotation-axis selectable" data-object="HypotheticalRotationAxis omega" x1="104" y1="584" x2="690" y2="132"/>
 
-        <polygon class="block" points="258,222 478,176 594,292 374,340"/>
-        <polygon class="block" points="258,222 258,448 374,564 374,340"/>
-        <polygon class="block" points="374,340 594,292 594,520 374,564"/>
-        <polygon class="block" points="258,448 374,564 594,520 478,404"/>
+        <polygon class="block selectable" data-object="BlockUniverse B" points="258,222 478,176 594,292 374,340"/>
+        <polygon class="block selectable" data-object="BlockUniverse B" points="258,222 258,448 374,564 374,340"/>
+        <polygon class="block selectable" data-object="BlockUniverse B" points="374,340 594,292 594,520 374,564"/>
+        <polygon class="block selectable" data-object="BlockUniverse B" points="258,448 374,564 594,520 478,404"/>
         <line x1="258" y1="222" x2="478" y2="176" stroke="#202820" stroke-width="1.4"/>
         <line x1="478" y1="176" x2="594" y2="292" stroke="#202820" stroke-width="1.4"/>
         <line x1="594" y1="292" x2="594" y2="520" stroke="#202820" stroke-width="1.4"/>
@@ -326,28 +457,28 @@
         <line x1="478" y1="404" x2="594" y2="520" stroke="#202820" stroke-width="1.4" opacity="0.42"/>
         <line x1="258" y1="448" x2="478" y2="404" stroke="#202820" stroke-width="1.4" opacity="0.42"/>
 
-        <polygon class="slice" points="292,330 512,284 560,332 340,380"/>
+        <polygon class="slice selectable" data-object="ProjectionSlice s" points="292,330 512,284 560,332 340,380"/>
 
-        <line class="axis" x1="314" y1="370" x2="536" y2="324"/>
-        <line class="axis" x1="390" y1="248" x2="464" y2="544"/>
-        <line class="axis" x1="282" y1="440" x2="570" y2="262"/>
-        <line class="axis-time" x1="426" y1="560" x2="426" y2="198"/>
+        <line class="axis selectable" data-object="SpatialAxis x1" x1="314" y1="370" x2="536" y2="324"/>
+        <line class="axis selectable" data-object="SpatialAxis x2" x1="390" y1="248" x2="464" y2="544"/>
+        <line class="axis selectable" data-object="SpatialAxis x3" x1="282" y1="440" x2="570" y2="262"/>
+        <line class="axis-time selectable" data-object="InternalTimeAxis t" x1="426" y1="560" x2="426" y2="198"/>
 
         <circle class="halo" cx="166" cy="366" r="54"/>
         <circle class="halo" cx="166" cy="366" r="88"/>
-        <circle class="point" cx="166" cy="366" r="10"/>
+        <circle class="point selectable" data-object="SelfModelPoint p" cx="166" cy="366" r="10"/>
 
-        <path class="projection" d="M 440 298 C 360 270, 246 294, 178 354"/>
-        <path class="touch" d="M 166 366 C 218 392, 275 386, 340 356"/>
-        <path class="projection" d="M 176 366 C 304 314, 468 324, 621 408"/>
-        <path class="projection" d="M 178 356 C 318 394, 480 418, 624 456"/>
-        <circle class="intersection" cx="558" cy="374" r="5"/>
-        <circle class="intersection" cx="570" cy="432" r="5"/>
+        <path class="projection selectable" data-object="Projection pi:D->s" d="M 440 298 C 360 270, 246 294, 178 354"/>
+        <path class="touch selectable" data-object="Tick tau=touch(p,s)" d="M 166 366 C 218 392, 275 386, 340 356"/>
+        <path class="projection selectable" data-object="CompositionProjection PiC upper" d="M 176 366 C 304 314, 468 324, 621 408"/>
+        <path class="projection selectable" data-object="CompositionProjection PiC lower" d="M 178 356 C 318 394, 480 418, 624 456"/>
+        <circle class="intersection selectable" data-object="DomainSurfaceIntersection dcap1" cx="558" cy="374" r="5"/>
+        <circle class="intersection selectable" data-object="DomainSurfaceIntersection dcap2" cx="570" cy="432" r="5"/>
 
-        <polygon class="composition-surface" points="626,374 724,344 724,468 626,498"/>
-        <path class="composition-line" d="M 646 460 L 704 442 L 704 386 L 646 404 Z"/>
-        <path class="composition-line" d="M 646 404 L 676 372 L 704 386"/>
-        <path class="composition-line" d="M 646 460 L 676 492 L 704 442"/>
+        <polygon class="composition-surface selectable" data-object="CompositionSurface C" points="626,374 724,344 724,468 626,498"/>
+        <path class="composition-line selectable" data-object="CompositionProjection C" d="M 646 460 L 704 442 L 704 386 L 646 404 Z"/>
+        <path class="composition-line selectable" data-object="CompositionProjection C" d="M 646 404 L 676 372 L 704 386"/>
+        <path class="composition-line selectable" data-object="CompositionProjection C" d="M 646 460 L 676 492 L 704 442"/>
         <line x1="666" y1="472" x2="708" y2="382" stroke="#1f5fa8" stroke-width="1.8"/>
         <line x1="642" y1="430" x2="710" y2="410" stroke="#0a7c3b" stroke-width="2"/>
         <circle cx="642" cy="454" r="5" fill="#a83232"/>
@@ -367,7 +498,9 @@
         <text x="579" y="420" class="math-small" fill="#a83232">∩D</text>
         <text x="616" y="336" class="math-small" fill="#0a7c3b">ΠC(p,B,s,τ)</text>
         <text x="616" y="516" class="math-small">composition projection</text>
+        <text x="108" y="566" class="math-small" fill="#a66a00">ω hypothetical rotation axis</text>
         <text x="86" y="648" class="math-small">programming-in-kayf := intent → board</text>
+        </g>
       </svg>
     </section>
 
@@ -466,6 +599,202 @@ diagram ≠ proof by itself</div>
         GitHub: <code>https://github.com/osalkutsan-godaddy/TMI-OS</code>
       </p>
     </section>
+
+    <section class="model-editor" aria-label="Graphical model editor">
+      <h2>Редактор графической модели</h2>
+      <p>
+        Интерфейс для системных инженеров: редактируй подписи, включай слои,
+        меняй толщину проекций и получай JSON-паспорт текущего среза модели.
+      </p>
+
+      <div class="editor-grid">
+        <div class="editor-card">
+          <h3>Живое редактирование</h3>
+
+          <label class="field">
+            Название программы
+            <input id="editorTitle" type="text" value="Инженерная поверхность 01">
+          </label>
+
+          <label class="field">
+            Подзаголовок
+            <input id="editorSubtitle" type="text" value="Программирование на математике: p, B ⊂ p, s, τ = touch(p,s), ΠC(p,B,s,τ).">
+          </label>
+
+          <label class="field">
+            Комментарий к текущему срезу
+            <textarea id="editorCaption">Срез в момент чтения является локальным паспортом системы в себе.</textarea>
+          </label>
+
+          <label class="field">
+            Выбранный объект
+            <input id="selectedObject" type="text" value="none" readonly>
+          </label>
+
+          <div class="check-grid">
+            <label><input id="showBlock" type="checkbox" checked> блок B</label>
+            <label><input id="showSlice" type="checkbox" checked> срез s</label>
+            <label><input id="showAxes" type="checkbox" checked> оси</label>
+            <label><input id="showTouch" type="checkbox" checked> тик τ</label>
+            <label><input id="showComposition" type="checkbox" checked> ΠC-композиция</label>
+            <label><input id="showIntersections" type="checkbox" checked> ∩D-контакты</label>
+            <label><input id="showRotationAxis" type="checkbox" checked> гипотетическая ось ω</label>
+            <label><input id="showLabels" type="checkbox" checked> подписи</label>
+          </div>
+
+          <label class="range-row">
+            Толщина тика τ
+            <input id="tickWeight" type="range" min="1" max="8" step="0.2" value="2.6">
+          </label>
+
+          <label class="range-row">
+            Толщина проекции π
+            <input id="projectionWeight" type="range" min="1" max="7" step="0.2" value="2">
+          </label>
+
+          <label class="range-row">
+            Прозрачность среза s
+            <input id="sliceOpacity" type="range" min="0.05" max="0.9" step="0.05" value="1">
+          </label>
+
+          <label class="range-row">
+            Вращение пространства вокруг гипотетической ω
+            <input id="rotationAngle" type="range" min="-35" max="35" step="1" value="0">
+          </label>
+        </div>
+
+        <div class="editor-card">
+          <h3>Паспорт текущего среза</h3>
+          <pre id="modelState" class="model-state" aria-live="polite"></pre>
+        </div>
+      </div>
+    </section>
   </main>
+  <script>
+    const editor = {
+      title: document.getElementById("editorTitle"),
+      subtitle: document.getElementById("editorSubtitle"),
+      caption: document.getElementById("editorCaption"),
+      showBlock: document.getElementById("showBlock"),
+      showSlice: document.getElementById("showSlice"),
+      showAxes: document.getElementById("showAxes"),
+      showTouch: document.getElementById("showTouch"),
+      showComposition: document.getElementById("showComposition"),
+      showIntersections: document.getElementById("showIntersections"),
+      showRotationAxis: document.getElementById("showRotationAxis"),
+      showLabels: document.getElementById("showLabels"),
+      tickWeight: document.getElementById("tickWeight"),
+      projectionWeight: document.getElementById("projectionWeight"),
+      sliceOpacity: document.getElementById("sliceOpacity"),
+      rotationAngle: document.getElementById("rotationAngle"),
+      selectedObject: document.getElementById("selectedObject"),
+      state: document.getElementById("modelState"),
+    };
+
+    const setDisplay = (selector, visible) => {
+      document.querySelectorAll(selector).forEach((node) => {
+        node.style.display = visible ? "" : "none";
+      });
+    };
+
+    const modelSelectors = {
+      block: ".block, svg line[stroke='#202820']",
+      slice: ".slice",
+      axes: ".axis, .axis-time",
+      touch: ".touch",
+      composition: ".composition-surface, .composition-line",
+      intersections: ".intersection",
+      rotationAxis: ".rotation-axis",
+      labels: ".math-label, .math-small",
+    };
+
+    let selectedObject = "none";
+
+    const updateModel = () => {
+      document.querySelector(".title").textContent = editor.title.value;
+      document.querySelector(".subtitle").textContent = editor.subtitle.value;
+
+      setDisplay(modelSelectors.block, editor.showBlock.checked);
+      setDisplay(modelSelectors.slice, editor.showSlice.checked);
+      setDisplay(modelSelectors.axes, editor.showAxes.checked);
+      setDisplay(modelSelectors.touch, editor.showTouch.checked);
+      setDisplay(modelSelectors.composition, editor.showComposition.checked);
+      setDisplay(modelSelectors.intersections, editor.showIntersections.checked);
+      setDisplay(modelSelectors.rotationAxis, editor.showRotationAxis.checked);
+      setDisplay(modelSelectors.labels, editor.showLabels.checked);
+
+      document.documentElement.style.setProperty("--tick-width", editor.tickWeight.value);
+      document.documentElement.style.setProperty("--projection-width", editor.projectionWeight.value);
+      document.querySelectorAll(".slice").forEach((node) => {
+        node.style.opacity = editor.sliceOpacity.value;
+      });
+      document
+        .getElementById("rotatingSpace")
+        .setAttribute("transform", `rotate(${editor.rotationAngle.value} 426 366)`);
+
+      const passport = {
+        program: editor.title.value,
+        stack: "LLM/GPT/Codex -> Lean -> TLFL -> И1",
+        formula: "ProgrammingOnMathematics",
+        model: {
+          point: "p : SelfModelPoint",
+          block: "B := projection(D), B subset p",
+          slice: "s : ProjectionSlice",
+          tick: "tau := touch(p,s)",
+          composition: "PiC(p,B,s,tau)",
+        },
+        visibleLayers: {
+          block: editor.showBlock.checked,
+          slice: editor.showSlice.checked,
+          axes: editor.showAxes.checked,
+          touch: editor.showTouch.checked,
+          composition: editor.showComposition.checked,
+          intersections: editor.showIntersections.checked,
+          rotationAxis: editor.showRotationAxis.checked,
+          labels: editor.showLabels.checked,
+        },
+        visualParameters: {
+          tickWeight: Number(editor.tickWeight.value),
+          projectionWeight: Number(editor.projectionWeight.value),
+          sliceOpacity: Number(editor.sliceOpacity.value),
+          rotationAngle: Number(editor.rotationAngle.value),
+        },
+        selectedObject,
+        passport: "SlicePassport(p,s,tau)",
+        guard: [
+          "no private data",
+          "no secret leak",
+          "no overclaim",
+          "no empirical closure claim",
+          "omega is hypothetical editor axis",
+        ],
+        currentSliceComment: editor.caption.value,
+      };
+
+      editor.state.textContent = JSON.stringify(passport, null, 2);
+    };
+
+    document.querySelectorAll("[data-object]").forEach((node) => {
+      node.addEventListener("click", (event) => {
+        event.stopPropagation();
+        document
+          .querySelectorAll(".selected-object")
+          .forEach((selected) => selected.classList.remove("selected-object"));
+        node.classList.add("selected-object");
+        selectedObject = node.dataset.object;
+        editor.selectedObject.value = selectedObject;
+        updateModel();
+      });
+    });
+
+    Object.values(editor).forEach((node) => {
+      if (node && node !== editor.state) {
+        node.addEventListener("input", updateModel);
+        node.addEventListener("change", updateModel);
+      }
+    });
+
+    updateModel();
+  </script>
 </body>
 </html>

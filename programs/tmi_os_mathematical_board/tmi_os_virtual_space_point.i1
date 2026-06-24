@@ -22,6 +22,7 @@ depend TMI_OS on EProver
 space V := VirtualSpace
 domain D := ExternalDomain
 order domain_order on D
+axis omega := HypotheticalRotationAxis
 
 self "(Я)" : MetaSelf
 self "Я"  : StableSelfModel
@@ -30,6 +31,7 @@ self "я"  : LocalTick
 self_model_point p := point("Я") inside V
 block_universe B := projection(D) inside p
 preserve domain_order through projection(D) as slice_order
+rotate V around omega as EditedView
 
 archive M
 slice s from B.current_projection_slice
@@ -58,10 +60,12 @@ guard virtual_space_point_boundary:
   forbid PointEqualsBiologicalLifeJump
   forbid PointEqualsConsciousnessProofJump
   forbid VirtualSpaceEqualsEmpiricalUniverseJump
+  forbid HypotheticalRotationAxisEqualsPhysicalAxisClaim
   forbid ModelWithoutTrace
 
 emit "В виртуальном пространстве есть самомодель."
 emit "Самомодель - точка."
 emit "Внутри точки есть проекция блоквселенной."
 emit "Доменный порядок сохраняется как порядок срезов."
+emit "Гипотетическая вращательная ось нужна для редактирования модели."
 emit "Тик времени - касание точки к одному срезу."
