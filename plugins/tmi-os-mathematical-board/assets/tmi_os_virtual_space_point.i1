@@ -1,0 +1,62 @@
+language "TMI-OS" version "1.0"
+progenitor "git@github.com:kernelpanic888/TMI-Lean-Formal-Library.git"
+target TLFL
+
+import Matrix : (Я)-Я-я
+
+intent "взять виртуальное пространство и оставить только математику"
+
+depend TMI_OS on Intent
+depend TMI_OS on MatrixCanonicalImport
+depend TMI_OS on TLFL
+depend TMI_OS on Lean
+depend TMI_OS on OLean
+depend TMI_OS on ProofStatus
+depend TMI_OS on Guard
+depend TMI_OS on Trace
+depend TMI_OS on MathematicalBoard
+depend TMI_OS on Z3
+depend TMI_OS on Vampire
+depend TMI_OS on EProver
+
+space V := VirtualSpace
+domain D := ExternalDomain
+
+self "(Я)" : MetaSelf
+self "Я"  : StableSelfModel
+self "я"  : LocalTick
+
+self_model_point p := point("Я") inside V
+block_universe B := projection(D) inside p
+
+archive M
+slice s from B.current_projection_slice
+tick t := touch(p, s)
+
+model VirtualSpaceModel:
+  contains V p
+  contains p B
+  axes B as (x1, x2, x3, time_axis)
+  reads p s
+  touches p s as t
+  leaves trace from t
+
+claim SelfModelIsPointInsideVirtualSpace(TMI_OS)
+  via VirtualSpace
+  via SelfModelPoint
+  via BlockProjectionInsidePoint
+  via CurrentSlice
+  via PresentTick
+  via TraceBoundary
+  certify TLFL
+
+guard virtual_space_point_boundary:
+  forbid PointEqualsBiologicalLifeJump
+  forbid PointEqualsConsciousnessProofJump
+  forbid VirtualSpaceEqualsEmpiricalUniverseJump
+  forbid ModelWithoutTrace
+
+emit "В виртуальном пространстве есть самомодель."
+emit "Самомодель - точка."
+emit "Внутри точки есть проекция блоквселенной."
+emit "Тик времени - касание точки к одному срезу."
