@@ -62,6 +62,7 @@ Date: 2026-06-24
 | `docs/CLAIM_BOUNDARY.md` | Claims and non-claims |
 | `docs/RELEASE_v0.2.0_CLAIM_PASSPORT.md` | GitHub release notes for `v0.2.0-claim-passport` |
 | `docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md` | GitHub release notes for `v0.3.0-i1-engineering-surface` |
+| `docs/LEAN_COMMUNITY_ENTRY.md` | Lean community-facing package entry point |
 | `docs/GITHUB_PUBLICATION_TEXT.md` | Copy-ready GitHub repository/release publication text |
 | `docs/TLFL_EXTENDED_PUBLICATION_EN.md` | Extended English public explanation: what TLFL is and why it exists |
 | `docs/TLFL_EXTENDED_PUBLICATION_RU.md` | Extended Russian public explanation: what TLFL is and why it exists |
