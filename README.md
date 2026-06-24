@@ -1,8 +1,7 @@
 # TMI-OS / TMI-Lean Formal Library (TLFL)
 
 TMI-OS is the public passport layer over TLFL: a broad-level programming
-language and strong system-development environment for LLM/GPT -> Lean -> TLFL
--> И1 workflows. Its strength is a guarded proof-status passport written on
+language and strong system-development environment for LLM/GPT/Codex -> Lean -> TLFL -> И1 workflows. Its strength is a guarded proof-status passport written on
 formal logic.
 
 ```text
