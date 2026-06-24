@@ -2,7 +2,7 @@ import Lake
 open Lake DSL
 
 package tmi_lean_formal_library_0_1 where
-  -- TMI-Lean Formal Library 0.1 is a standalone Lean 4 package.
+  -- TMI-Lean Formal Library is a standalone Lean 4 package.
   -- The public OLean adapter is compiled by the Lean kernel through Lake.
   weakLeanArgs := #["-j", "1"]
 

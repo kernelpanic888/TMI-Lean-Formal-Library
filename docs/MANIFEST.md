@@ -62,6 +62,9 @@ Date: 2026-06-24
 | `docs/CLAIM_BOUNDARY.md` | Claims and non-claims |
 | `docs/RELEASE_v0.2.0_CLAIM_PASSPORT.md` | GitHub release notes for `v0.2.0-claim-passport` |
 | `docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md` | GitHub release notes for `v0.3.0-i1-engineering-surface` |
+| `docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md` | GitHub release notes for `v0.3.1-lean-community-entry` |
+| `docs/LEAN_COMMUNITY_ENTRY.md` | Lean community-facing package entry point |
+| `docs/RESERVOIR_READINESS.md` | Reservoir/package-registry readiness checklist |
 | `docs/GITHUB_PUBLICATION_TEXT.md` | Copy-ready GitHub repository/release publication text |
 | `docs/TLFL_EXTENDED_PUBLICATION_EN.md` | Extended English public explanation: what TLFL is and why it exists |
 | `docs/TLFL_EXTENDED_PUBLICATION_RU.md` | Extended Russian public explanation: what TLFL is and why it exists |
@@ -88,7 +91,8 @@ Date: 2026-06-24
 | Field | Value |
 |---|---|
 | GitHub repository | `https://github.com/kernelpanic888/TMI-Lean-Formal-Library` |
-| Source commit | `4be975e37df910f45c1d38e6ac1a4dfa6ee6b211` |
+| Source release tag | `v0.3.1-lean-community-entry` |
+| Source branch | `llm-gpt-codex-lean-tlfl-i1/latest-public-surface` |
 | Source author | `Salkutsan Aleksey <kernelpanic888@gmail.com>` |
 | License | `Apache-2.0` |
 

@@ -41,6 +41,8 @@ GitHub release identifier for this public artifact slice.
 - `exports/tmi_os_mathematical_board_public/` as the public export package.
 - `docs/SURFACE_MAP_RU.md` and `docs/THEORY_LINKS.md` for readable surface
   mapping and source links.
+- `docs/LEAN_COMMUNITY_ENTRY.md` for a Lean community-facing package entry
+  point focused on Lake builds, imports, and claim boundaries.
 - LinkedIn/Zenodo publication drafts with the 404 Root Jumper URL removed from
   copy-ready public text until that repository exists.
 
@@ -143,4 +145,3 @@ The GitHub release should contain:
 - current `programs/tmi_os_mathematical_board/` surface;
 - current `plugins/tmi-os-mathematical-board/` surface;
 - current `exports/tmi_os_mathematical_board_public/` package.
-

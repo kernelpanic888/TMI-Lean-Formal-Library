@@ -36,6 +36,10 @@ Public passport:
 - [`docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md`](docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md)
 - [`docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md`](docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md)
 - [`docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md`](docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md)
+- [`docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md`](docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md)
+- [`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md)
+- [`docs/RESERVOIR_READINESS.md`](docs/RESERVOIR_READINESS.md)
+- [`docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md`](docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md)
 
 First public program:
 
@@ -58,6 +62,18 @@ Codex plugin:
 plugins/tmi-os-mathematical-board/
 ```
 
+Experiment domain:
+
+```text
+TMI-OS-Experiment
+```
+
+The experiment domain is a small deployment sandbox for passport-gated slices,
+installer checks, and local Lean / Vampire / E smoke runs. It is separate from
+the TLFL kernel package and can be reviewed here:
+
+- [`kernelpanic888/TMI-OS-Experiment`](https://github.com/kernelpanic888/TMI-OS-Experiment)
+
 ## TLFL Kernel Lineage
 
 TMI-Lean Formal Library (TLFL) is a Lean 4 formal library for encoding the core
@@ -66,6 +82,11 @@ conditions, claim-status certificates, and proof targets of TMI.
 
 This is not a fork of Lean and not a new programming language. It is a Lean 4
 library whose modules are compiled by the ordinary Lean kernel.
+
+For Lean-package reviewers, start with
+[`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md). That document
+keeps the entry point technical: Lake build, canonical imports, claim boundary,
+and community-review path.
 
 ## Current Release And Versioning
 
@@ -77,9 +98,10 @@ TMI-Lean-Formal-Library
 
 Versions live in GitHub releases, tags, and status documents rather than in the
 repository slug. The current source line includes the TLFL 0.3 public
-engineering-surface slice: claim passports, public certificates, audit sheets,
-review gates, release gates, the И1 mathematical board, the 3D time artifact,
-the live intent-to-passport demo, and guarded publication surfaces.
+engineering-surface slice and the `v0.3.1-lean-community-entry` technical entry
+layer for Lean package review. The Lake package id remains
+`tmi_lean_formal_library_0_1` as a historical package identifier; release tags
+carry the public version surface.
 
 ## Canonical Import
 
@@ -166,6 +188,8 @@ Release notes:
 
 ```text
 docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md
+docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md
+docs/RESERVOIR_READINESS.md
 ```
 
 ## Build

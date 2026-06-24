@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this library, please cite it using this metadata."
 title: "TMI-Lean Formal Library (TLFL): Formal Library for Interface-Event Theory in Lean 4"
-version: "0.3.0-i1-engineering-surface"
+version: "0.3.1-lean-community-entry"
 date-released: "2026-06-24"
 type: software
 url: "https://github.com/kernelpanic888/TMI-Lean-Formal-Library"
@@ -21,4 +21,4 @@ keywords:
   - "I1"
   - "engineering surface"
   - "programming on mathematics"
-abstract: "TMI-Lean Formal Library (TLFL) is an exportable Lean 4 library for encoding core TMI definitions, event structures, bridge surfaces, interface mathematics, the OLean connection interface to Lean-kernel checking, and the TLFL + External Proof Layer {Z3, Vampire, E} proof-chain self-model layer. The 0.3.0-i1-engineering-surface release adds the guarded TMI-OS / I1 public engineering surface: mathematical board, 3D time artifact, live intent-to-passport demo, plugin/export-ready surfaces, and proof-status publication guards."
+abstract: "TMI-Lean Formal Library (TLFL) is an exportable Lean 4 library for encoding core TMI definitions, event structures, bridge surfaces, interface mathematics, the OLean connection interface to Lean-kernel checking, and the TLFL + External Proof Layer {Z3, Vampire, E} proof-chain self-model layer. The 0.3.1-lean-community-entry release adds a Lean community-facing package entry point, Reservoir readiness checklist, and technical review boundary for Lean/Lake package feedback."
