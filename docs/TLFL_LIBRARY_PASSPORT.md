@@ -153,6 +153,10 @@ Minimal working example:
 Standalone canonical passport:
   examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean
 
+Comparator challenge / solution:
+  examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean
+  examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean
+
 Experiment sandbox:
   https://github.com/kernelpanic888/TMI-OS-Experiment
 ```
