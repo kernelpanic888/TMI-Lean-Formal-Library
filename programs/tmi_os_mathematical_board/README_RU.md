@@ -66,6 +66,20 @@ formal idea visualizations
 installation and verification traces
 ```
 
+## Зависимости Языка
+
+```text
+Intent
+-> Matrix((Я)-Я-я)
+-> TLFL
+-> Lean/OLean
+-> ProofStatus
+-> Guard
+-> Trace
+-> MathematicalBoard
+-> {Z3, Vampire, E}
+```
+
 ## Guard
 
 ```text

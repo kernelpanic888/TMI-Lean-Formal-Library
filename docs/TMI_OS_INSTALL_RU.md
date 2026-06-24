@@ -93,6 +93,29 @@ python3 -m http.server 8765 --bind 127.0.0.1
 http://127.0.0.1:8765/TMI_OS_MATHEMATICAL_BOARD.html
 ```
 
+## Фильтр Перед Публикацией
+
+Перед commit/push публичной поверхности TMI-OS запустите:
+
+```bash
+bash scripts/tmi_os_public_leak_check.sh
+```
+
+Публиковать можно только при:
+
+```text
+TMI-OS public leak check: PASS
+```
+
+Фильтр проверяет, что наружу не уезжают рабочие личные данные, локальные пути,
+секреты, внутренние каталоги и непубличные маркеры.
+
+Критерии отказа описаны здесь:
+
+```text
+docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md
+```
+
 ## Что Должно Появиться
 
 На экране должна быть математическая доска:

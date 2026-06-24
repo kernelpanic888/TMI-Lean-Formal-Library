@@ -77,3 +77,9 @@ intent
 Эта программа публична как математическая доска и language-surface example.
 Она не публикует непубличные материалы и не поднимает claim выше
 proof-status boundary.
+
+Перед публикацией:
+
+```bash
+bash scripts/tmi_os_public_leak_check.sh
+```
