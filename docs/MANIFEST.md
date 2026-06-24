@@ -92,7 +92,7 @@ Date: 2026-06-24
 |---|---|
 | GitHub repository | `https://github.com/kernelpanic888/TMI-Lean-Formal-Library` |
 | Source release tag | `v0.3.1-lean-community-entry` |
-| Source branch | `codex/latest-public-surface` |
+| Source branch | `llm-gpt-codex-lean-tlfl-i1/latest-public-surface` |
 | Source author | `Salkutsan Aleksey <kernelpanic888@gmail.com>` |
 | License | `Apache-2.0` |
 
