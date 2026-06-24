@@ -1,0 +1,35 @@
+{
+  "name": "tmi-os-mathematical-board",
+  "version": "0.1.0",
+  "description": "A guarded Codex plugin for using the TMI-OS mathematical board as an LLM programming interface.",
+  "author": {
+    "name": "TMI-OS"
+  },
+  "repository": "https://github.com/osalkutsan-godaddy/TMI-OS",
+  "keywords": [
+    "tmi-os",
+    "i1",
+    "mathematical-board",
+    "tlfl",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "TMI-OS Mathematical Board",
+    "shortDescription": "Use the guarded И1 board as an LLM programming interface.",
+    "longDescription": "TMI-OS Mathematical Board gives Codex a guarded local programming interface for the first public И1 program: an intent-to-formal-surface protocol with source, dependency chain, preview instructions, and leak checks.",
+    "developerName": "TMI-OS",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Verify"
+    ],
+    "defaultPrompt": [
+      "Show the TMI-OS mathematical board.",
+      "Verify the public board export.",
+      "Extend the И1 board without leaking private data."
+    ],
+    "brandColor": "#00D84A"
+  }
+}

@@ -44,6 +44,7 @@ public_paths=(
   "docs/TMI_OS_REPOSITORY_PROFILE.md"
   "programs/tmi_os_mathematical_board"
   "exports/tmi_os_mathematical_board_public"
+  "plugins/tmi-os-mathematical-board"
   "scripts/tmi_os_public_leak_check.sh"
 )
 
@@ -63,6 +64,10 @@ content_scan_paths=(
   "exports/tmi_os_mathematical_board_public/INSTALL_RU.md"
   "exports/tmi_os_mathematical_board_public/EXPORT_PROJECT_RU.md"
   "exports/tmi_os_mathematical_board_public/docs"
+  "plugins/tmi-os-mathematical-board/.codex-plugin/plugin.json"
+  "plugins/tmi-os-mathematical-board/README_RU.md"
+  "plugins/tmi-os-mathematical-board/assets"
+  "plugins/tmi-os-mathematical-board/skills"
 )
 
 blocked_path_regex='(^CANONICAL_|^SELF_SYSTEM_|^docs/intelligence_|(^|/)\.env(\.|$)|(^|/)id_rsa|\.pem$|\.key$|\.p12$)'
