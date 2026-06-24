@@ -216,6 +216,34 @@
       line-height: 1.5;
     }
 
+    .linkedin-caption {
+      grid-column: 1 / -1;
+      padding: 24px 28px;
+      border: 1px solid #d7d5c9;
+      background: var(--paper);
+      box-shadow: 0 18px 50px rgba(40, 40, 25, 0.08);
+    }
+
+    .linkedin-caption h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .linkedin-caption p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .linkedin-caption code {
+      color: var(--ink);
+      background: #f4f3eb;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: "STIX Two Text", "Times New Roman", Georgia, serif;
+    }
+
     @media (max-width: 960px) {
       body {
         padding: 14px;
@@ -344,6 +372,18 @@ diagram ≠ proof by itself</div>
         есть касание p к одному срезу s.
       </div>
     </aside>
+
+    <section class="linkedin-caption" aria-label="LinkedIn caption under graph">
+      <h2>Подпись под графиком</h2>
+      <p>
+        Первая публичная программа на TMI-OS / И1: язык программирования
+        широкого уровня, где intent разворачивается в математическую доску,
+        trace, guard и proof-status boundary. На И1 можно программировать
+        intent-формулы, self-model схемы, projection-slice/tick модели,
+        proof-status паспорта, guard-контракты и визуализации формальных идей.
+        GitHub: <code>https://github.com/osalkutsan-godaddy/TMI-OS</code>
+      </p>
+    </section>
   </main>
 </body>
 </html>

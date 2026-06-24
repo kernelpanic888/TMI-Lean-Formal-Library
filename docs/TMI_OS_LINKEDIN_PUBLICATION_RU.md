@@ -88,3 +88,19 @@ https://github.com/osalkutsan-godaddy/TMI-OS
 
 и фраза становится программой.
 ```
+
+Caption under graph:
+
+```text
+Первая публичная программа на TMI-OS / И1.
+
+И1 - язык программирования широкого уровня: intent -> mathematical board ->
+trace -> guard -> proof-status boundary.
+
+На И1 можно программировать intent-формулы, математические доски, self-model
+схемы, projection-slice/tick модели, proof-status паспорта, guard-контракты и
+визуализации формальных идей.
+
+GitHub:
+https://github.com/osalkutsan-godaddy/TMI-OS
+```
