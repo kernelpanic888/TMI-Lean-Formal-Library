@@ -230,6 +230,27 @@ DomainOrderPreserved :=
   -> reread order inside self-model
 ```
 
+## 2.2. Гипотетическая Вращательная Ось
+
+```text
+ω : HypotheticalRotationAxis
+rotate(V, ω, α) : EditedView(V)
+```
+
+И1-чтение:
+
+```text
+ω нужна для редактирования и вращения графической модели
+```
+
+Guard:
+
+```text
+ω != physical axis claim
+ω != empirical rotation of the world
+ω := editor axis for model inspection
+```
+
 ## 3. Проекционный Срез
 
 ```text

@@ -123,6 +123,15 @@ slice = strongest current local passport at the read tick
 
 Guard: this does not mean absolute empirical totality or proof without guard.
 
+When the user asks to rotate the model, use the hypothetical editor-axis:
+
+```text
+omega : HypotheticalRotationAxis
+rotate(V, omega, alpha) : EditedView(V)
+```
+
+Guard: `omega` is not a physical-axis claim; it is a model-inspection axis.
+
 ## Plugin Assets
 
 The plugin carries these local assets:

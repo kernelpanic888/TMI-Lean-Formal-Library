@@ -48,6 +48,9 @@ SlicePassport(p, s, tau) :=
   and tau = touch(p, s)
   and CanonicalRecord(s)
   and PassportBoundary(s)
+
+omega : HypotheticalRotationAxis
+rotate(V, omega, alpha) : EditedView(V)
 ```
 
 ## Файлы
@@ -84,6 +87,7 @@ formal idea visualizations
 installation and verification traces
 domain-order preserving model interfaces
 slice-passport current-state records
+hypothetical rotation-axis editing
 ```
 
 ## Зависимости Языка
