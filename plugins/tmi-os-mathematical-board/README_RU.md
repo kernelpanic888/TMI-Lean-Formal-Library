@@ -1,6 +1,10 @@
-# TMI-OS Mathematical Board Plugin
+# TMI-OS Engineering Surface Plugin
 
-Codex-плагин для первой публичной математической доски TMI-OS / И1.
+Codex-плагин для первой публичной программы TMI-OS / И1.
+
+```text
+ProgramName := "Инженерная поверхность"
+```
 
 ```text
 CodexPlugin(TMI-OS-Board)
