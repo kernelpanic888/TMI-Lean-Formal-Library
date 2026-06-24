@@ -3,9 +3,13 @@ name: tmi-os-mathematical-board
 description: Use when the user asks Codex to show, explain, verify, export, or extend the TMI-OS / И1 mathematical board, including its dependency chain, guard rules, and public-program surface.
 ---
 
-# TMI-OS Mathematical Board
+# TMI-OS Engineering Surface
 
-Use this skill for the TMI-OS / И1 mathematical board plugin.
+Use this skill for the TMI-OS / И1 Engineering Surface plugin.
+
+```text
+ProgramName := "Инженерная поверхность"
+```
 
 The board is a guarded public program surface:
 
