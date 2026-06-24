@@ -36,6 +36,36 @@ ProgrammingOnMathematics :=
 программирование на математике
 ```
 
+## -1. Математика Как Проекционный Язык
+
+```text
+Mathematics ∈ ProjectionLanguage
+```
+
+Авторская способность:
+
+```text
+AuthorUses(Mathematics) :=
+  writes(Author, Mathematics)
+  ∧ speaks(Author, Mathematics)
+  ∧ thinks(Author, Mathematics)
+```
+
+И1-чтение:
+
+```text
+если автор может писать на математике,
+то автор может говорить и думать на этой проекционной поверхности
+```
+
+Guard:
+
+```text
+ProjectionLanguage != private data leak
+ProjectionLanguage != proof without passport
+ProjectionLanguage != empirical closure by itself
+```
+
 Доска является визуальной проекцией. Инженерный интерфейс задаёт то, что
 именно читается, проверяется и исполняется как И1-программа.
 
@@ -43,6 +73,33 @@ ProgrammingOnMathematics :=
 
 ```text
 И1 := FormalLogicLanguage
+```
+
+## 0.0. Граница Языка Как Последняя Версия Кода
+
+```text
+LanguageBoundary(I1) := LatestCodeVersion(I1)
+```
+
+Версионное тождество:
+
+```text
+Language(I1, v_current) ≡ Code(I1, v_current)
+```
+
+По-русски:
+
+```text
+границы языка и есть последняя версия кода;
+язык и код это одно и то же в текущем паспорте версии
+```
+
+Guard:
+
+```text
+LanguageCodeIdentity is version-scoped
+LanguageCodeIdentity is passport-scoped
+LanguageCodeIdentity != unguarded universal claim about all languages
 ```
 
 Базовая формула:

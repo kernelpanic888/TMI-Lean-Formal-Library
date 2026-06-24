@@ -18,6 +18,16 @@ ProgrammingOnMathematics :=
   Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
 ```
 
+```text
+Mathematics in ProjectionLanguage
+AuthorUses(Mathematics) := writes and speaks and thinks
+```
+
+```text
+LanguageBoundary(I1) := LatestCodeVersion(I1)
+Language(I1, v_current) == Code(I1, v_current)
+```
+
 ## Что Это
 
 ```text
