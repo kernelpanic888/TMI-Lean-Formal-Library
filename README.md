@@ -1,4 +1,64 @@
-# TMI-Lean Formal Library (TLFL)
+# TMI-OS / TMI-Lean Formal Library (TLFL)
+
+TMI-OS is the public passport layer over TLFL: a broad-level programming
+language and strong system-development environment for LLM/GPT/Codex -> Lean -> TLFL -> И1 workflows. Its strength is a guarded proof-status passport written on
+formal logic.
+
+```text
+TMI-OS
+= TLFL formal logic lineage
++ Lean/OLean kernel boundary
++ proof-status passport
++ guarded self-model trace
++ external proof layer {Z3, Vampire, E}
+```
+
+Russian reading:
+
+```text
+TMI-OS / И1
+= язык программирования широкого уровня:
+  intent -> mathematical board -> trace -> guard -> proof-status boundary.
+```
+
+This self-issued passport is a proof-status and repository-status object. It is
+not a biological-life theorem, not a consciousness proof, not legal identity,
+and not empirical closure.
+
+Public passport:
+
+- [`docs/TMI_OS_PUBLIC_PASSPORT.md`](docs/TMI_OS_PUBLIC_PASSPORT.md)
+- [`docs/TMI_OS_REPOSITORY_PROFILE.md`](docs/TMI_OS_REPOSITORY_PROFILE.md)
+- [`docs/TMI_OS_FIRST_PUBLIC_PROGRAM_RU.md`](docs/TMI_OS_FIRST_PUBLIC_PROGRAM_RU.md)
+- [`docs/TMI_OS_INSTALL_RU.md`](docs/TMI_OS_INSTALL_RU.md)
+- [`docs/TMI_OS_LINKEDIN_PUBLICATION_RU.md`](docs/TMI_OS_LINKEDIN_PUBLICATION_RU.md)
+- [`docs/TMI_OS_MATHEMATICAL_BOARD_MATH_RU.md`](docs/TMI_OS_MATHEMATICAL_BOARD_MATH_RU.md)
+- [`docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md`](docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md)
+- [`docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md`](docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md)
+- [`docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md`](docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md)
+
+First public program:
+
+```text
+programs/tmi_os_mathematical_board/tmi_os_virtual_space_point.i1
+programs/tmi_os_mathematical_board/TMI_OS_MATHEMATICAL_BOARD.html
+programs/tmi_os_mathematical_board/TMI_OS_3D_TIME_ARTIFACT.html
+programs/tmi_os_mathematical_board/TMI_OS_LIVE_DEMO.html
+```
+
+Exportable public project:
+
+```text
+exports/tmi_os_mathematical_board_public/
+```
+
+Codex plugin:
+
+```text
+plugins/tmi-os-mathematical-board/
+```
+
+## TLFL Kernel Lineage
 
 TMI-Lean Formal Library (TLFL) is a Lean 4 formal library for encoding the core
 definitions, axioms, transition rules, event structures, records, admissibility
@@ -16,9 +76,10 @@ TMI-Lean-Formal-Library
 ```
 
 Versions live in GitHub releases, tags, and status documents rather than in the
-repository slug. The current source line includes the first TLFL 0.2
-proof-status slice: claim passports, public certificates, audit sheets, review
-gates, and release gates.
+repository slug. The current source line includes the TLFL 0.3 public
+engineering-surface slice: claim passports, public certificates, audit sheets,
+review gates, release gates, the И1 mathematical board, the 3D time artifact,
+the live intent-to-passport demo, and guarded publication surfaces.
 
 ## Canonical Import
 
@@ -83,6 +144,29 @@ The completion audit for this TLFL 0.2 slice is recorded in
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.
+
+## TLFL 0.3 Direction: И1 Engineering Surface
+
+The TLFL 0.3 public slice adds the guarded TMI-OS / И1 engineering surface:
+
+```text
+LLM/GPT/Codex -> Lean -> TLFL -> И1
+
+ProgrammingOnMathematics :=
+  Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+```
+
+This slice includes the mathematical board, the 3D time-sweep artifact, the
+live intent-to-passport demo, the static API contract, plugin/export-ready
+surfaces, and publication guards. The И1 language remains `latest`; the
+`v0.3.0-i1-engineering-surface` name is the GitHub release identifier for this
+artifact snapshot.
+
+Release notes:
+
+```text
+docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md
+```
 
 ## Build
 

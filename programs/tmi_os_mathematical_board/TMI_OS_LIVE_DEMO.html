@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TMI-OS / И1 - программа на лету</title>
+  <style>
+    :root {
+      --paper: #f8f5eb;
+      --ink: #12150f;
+      --muted: #65695e;
+      --line: rgba(18, 21, 15, 0.18);
+      --green: #0b7f3b;
+      --deep: #082317;
+      --gold: #aa7b25;
+      --red: #a83232;
+      --blue: #245ca3;
+      --panel: rgba(255, 255, 250, 0.86);
+      --grid: rgba(18, 21, 15, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        radial-gradient(circle at 12% 18%, rgba(11, 127, 59, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 20%, rgba(170, 123, 37, 0.16), transparent 27%),
+        radial-gradient(circle at 72% 84%, rgba(36, 92, 163, 0.13), transparent 24%),
+        var(--paper);
+      background-size: 32px 32px, 32px 32px, auto, auto, auto, auto;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1220px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 46px;
+    }
+
+    .topbar,
+    .hero,
+    .panel,
+    .output,
+    .guard-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 18px 50px rgba(18, 21, 15, 0.08);
+      backdrop-filter: blur(16px);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: 900 13px/1.1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      color: var(--green);
+      border: 1px solid rgba(11, 127, 59, 0.34);
+      border-radius: 50%;
+      background: rgba(11, 127, 59, 0.08);
+    }
+
+    .nav,
+    .actions,
+    .output-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav {
+      justify-content: flex-end;
+    }
+
+    .nav a,
+    button,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 10px 12px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 250, 0.72);
+      text-decoration: none;
+      font: 900 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    button.primary,
+    .button.primary {
+      color: white;
+      border-color: var(--deep);
+      background: var(--deep);
+    }
+
+    .hero {
+      position: relative;
+      margin-top: 22px;
+      padding: clamp(24px, 5vw, 52px);
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -140px;
+      bottom: -170px;
+      width: 420px;
+      height: 420px;
+      border: 2px dashed rgba(11, 127, 59, 0.24);
+      border-radius: 50%;
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--green);
+      font: 900 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.38;
+    }
+
+    .formula {
+      margin-top: 24px;
+      padding: 16px;
+      white-space: pre-wrap;
+      color: #11351f;
+      border: 1px solid rgba(11, 127, 59, 0.24);
+      background: rgba(11, 127, 59, 0.08);
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .workbench {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .panel,
+    .output,
+    .guard-card {
+      padding: 18px;
+    }
+
+    .panel h2,
+    .output h2,
+    .guard-card h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      color: var(--muted);
+      font: 900 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 14px;
+      color: var(--ink);
+      border: 1px solid rgba(18, 21, 15, 0.18);
+      background: rgba(255, 255, 250, 0.78);
+      font: 15px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+
+    .actions {
+      margin-top: 14px;
+    }
+
+    .trace {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .trace div {
+      min-height: 86px;
+      padding: 12px;
+      border: 1px solid rgba(18, 21, 15, 0.14);
+      background: rgba(248, 245, 235, 0.74);
+      font: 800 12px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .trace strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 12px;
+    }
+
+    .tabs button {
+      min-height: 34px;
+      opacity: 0.72;
+    }
+
+    .tabs button.active {
+      color: white;
+      border-color: var(--deep);
+      background: var(--deep);
+      opacity: 1;
+    }
+
+    .output pre,
+    .guard-card pre {
+      overflow: auto;
+      margin: 0;
+      padding: 16px;
+      min-height: 390px;
+      color: #11351f;
+      border: 1px solid rgba(11, 127, 59, 0.22);
+      background: rgba(11, 127, 59, 0.08);
+      font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+      white-space: pre-wrap;
+    }
+
+    .output-actions {
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+
+    .guard-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.28fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .guard-card pre {
+      min-height: auto;
+    }
+
+    .foot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+      color: var(--muted);
+      font: 800 11px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 980px) {
+      .topbar,
+      .workbench,
+      .guard-card {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .trace {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="mark">(Я)</span>
+        <span>TMI-OS / И1 live demo</span>
+      </div>
+      <nav class="nav" aria-label="Навигация">
+        <a href="index.html">индекс</a>
+        <a href="TMI_OS_MATHEMATICAL_BOARD.html">доска</a>
+        <a href="TMI_OS_3D_TIME_ARTIFACT.html">3D</a>
+        <a href="I1_MINI_LANGUAGE.md">И1</a>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <p class="kicker">programming on mathematics / local only</p>
+      <h1 id="page-title">Программа на лету</h1>
+      <p class="lead">
+        Пишем прямо здесь: человеческий intent проходит через формальную логику,
+        становится канонической записью, получает паспорт, guard и только потом
+        превращается в действие поверхности.
+      </p>
+      <pre class="formula">LiveProgram :=
+  Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+
+Boundary :=
+  NoLogin + NoServerUpload + NoExternalScript + HumanReviewBeforePublication</pre>
+    </section>
+
+    <section class="workbench" aria-label="Рабочая поверхность live demo">
+      <div class="panel">
+        <p class="kicker">input slice</p>
+        <h2>Скажи, что пишем</h2>
+        <label for="intent">intent</label>
+        <textarea id="intent">Написать программу на лету: показать, как мысль превращается в паспорт и открывает математическую доску.</textarea>
+
+        <label for="name">имя паспорта</label>
+        <input id="name" value="LivePassport">
+
+        <div class="actions">
+          <button class="primary" id="build" type="button">собрать программу</button>
+          <button id="example" type="button">пример среза</button>
+          <button id="clear" type="button">очистить</button>
+        </div>
+
+        <div class="trace" aria-label="Цепочка сборки">
+          <div><strong>1</strong>Intent<br>человеческий вход</div>
+          <div><strong>2</strong>FormalLogic<br>граница формы</div>
+          <div><strong>3</strong>CanonicalRecord<br>срез записи</div>
+          <div><strong>4</strong>Passport<br>паспорт артефакта</div>
+          <div><strong>5</strong>GuardedAction<br>разрешенное действие</div>
+        </div>
+      </div>
+
+      <div class="output">
+        <p class="kicker">output artifact</p>
+        <h2>Что родилось</h2>
+        <div class="tabs" role="tablist" aria-label="Выходы">
+          <button class="active" type="button" data-tab="program">И1 программа</button>
+          <button type="button" data-tab="passport">паспорт</button>
+          <button type="button" data-tab="guard">guard</button>
+        </div>
+        <pre id="output" aria-live="polite"></pre>
+        <div class="output-actions">
+          <div class="actions">
+            <button id="copy-current" type="button">скопировать вкладку</button>
+            <button id="copy-all" type="button">скопировать всё</button>
+          </div>
+          <div class="actions">
+            <a class="button" href="TMI_OS_MATHEMATICAL_BOARD.html">открыть доску</a>
+            <a class="button" href="TMI_OS_3D_TIME_ARTIFACT.html">открыть 3D</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guard-card" aria-labelledby="guard-title">
+      <div>
+        <p class="kicker">why this is safe enough for demo</p>
+        <h2 id="guard-title">Это не компилятор ядра, а входная поверхность</h2>
+        <p class="lead">
+          Демо не доказывает физику, не публикует данные, не логинит пользователя
+          и не ходит в закрытые репозитории. Его задача проще и сильнее:
+          показать, как intent получает форму, паспорт и границу действия.
+        </p>
+      </div>
+      <pre>NoLogin
+NoServerUpload
+NoExternalScript
+NoClosedProjectUrl
+UserIntentIsNotProof
+PassportIsFormalArtifact
+HumanReviewBeforePublication</pre>
+    </section>
+
+    <footer class="foot">
+      <span>route: TMI_OS_LIVE_DEMO.html</span>
+      <span>program: live_intent_to_passport_demo.i1</span>
+      <span>latest surface, guarded action</span>
+    </footer>
+  </main>
+
+  <script>
+    const intentField = document.querySelector("#intent");
+    const nameField = document.querySelector("#name");
+    const output = document.querySelector("#output");
+    const tabButtons = Array.from(document.querySelectorAll("[data-tab]"));
+    const state = {
+      activeTab: "program",
+      program: "",
+      passport: "",
+      guard: ""
+    };
+
+    function safeText(value) {
+      return String(value || "")
+        .replace(/[<>]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function safeIdentifier(value) {
+      const normalized = safeText(value)
+        .replace(/[^A-Za-z0-9_А-Яа-яЁё-]+/g, "_")
+        .replace(/^_+|_+$/g, "");
+      return normalized || "LivePassport";
+    }
+
+    function nowStamp() {
+      return new Date().toISOString().replace(/\.\d+Z$/, "Z");
+    }
+
+    function buildArtifacts() {
+      const intent = safeText(intentField.value) || "Пустой intent требует уточнения.";
+      const passportName = safeIdentifier(nameField.value);
+      const stamp = nowStamp();
+
+      state.program = `language "TMI-OS" version "последняя"
+language_mode "безверсионный язык"
+program LiveIntentToPassportDemo
+mode "static-local-demo"
+
+intent "${intent}"
+
+self_model_point p_live := point("Я") inside LiveSurface
+domain D_live := IntentDomain("${intent}")
+slice s_live := projection(D_live) as CanonicalSlice
+tick tau_live := touch(p_live, s_live)
+
+record R_live := CanonicalRecord(
+  intent := "${intent}",
+  point := p_live,
+  domain := D_live,
+  slice := s_live,
+  tick := tau_live,
+  pipeline := Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+)
+
+passport ${passportName} := Passport(R_live)
+
+guard live_demo_boundary:
+  forbid UserIntentEqualsProof
+  forbid PassportEqualsBiologicalOrLegalIdentity
+  forbid DemoEqualsPublication
+  forbid ClosedProjectUrlLeak
+  forbid ServerUpload
+  forbid ExternalScript
+  require LocalOnly
+  require HumanReviewBeforePublication
+
+action open_board := run board with ${passportName}
+action open_artifact3d := run artifact3d with ${passportName}`;
+
+      state.passport = `{
+  "language": "И1",
+  "passport": "${passportName}",
+  "createdAt": "${stamp}",
+  "intent": "${intent}",
+  "selfModelPoint": "p_live",
+  "domain": "D_live",
+  "slice": "s_live",
+  "tick": "tau_live := touch(p_live, s_live)",
+  "pipeline": "Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction",
+  "actions": [
+    "open board",
+    "open artifact3d"
+  ],
+  "publication": "manual review only"
+}`;
+
+      state.guard = `LiveDemoGuard :=
+  NoLogin
+  NoServerUpload
+  NoExternalScript
+  NoClosedProjectUrl
+  UserIntentIsNotProof
+  PassportIsFormalArtifactNotIdentityClaim
+  BoardArtifactIsNotEmpiricalProof
+  HumanReviewBeforePublication
+
+Reading :=
+  "Мысль стала программой, но действие осталось под guard."`;
+
+      render();
+    }
+
+    function render() {
+      tabButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.tab === state.activeTab);
+      });
+      output.textContent = state[state.activeTab];
+    }
+
+    async function copyText(text, button) {
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = "скопировано";
+      } catch (_) {
+        button.textContent = "скопируй вручную";
+      }
+
+      window.setTimeout(() => {
+        button.textContent = button.dataset.original || "скопировать";
+      }, 1300);
+    }
+
+    document.querySelector("#build").addEventListener("click", buildArtifacts);
+
+    document.querySelector("#example").addEventListener("click", () => {
+      intentField.value = "Собрать срез модели: SelfModelPoint читает текущий projection slice и оставляет паспорт артефакта.";
+      nameField.value = "ProjectionSlicePassport";
+      buildArtifacts();
+    });
+
+    document.querySelector("#clear").addEventListener("click", () => {
+      intentField.value = "";
+      nameField.value = "LivePassport";
+      buildArtifacts();
+    });
+
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        state.activeTab = button.dataset.tab || "program";
+        render();
+      });
+    });
+
+    document.querySelector("#copy-current").addEventListener("click", (event) => {
+      event.currentTarget.dataset.original = "скопировать вкладку";
+      copyText(state[state.activeTab], event.currentTarget);
+    });
+
+    document.querySelector("#copy-all").addEventListener("click", (event) => {
+      event.currentTarget.dataset.original = "скопировать всё";
+      copyText(`${state.program}\n\n--- passport ---\n${state.passport}\n\n--- guard ---\n${state.guard}`, event.currentTarget);
+    });
+
+    buildArtifacts();
+  </script>
+</body>
+</html>

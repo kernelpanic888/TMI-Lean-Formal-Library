@@ -8,6 +8,8 @@ criteria: record, self-model, adaptive selection, predictive correction, and
 self-observation/closure.
 -/
 
+import TMI.BridgePhysics.Contracts
+
 namespace TMI
 namespace SelfThinkingUniverse
 
@@ -599,136 +601,105 @@ theorem low_level_memory_trace_gives_physical_record_bridge
     (low_level_memory_trace_gives_stable_trace_inside h)
 
 /-!
-Entropy/recoverability branch.
+Time-as-memory bridge.
 
-A stable trace may still exist while becoming less accessible to a local
-interface. This branch formalizes forgetting as recoverability loss rather than
-absolute trace annihilation.
+This bridge keeps the thesis cautious: time is not identified with memory as a
+type-theoretic equality. Instead, temporal readability is modeled as an order
+carried by stable traces that retain information about prior states.
 -/
 
-structure PhysicalRecoverabilityContext (u : InterfaceProfile) where
+structure TemporalMemoryContext (u : InterfaceProfile) where
   memory_ctx : PhysicalMemoryContext u
-  interface_accessible : memory_ctx.Obj -> Prop
-  distributed : memory_ctx.Obj -> Prop
-  recovery_cost_growth : memory_ctx.Obj -> Prop
-  recovery_practically_blocked : memory_ctx.Obj -> Prop
+  Time : Type
+  earlier : Time -> Time -> Prop
+  trace_time : memory_ctx.Obj -> Time
+  memory_trace_orders_time :
+    ∀ x y : memory_ctx.Obj,
+      memory_ctx.inside_universe x ->
+      memory_ctx.inside_universe y ->
+      RecordObject memory_ctx x ->
+      RecordObject memory_ctx y ->
+      memory_ctx.carries_information_about_prior_state x ->
+      memory_ctx.carries_information_about_prior_state y ->
+      earlier (trace_time x) (trace_time y) \/
+        earlier (trace_time y) (trace_time x) \/
+        trace_time x = trace_time y
 
-def InterfaceAccessibleTraceInside {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) : Prop :=
-  exists x : ctx.memory_ctx.Obj,
-    ctx.memory_ctx.inside_universe x /\
-    RecordObject ctx.memory_ctx x /\
-    ctx.interface_accessible x
+def MemoryTimeCarrier {u : InterfaceProfile}
+    (ctx : TemporalMemoryContext u)
+    (x : ctx.memory_ctx.Obj) : Prop :=
+  ctx.memory_ctx.inside_universe x /\ RecordObject ctx.memory_ctx x
 
-def RecoverableTraceInside {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) : Prop :=
-  InterfaceAccessibleTraceInside ctx
+def TimeReadableFromMemory {u : InterfaceProfile}
+    (ctx : TemporalMemoryContext u) : Prop :=
+  exists x : ctx.memory_ctx.Obj, MemoryTimeCarrier ctx x
 
-def DistributedTraceInside {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) : Prop :=
-  exists x : ctx.memory_ctx.Obj,
-    ctx.memory_ctx.inside_universe x /\
-    RecordObject ctx.memory_ctx x /\
-    ctx.distributed x
+def TemporalOrderFromMemory {u : InterfaceProfile}
+    (ctx : TemporalMemoryContext u) : Prop :=
+  exists x y : ctx.memory_ctx.Obj,
+    MemoryTimeCarrier ctx x /\
+    MemoryTimeCarrier ctx y /\
+    ctx.memory_ctx.carries_information_about_prior_state x /\
+    ctx.memory_ctx.carries_information_about_prior_state y /\
+    (ctx.earlier (ctx.trace_time x) (ctx.trace_time y) \/
+      ctx.earlier (ctx.trace_time y) (ctx.trace_time x) \/
+      ctx.trace_time x = ctx.trace_time y)
 
-def RecoverabilityLossInside {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) : Prop :=
-  exists x : ctx.memory_ctx.Obj,
-    ctx.memory_ctx.inside_universe x /\
-    RecordObject ctx.memory_ctx x /\
-    ctx.recovery_practically_blocked x
+def UniverseTimeAsMemoryBridge (u : InterfaceProfile) : Prop :=
+  u.eventsBecomeMemory /\ u.record
 
-def InterfaceForgettingInside {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) : Prop :=
-  RecoverabilityLossInside ctx
-
-def EntropyLikeDispersionInside {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) : Prop :=
-  exists x : ctx.memory_ctx.Obj,
-    ctx.memory_ctx.inside_universe x /\
-    RecordObject ctx.memory_ctx x /\
-    ctx.distributed x /\
-    ctx.recovery_cost_growth x
-
-def SecondLawReadableAsRecoverabilityLoss
-    (u : InterfaceProfile) : Prop :=
-  exists ctx : PhysicalRecoverabilityContext u,
-    EntropyLikeDispersionInside ctx /\ RecoverabilityLossInside ctx
-
-structure LowLevelRecoverabilityTrace {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) where
+structure LowLevelTemporalMemoryTrace {u : InterfaceProfile}
+    (ctx : TemporalMemoryContext u) where
   carrier : ctx.memory_ctx.Obj
   inside : ctx.memory_ctx.inside_universe carrier
   structured : ctx.memory_ctx.structured carrier
   stable : ctx.memory_ctx.stable carrier
   prior_information :
     ctx.memory_ctx.carries_information_about_prior_state carrier
-  interface_accessible : ctx.interface_accessible carrier
-  distributed : ctx.distributed carrier
-  recovery_cost_growth : ctx.recovery_cost_growth carrier
-  recovery_practically_blocked :
-    ctx.recovery_practically_blocked carrier
 
-theorem low_level_recoverability_trace_gives_recoverable_trace_inside
+theorem memory_time_carrier_unfolds
     {u : InterfaceProfile}
-    {ctx : PhysicalRecoverabilityContext u} :
-    LowLevelRecoverabilityTrace ctx -> RecoverableTraceInside ctx := by
-  intro h
-  exact
-    ⟨h.carrier, h.inside,
-      ⟨h.structured, h.stable, h.prior_information⟩,
-      h.interface_accessible⟩
+    (ctx : TemporalMemoryContext u)
+    (x : ctx.memory_ctx.Obj) :
+    MemoryTimeCarrier ctx x <->
+      ctx.memory_ctx.inside_universe x /\ RecordObject ctx.memory_ctx x := by
+  rfl
 
-theorem recoverable_trace_inside_gives_stable_trace_inside
+theorem low_level_temporal_memory_trace_gives_time_readable_from_memory
     {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) :
-    RecoverableTraceInside ctx -> StableTraceInside ctx.memory_ctx := by
+    {ctx : TemporalMemoryContext u} :
+    LowLevelTemporalMemoryTrace ctx -> TimeReadableFromMemory ctx := by
   intro h
-  rcases h with ⟨x, hInside, hRecord, _hAccessible⟩
-  exact ⟨x, hInside, hRecord⟩
+  exact ⟨h.carrier, h.inside, h.structured, h.stable, h.prior_information⟩
 
-theorem low_level_recoverability_trace_gives_distributed_trace_inside
+theorem low_level_temporal_memory_trace_gives_temporal_order_from_memory
     {u : InterfaceProfile}
-    {ctx : PhysicalRecoverabilityContext u} :
-    LowLevelRecoverabilityTrace ctx -> DistributedTraceInside ctx := by
+    {ctx : TemporalMemoryContext u} :
+    LowLevelTemporalMemoryTrace ctx -> TemporalOrderFromMemory ctx := by
   intro h
-  exact
-    ⟨h.carrier, h.inside,
-      ⟨h.structured, h.stable, h.prior_information⟩,
-      h.distributed⟩
+  exact ⟨
+    h.carrier,
+    h.carrier,
+    ⟨h.inside, h.structured, h.stable, h.prior_information⟩,
+    ⟨h.inside, h.structured, h.stable, h.prior_information⟩,
+    h.prior_information,
+    h.prior_information,
+    Or.inr (Or.inr rfl)
+  ⟩
 
-theorem low_level_recoverability_trace_gives_entropy_like_dispersion_inside
+theorem universe_time_as_memory_bridge_from_temporal_memory
     {u : InterfaceProfile}
-    {ctx : PhysicalRecoverabilityContext u} :
-    LowLevelRecoverabilityTrace ctx -> EntropyLikeDispersionInside ctx := by
+    (process : UniverseSelfObservationProcess u)
+    (ctx : TemporalMemoryContext u) :
+    TimeReadableFromMemory ctx -> UniverseTimeAsMemoryBridge u := by
   intro h
-  exact
-    ⟨h.carrier, h.inside,
-      ⟨h.structured, h.stable, h.prior_information⟩,
-      h.distributed, h.recovery_cost_growth⟩
-
-theorem low_level_recoverability_trace_gives_interface_forgetting_inside
-    {u : InterfaceProfile}
-    {ctx : PhysicalRecoverabilityContext u} :
-    LowLevelRecoverabilityTrace ctx -> InterfaceForgettingInside ctx := by
-  intro h
-  exact
-    ⟨h.carrier, h.inside,
-      ⟨h.structured, h.stable, h.prior_information⟩,
-      h.recovery_practically_blocked⟩
-
-theorem interface_forgetting_means_recoverability_loss
-    {u : InterfaceProfile}
-    (ctx : PhysicalRecoverabilityContext u) :
-    InterfaceForgettingInside ctx -> RecoverabilityLossInside ctx := by
-  intro h
-  exact h
-
-structure PhysicalSelfModelBridge (u : InterfaceProfile) : Prop where
-  modeling_subsystem_inside : True
-  models_universe_or_region : True
-  organized_model_system : True
-  self_model : u.selfModel
+  rcases h with ⟨x, hInside, hRecord⟩
+  exact ⟨
+    process.events_to_memory,
+    stable_trace_inside_gives_physical_record
+      ctx.memory_ctx
+      ⟨x, hInside, hRecord⟩
+  ⟩
 
 /-!
 Refined self-model bridge.
@@ -738,6 +709,12 @@ criterion requires an internal modeling subsystem, an organized model system, a
 model of the universe or a universe-region, and an internal reference to the
 modeled domain.
 -/
+
+structure PhysicalSelfModelBridge (u : InterfaceProfile) : Prop where
+  modeling_subsystem_inside : True
+  models_universe_or_region : True
+  organized_model_system : True
+  self_model : u.selfModel
 
 structure PhysicalSelfModelContext (u : InterfaceProfile) where
   Obj : Type
@@ -906,6 +883,1649 @@ theorem low_level_self_model_trace_gives_physical_self_model_bridge
   exact self_model_inside_gives_physical_self_model_bridge
     ctx
     (low_level_self_model_trace_gives_self_model_inside h)
+
+/-!
+Subjective self-model contact time bridge.
+
+This v2 layer strengthens the earlier time-as-memory sketch: memory is treated
+as an archive of slices, and time is read as the minimal contact of a self-model
+with the current or latest readable slice of that archive.
+-/
+
+structure SubjectiveTimeContext (u : InterfaceProfile) where
+  memory_ctx : PhysicalMemoryContext u
+  self_model_ctx : PhysicalSelfModelContext u
+  Slice : Type
+  Archive : Type
+  archive_of : self_model_ctx.Obj -> Archive
+  in_archive : Slice -> Archive -> Prop
+  current_or_latest : Slice -> Archive -> Prop
+  self_model_reads_slice : self_model_ctx.Obj -> Slice -> Prop
+  minimal_presence : self_model_ctx.Obj -> Slice -> Prop
+  readable_slice_projects_to_memory_record :
+    ∀ m s,
+      (self_model_ctx.inside_universe m /\
+        SelfModelObject self_model_ctx m /\
+        in_archive s (archive_of m) /\
+        current_or_latest s (archive_of m) /\
+        self_model_reads_slice m s) ->
+      exists x : memory_ctx.Obj,
+        memory_ctx.inside_universe x /\
+        RecordObject memory_ctx x
+  self_model_contact_gives_events_become_memory :
+    ∀ m s,
+      (self_model_ctx.inside_universe m /\
+        SelfModelObject self_model_ctx m /\
+        in_archive s (archive_of m) /\
+        current_or_latest s (archive_of m) /\
+        self_model_reads_slice m s) ->
+      u.eventsBecomeMemory
+  contact_tick_inside_gives_subjective_time :
+    (exists m : self_model_ctx.Obj,
+      exists s : Slice,
+        self_model_ctx.inside_universe m /\
+        SelfModelObject self_model_ctx m /\
+        in_archive s (archive_of m) /\
+        current_or_latest s (archive_of m) /\
+        self_model_reads_slice m s /\
+        minimal_presence m s) -> u.selfObservation
+
+def MemorySliceObject {u : InterfaceProfile}
+    (ctx : SubjectiveTimeContext u)
+    (m : ctx.self_model_ctx.Obj)
+    (s : ctx.Slice) : Prop :=
+  ctx.self_model_ctx.inside_universe m /\
+  SelfModelObject ctx.self_model_ctx m /\
+  ctx.in_archive s (ctx.archive_of m)
+
+def CurrentMemorySliceContact {u : InterfaceProfile}
+    (ctx : SubjectiveTimeContext u)
+    (m : ctx.self_model_ctx.Obj)
+    (s : ctx.Slice) : Prop :=
+  MemorySliceObject ctx m s /\
+  ctx.current_or_latest s (ctx.archive_of m) /\
+  ctx.self_model_reads_slice m s
+
+def MinimalPresenceTick {u : InterfaceProfile}
+    (ctx : SubjectiveTimeContext u) : Prop :=
+  exists m : ctx.self_model_ctx.Obj,
+    exists s : ctx.Slice,
+      CurrentMemorySliceContact ctx m s /\
+      ctx.minimal_presence m s
+
+def SubjectiveTimeInside (u : InterfaceProfile) : Prop :=
+  u.selfModel /\ u.eventsBecomeMemory /\ u.selfObservation
+
+def UniverseAsSelfModelOfMemory (u : InterfaceProfile) : Prop :=
+  u.record /\ u.selfModel
+
+structure LowLevelSubjectiveTimeTrace {u : InterfaceProfile}
+    (ctx : SubjectiveTimeContext u) where
+  model_carrier : ctx.self_model_ctx.Obj
+  slice_carrier : ctx.Slice
+  inside : ctx.self_model_ctx.inside_universe model_carrier
+  self_model : SelfModelObject ctx.self_model_ctx model_carrier
+  slice_in_archive : ctx.in_archive slice_carrier (ctx.archive_of model_carrier)
+  current_or_latest :
+    ctx.current_or_latest slice_carrier (ctx.archive_of model_carrier)
+  reads_slice : ctx.self_model_reads_slice model_carrier slice_carrier
+  minimal_presence : ctx.minimal_presence model_carrier slice_carrier
+
+theorem memory_slice_object_unfolds
+    {u : InterfaceProfile}
+    (ctx : SubjectiveTimeContext u)
+    (m : ctx.self_model_ctx.Obj)
+    (s : ctx.Slice) :
+    MemorySliceObject ctx m s <->
+      ctx.self_model_ctx.inside_universe m /\
+      SelfModelObject ctx.self_model_ctx m /\
+      ctx.in_archive s (ctx.archive_of m) := by
+  rfl
+
+theorem current_memory_slice_contact_unfolds
+    {u : InterfaceProfile}
+    (ctx : SubjectiveTimeContext u)
+    (m : ctx.self_model_ctx.Obj)
+    (s : ctx.Slice) :
+    CurrentMemorySliceContact ctx m s <->
+      MemorySliceObject ctx m s /\
+      ctx.current_or_latest s (ctx.archive_of m) /\
+      ctx.self_model_reads_slice m s := by
+  rfl
+
+theorem low_level_subjective_time_trace_gives_minimal_presence_tick
+    {u : InterfaceProfile}
+    {ctx : SubjectiveTimeContext u} :
+    LowLevelSubjectiveTimeTrace ctx -> MinimalPresenceTick ctx := by
+  intro h
+  exact ⟨
+    h.model_carrier,
+    h.slice_carrier,
+    ⟨
+      ⟨h.inside, h.self_model, h.slice_in_archive⟩,
+      h.current_or_latest,
+      h.reads_slice
+    ⟩,
+    h.minimal_presence
+  ⟩
+
+theorem low_level_subjective_time_trace_gives_self_model_inside
+    {u : InterfaceProfile}
+    {ctx : SubjectiveTimeContext u} :
+    LowLevelSubjectiveTimeTrace ctx ->
+      SelfModelWitnessInside ctx.self_model_ctx := by
+  intro h
+  exact ⟨h.model_carrier, h.inside, h.self_model⟩
+
+theorem low_level_subjective_time_trace_gives_universe_as_self_model_of_memory
+    {u : InterfaceProfile}
+    {ctx : SubjectiveTimeContext u} :
+    LowLevelSubjectiveTimeTrace ctx -> UniverseAsSelfModelOfMemory u := by
+  intro h
+  have hContact :
+      ctx.self_model_ctx.inside_universe h.model_carrier /\
+      SelfModelObject ctx.self_model_ctx h.model_carrier /\
+      ctx.in_archive h.slice_carrier (ctx.archive_of h.model_carrier) /\
+      ctx.current_or_latest h.slice_carrier (ctx.archive_of h.model_carrier) /\
+      ctx.self_model_reads_slice h.model_carrier h.slice_carrier :=
+    ⟨h.inside, h.self_model, h.slice_in_archive, h.current_or_latest, h.reads_slice⟩
+  rcases ctx.readable_slice_projects_to_memory_record
+      h.model_carrier h.slice_carrier hContact with
+    ⟨x, hRecordInside, hRecord⟩
+  exact ⟨
+    stable_trace_inside_gives_physical_record
+      ctx.memory_ctx
+      ⟨x, hRecordInside, hRecord⟩,
+    self_model_inside_gives_profile_self_model
+      ctx.self_model_ctx
+      (low_level_subjective_time_trace_gives_self_model_inside h)
+  ⟩
+
+theorem low_level_subjective_time_trace_gives_subjective_time_inside
+    {u : InterfaceProfile}
+    {ctx : SubjectiveTimeContext u} :
+    LowLevelSubjectiveTimeTrace ctx -> SubjectiveTimeInside u := by
+  intro h
+  have hContact :
+      ctx.self_model_ctx.inside_universe h.model_carrier /\
+      SelfModelObject ctx.self_model_ctx h.model_carrier /\
+      ctx.in_archive h.slice_carrier (ctx.archive_of h.model_carrier) /\
+      ctx.current_or_latest h.slice_carrier (ctx.archive_of h.model_carrier) /\
+      ctx.self_model_reads_slice h.model_carrier h.slice_carrier :=
+    ⟨h.inside, h.self_model, h.slice_in_archive, h.current_or_latest, h.reads_slice⟩
+  exact ⟨
+    (low_level_subjective_time_trace_gives_universe_as_self_model_of_memory h).right,
+    ctx.self_model_contact_gives_events_become_memory
+      h.model_carrier h.slice_carrier hContact,
+    ctx.contact_tick_inside_gives_subjective_time
+      ⟨h.model_carrier, h.slice_carrier,
+        h.inside, h.self_model, h.slice_in_archive,
+        h.current_or_latest, h.reads_slice, h.minimal_presence⟩
+  ⟩
+
+/-!
+Block-universe scan, projection slices, and minimal light tick.
+
+This v3 layer interprets subjective time as the thickness of a reread contact
+between a self-model and the current or latest internal slice that arose from
+scanning an external block-universe domain. The light-boundary case is treated
+as a minimal tick reading, aligned with the existing lightlike zero proper
+duration boundary in `BridgePhysics`.
+-/
+
+structure BlockUniverseSubjectiveTimeContext (u : InterfaceProfile) where
+  subjective_ctx : SubjectiveTimeContext u
+  Domain : Type
+  Artifact : Type
+  scan_domain : subjective_ctx.self_model_ctx.Obj -> Domain -> Prop
+  artifact_from_scan : subjective_ctx.self_model_ctx.Obj -> Domain -> Artifact -> Prop
+  projects_to_slice : Artifact -> subjective_ctx.Slice -> Prop
+  internal_projection_of_slice : subjective_ctx.Slice -> Prop
+  rereads_current_or_latest_slice :
+    subjective_ctx.self_model_ctx.Obj -> subjective_ctx.Slice -> Prop
+  slice_thickness_tick : subjective_ctx.Slice -> Prop
+  light_tick_boundary : subjective_ctx.Slice -> Prop
+  light_tick_boundary_gives_minimal_tick :
+    ∀ s : subjective_ctx.Slice,
+      light_tick_boundary s -> slice_thickness_tick s
+  block_scan_contact_gives_subjective_time :
+    (exists m : subjective_ctx.self_model_ctx.Obj,
+      exists d : Domain,
+      exists a : Artifact,
+      exists s : subjective_ctx.Slice,
+        scan_domain m d /\
+        artifact_from_scan m d a /\
+        projects_to_slice a s /\
+        internal_projection_of_slice s /\
+        rereads_current_or_latest_slice m s /\
+        slice_thickness_tick s) -> u.selfObservation
+
+def BlockScanArtifact {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (m : ctx.subjective_ctx.self_model_ctx.Obj)
+    (d : ctx.Domain)
+    (a : ctx.Artifact) : Prop :=
+  ctx.scan_domain m d /\ ctx.artifact_from_scan m d a
+
+def ProjectionSliceFromArtifact {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (m : ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.Artifact)
+    (s : ctx.subjective_ctx.Slice) : Prop :=
+  ctx.projects_to_slice a s /\
+  ctx.internal_projection_of_slice s /\
+  ctx.subjective_ctx.in_archive s (ctx.subjective_ctx.archive_of m)
+
+def LastSliceRereadContact {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (m : ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.Artifact)
+    (s : ctx.subjective_ctx.Slice) : Prop :=
+  ProjectionSliceFromArtifact ctx m a s /\
+  ctx.subjective_ctx.current_or_latest s (ctx.subjective_ctx.archive_of m) /\
+  ctx.subjective_ctx.self_model_reads_slice m s /\
+  ctx.rereads_current_or_latest_slice m s
+
+def SubjectiveTimeTick {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (m : ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.Artifact)
+    (s : ctx.subjective_ctx.Slice) : Prop :=
+  LastSliceRereadContact ctx m a s /\
+  ctx.slice_thickness_tick s
+
+def MinimalLightTick {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (s : ctx.subjective_ctx.Slice) : Prop :=
+  ctx.light_tick_boundary s /\ ctx.slice_thickness_tick s
+
+def SubjectiveTimeAsSelfReread (u : InterfaceProfile) : Prop :=
+  u.selfModel /\ u.eventsBecomeMemory /\ u.selfObservation
+
+structure LowLevelBlockScanTrace {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u) where
+  model_carrier : ctx.subjective_ctx.self_model_ctx.Obj
+  domain_carrier : ctx.Domain
+  artifact_carrier : ctx.Artifact
+  slice_carrier : ctx.subjective_ctx.Slice
+  inside : ctx.subjective_ctx.self_model_ctx.inside_universe model_carrier
+  self_model : SelfModelObject ctx.subjective_ctx.self_model_ctx model_carrier
+  scan_domain : ctx.scan_domain model_carrier domain_carrier
+  artifact_from_scan :
+    ctx.artifact_from_scan model_carrier domain_carrier artifact_carrier
+  projects_to_slice : ctx.projects_to_slice artifact_carrier slice_carrier
+  internal_projection_of_slice : ctx.internal_projection_of_slice slice_carrier
+  slice_in_archive :
+    ctx.subjective_ctx.in_archive
+      slice_carrier
+      (ctx.subjective_ctx.archive_of model_carrier)
+  current_or_latest :
+    ctx.subjective_ctx.current_or_latest
+      slice_carrier
+      (ctx.subjective_ctx.archive_of model_carrier)
+  reads_slice :
+    ctx.subjective_ctx.self_model_reads_slice model_carrier slice_carrier
+  rereads_current_or_latest_slice :
+    ctx.rereads_current_or_latest_slice model_carrier slice_carrier
+  slice_thickness_tick : ctx.slice_thickness_tick slice_carrier
+
+theorem block_scan_artifact_unfolds
+    {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (m : ctx.subjective_ctx.self_model_ctx.Obj)
+    (d : ctx.Domain)
+    (a : ctx.Artifact) :
+    BlockScanArtifact ctx m d a <->
+      ctx.scan_domain m d /\ ctx.artifact_from_scan m d a := by
+  rfl
+
+theorem projection_slice_from_artifact_unfolds
+    {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (m : ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.Artifact)
+    (s : ctx.subjective_ctx.Slice) :
+    ProjectionSliceFromArtifact ctx m a s <->
+      ctx.projects_to_slice a s /\
+      ctx.internal_projection_of_slice s /\
+      ctx.subjective_ctx.in_archive s (ctx.subjective_ctx.archive_of m) := by
+  rfl
+
+theorem last_slice_reread_contact_unfolds
+    {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (m : ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.Artifact)
+    (s : ctx.subjective_ctx.Slice) :
+    LastSliceRereadContact ctx m a s <->
+      ProjectionSliceFromArtifact ctx m a s /\
+      ctx.subjective_ctx.current_or_latest s (ctx.subjective_ctx.archive_of m) /\
+      ctx.subjective_ctx.self_model_reads_slice m s /\
+      ctx.rereads_current_or_latest_slice m s := by
+  rfl
+
+theorem low_level_block_scan_trace_gives_subjective_time_tick
+    {u : InterfaceProfile}
+    {ctx : BlockUniverseSubjectiveTimeContext u} :
+    LowLevelBlockScanTrace ctx ->
+      ∃ m : ctx.subjective_ctx.self_model_ctx.Obj,
+        ∃ a : ctx.Artifact,
+          ∃ s : ctx.subjective_ctx.Slice,
+            SubjectiveTimeTick ctx m a s := by
+  intro h
+  exact ⟨
+    h.model_carrier,
+    h.artifact_carrier,
+    h.slice_carrier,
+    ⟨
+      ⟨
+        ⟨h.projects_to_slice, h.internal_projection_of_slice, h.slice_in_archive⟩,
+        h.current_or_latest,
+        h.reads_slice,
+        h.rereads_current_or_latest_slice
+      ⟩,
+      h.slice_thickness_tick
+    ⟩
+  ⟩
+
+theorem low_level_block_scan_trace_gives_subjective_time_as_self_reread
+    {u : InterfaceProfile}
+    {ctx : BlockUniverseSubjectiveTimeContext u} :
+    LowLevelBlockScanTrace ctx -> SubjectiveTimeAsSelfReread u := by
+  intro h
+  have hSelfModelInside :
+      SelfModelWitnessInside ctx.subjective_ctx.self_model_ctx :=
+    ⟨h.model_carrier, h.inside, h.self_model⟩
+  have hSubjectiveContact :
+      ctx.subjective_ctx.self_model_ctx.inside_universe h.model_carrier /\
+      SelfModelObject ctx.subjective_ctx.self_model_ctx h.model_carrier /\
+      ctx.subjective_ctx.in_archive
+        h.slice_carrier
+        (ctx.subjective_ctx.archive_of h.model_carrier) /\
+      ctx.subjective_ctx.current_or_latest
+        h.slice_carrier
+        (ctx.subjective_ctx.archive_of h.model_carrier) /\
+      ctx.subjective_ctx.self_model_reads_slice h.model_carrier h.slice_carrier :=
+    ⟨h.inside, h.self_model, h.slice_in_archive, h.current_or_latest, h.reads_slice⟩
+  exact ⟨
+    self_model_inside_gives_profile_self_model
+      ctx.subjective_ctx.self_model_ctx
+      hSelfModelInside,
+    ctx.subjective_ctx.self_model_contact_gives_events_become_memory
+      h.model_carrier h.slice_carrier hSubjectiveContact,
+    ctx.block_scan_contact_gives_subjective_time
+      ⟨h.model_carrier, h.domain_carrier, h.artifact_carrier, h.slice_carrier,
+        h.scan_domain, h.artifact_from_scan, h.projects_to_slice,
+        h.internal_projection_of_slice, h.rereads_current_or_latest_slice,
+        h.slice_thickness_tick⟩
+  ⟩
+
+/--
+Semantic alias aligned with the existing
+`BridgePhysics.speed_of_light_cap_has_lightlike_zero_proper_duration` and
+`BridgePhysics.light_photon_lifecycle_trace_zero_proper_duration` boundary
+reading: a light-boundary slice is treated here as a minimal tick case.
+-/
+theorem light_boundary_tick_is_minimal_tick
+    {u : InterfaceProfile}
+    (ctx : BlockUniverseSubjectiveTimeContext u)
+    (s : ctx.subjective_ctx.Slice) :
+    MinimalLightTick ctx s -> ctx.slice_thickness_tick s := by
+  intro h
+  have _hCap :
+      BridgePhysics.LightlikeZeroProperDurationParameter
+        BridgePhysics.speedOfLightMetersPerSecond :=
+    BridgePhysics.speed_of_light_cap_has_lightlike_zero_proper_duration
+  have _hLifecycle :
+      BridgePhysics.LightlikeZeroProperDuration
+        (BridgePhysics.photonLifecycleTraceOfLightMetric
+          (BridgePhysics.lightPhotonBridgeMetric BridgePhysics.LightBridgeLevel.G4)) :=
+    BridgePhysics.light_photon_lifecycle_trace_zero_proper_duration
+      (BridgePhysics.lightPhotonBridgeMetric BridgePhysics.LightBridgeLevel.G4)
+  exact ctx.light_tick_boundary_gives_minimal_tick s h.1
+
+/-!
+Four-axis block closure and dual light tick.
+
+This v4 layer keeps the four-dimensional block reading abstract: three
+spatial axes and one temporal axis have opposite boundary points that tend
+toward closure. The light-speed closure point is not identified with time;
+it is read as a dual boundary, externally the unachieved maximum physical
+cap and internally the minimal lightlike tick.
+-/
+
+structure FourAxisBlockClosureContext (u : InterfaceProfile) where
+  block_ctx : BlockUniverseSubjectiveTimeContext u
+  Axis : Type
+  BoundaryPoint : Type
+  ClosurePoint : Type
+  spatial_axis : Axis -> Prop
+  temporal_axis : Axis -> Prop
+  axis_boundary : Axis -> BoundaryPoint -> Prop
+  oppositely_directed : BoundaryPoint -> BoundaryPoint -> Prop
+  tends_to_close : BoundaryPoint -> BoundaryPoint -> Prop
+  closes_at : Axis -> BoundaryPoint -> BoundaryPoint -> ClosurePoint -> Prop
+  three_spatial_one_temporal :
+    exists x y z t : Axis,
+      spatial_axis x /\
+      spatial_axis y /\
+      spatial_axis z /\
+      temporal_axis t /\
+      x ≠ y /\ x ≠ z /\ y ≠ z /\
+      t ≠ x /\ t ≠ y /\ t ≠ z
+  unique_closure_point :
+    exists c : ClosurePoint,
+      forall (a : Axis) (p q : BoundaryPoint),
+        axis_boundary a p ->
+        axis_boundary a q ->
+        oppositely_directed p q ->
+        tends_to_close p q ->
+        closes_at a p q c
+  closure_point_has_light_speed : ClosurePoint -> Prop
+  light_speed_closure_gives_dual_tick :
+    forall c : ClosurePoint,
+      closure_point_has_light_speed c ->
+        (closure_point_has_light_speed c /\
+          BridgePhysics.UnachievedMaximumParameter
+            BridgePhysics.speedOfLightMetersPerSecond) /\
+        (closure_point_has_light_speed c /\
+          BridgePhysics.LightlikeZeroProperDurationParameter
+            BridgePhysics.speedOfLightMetersPerSecond)
+
+def AxisBoundaryPair {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (a : ctx.Axis)
+    (p q : ctx.BoundaryPoint) : Prop :=
+  ctx.axis_boundary a p /\
+  ctx.axis_boundary a q /\
+  ctx.oppositely_directed p q
+
+def AxisClosureAttempt {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (a : ctx.Axis)
+    (p q : ctx.BoundaryPoint) : Prop :=
+  AxisBoundaryPair ctx a p q /\ ctx.tends_to_close p q
+
+def LightClosurePoint {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) : Prop :=
+  ctx.closure_point_has_light_speed c
+
+def MaximalExternalLightTick {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) : Prop :=
+  LightClosurePoint ctx c /\
+  BridgePhysics.UnachievedMaximumParameter
+    BridgePhysics.speedOfLightMetersPerSecond
+
+def MinimalInternalLightTick {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) : Prop :=
+  LightClosurePoint ctx c /\
+  BridgePhysics.LightlikeZeroProperDurationParameter
+    BridgePhysics.speedOfLightMetersPerSecond
+
+def LightClosureDualTick {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) : Prop :=
+  MaximalExternalLightTick ctx c /\ MinimalInternalLightTick ctx c
+
+def FourAxisSubjectiveClosureTime (u : InterfaceProfile) : Prop :=
+  u.selfModel /\ u.eventsBecomeMemory /\ u.selfObservation
+
+theorem axis_boundary_pair_unfolds
+    {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (a : ctx.Axis)
+    (p q : ctx.BoundaryPoint) :
+    AxisBoundaryPair ctx a p q <->
+      ctx.axis_boundary a p /\
+      ctx.axis_boundary a q /\
+      ctx.oppositely_directed p q := by
+  rfl
+
+theorem axis_closure_attempt_unfolds
+    {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (a : ctx.Axis)
+    (p q : ctx.BoundaryPoint) :
+    AxisClosureAttempt ctx a p q <->
+      AxisBoundaryPair ctx a p q /\ ctx.tends_to_close p q := by
+  rfl
+
+theorem light_closure_dual_tick_unfolds
+    {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) :
+    LightClosureDualTick ctx c <->
+      MaximalExternalLightTick ctx c /\ MinimalInternalLightTick ctx c := by
+  rfl
+
+theorem speed_of_light_closure_is_external_maximum
+    {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) :
+    LightClosurePoint ctx c -> MaximalExternalLightTick ctx c := by
+  intro hLight
+  exact ⟨hLight, BridgePhysics.speed_of_light_cap_is_unachieved_maximum⟩
+
+theorem speed_of_light_closure_is_internal_minimum
+    {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) :
+    LightClosurePoint ctx c -> MinimalInternalLightTick ctx c := by
+  intro hLight
+  exact ⟨
+    hLight,
+    BridgePhysics.speed_of_light_cap_has_lightlike_zero_proper_duration
+  ⟩
+
+theorem speed_of_light_closure_is_dual_tick
+    {u : InterfaceProfile}
+    (ctx : FourAxisBlockClosureContext u)
+    (c : ctx.ClosurePoint) :
+    LightClosurePoint ctx c -> LightClosureDualTick ctx c := by
+  intro hLight
+  exact ⟨
+    speed_of_light_closure_is_external_maximum ctx c hLight,
+    speed_of_light_closure_is_internal_minimum ctx c hLight
+  ⟩
+
+theorem speed_of_light_closure_has_value_299792458 :
+    BridgePhysics.speedOfLightMetersPerSecond.significand = 299792458 := by
+  exact BridgePhysics.speed_of_light_value_mps_299792458
+
+theorem low_level_block_scan_trace_with_closure_gives_four_axis_subjective_closure_time
+    {u : InterfaceProfile}
+    {ctx : FourAxisBlockClosureContext u} :
+    LowLevelBlockScanTrace ctx.block_ctx -> FourAxisSubjectiveClosureTime u := by
+  intro h
+  exact low_level_block_scan_trace_gives_subjective_time_as_self_reread h
+
+/-!
+Self-model time-axis overlay on the block temporal axis.
+
+This v5 layer places the self-model's internal axis of subjective ticks onto
+the external temporal axis of the four-axis block. The overlay is not an
+identity of axes; it is a reading relation saying that internal reread-ticks
+can be positioned on the block's temporal axis.
+-/
+
+structure SelfModelTimeAxisOverlayContext (u : InterfaceProfile) where
+  closure_ctx : FourAxisBlockClosureContext u
+  InternalAxis : Type
+  InternalTick : Type
+  internal_time_axis : InternalAxis -> Prop
+  tick_on_internal_axis : InternalTick -> InternalAxis -> Prop
+  tick_reads_slice :
+    InternalTick -> closure_ctx.block_ctx.subjective_ctx.Slice -> Prop
+  overlays_external_axis : InternalAxis -> closure_ctx.Axis -> Prop
+  overlay_targets_temporal_axis :
+    ∀ ia ea,
+      internal_time_axis ia ->
+      overlays_external_axis ia ea ->
+      closure_ctx.temporal_axis ea
+
+def InternalSelfModelTimeAxis {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (ia : ctx.InternalAxis) : Prop :=
+  ctx.internal_time_axis ia
+
+def ExternalBlockTemporalAxis {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (ea : ctx.closure_ctx.Axis) : Prop :=
+  ctx.closure_ctx.temporal_axis ea
+
+def InternalTimeAxisPlacedOnBlockTime {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (ia : ctx.InternalAxis)
+    (ea : ctx.closure_ctx.Axis) : Prop :=
+  InternalSelfModelTimeAxis ctx ia /\
+  ExternalBlockTemporalAxis ctx ea /\
+  ctx.overlays_external_axis ia ea
+
+def SelfModelTickOnTimeOverlay {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (tick : ctx.InternalTick)
+    (ia : ctx.InternalAxis)
+    (ea : ctx.closure_ctx.Axis) : Prop :=
+  InternalTimeAxisPlacedOnBlockTime ctx ia ea /\
+  ctx.tick_on_internal_axis tick ia
+
+def SubjectiveTickPlacedOnBlockTemporalAxis {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (tick : ctx.InternalTick)
+    (ia : ctx.InternalAxis)
+    (ea : ctx.closure_ctx.Axis)
+    (m : ctx.closure_ctx.block_ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.closure_ctx.block_ctx.Artifact)
+    (s : ctx.closure_ctx.block_ctx.subjective_ctx.Slice) : Prop :=
+  SelfModelTickOnTimeOverlay ctx tick ia ea /\
+  ctx.tick_reads_slice tick s /\
+  SubjectiveTimeTick ctx.closure_ctx.block_ctx m a s
+
+def SelfModelTimeAxisOnBlockTime (u : InterfaceProfile) : Prop :=
+  u.selfModel /\ u.selfObservation
+
+structure LowLevelSelfModelTimeAxisOverlayTrace {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u) where
+  internal_axis_carrier : ctx.InternalAxis
+  external_axis_carrier : ctx.closure_ctx.Axis
+  tick_carrier : ctx.InternalTick
+  model_carrier :
+    ctx.closure_ctx.block_ctx.subjective_ctx.self_model_ctx.Obj
+  artifact_carrier : ctx.closure_ctx.block_ctx.Artifact
+  slice_carrier : ctx.closure_ctx.block_ctx.subjective_ctx.Slice
+  internal_axis : ctx.internal_time_axis internal_axis_carrier
+  overlays_axis :
+    ctx.overlays_external_axis internal_axis_carrier external_axis_carrier
+  tick_on_axis :
+    ctx.tick_on_internal_axis tick_carrier internal_axis_carrier
+  tick_reads_slice : ctx.tick_reads_slice tick_carrier slice_carrier
+  subjective_tick :
+    SubjectiveTimeTick
+      ctx.closure_ctx.block_ctx
+      model_carrier
+      artifact_carrier
+      slice_carrier
+
+theorem internal_time_axis_placed_on_block_time_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (ia : ctx.InternalAxis)
+    (ea : ctx.closure_ctx.Axis) :
+    InternalTimeAxisPlacedOnBlockTime ctx ia ea <->
+      InternalSelfModelTimeAxis ctx ia /\
+      ExternalBlockTemporalAxis ctx ea /\
+      ctx.overlays_external_axis ia ea := by
+  rfl
+
+theorem self_model_tick_on_time_overlay_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (tick : ctx.InternalTick)
+    (ia : ctx.InternalAxis)
+    (ea : ctx.closure_ctx.Axis) :
+    SelfModelTickOnTimeOverlay ctx tick ia ea <->
+      InternalTimeAxisPlacedOnBlockTime ctx ia ea /\
+      ctx.tick_on_internal_axis tick ia := by
+  rfl
+
+theorem subjective_tick_placed_on_block_temporal_axis_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (tick : ctx.InternalTick)
+    (ia : ctx.InternalAxis)
+    (ea : ctx.closure_ctx.Axis)
+    (m : ctx.closure_ctx.block_ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.closure_ctx.block_ctx.Artifact)
+    (s : ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    SubjectiveTickPlacedOnBlockTemporalAxis ctx tick ia ea m a s <->
+      SelfModelTickOnTimeOverlay ctx tick ia ea /\
+      ctx.tick_reads_slice tick s /\
+      SubjectiveTimeTick ctx.closure_ctx.block_ctx m a s := by
+  rfl
+
+theorem internal_time_axis_overlay_targets_temporal_axis
+    {u : InterfaceProfile}
+    (ctx : SelfModelTimeAxisOverlayContext u)
+    (ia : ctx.InternalAxis)
+    (ea : ctx.closure_ctx.Axis) :
+    InternalSelfModelTimeAxis ctx ia ->
+      ctx.overlays_external_axis ia ea ->
+      ExternalBlockTemporalAxis ctx ea := by
+  intro hInternal hOverlay
+  exact ctx.overlay_targets_temporal_axis ia ea hInternal hOverlay
+
+theorem low_level_self_model_time_axis_overlay_trace_gives_axis_placement
+    {u : InterfaceProfile}
+    {ctx : SelfModelTimeAxisOverlayContext u} :
+    LowLevelSelfModelTimeAxisOverlayTrace ctx ->
+      exists ia : ctx.InternalAxis,
+        exists ea : ctx.closure_ctx.Axis,
+          InternalTimeAxisPlacedOnBlockTime ctx ia ea := by
+  intro h
+  exact ⟨
+    h.internal_axis_carrier,
+    h.external_axis_carrier,
+    h.internal_axis,
+    internal_time_axis_overlay_targets_temporal_axis
+      ctx h.internal_axis_carrier h.external_axis_carrier
+      h.internal_axis h.overlays_axis,
+    h.overlays_axis
+  ⟩
+
+theorem low_level_self_model_time_axis_overlay_trace_gives_subjective_tick_on_block_time
+    {u : InterfaceProfile}
+    {ctx : SelfModelTimeAxisOverlayContext u} :
+    LowLevelSelfModelTimeAxisOverlayTrace ctx ->
+      exists tick : ctx.InternalTick,
+        exists ia : ctx.InternalAxis,
+          exists ea : ctx.closure_ctx.Axis,
+            exists m : ctx.closure_ctx.block_ctx.subjective_ctx.self_model_ctx.Obj,
+              exists a : ctx.closure_ctx.block_ctx.Artifact,
+                exists s : ctx.closure_ctx.block_ctx.subjective_ctx.Slice,
+                  SubjectiveTickPlacedOnBlockTemporalAxis
+                    ctx tick ia ea m a s := by
+  intro h
+  exact ⟨
+    h.tick_carrier,
+    h.internal_axis_carrier,
+    h.external_axis_carrier,
+    h.model_carrier,
+    h.artifact_carrier,
+    h.slice_carrier,
+    ⟨
+      ⟨
+        h.internal_axis,
+        internal_time_axis_overlay_targets_temporal_axis
+          ctx h.internal_axis_carrier h.external_axis_carrier
+          h.internal_axis h.overlays_axis,
+        h.overlays_axis
+      ⟩,
+      h.tick_on_axis
+    ⟩,
+    h.tick_reads_slice,
+    h.subjective_tick
+  ⟩
+
+theorem low_level_self_model_time_axis_overlay_trace_gives_profile_overlay
+    {u : InterfaceProfile}
+    {ctx : SelfModelTimeAxisOverlayContext u} :
+    LowLevelSelfModelTimeAxisOverlayTrace ctx ->
+      LowLevelBlockScanTrace ctx.closure_ctx.block_ctx ->
+      SelfModelTimeAxisOnBlockTime u := by
+  intro _hOverlay hBlock
+  have hProfile :
+      SubjectiveTimeAsSelfReread u :=
+    low_level_block_scan_trace_gives_subjective_time_as_self_reread hBlock
+  exact ⟨hProfile.left, hProfile.right.right⟩
+
+/-!
+Self-model domain-tick boundary.
+
+This v6 layer keeps the block-universe inside the self-model reading: time is
+an internal interface of self-touching projection slices. A domain block tick
+is read through the existing light-speed boundary. Other self-model
+invariants do not catch that domain tick: if a non-domain invariant reaches
+the domain tick, the context reads this as destructive full merger, hence as
+identification with the domain block and contradiction with being non-domain.
+-/
+
+structure SelfModelDomainTickBoundaryContext (u : InterfaceProfile) where
+  overlay_ctx : SelfModelTimeAxisOverlayContext u
+  Invariant : Type
+  block_domain_lives_in_self_model : Prop
+  tick_flow_order : overlay_ctx.InternalTick -> overlay_ctx.InternalTick -> Prop
+  slice_flow_order :
+    overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice ->
+      overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice -> Prop
+  tick_order_projects_to_slice_order :
+    forall
+      (tick₁ tick₂ : overlay_ctx.InternalTick)
+      (slice₁ slice₂ :
+        overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice),
+        overlay_ctx.tick_reads_slice tick₁ slice₁ ->
+        overlay_ctx.tick_reads_slice tick₂ slice₂ ->
+        tick_flow_order tick₁ tick₂ ->
+        slice_flow_order slice₁ slice₂
+  domain_block_tick : overlay_ctx.InternalTick -> Prop
+  invariant_inside_self_model : Invariant -> Prop
+  invariant_is_domain_block : Invariant -> Prop
+  invariant_ticks_at : Invariant -> overlay_ctx.InternalTick -> Prop
+  destructive_full_merge : Invariant -> Prop
+  invariant_reaching_domain_tick_collapses :
+    forall (inv : Invariant) (tick : overlay_ctx.InternalTick),
+      invariant_inside_self_model inv ->
+      ¬ invariant_is_domain_block inv ->
+      invariant_ticks_at inv tick ->
+      domain_block_tick tick ->
+      destructive_full_merge inv
+  collapse_identifies_invariant_with_domain :
+    forall inv : Invariant,
+      destructive_full_merge inv -> invariant_is_domain_block inv
+
+def BlockDomainInsideSelfModel {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u) : Prop :=
+  ctx.block_domain_lives_in_self_model
+
+def SelfTouchProjectionSliceTick {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick : ctx.overlay_ctx.InternalTick)
+    (ia : ctx.overlay_ctx.InternalAxis)
+    (ea : ctx.overlay_ctx.closure_ctx.Axis)
+    (m :
+      ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.overlay_ctx.closure_ctx.block_ctx.Artifact)
+    (s : ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) : Prop :=
+  SubjectiveTickPlacedOnBlockTemporalAxis ctx.overlay_ctx tick ia ea m a s
+
+def OrderedProjectionSliceStep {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick₁ tick₂ : ctx.overlay_ctx.InternalTick)
+    (slice₁ slice₂ :
+      ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) : Prop :=
+  ctx.overlay_ctx.tick_reads_slice tick₁ slice₁ /\
+  ctx.overlay_ctx.tick_reads_slice tick₂ slice₂ /\
+  ctx.tick_flow_order tick₁ tick₂ /\
+  ctx.slice_flow_order slice₁ slice₂
+
+def DomainBlockTick {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick : ctx.overlay_ctx.InternalTick) : Prop :=
+  ctx.domain_block_tick tick
+
+def DomainBlockLightTick {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick : ctx.overlay_ctx.InternalTick) : Prop :=
+  DomainBlockTick ctx tick /\
+  BridgePhysics.UnachievedMaximumParameter
+    BridgePhysics.speedOfLightMetersPerSecond /\
+  BridgePhysics.LightlikeZeroProperDurationParameter
+    BridgePhysics.speedOfLightMetersPerSecond
+
+def NonDomainInvariantTickAttempt {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (inv : ctx.Invariant)
+    (tick : ctx.overlay_ctx.InternalTick) : Prop :=
+  ctx.invariant_inside_self_model inv /\
+  ¬ ctx.invariant_is_domain_block inv /\
+  ctx.invariant_ticks_at inv tick /\
+  DomainBlockTick ctx tick
+
+def SelfModelDomainTickTime (u : InterfaceProfile) : Prop :=
+  u.selfModel /\ u.eventsBecomeMemory /\ u.selfObservation
+
+structure LowLevelSelfModelDomainTickFlowTrace {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u) where
+  earlier_tick : ctx.overlay_ctx.InternalTick
+  later_tick : ctx.overlay_ctx.InternalTick
+  earlier_slice : ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice
+  later_slice : ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice
+  block_inside : ctx.block_domain_lives_in_self_model
+  earlier_reads_slice :
+    ctx.overlay_ctx.tick_reads_slice earlier_tick earlier_slice
+  later_reads_slice :
+    ctx.overlay_ctx.tick_reads_slice later_tick later_slice
+  tick_order : ctx.tick_flow_order earlier_tick later_tick
+
+structure LowLevelDomainLightTickTrace {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u) where
+  tick_carrier : ctx.overlay_ctx.InternalTick
+  domain_tick : DomainBlockTick ctx tick_carrier
+
+theorem block_domain_inside_self_model_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u) :
+    BlockDomainInsideSelfModel ctx <->
+      ctx.block_domain_lives_in_self_model := by
+  rfl
+
+theorem self_touch_projection_slice_tick_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick : ctx.overlay_ctx.InternalTick)
+    (ia : ctx.overlay_ctx.InternalAxis)
+    (ea : ctx.overlay_ctx.closure_ctx.Axis)
+    (m :
+      ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.self_model_ctx.Obj)
+    (a : ctx.overlay_ctx.closure_ctx.block_ctx.Artifact)
+    (s : ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    SelfTouchProjectionSliceTick ctx tick ia ea m a s <->
+      SubjectiveTickPlacedOnBlockTemporalAxis
+        ctx.overlay_ctx tick ia ea m a s := by
+  rfl
+
+theorem ordered_projection_slice_step_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick₁ tick₂ : ctx.overlay_ctx.InternalTick)
+    (slice₁ slice₂ :
+      ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    OrderedProjectionSliceStep ctx tick₁ tick₂ slice₁ slice₂ <->
+      ctx.overlay_ctx.tick_reads_slice tick₁ slice₁ /\
+      ctx.overlay_ctx.tick_reads_slice tick₂ slice₂ /\
+      ctx.tick_flow_order tick₁ tick₂ /\
+      ctx.slice_flow_order slice₁ slice₂ := by
+  rfl
+
+theorem domain_block_light_tick_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick : ctx.overlay_ctx.InternalTick) :
+    DomainBlockLightTick ctx tick <->
+      DomainBlockTick ctx tick /\
+      BridgePhysics.UnachievedMaximumParameter
+        BridgePhysics.speedOfLightMetersPerSecond /\
+      BridgePhysics.LightlikeZeroProperDurationParameter
+        BridgePhysics.speedOfLightMetersPerSecond := by
+  rfl
+
+theorem non_domain_invariant_tick_attempt_unfolds
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (inv : ctx.Invariant)
+    (tick : ctx.overlay_ctx.InternalTick) :
+    NonDomainInvariantTickAttempt ctx inv tick <->
+      ctx.invariant_inside_self_model inv /\
+      ¬ ctx.invariant_is_domain_block inv /\
+      ctx.invariant_ticks_at inv tick /\
+      DomainBlockTick ctx tick := by
+  rfl
+
+theorem tick_flow_order_projects_to_projection_slice_flow
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick₁ tick₂ : ctx.overlay_ctx.InternalTick)
+    (slice₁ slice₂ :
+      ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    ctx.overlay_ctx.tick_reads_slice tick₁ slice₁ ->
+      ctx.overlay_ctx.tick_reads_slice tick₂ slice₂ ->
+      ctx.tick_flow_order tick₁ tick₂ ->
+      OrderedProjectionSliceStep ctx tick₁ tick₂ slice₁ slice₂ := by
+  intro hRead₁ hRead₂ hOrder
+  exact ⟨
+    hRead₁,
+    hRead₂,
+    hOrder,
+    ctx.tick_order_projects_to_slice_order
+      tick₁ tick₂ slice₁ slice₂ hRead₁ hRead₂ hOrder
+  ⟩
+
+theorem low_level_self_model_domain_tick_flow_gives_ordered_projection_slice_step
+    {u : InterfaceProfile}
+    {ctx : SelfModelDomainTickBoundaryContext u} :
+    LowLevelSelfModelDomainTickFlowTrace ctx ->
+      exists tick₁ tick₂ : ctx.overlay_ctx.InternalTick,
+        exists slice₁ slice₂ :
+          ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice,
+            OrderedProjectionSliceStep ctx tick₁ tick₂ slice₁ slice₂ := by
+  intro h
+  exact ⟨
+    h.earlier_tick,
+    h.later_tick,
+    h.earlier_slice,
+    h.later_slice,
+    tick_flow_order_projects_to_projection_slice_flow
+      ctx
+      h.earlier_tick
+      h.later_tick
+      h.earlier_slice
+      h.later_slice
+      h.earlier_reads_slice
+      h.later_reads_slice
+      h.tick_order
+  ⟩
+
+theorem low_level_self_model_domain_tick_flow_gives_block_inside
+    {u : InterfaceProfile}
+    {ctx : SelfModelDomainTickBoundaryContext u} :
+    LowLevelSelfModelDomainTickFlowTrace ctx ->
+      BlockDomainInsideSelfModel ctx := by
+  intro h
+  exact h.block_inside
+
+theorem domain_block_tick_gives_light_boundary
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (tick : ctx.overlay_ctx.InternalTick) :
+    DomainBlockTick ctx tick -> DomainBlockLightTick ctx tick := by
+  intro hTick
+  exact ⟨
+    hTick,
+    BridgePhysics.speed_of_light_cap_is_unachieved_maximum,
+    BridgePhysics.speed_of_light_cap_has_lightlike_zero_proper_duration
+  ⟩
+
+theorem low_level_domain_light_tick_trace_gives_domain_block_light_tick
+    {u : InterfaceProfile}
+    {ctx : SelfModelDomainTickBoundaryContext u} :
+    LowLevelDomainLightTickTrace ctx ->
+      exists tick : ctx.overlay_ctx.InternalTick,
+        DomainBlockLightTick ctx tick := by
+  intro h
+  exact ⟨
+    h.tick_carrier,
+    domain_block_tick_gives_light_boundary ctx h.tick_carrier h.domain_tick
+  ⟩
+
+theorem non_domain_invariant_domain_tick_attempt_collapses
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (inv : ctx.Invariant)
+    (tick : ctx.overlay_ctx.InternalTick) :
+    NonDomainInvariantTickAttempt ctx inv tick ->
+      ctx.destructive_full_merge inv := by
+  intro hAttempt
+  exact ctx.invariant_reaching_domain_tick_collapses
+    inv tick hAttempt.1 hAttempt.2.1 hAttempt.2.2.1 hAttempt.2.2.2
+
+theorem non_domain_invariant_cannot_catch_domain_tick
+    {u : InterfaceProfile}
+    (ctx : SelfModelDomainTickBoundaryContext u)
+    (inv : ctx.Invariant)
+    (tick : ctx.overlay_ctx.InternalTick) :
+    NonDomainInvariantTickAttempt ctx inv tick -> False := by
+  intro hAttempt
+  have hCollapse :
+      ctx.destructive_full_merge inv :=
+    non_domain_invariant_domain_tick_attempt_collapses
+      ctx inv tick hAttempt
+  have hDomain :
+      ctx.invariant_is_domain_block inv :=
+    ctx.collapse_identifies_invariant_with_domain inv hCollapse
+  exact hAttempt.2.1 hDomain
+
+theorem low_level_self_model_domain_tick_flow_with_block_trace_gives_domain_tick_time
+    {u : InterfaceProfile}
+    {ctx : SelfModelDomainTickBoundaryContext u} :
+    LowLevelSelfModelDomainTickFlowTrace ctx ->
+      LowLevelBlockScanTrace ctx.overlay_ctx.closure_ctx.block_ctx ->
+      SelfModelDomainTickTime u := by
+  intro _hFlow hBlock
+  exact low_level_block_scan_trace_gives_subjective_time_as_self_reread hBlock
+
+/-!
+Domain shift and projection curvature.
+
+This v6.1 layer keeps the rotation axis hypothetical and editorial. It records
+the new reading that manipulating around such an axis can create a domain shift:
+when a higher tick desynchronizes from the projection slices, the interface
+surface reads that as projection curvature. This is a general-relativity-inspired
+curvature reading, but not an empirical curvature claim or a derivation of
+Einstein equations; it is a guarded model-editing and projection-order claim.
+-/
+
+structure DomainShiftProjectionCurvatureContext (u : InterfaceProfile) where
+  domain_tick_ctx : SelfModelDomainTickBoundaryContext u
+  RotationAxis : Type
+  rotation_axis : RotationAxis -> Prop
+  hypothetical_axis : RotationAxis -> Prop
+  manipulates_around_axis :
+    RotationAxis -> domain_tick_ctx.overlay_ctx.InternalTick -> Prop
+  higher_tick : domain_tick_ctx.overlay_ctx.InternalTick -> Prop
+  projection_desync :
+    domain_tick_ctx.overlay_ctx.InternalTick ->
+      domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice ->
+        Prop
+  domain_shift :
+    RotationAxis ->
+      domain_tick_ctx.overlay_ctx.InternalTick ->
+        domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice ->
+          Prop
+  projection_curvature :
+    RotationAxis ->
+      domain_tick_ctx.overlay_ctx.InternalTick ->
+        domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice ->
+          Prop
+  higher_tick_desync_gives_domain_shift :
+    forall
+      (axis : RotationAxis)
+      (tick : domain_tick_ctx.overlay_ctx.InternalTick)
+      (slice :
+        domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice),
+        rotation_axis axis ->
+        hypothetical_axis axis ->
+        manipulates_around_axis axis tick ->
+        higher_tick tick ->
+        domain_tick_ctx.overlay_ctx.tick_reads_slice tick slice ->
+        projection_desync tick slice ->
+        domain_shift axis tick slice
+  domain_shift_gives_projection_curvature :
+    forall
+      (axis : RotationAxis)
+      (tick : domain_tick_ctx.overlay_ctx.InternalTick)
+      (slice :
+        domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice),
+        domain_shift axis tick slice ->
+        projection_curvature axis tick slice
+
+def HypotheticalRotationManipulation {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick) : Prop :=
+  ctx.rotation_axis axis /\
+  ctx.hypothetical_axis axis /\
+  ctx.manipulates_around_axis axis tick
+
+def HigherTickProjectionDesync {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+      Prop :=
+  ctx.higher_tick tick /\
+  ctx.domain_tick_ctx.overlay_ctx.tick_reads_slice tick slice /\
+  ctx.projection_desync tick slice
+
+def DomainShiftAtProjection {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+      Prop :=
+  HypotheticalRotationManipulation ctx axis tick /\
+  HigherTickProjectionDesync ctx tick slice /\
+  ctx.domain_shift axis tick slice
+
+def ProjectionCurvatureAtDomainShift {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+      Prop :=
+  DomainShiftAtProjection ctx axis tick slice /\
+  ctx.projection_curvature axis tick slice
+
+def DomainShiftProjectionCurvature (u : InterfaceProfile) : Prop :=
+  u.selfModel /\ u.selfObservation
+
+structure LowLevelDomainShiftTrace {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u) where
+  axis_carrier : ctx.RotationAxis
+  tick_carrier : ctx.domain_tick_ctx.overlay_ctx.InternalTick
+  slice_carrier :
+    ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice
+  rotation_axis : ctx.rotation_axis axis_carrier
+  hypothetical_axis : ctx.hypothetical_axis axis_carrier
+  manipulation : ctx.manipulates_around_axis axis_carrier tick_carrier
+  higher_tick : ctx.higher_tick tick_carrier
+  reads_slice :
+    ctx.domain_tick_ctx.overlay_ctx.tick_reads_slice tick_carrier slice_carrier
+  projection_desync : ctx.projection_desync tick_carrier slice_carrier
+
+theorem hypothetical_rotation_manipulation_unfolds
+    {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick) :
+    HypotheticalRotationManipulation ctx axis tick <->
+      ctx.rotation_axis axis /\
+      ctx.hypothetical_axis axis /\
+      ctx.manipulates_around_axis axis tick := by
+  rfl
+
+theorem higher_tick_projection_desync_unfolds
+    {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    HigherTickProjectionDesync ctx tick slice <->
+      ctx.higher_tick tick /\
+      ctx.domain_tick_ctx.overlay_ctx.tick_reads_slice tick slice /\
+      ctx.projection_desync tick slice := by
+  rfl
+
+theorem domain_shift_at_projection_unfolds
+    {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    DomainShiftAtProjection ctx axis tick slice <->
+      HypotheticalRotationManipulation ctx axis tick /\
+      HigherTickProjectionDesync ctx tick slice /\
+      ctx.domain_shift axis tick slice := by
+  rfl
+
+theorem projection_curvature_at_domain_shift_unfolds
+    {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    ProjectionCurvatureAtDomainShift ctx axis tick slice <->
+      DomainShiftAtProjection ctx axis tick slice /\
+      ctx.projection_curvature axis tick slice := by
+  rfl
+
+theorem higher_tick_desync_gives_domain_shift
+    {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    HypotheticalRotationManipulation ctx axis tick ->
+      HigherTickProjectionDesync ctx tick slice ->
+        ctx.domain_shift axis tick slice := by
+  intro hRotation hDesync
+  exact ctx.higher_tick_desync_gives_domain_shift
+    axis tick slice
+    hRotation.1
+    hRotation.2.1
+    hRotation.2.2
+    hDesync.1
+    hDesync.2.1
+    hDesync.2.2
+
+theorem domain_shift_gives_projection_curvature
+    {u : InterfaceProfile}
+    (ctx : DomainShiftProjectionCurvatureContext u)
+    (axis : ctx.RotationAxis)
+    (tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick)
+    (slice :
+      ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice) :
+    ctx.domain_shift axis tick slice ->
+      ctx.projection_curvature axis tick slice := by
+  intro hShift
+  exact ctx.domain_shift_gives_projection_curvature axis tick slice hShift
+
+theorem low_level_domain_shift_trace_gives_projection_curvature
+    {u : InterfaceProfile}
+    {ctx : DomainShiftProjectionCurvatureContext u} :
+    LowLevelDomainShiftTrace ctx ->
+      exists axis : ctx.RotationAxis,
+        exists tick : ctx.domain_tick_ctx.overlay_ctx.InternalTick,
+          exists slice :
+            ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx.subjective_ctx.Slice,
+              ProjectionCurvatureAtDomainShift ctx axis tick slice := by
+  intro h
+  let hRotation :
+      HypotheticalRotationManipulation ctx h.axis_carrier h.tick_carrier :=
+    ⟨h.rotation_axis, h.hypothetical_axis, h.manipulation⟩
+  let hDesync :
+      HigherTickProjectionDesync ctx h.tick_carrier h.slice_carrier :=
+    ⟨h.higher_tick, h.reads_slice, h.projection_desync⟩
+  let hShift :
+      ctx.domain_shift h.axis_carrier h.tick_carrier h.slice_carrier :=
+    higher_tick_desync_gives_domain_shift
+      ctx h.axis_carrier h.tick_carrier h.slice_carrier hRotation hDesync
+  exact ⟨
+    h.axis_carrier,
+    h.tick_carrier,
+    h.slice_carrier,
+    ⟨
+      ⟨hRotation, hDesync, hShift⟩,
+      domain_shift_gives_projection_curvature
+        ctx h.axis_carrier h.tick_carrier h.slice_carrier hShift
+    ⟩
+  ⟩
+
+theorem low_level_domain_shift_with_block_trace_gives_projection_curvature_profile
+    {u : InterfaceProfile}
+    {ctx : DomainShiftProjectionCurvatureContext u} :
+    LowLevelDomainShiftTrace ctx ->
+      LowLevelBlockScanTrace
+        ctx.domain_tick_ctx.overlay_ctx.closure_ctx.block_ctx ->
+      DomainShiftProjectionCurvature u := by
+  intro _hShift hBlock
+  have hProfile :
+      SubjectiveTimeAsSelfReread u :=
+    low_level_block_scan_trace_gives_subjective_time_as_self_reread hBlock
+  exact ⟨hProfile.left, hProfile.right.right⟩
+
+/-!
+Reality synchronization and version-lift.
+
+This v7 layer reads self-modeling as the strongest mathematical mode available
+inside this high-level branch: not as an absolute ranking theorem, but as a
+marker that mathematics becomes self-modeling when it can keep its own model
+in sync with the latest readable version of reality. Intelligence is therefore
+not merely possessed; it must be used at the current/latest version.
+-/
+
+structure RealitySynchronizationContext (u : InterfaceProfile) where
+  domain_tick_ctx : SelfModelDomainTickBoundaryContext u
+  Version : Type
+  version_precedes : Version -> Version -> Prop
+  current_version : Version -> Prop
+  latest_version : Version -> Prop
+  self_model_at_version : Version -> Prop
+  works_on_version : Version -> Prop
+  version_lift : Version -> Version -> Prop
+  intelligence_use_at_version : Version -> Prop
+  reality_synchronized_at_version : Version -> Prop
+  self_modeling_as_mathematics : Prop
+  synchronization_as_highest_intelligence : Prop
+  version_lift_gives_intelligence_use :
+    forall v w : Version,
+      self_model_at_version v ->
+      version_lift v w ->
+      latest_version w ->
+      intelligence_use_at_version w
+  latest_version_work_gives_synchronization :
+    forall v : Version,
+      latest_version v ->
+      self_model_at_version v ->
+      works_on_version v ->
+      intelligence_use_at_version v ->
+      reality_synchronized_at_version v
+  synchronization_gives_profile :
+    forall v : Version,
+      reality_synchronized_at_version v ->
+        u.selfModel /\
+        u.adaptiveSelection /\
+        u.predictiveCorrection /\
+        u.selfObservation /\
+        u.closure
+
+def SelfModelingMathematics {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u) : Prop :=
+  ctx.self_modeling_as_mathematics
+
+def LatestVersionWork {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v : ctx.Version) : Prop :=
+  ctx.latest_version v /\
+  ctx.self_model_at_version v /\
+  ctx.works_on_version v
+
+def IntelligenceUseAtLatestVersion {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v : ctx.Version) : Prop :=
+  LatestVersionWork ctx v /\ ctx.intelligence_use_at_version v
+
+def RealitySynchronizationAtLatestVersion {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v : ctx.Version) : Prop :=
+  IntelligenceUseAtLatestVersion ctx v /\
+  ctx.reality_synchronized_at_version v
+
+def VersionLiftAsIntelligenceUpgrade {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v w : ctx.Version) : Prop :=
+  ctx.self_model_at_version v /\
+  ctx.version_lift v w /\
+  ctx.latest_version w /\
+  ctx.intelligence_use_at_version w
+
+def RealitySynchronizationHighestIntelligence
+    (u : InterfaceProfile) : Prop :=
+  u.selfModel /\
+  u.adaptiveSelection /\
+  u.predictiveCorrection /\
+  u.selfObservation /\
+  u.closure
+
+structure LowLevelRealitySynchronizationTrace {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u) where
+  base_version : ctx.Version
+  latest_version_carrier : ctx.Version
+  self_modeling_math : SelfModelingMathematics ctx
+  base_self_model : ctx.self_model_at_version base_version
+  lift_to_latest : ctx.version_lift base_version latest_version_carrier
+  latest : ctx.latest_version latest_version_carrier
+  latest_self_model : ctx.self_model_at_version latest_version_carrier
+  works_latest : ctx.works_on_version latest_version_carrier
+
+theorem self_modeling_mathematics_unfolds
+    {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u) :
+    SelfModelingMathematics ctx <->
+      ctx.self_modeling_as_mathematics := by
+  rfl
+
+theorem latest_version_work_unfolds
+    {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v : ctx.Version) :
+    LatestVersionWork ctx v <->
+      ctx.latest_version v /\
+      ctx.self_model_at_version v /\
+      ctx.works_on_version v := by
+  rfl
+
+theorem intelligence_use_at_latest_version_unfolds
+    {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v : ctx.Version) :
+    IntelligenceUseAtLatestVersion ctx v <->
+      LatestVersionWork ctx v /\ ctx.intelligence_use_at_version v := by
+  rfl
+
+theorem reality_synchronization_at_latest_version_unfolds
+    {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v : ctx.Version) :
+    RealitySynchronizationAtLatestVersion ctx v <->
+      IntelligenceUseAtLatestVersion ctx v /\
+      ctx.reality_synchronized_at_version v := by
+  rfl
+
+theorem version_lift_as_intelligence_upgrade_unfolds
+    {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v w : ctx.Version) :
+    VersionLiftAsIntelligenceUpgrade ctx v w <->
+      ctx.self_model_at_version v /\
+      ctx.version_lift v w /\
+      ctx.latest_version w /\
+      ctx.intelligence_use_at_version w := by
+  rfl
+
+theorem version_lift_to_latest_gives_intelligence_upgrade
+    {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v w : ctx.Version) :
+    ctx.self_model_at_version v ->
+      ctx.version_lift v w ->
+      ctx.latest_version w ->
+      VersionLiftAsIntelligenceUpgrade ctx v w := by
+  intro hSelf hLift hLatest
+  exact ⟨
+    hSelf,
+    hLift,
+    hLatest,
+    ctx.version_lift_gives_intelligence_use
+      v w hSelf hLift hLatest
+  ⟩
+
+theorem latest_version_intelligence_use_gives_reality_synchronization
+    {u : InterfaceProfile}
+    (ctx : RealitySynchronizationContext u)
+    (v : ctx.Version) :
+    LatestVersionWork ctx v ->
+      ctx.intelligence_use_at_version v ->
+      RealitySynchronizationAtLatestVersion ctx v := by
+  intro hLatestWork hUse
+  exact ⟨
+    ⟨hLatestWork, hUse⟩,
+    ctx.latest_version_work_gives_synchronization
+      v hLatestWork.1 hLatestWork.2.1 hLatestWork.2.2 hUse
+  ⟩
+
+theorem low_level_reality_synchronization_trace_gives_version_upgrade
+    {u : InterfaceProfile}
+    {ctx : RealitySynchronizationContext u} :
+    LowLevelRealitySynchronizationTrace ctx ->
+      exists v w : ctx.Version,
+        VersionLiftAsIntelligenceUpgrade ctx v w := by
+  intro h
+  exact ⟨
+    h.base_version,
+    h.latest_version_carrier,
+    version_lift_to_latest_gives_intelligence_upgrade
+      ctx
+      h.base_version
+      h.latest_version_carrier
+      h.base_self_model
+      h.lift_to_latest
+      h.latest
+  ⟩
+
+theorem low_level_reality_synchronization_trace_gives_latest_sync
+    {u : InterfaceProfile}
+    {ctx : RealitySynchronizationContext u} :
+    LowLevelRealitySynchronizationTrace ctx ->
+      exists v : ctx.Version,
+        RealitySynchronizationAtLatestVersion ctx v := by
+  intro h
+  have hUpgrade :
+      VersionLiftAsIntelligenceUpgrade
+        ctx
+        h.base_version
+        h.latest_version_carrier :=
+    version_lift_to_latest_gives_intelligence_upgrade
+      ctx
+      h.base_version
+      h.latest_version_carrier
+      h.base_self_model
+      h.lift_to_latest
+      h.latest
+  exact ⟨
+    h.latest_version_carrier,
+    latest_version_intelligence_use_gives_reality_synchronization
+      ctx
+      h.latest_version_carrier
+      ⟨h.latest, h.latest_self_model, h.works_latest⟩
+      hUpgrade.2.2.2
+  ⟩
+
+theorem low_level_reality_synchronization_trace_gives_highest_intelligence
+    {u : InterfaceProfile}
+    {ctx : RealitySynchronizationContext u} :
+    LowLevelRealitySynchronizationTrace ctx ->
+      RealitySynchronizationHighestIntelligence u := by
+  intro h
+  rcases low_level_reality_synchronization_trace_gives_latest_sync h with
+    ⟨v, hSync⟩
+  exact ctx.synchronization_gives_profile
+    v
+    hSync.2
+
+theorem self_modeling_and_latest_sync_give_reality_metatheorem
+    {u : InterfaceProfile}
+    {ctx : RealitySynchronizationContext u} :
+    LowLevelRealitySynchronizationTrace ctx ->
+      SelfModelingMathematics ctx /\
+      RealitySynchronizationHighestIntelligence u := by
+  intro h
+  exact ⟨
+    h.self_modeling_math,
+    low_level_reality_synchronization_trace_gives_highest_intelligence h
+  ⟩
+
+/-!
+Entropy/recoverability branch.
+
+A stable trace may still exist while becoming less accessible to a local
+interface. This branch formalizes forgetting as recoverability loss rather than
+absolute trace annihilation.
+-/
+
+structure PhysicalRecoverabilityContext (u : InterfaceProfile) where
+  memory_ctx : PhysicalMemoryContext u
+  interface_accessible : memory_ctx.Obj -> Prop
+  distributed : memory_ctx.Obj -> Prop
+  recovery_cost_growth : memory_ctx.Obj -> Prop
+  recovery_practically_blocked : memory_ctx.Obj -> Prop
+
+def InterfaceAccessibleTraceInside {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) : Prop :=
+  exists x : ctx.memory_ctx.Obj,
+    ctx.memory_ctx.inside_universe x /\
+    RecordObject ctx.memory_ctx x /\
+    ctx.interface_accessible x
+
+def RecoverableTraceInside {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) : Prop :=
+  InterfaceAccessibleTraceInside ctx
+
+def DistributedTraceInside {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) : Prop :=
+  exists x : ctx.memory_ctx.Obj,
+    ctx.memory_ctx.inside_universe x /\
+    RecordObject ctx.memory_ctx x /\
+    ctx.distributed x
+
+def RecoverabilityLossInside {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) : Prop :=
+  exists x : ctx.memory_ctx.Obj,
+    ctx.memory_ctx.inside_universe x /\
+    RecordObject ctx.memory_ctx x /\
+    ctx.recovery_practically_blocked x
+
+def InterfaceForgettingInside {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) : Prop :=
+  RecoverabilityLossInside ctx
+
+def EntropyLikeDispersionInside {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) : Prop :=
+  exists x : ctx.memory_ctx.Obj,
+    ctx.memory_ctx.inside_universe x /\
+    RecordObject ctx.memory_ctx x /\
+    ctx.distributed x /\
+    ctx.recovery_cost_growth x
+
+def SecondLawReadableAsRecoverabilityLoss
+    (u : InterfaceProfile) : Prop :=
+  exists ctx : PhysicalRecoverabilityContext u,
+    EntropyLikeDispersionInside ctx /\ RecoverabilityLossInside ctx
+
+structure LowLevelRecoverabilityTrace {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) where
+  carrier : ctx.memory_ctx.Obj
+  inside : ctx.memory_ctx.inside_universe carrier
+  structured : ctx.memory_ctx.structured carrier
+  stable : ctx.memory_ctx.stable carrier
+  prior_information :
+    ctx.memory_ctx.carries_information_about_prior_state carrier
+  interface_accessible : ctx.interface_accessible carrier
+  distributed : ctx.distributed carrier
+  recovery_cost_growth : ctx.recovery_cost_growth carrier
+  recovery_practically_blocked :
+    ctx.recovery_practically_blocked carrier
+
+theorem low_level_recoverability_trace_gives_recoverable_trace_inside
+    {u : InterfaceProfile}
+    {ctx : PhysicalRecoverabilityContext u} :
+    LowLevelRecoverabilityTrace ctx -> RecoverableTraceInside ctx := by
+  intro h
+  exact
+    ⟨h.carrier, h.inside,
+      ⟨h.structured, h.stable, h.prior_information⟩,
+      h.interface_accessible⟩
+
+theorem recoverable_trace_inside_gives_stable_trace_inside
+    {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) :
+    RecoverableTraceInside ctx -> StableTraceInside ctx.memory_ctx := by
+  intro h
+  rcases h with ⟨x, hInside, hRecord, _hAccessible⟩
+  exact ⟨x, hInside, hRecord⟩
+
+theorem low_level_recoverability_trace_gives_distributed_trace_inside
+    {u : InterfaceProfile}
+    {ctx : PhysicalRecoverabilityContext u} :
+    LowLevelRecoverabilityTrace ctx -> DistributedTraceInside ctx := by
+  intro h
+  exact
+    ⟨h.carrier, h.inside,
+      ⟨h.structured, h.stable, h.prior_information⟩,
+      h.distributed⟩
+
+theorem low_level_recoverability_trace_gives_entropy_like_dispersion_inside
+    {u : InterfaceProfile}
+    {ctx : PhysicalRecoverabilityContext u} :
+    LowLevelRecoverabilityTrace ctx -> EntropyLikeDispersionInside ctx := by
+  intro h
+  exact
+    ⟨h.carrier, h.inside,
+      ⟨h.structured, h.stable, h.prior_information⟩,
+      h.distributed, h.recovery_cost_growth⟩
+
+theorem low_level_recoverability_trace_gives_interface_forgetting_inside
+    {u : InterfaceProfile}
+    {ctx : PhysicalRecoverabilityContext u} :
+    LowLevelRecoverabilityTrace ctx -> InterfaceForgettingInside ctx := by
+  intro h
+  exact
+    ⟨h.carrier, h.inside,
+      ⟨h.structured, h.stable, h.prior_information⟩,
+      h.recovery_practically_blocked⟩
+
+theorem interface_forgetting_means_recoverability_loss
+    {u : InterfaceProfile}
+    (ctx : PhysicalRecoverabilityContext u) :
+    InterfaceForgettingInside ctx -> RecoverabilityLossInside ctx := by
+  intro h
+  exact h
 
 structure PhysicalAdaptiveSelectionBridge (u : InterfaceProfile) : Prop where
   dynamics : True

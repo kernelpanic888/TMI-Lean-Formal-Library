@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TMI-OS / И1 3D time projection artifact</title>
+  <style>
+    :root {
+      --paper: #f7f4ea;
+      --ink: #1f211d;
+      --muted: #6f7168;
+      --grid: rgba(29, 34, 29, 0.08);
+      --green: #1f8e4a;
+      --red: #bd2f2f;
+      --blue: #245aa8;
+      --gold: #a87829;
+      --violet: #5967e8;
+      --panel: rgba(255, 255, 255, 0.76);
+      --line: rgba(31, 33, 29, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        radial-gradient(circle at 18% 16%, rgba(89, 103, 232, 0.12), transparent 24%),
+        radial-gradient(circle at 84% 78%, rgba(168, 120, 41, 0.16), transparent 24%),
+        var(--paper);
+      background-size: 32px 32px, 32px 32px, auto, auto, auto;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .shell {
+      width: min(1240px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 32px;
+    }
+
+    header {
+      position: relative;
+      display: grid;
+      gap: 8px;
+      padding: 20px 22px 18px;
+      border: 1px solid rgba(31, 33, 29, 0.16);
+      background: rgba(255, 255, 255, 0.64);
+      box-shadow: 0 18px 50px rgba(31, 33, 29, 0.08);
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--green);
+      font: 700 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(26px, 4vw, 56px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.8vw, 20px);
+      line-height: 1.42;
+    }
+
+    .language-switcher {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid rgba(31, 33, 29, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .language-switcher button,
+    .controls button {
+      border: 0;
+      border-radius: 999px;
+      color: var(--ink);
+      background: transparent;
+      cursor: pointer;
+      font: 700 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .language-switcher button {
+      padding: 7px 10px;
+    }
+
+    .language-switcher button.active {
+      color: white;
+      background: var(--ink);
+    }
+
+    .surface {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .surface.panel-hidden {
+      grid-template-columns: 1fr;
+    }
+
+    .surface.panel-hidden aside {
+      display: none;
+    }
+
+    .canvas-card,
+    aside .card {
+      border: 1px solid rgba(31, 33, 29, 0.16);
+      background: var(--panel);
+      box-shadow: 0 18px 50px rgba(31, 33, 29, 0.08);
+    }
+
+    .canvas-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 680px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      min-height: 680px;
+    }
+
+    .canvas-caption {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      max-width: 560px;
+      padding: 10px 12px;
+      color: rgba(31, 33, 29, 0.72);
+      border: 1px solid rgba(31, 33, 29, 0.12);
+      background: rgba(247, 244, 234, 0.82);
+      font: 13px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    aside {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    aside .card {
+      padding: 13px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.1;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.34;
+    }
+
+    .formula {
+      white-space: pre-wrap;
+      margin: 0;
+      padding: 12px;
+      color: #12331e;
+      border: 1px solid rgba(31, 142, 74, 0.22);
+      background: rgba(31, 142, 74, 0.08);
+      font: 11px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .controls {
+      display: grid;
+      gap: 12px;
+    }
+
+    .controls button {
+      padding: 11px 12px;
+      border: 1px solid rgba(31, 33, 29, 0.2);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .panel-toggle {
+      position: absolute;
+      z-index: 4;
+      right: 16px;
+      top: 16px;
+      padding: 9px 12px;
+      border: 1px solid rgba(31, 33, 29, 0.18);
+      border-radius: 999px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.82);
+      cursor: pointer;
+      font: 700 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      box-shadow: 0 10px 28px rgba(31, 33, 29, 0.1);
+    }
+
+    .controls button.primary {
+      color: white;
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--green);
+    }
+
+    .tau-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .guard {
+      color: #633;
+      background: rgba(189, 47, 47, 0.08);
+      border-color: rgba(189, 47, 47, 0.22);
+    }
+
+    @media (max-width: 980px) {
+      .surface {
+        grid-template-columns: 1fr;
+      }
+
+      .language-switcher {
+        position: static;
+        width: fit-content;
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="kicker">TMI-OS / И1 artifact 02</p>
+      <h1 data-i18n="title">3D-прогон среза по времени</h1>
+      <p class="subtitle" data-i18n="subtitle">
+        Пускаем проекционный срез по внутренней оси времени и смотрим, какой след остается в нашем общем домене.
+      </p>
+      <div class="language-switcher" aria-label="Language switcher">
+        <button type="button" class="active" data-lang="ru">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </header>
+
+    <section class="surface" id="surface">
+      <div class="canvas-card">
+        <button id="panelToggle" class="panel-toggle" type="button">panel off</button>
+        <canvas id="scene" width="1120" height="700" aria-label="3D time projection artifact"></canvas>
+        <div class="canvas-caption" data-i18n="caption">
+          Только математика: B = projection(D), s(τ) ⊂ B, Δs = c_tick, φ = PhotonProjection(Δs), A_domain(τ) = residue(project(s(τ))).
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h2 data-i18n="controlTitle">Прогон по времени</h2>
+          <p data-i18n="controlText">
+            `τ` двигает срез внутри гиперблока. Каждый контакт оставляет след в области `OurDomain`.
+          </p>
+          <div class="controls">
+            <button id="play" class="primary" type="button">pause</button>
+            <input id="tau" type="range" min="0" max="1" step="0.001" value="0.13">
+            <div class="tau-line">
+              <span>τ</span>
+              <span id="tauLabel">0.130</span>
+            </div>
+            <button id="reset" type="button" data-i18n="reset">сбросить след</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="artifactTitle">Что остается</h2>
+          <pre class="formula" data-i18n="artifactFormula">RunThroughTime :=
+  slice s(τ)
+  -> touch(SelfModelPoint p, s(τ))
+  -> project(s(τ), OurDomain)
+  -> ArtifactResidue A_domain(τ)</pre>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="passportTitle">Паспорт артефакта</h2>
+          <pre class="formula">Artifact3D :=
+  HyperBlock B
+  + TimeSweep τ
+  + VolumetricSlice Δs
+  + PhotonProjection φ
+  + DomainResidue A_domain</pre>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="projectionBreakTitle">Ошибка как разрыв проектности</h2>
+          <pre class="formula" data-i18n="projectionBreakFormula">ProjectionBreakFlow :=
+  SystemError
+  -> ProjectionBreak
+  -> ProjectionNoise
+  -> SelfCorrectionInside
+  -> Reprojection</pre>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="noisePassportTitle">Паспорт шума</h2>
+          <pre class="formula guard" data-i18n="noisePassportFormula">NoisePassport :=
+  name: ProjectionNoise
+  source: ProjectionBreak
+  symptom: desync(intent, slice, trace, guard)
+  route: Guard -> SelfCorrectionInside -> Reprojection
+  status: internal correction signal</pre>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="guardTitle">Guard</h2>
+          <pre class="formula guard" data-i18n="guardFormula">DomainResidue != empirical physics proof
+PhotonProjection != physical photon proof
+TimeSweep != external absolute time
+BoardArtifact != consciousness claim
+SystemErrorImpossible != no operational failure claim</pre>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("scene");
+      const ctx = canvas.getContext("2d");
+      const tauSlider = document.getElementById("tau");
+      const tauLabel = document.getElementById("tauLabel");
+      const playButton = document.getElementById("play");
+      const resetButton = document.getElementById("reset");
+      const surface = document.getElementById("surface");
+      const panelToggle = document.getElementById("panelToggle");
+
+      const translations = {
+        ru: {
+          title: "3D-прогон среза по времени",
+          subtitle: "Пускаем проекционный срез по внутренней оси времени и смотрим, какой след остается в нашем общем домене.",
+          caption: "Только математика: B = projection(D), s(τ) ⊂ B, Δs = c_tick, φ = PhotonProjection(Δs), A_domain(τ) = residue(project(s(τ))).",
+          controlTitle: "Прогон по времени",
+          controlText: "`τ` двигает срез внутри гиперблока. Каждый контакт оставляет след в области `OurDomain`.",
+          reset: "сбросить след",
+          artifactTitle: "Что остается",
+          artifactFormula: "RunThroughTime :=\n  SliceStack(B) = {s(τ-n), s(τ), s(τ+n)}\n  -> active slice walks through projections\n  -> touch(SelfModelPoint p, s(τ))\n  -> project(s(τ), OurDomain)\n  -> ArtifactResidue A_domain(τ)",
+          passportTitle: "Паспорт артефакта",
+          projectionBreakTitle: "Ошибка как разрыв проектности",
+          projectionBreakFormula: "ProjectionBreakFlow :=\n  SystemError\n  -> ProjectionBreak\n  -> ProjectionNoise\n  -> SelfCorrectionInside\n  -> Reprojection",
+          noisePassportTitle: "Паспорт шума",
+          noisePassportFormula: "NoisePassport :=\n  name: ProjectionNoise\n  source: ProjectionBreak\n  symptom: desync(intent, slice, trace, guard)\n  route: Guard -> SelfCorrectionInside -> Reprojection\n  status: internal correction signal",
+          guardTitle: "Guard",
+          guardFormula: "DomainResidue != empirical physics proof\nPhotonProjection != physical photon proof\nTimeSweep != external absolute time\nBoardArtifact != consciousness claim\nSystemErrorImpossible != no operational failure claim",
+          play: "play",
+          pause: "pause",
+          ourDomain: "наш с тобой домен",
+          residue: "оставшийся артефакт",
+          selfModel: "SelfModelPoint p",
+          hyperBlock: "HyperBlock B",
+          slice: "s(τ)",
+          thickness: "Δs = c_tick",
+          photon: "φ photon",
+          axis: "τ-axis"
+          ,
+          panelShow: "panel on",
+          panelHide: "panel off"
+        },
+        en: {
+          title: "3D time-sweep projection artifact",
+          subtitle: "Run the projection slice along internal time and observe which artifact remains in our shared domain.",
+          caption: "Mathematics only: B = projection(D), s(τ) ⊂ B, Δs = c_tick, φ = PhotonProjection(Δs), A_domain(τ) = residue(project(s(τ))).",
+          controlTitle: "Time sweep",
+          controlText: "`τ` moves the slice inside the hyperblock. Each contact leaves a residue inside `OurDomain`.",
+          reset: "reset residue",
+          artifactTitle: "What remains",
+          artifactFormula: "RunThroughTime :=\n  SliceStack(B) = {s(τ-n), s(τ), s(τ+n)}\n  -> active slice walks through projections\n  -> touch(SelfModelPoint p, s(τ))\n  -> project(s(τ), OurDomain)\n  -> ArtifactResidue A_domain(τ)",
+          passportTitle: "Artifact passport",
+          projectionBreakTitle: "Error as projection break",
+          projectionBreakFormula: "ProjectionBreakFlow :=\n  SystemError\n  -> ProjectionBreak\n  -> ProjectionNoise\n  -> SelfCorrectionInside\n  -> Reprojection",
+          noisePassportTitle: "Noise passport",
+          noisePassportFormula: "NoisePassport :=\n  name: ProjectionNoise\n  source: ProjectionBreak\n  symptom: desync(intent, slice, trace, guard)\n  route: Guard -> SelfCorrectionInside -> Reprojection\n  status: internal correction signal",
+          guardTitle: "Guard",
+          guardFormula: "DomainResidue != empirical physics proof\nPhotonProjection != physical photon proof\nTimeSweep != external absolute time\nBoardArtifact != consciousness claim\nSystemErrorImpossible != no operational failure claim",
+          play: "play",
+          pause: "pause",
+          ourDomain: "our shared domain",
+          residue: "remaining artifact",
+          selfModel: "SelfModelPoint p",
+          hyperBlock: "HyperBlock B",
+          slice: "s(τ)",
+          thickness: "Δs = c_tick",
+          photon: "φ photon",
+          axis: "τ-axis"
+          ,
+          panelShow: "panel on",
+          panelHide: "panel off"
+        }
+      };
+
+      let language = "ru";
+      let tau = Number(tauSlider.value);
+      let playing = true;
+      let panelHidden = false;
+      let lastFrame = performance.now();
+      let lastResidueTau = -1;
+      let residue = [];
+
+      const cube = [
+        [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+        [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+      ];
+      const edges = [
+        [0, 1], [1, 2], [2, 3], [3, 0],
+        [4, 5], [5, 6], [6, 7], [7, 4],
+        [0, 4], [1, 5], [2, 6], [3, 7]
+      ];
+
+      function fitCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const scale = window.devicePixelRatio || 1;
+        canvas.width = Math.max(900, Math.floor(rect.width * scale));
+        canvas.height = Math.max(680, Math.floor(rect.height * scale));
+        ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      }
+
+      function camera() {
+        const rect = canvas.getBoundingClientRect();
+        const wide = panelHidden;
+        const cx = wide ? rect.width * 0.43 : Math.min(rect.width * 0.36, 360);
+        const cy = Math.min(rect.height * 0.53, 352);
+        return {
+          cx,
+          cy,
+          depth: wide ? 5.8 : 6.4,
+          sx: wide ? 102 : 78,
+          sy: wide ? 86 : 66
+        };
+      }
+
+      function rotate(point, t) {
+        const [x, y, z] = point;
+        const ay = -0.48 + t * 0.18;
+        const ax = 0.58;
+        const cy = Math.cos(ay), sy = Math.sin(ay);
+        const cx = Math.cos(ax), sx = Math.sin(ax);
+        const x1 = x * cy + z * sy;
+        const z1 = -x * sy + z * cy;
+        const y1 = y * cx - z1 * sx;
+        const z2 = y * sx + z1 * cx;
+        return [x1, y1, z2];
+      }
+
+      function project(point, t) {
+        const [x, y, z] = rotate(point, t);
+        const cam = camera();
+        const perspective = cam.depth / (cam.depth + z);
+        return {
+          x: cam.cx + x * cam.sx * perspective,
+          y: cam.cy + y * cam.sy * perspective,
+          z,
+          p: perspective
+        };
+      }
+
+      function line(a, b, stroke, width = 1.4, dash = []) {
+        ctx.save();
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = width;
+        ctx.setLineDash(dash);
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      function label(text, x, y, color = "#1f211d", size = 13, align = "left") {
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.font = `700 ${size}px Georgia, Times New Roman, serif`;
+        ctx.textAlign = align;
+        ctx.fillText(text, x, y);
+        ctx.restore();
+      }
+
+      function drawArrow(from, to, color, width = 2, dash = []) {
+        line(from, to, color, width, dash);
+        const angle = Math.atan2(to.y - from.y, to.x - from.x);
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(to.x, to.y);
+        ctx.lineTo(to.x - 10 * Math.cos(angle - 0.42), to.y - 10 * Math.sin(angle - 0.42));
+        ctx.lineTo(to.x - 10 * Math.cos(angle + 0.42), to.y - 10 * Math.sin(angle + 0.42));
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function drawCube(t) {
+        const pts = cube.map((p) => project(p, t));
+        edges.forEach(([a, b]) => line(pts[a], pts[b], "rgba(31,33,29,.62)", 1.6));
+        label(translations[language].hyperBlock, pts[6].x - 12, pts[6].y - 18, "#1f211d", 15);
+        const a = project([0, -1.25, -1.08], t);
+        const b = project([0, 1.25, 1.08], t);
+        drawArrow(a, b, "rgba(36,90,168,.82)", 2.6);
+        label(translations[language].axis, b.x + 8, b.y - 6, "#245aa8", 14);
+      }
+
+      function slicePoints(t, offset = 0) {
+        const z = -0.92 + 1.84 * Math.min(1, Math.max(0, t + offset));
+        return [
+          project([-1, -0.5, z], t),
+          project([1, -0.5, z], t),
+          project([1, 0.5, z], t),
+          project([-1, 0.5, z], t)
+        ];
+      }
+
+      function drawPolygon(points, fill, stroke, width = 2) {
+        ctx.save();
+        ctx.fillStyle = fill;
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = width;
+        ctx.beginPath();
+        points.forEach((p, i) => {
+          if (i === 0) ctx.moveTo(p.x, p.y);
+          else ctx.lineTo(p.x, p.y);
+        });
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      function drawProjectionStack(t) {
+        const offsets = [-0.26, -0.16, -0.08, 0.1, 0.18, 0.28];
+        offsets.forEach((offset) => {
+          const ghostTau = Math.min(1, Math.max(0, t + offset));
+          const pts = slicePoints(ghostTau, 0);
+          const isPast = offset < 0;
+          drawPolygon(
+            pts,
+            isPast ? "rgba(36,90,168,.055)" : "rgba(168,120,41,.06)",
+            isPast ? "rgba(36,90,168,.25)" : "rgba(168,120,41,.26)",
+            1
+          );
+        });
+        const start = slicePoints(Math.max(0, t - 0.26), 0);
+        const end = slicePoints(Math.min(1, t + 0.28), 0);
+        const from = {
+          x: (start[0].x + start[1].x + start[2].x + start[3].x) / 4,
+          y: (start[0].y + start[1].y + start[2].y + start[3].y) / 4
+        };
+        const to = {
+          x: (end[0].x + end[1].x + end[2].x + end[3].x) / 4,
+          y: (end[0].y + end[1].y + end[2].y + end[3].y) / 4
+        };
+        drawArrow(from, to, "rgba(89,103,232,.58)", 1.8, [6, 7]);
+        label("SliceStack(B)", to.x + 10, to.y - 8, "#5967e8", 12);
+      }
+
+      function drawSlice(t) {
+        const front = slicePoints(t, 0);
+        const back = slicePoints(t, 0.055);
+        drawPolygon(back, "rgba(31,142,74,.10)", "rgba(31,142,74,.45)", 1.4);
+        drawPolygon([front[0], front[1], back[1], back[0]], "rgba(31,142,74,.13)", "rgba(31,142,74,.28)", 1);
+        drawPolygon([front[1], front[2], back[2], back[1]], "rgba(31,142,74,.13)", "rgba(31,142,74,.28)", 1);
+        drawPolygon(front, "rgba(31,142,74,.22)", "rgba(31,142,74,.88)", 2.4);
+        drawArrow(front[1], back[1], "#1f8e4a", 2.4);
+        label(translations[language].slice, front[2].x + 12, front[2].y + 5, "#1f8e4a", 15);
+        label(translations[language].thickness, back[1].x + 10, back[1].y - 6, "#1f8e4a", 12);
+
+        const center = {
+          x: (front[0].x + front[1].x + front[2].x + front[3].x) / 4,
+          y: (front[0].y + front[1].y + front[2].y + front[3].y) / 4
+        };
+        return center;
+      }
+
+      function drawSelfModel(sliceCenter, t) {
+        const cam = camera();
+        const p = {
+          x: cam.cx - (panelHidden ? 214 : 158),
+          y: cam.cy + 18
+        };
+        const pulse = 10 + Math.sin(t * Math.PI * 2) * 3;
+        ctx.save();
+        ctx.strokeStyle = "rgba(189,47,47,.42)";
+        ctx.setLineDash([6, 7]);
+        for (let r = 24; r <= 68; r += 22) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r + pulse, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        ctx.fillStyle = "#bd2f2f";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 11, 0, Math.PI * 2);
+        ctx.fill();
+        label(translations[language].selfModel, p.x - 58, p.y + 42, "#633", 14);
+        drawArrow(p, sliceCenter, "rgba(189,47,47,.72)", 2.2);
+        return p;
+      }
+
+      function drawPhoton(sliceCenter, t) {
+        const cam = camera();
+        const phi = {
+          x: cam.cx + (panelHidden ? 244 : 178) + Math.cos(t * Math.PI * 2) * 7,
+          y: cam.cy - (panelHidden ? 118 : 96) + Math.sin(t * Math.PI * 2) * 5
+        };
+        ctx.save();
+        ctx.strokeStyle = "rgba(168,120,41,.32)";
+        for (let r = 18; r <= 50; r += 16) {
+          ctx.beginPath();
+          ctx.arc(phi.x, phi.y, r, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.fillStyle = "#a87829";
+        ctx.beginPath();
+        ctx.arc(phi.x, phi.y, 9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+        drawArrow(sliceCenter, phi, "rgba(168,120,41,.76)", 2.2, [8, 7]);
+        label(translations[language].photon, phi.x + 14, phi.y + 6, "#7a5418", 15);
+      }
+
+      function drawDomain(t) {
+        const rect = canvas.getBoundingClientRect();
+        const cam = camera();
+        const w = panelHidden ? 236 : 154;
+        const h = panelHidden ? 172 : 126;
+        const x = Math.min(rect.width - w - 28, cam.cx + (panelHidden ? 250 : 150));
+        const y = cam.cy + (panelHidden ? 78 : 88);
+        ctx.save();
+        ctx.fillStyle = "rgba(255,255,255,.68)";
+        ctx.strokeStyle = "rgba(31,33,29,.22)";
+        ctx.lineWidth = 1.3;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeRect(x, y, w, h);
+        ctx.restore();
+        label(translations[language].ourDomain, x + 12, y + 25, "#1f211d", 13);
+        label("A_domain(τ)", x + 12, y + 47, "#1f8e4a", 12);
+
+        residue.forEach((r, i) => {
+          const alpha = Math.max(0.12, i / residue.length);
+          ctx.save();
+          ctx.fillStyle = `rgba(31,142,74,${alpha})`;
+          ctx.strokeStyle = `rgba(31,33,29,${0.08 + alpha * 0.12})`;
+          ctx.beginPath();
+          ctx.arc(x + 34 + r.x * (w - 68), y + 76 + r.y * (h - 104), 2.5 + alpha * 2.6, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          ctx.restore();
+        });
+
+        if (residue.length > 1) {
+          ctx.save();
+          ctx.strokeStyle = "rgba(31,142,74,.38)";
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          residue.forEach((r, i) => {
+            const px = x + 34 + r.x * (w - 68);
+            const py = y + 76 + r.y * (h - 104);
+            if (i === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          });
+          ctx.stroke();
+          ctx.restore();
+        }
+        label(translations[language].residue, x + w - 14, y + h - 18, "#1f8e4a", 13, "right");
+      }
+
+      function addResidue(t) {
+        if (Math.abs(t - lastResidueTau) < 0.014) return;
+        lastResidueTau = t;
+        residue.push({
+          x: t,
+          y: 0.5 + Math.sin(t * Math.PI * 5.2) * 0.32 + Math.cos(t * Math.PI * 1.7) * 0.08
+        });
+        if (residue.length > 90) residue.shift();
+      }
+
+      function drawBackground() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const rect = canvas.getBoundingClientRect();
+        ctx.save();
+        ctx.fillStyle = "rgba(255,255,255,.24)";
+        ctx.fillRect(0, 0, rect.width, rect.height);
+        ctx.strokeStyle = "rgba(31,33,29,.055)";
+        for (let x = 0; x < rect.width; x += 32) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, rect.height);
+          ctx.stroke();
+        }
+        for (let y = 0; y < rect.height; y += 32) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(rect.width, y);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function render(now) {
+        const dt = Math.min(0.045, (now - lastFrame) / 1000);
+        lastFrame = now;
+        if (playing) {
+          tau = (tau + dt * 0.105) % 1;
+          tauSlider.value = tau.toFixed(3);
+        }
+        tauLabel.textContent = tau.toFixed(3);
+        addResidue(tau);
+        drawBackground();
+        drawCube(tau);
+        drawProjectionStack(tau);
+        const sliceCenter = drawSlice(tau);
+        drawSelfModel(sliceCenter, tau);
+        drawPhoton(sliceCenter, tau);
+        drawDomain(tau);
+        requestAnimationFrame(render);
+      }
+
+      function applyLanguage(nextLanguage) {
+        language = nextLanguage;
+        document.documentElement.lang = nextLanguage;
+        const dict = translations[nextLanguage];
+        Object.entries(dict).forEach(([key, value]) => {
+          document.querySelectorAll(`[data-i18n="${key}"]`).forEach((node) => {
+            node.textContent = value;
+          });
+        });
+        document.querySelectorAll("[data-lang]").forEach((button) => {
+          button.classList.toggle("active", button.dataset.lang === nextLanguage);
+        });
+        playButton.textContent = playing ? dict.pause : dict.play;
+        panelToggle.textContent = panelHidden ? dict.panelShow : dict.panelHide;
+      }
+
+      tauSlider.addEventListener("input", () => {
+        tau = Number(tauSlider.value);
+        playing = false;
+        playButton.textContent = translations[language].play;
+      });
+
+      playButton.addEventListener("click", () => {
+        playing = !playing;
+        playButton.textContent = playing ? translations[language].pause : translations[language].play;
+      });
+
+      resetButton.addEventListener("click", () => {
+        residue = [];
+        lastResidueTau = -1;
+      });
+
+      panelToggle.addEventListener("click", () => {
+        panelHidden = !panelHidden;
+        surface.classList.toggle("panel-hidden", panelHidden);
+        panelToggle.textContent = panelHidden ? translations[language].panelShow : translations[language].panelHide;
+        requestAnimationFrame(fitCanvas);
+      });
+
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+      });
+
+      window.addEventListener("resize", fitCanvas);
+      fitCanvas();
+      applyLanguage("ru");
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>

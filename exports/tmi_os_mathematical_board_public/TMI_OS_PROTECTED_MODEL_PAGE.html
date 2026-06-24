@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+  <title>TMI-OS / И1 protected model page</title>
+  <style>
+    :root {
+      --paper: #f8f5eb;
+      --ink: #11140f;
+      --muted: #707367;
+      --grid: rgba(17, 20, 15, 0.075);
+      --green: #0b7f3b;
+      --red: #a83232;
+      --panel: rgba(255, 255, 250, 0.84);
+      --line: rgba(17, 20, 15, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        radial-gradient(circle at 14% 18%, rgba(11, 127, 59, 0.14), transparent 26%),
+        radial-gradient(circle at 82% 76%, rgba(168, 50, 50, 0.12), transparent 28%),
+        var(--paper);
+      background-size: 34px 34px, 34px 34px, auto, auto, auto;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    main {
+      width: min(1040px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 26px 0 40px;
+    }
+
+    header,
+    section {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 18px 55px rgba(17, 20, 15, 0.08);
+    }
+
+    header {
+      padding: clamp(22px, 4vw, 42px);
+    }
+
+    .kicker {
+      margin: 0 0 16px;
+      color: var(--green);
+      font: 800 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 8vw, 86px);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 22px);
+      line-height: 1.42;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    section {
+      padding: 18px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .formula {
+      white-space: pre-wrap;
+      margin: 0;
+      padding: 14px;
+      color: #12331f;
+      border: 1px solid rgba(11, 127, 59, 0.22);
+      background: rgba(11, 127, 59, 0.08);
+      font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .guard {
+      color: #633;
+      border-color: rgba(168, 50, 50, 0.24);
+      background: rgba(168, 50, 50, 0.08);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr);
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(17, 20, 15, 0.1);
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .key {
+      color: var(--muted);
+      font: 800 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-transform: uppercase;
+    }
+
+    .value {
+      overflow-wrap: anywhere;
+      font: 14px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: rgba(255, 255, 250, 0.72);
+      font: 800 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    a.primary {
+      color: white;
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    @media (max-width: 820px) {
+      .grid,
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="kicker">TMI-OS / И1 protected page</p>
+      <h1>Protected model page</h1>
+      <p class="lead">
+        Каждому по страничке: без логина, без аккаунта, без отправки на сервер.
+        Страница читает только локальный hash-паспорт и показывает безопасный срез модели.
+      </p>
+      <div class="actions">
+        <a class="primary" id="openBoard" href="TMI_OS_MATHEMATICAL_BOARD.html">open 2D board</a>
+        <a id="open3d" href="TMI_OS_3D_TIME_ARTIFACT.html">open 3D artifact</a>
+        <a href="index.html">back to index</a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section>
+        <h2>Model Passport</h2>
+        <div id="passportRows" aria-live="polite"></div>
+      </section>
+
+      <section>
+        <h2>Canonical Record</h2>
+        <pre class="formula" id="canonicalRecord"></pre>
+      </section>
+
+      <section>
+        <h2>Guard</h2>
+        <pre class="formula guard">NoLogin
+NoAccount
+NoServerUpload
+NoCookieWrite
+NoLocalStorageWrite
+NoInnerHTMLInjection
+NoExternalScript
+NoConnect
+UserFields -> textContent only</pre>
+      </section>
+
+      <section>
+        <h2>Projection Rule</h2>
+        <pre class="formula">ProtectedPage :=
+  HashPassport
+  -> SanitizedTextProjection
+  -> CanonicalRecord
+  -> GuardedLocalArtifact</pre>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const fallback = {
+        language: "I1",
+        intent: "Показать мой домен как срез памяти внутри SelfModelPoint.",
+        selfModelPoint: "p_author",
+        domain: "D_author",
+        slice: "s_current",
+        pipeline: "Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction",
+        guard: [
+          "NoLogin",
+          "NoAccount",
+          "NoServerUpload",
+          "local model only",
+          "passport != biological/legal/consciousness claim"
+        ]
+      };
+
+      function parsePayload() {
+        const raw = window.location.hash.startsWith("#model=")
+          ? window.location.hash.slice("#model=".length)
+          : "";
+        if (!raw) return fallback;
+        try {
+          const parsed = JSON.parse(decodeURIComponent(raw));
+          return {
+            language: String(parsed.language || "I1"),
+            intent: String(parsed.intent || fallback.intent),
+            selfModelPoint: String(parsed.selfModelPoint || "p"),
+            domain: String(parsed.domain || "D"),
+            slice: String(parsed.slice || "s"),
+            pipeline: String(parsed.pipeline || fallback.pipeline),
+            guard: Array.isArray(parsed.guard) ? parsed.guard.map(String) : fallback.guard
+          };
+        } catch (_) {
+          return fallback;
+        }
+      }
+
+      function row(key, value) {
+        const container = document.createElement("div");
+        container.className = "row";
+        const keyNode = document.createElement("div");
+        keyNode.className = "key";
+        keyNode.textContent = key;
+        const valueNode = document.createElement("div");
+        valueNode.className = "value";
+        valueNode.textContent = value;
+        container.append(keyNode, valueNode);
+        return container;
+      }
+
+      function render() {
+        const payload = parsePayload();
+        const rows = document.getElementById("passportRows");
+        rows.replaceChildren(
+          row("language", payload.language),
+          row("intent", payload.intent),
+          row("point", payload.selfModelPoint),
+          row("domain", payload.domain),
+          row("slice", payload.slice),
+          row("pipeline", payload.pipeline),
+          row("guard", payload.guard.join(" | "))
+        );
+
+        const record = {
+          ProtectedModelPage: {
+            point: payload.selfModelPoint,
+            domain: payload.domain,
+            slice: payload.slice,
+            intent: payload.intent,
+            projection: `${payload.domain} -> ${payload.slice} -> ${payload.selfModelPoint}`,
+            boundary: "NoLogin + NoServerUpload + textContent only"
+          }
+        };
+        document.getElementById("canonicalRecord").textContent = JSON.stringify(record, null, 2);
+
+        const encoded = encodeURIComponent(JSON.stringify(payload));
+        document.getElementById("openBoard").href = `TMI_OS_MATHEMATICAL_BOARD.html#model=${encoded}`;
+        document.getElementById("open3d").href = `TMI_OS_3D_TIME_ARTIFACT.html#model=${encoded}`;
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>

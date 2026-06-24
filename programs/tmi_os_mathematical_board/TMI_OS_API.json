@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tmi-os.local/TMI_OS_API.json",
+  "title": "TMI-OS / I1 Static Site API",
+  "version": "artifact-latest",
+  "mode": "static-local-contract",
+  "transport": {
+    "network": "none",
+    "login": "none",
+    "serverUpload": "none",
+    "storage": "hash-and-export-only",
+    "externalScripts": "none"
+  },
+  "routes": {
+    "site": "index.html",
+    "liveDemo": "TMI_OS_LIVE_DEMO.html",
+    "admin": "TMI_OS_ADMIN.html",
+    "board2d": "TMI_OS_MATHEMATICAL_BOARD.html",
+    "artifact3d": "TMI_OS_3D_TIME_ARTIFACT.html",
+    "protectedPage": "TMI_OS_PROTECTED_MODEL_PAGE.html",
+    "miniLanguage": "I1_MINI_LANGUAGE.md"
+  },
+  "modelPassport": {
+    "type": "object",
+    "required": [
+      "language",
+      "intent",
+      "selfModelPoint",
+      "domain",
+      "slice",
+      "pipeline",
+      "guard"
+    ],
+    "properties": {
+      "language": {
+        "type": "string",
+        "default": "I1"
+      },
+      "intent": {
+        "type": "string"
+      },
+      "selfModelPoint": {
+        "type": "string"
+      },
+      "domain": {
+        "type": "string"
+      },
+      "slice": {
+        "type": "string"
+      },
+      "pipeline": {
+        "type": "string",
+        "const": "Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction"
+      },
+      "guard": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "commands": [
+    {
+      "name": "buildPassport",
+      "input": "modelPassportDraft",
+      "output": "modelPassport"
+    },
+    {
+      "name": "runLiveDemo",
+      "input": "humanIntentText",
+      "output": "TMI_OS_LIVE_DEMO.html#intent=<encoded-intent>"
+    },
+    {
+      "name": "openBoard2D",
+      "input": "modelPassport",
+      "output": "TMI_OS_MATHEMATICAL_BOARD.html#model=<encoded-passport>"
+    },
+    {
+      "name": "openArtifact3D",
+      "input": "modelPassport",
+      "output": "TMI_OS_3D_TIME_ARTIFACT.html#model=<encoded-passport>"
+    },
+    {
+      "name": "openProtectedPage",
+      "input": "modelPassport",
+      "output": "TMI_OS_PROTECTED_MODEL_PAGE.html#model=<encoded-passport>"
+    },
+    {
+      "name": "exportPassport",
+      "input": "modelPassport",
+      "output": "download:application/json"
+    }
+  ],
+  "guard": [
+    "NoLogin",
+    "NoAccount",
+    "NoServerUpload",
+    "NoCookieWrite",
+    "NoExternalScript",
+    "NoCredentialCollection",
+    "UserFieldsAreTextOnly",
+    "PassportIsFormalArtifactNotIdentityClaim",
+    "BoardArtifactIsNotEmpiricalProof"
+  ]
+}
