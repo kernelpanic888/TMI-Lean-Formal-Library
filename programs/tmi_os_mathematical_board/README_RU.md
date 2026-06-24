@@ -2,7 +2,8 @@
 
 Первая публичная программа TMI-OS / И1.
 
-TMI-OS / И1 - язык программирования широкого уровня:
+TMI-OS / И1 - язык программирования широкого уровня и сильная среда системной
+разработки на базе LLM/GPT -> Lean -> TLFL -> И1:
 
 ```text
 intent -> mathematical board -> trace -> guard -> proof-status boundary
@@ -27,6 +28,7 @@ B subset p
 
 B = (x1, x2, x3, t)
 s subset B
+domain_order(d1, d2) -> slice_order(projection(d1), projection(d2))
 
 tau := touch(p, s)
 TimeTick(tau) := SelfModelContact(p, s)
@@ -64,6 +66,7 @@ proof-status passports
 guard contracts
 formal idea visualizations
 installation and verification traces
+domain-order preserving model interfaces
 ```
 
 ## Зависимости Языка

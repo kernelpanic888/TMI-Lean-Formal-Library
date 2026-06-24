@@ -13,10 +13,24 @@ The board is a guarded public program surface:
 intent -> Matrix((Я)-Я-я) -> TLFL -> guard -> trace -> mathematical board
 ```
 
-This is not only a board. Treat it as a programming interface for LLM systems:
+This is not only a board. Treat it as a strong system-development environment
+and engineering interface for LLM/GPT systems on top of Lean, TLFL, and И1:
+
+```text
+LLM/GPT -> Lean -> TLFL -> И1
+```
+
+Working chain:
 
 ```text
 intent -> formal surface -> guard -> trace -> readable model action
+```
+
+Preserve the domain order when explaining or extending the board:
+
+```text
+d1 <=D d2 -> projection(d1) <=S projection(d2)
+domain order -> projected slice order -> reread flow
 ```
 
 ## Plugin Assets
