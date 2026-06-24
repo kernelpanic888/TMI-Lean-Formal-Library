@@ -1,6 +1,6 @@
 # Manifest
 
-Date: 2026-06-20
+Date: 2026-06-24
 
 ## Exported Library Snapshot
 
@@ -61,6 +61,7 @@ Date: 2026-06-20
 | `docs/REPRODUCIBILITY.md` | Build verification instructions |
 | `docs/CLAIM_BOUNDARY.md` | Claims and non-claims |
 | `docs/RELEASE_v0.2.0_CLAIM_PASSPORT.md` | GitHub release notes for `v0.2.0-claim-passport` |
+| `docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md` | GitHub release notes for `v0.3.0-i1-engineering-surface` |
 | `docs/GITHUB_PUBLICATION_TEXT.md` | Copy-ready GitHub repository/release publication text |
 | `docs/TLFL_EXTENDED_PUBLICATION_EN.md` | Extended English public explanation: what TLFL is and why it exists |
 | `docs/TLFL_EXTENDED_PUBLICATION_RU.md` | Extended Russian public explanation: what TLFL is and why it exists |
@@ -75,6 +76,11 @@ Date: 2026-06-20
 | `docs/TLFL_CLAIM_PASSPORT_REVIEW_GATE.md` | Review-gate note for the TLFL 0.2 public claim-passport audit sheet |
 | `docs/TLFL_CLAIM_PASSPORT_RELEASE_GATE.md` | Release-gate note for the TLFL 0.2 claim-passport release-candidate surface |
 | `docs/TLFL_0_2_COMPLETION_AUDIT.md` | Completion audit for the TLFL 0.2 claim-passport and proof-state certification slice |
+| `docs/SURFACE_MAP_RU.md` | Public map of the TMI-OS / И1 engineering surface |
+| `docs/THEORY_LINKS.md` | Guarded source links and related theory references |
+| `programs/tmi_os_mathematical_board/` | Runnable local mathematical-board program surface |
+| `plugins/tmi-os-mathematical-board/` | Codex plugin/export-ready surface |
+| `exports/tmi_os_mathematical_board_public/` | Exportable public board package |
 | `external_proofs/` | Z3, Vampire, and E prover release-boundary checks |
 
 ## Source Repository

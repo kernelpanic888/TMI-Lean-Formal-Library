@@ -35,12 +35,15 @@ Public passport:
 - [`docs/TMI_OS_MATHEMATICAL_BOARD_MATH_RU.md`](docs/TMI_OS_MATHEMATICAL_BOARD_MATH_RU.md)
 - [`docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md`](docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md)
 - [`docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md`](docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md)
+- [`docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md`](docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md)
 
 First public program:
 
 ```text
 programs/tmi_os_mathematical_board/tmi_os_virtual_space_point.i1
 programs/tmi_os_mathematical_board/TMI_OS_MATHEMATICAL_BOARD.html
+programs/tmi_os_mathematical_board/TMI_OS_3D_TIME_ARTIFACT.html
+programs/tmi_os_mathematical_board/TMI_OS_LIVE_DEMO.html
 ```
 
 Exportable public project:
@@ -73,9 +76,10 @@ TMI-Lean-Formal-Library
 ```
 
 Versions live in GitHub releases, tags, and status documents rather than in the
-repository slug. The current source line includes the first TLFL 0.2
-proof-status slice: claim passports, public certificates, audit sheets, review
-gates, and release gates.
+repository slug. The current source line includes the TLFL 0.3 public
+engineering-surface slice: claim passports, public certificates, audit sheets,
+review gates, release gates, the И1 mathematical board, the 3D time artifact,
+the live intent-to-passport demo, and guarded publication surfaces.
 
 ## Canonical Import
 
@@ -140,6 +144,29 @@ The completion audit for this TLFL 0.2 slice is recorded in
 
 The passport certifies proof status only. It does not imply empirical truth,
 physical validation, consciousness, or empirical closure.
+
+## TLFL 0.3 Direction: И1 Engineering Surface
+
+The TLFL 0.3 public slice adds the guarded TMI-OS / И1 engineering surface:
+
+```text
+LLM/GPT/Codex -> Lean -> TLFL -> И1
+
+ProgrammingOnMathematics :=
+  Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+```
+
+This slice includes the mathematical board, the 3D time-sweep artifact, the
+live intent-to-passport demo, the static API contract, plugin/export-ready
+surfaces, and publication guards. The И1 language remains `latest`; the
+`v0.3.0-i1-engineering-surface` name is the GitHub release identifier for this
+artifact snapshot.
+
+Release notes:
+
+```text
+docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md
+```
 
 ## Build
 

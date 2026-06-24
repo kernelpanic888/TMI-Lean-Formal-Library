@@ -1,46 +1,61 @@
 # LinkedIn Publication: TMI-OS / И1
 
-Copy-ready post:
+Статус: copy-ready draft, но внешнюю ссылку на Root Jumper вставлять только
+после открытия соответствующего Git-репозитория.
+
+## Root Jumper Link Policy
 
 ```text
-Опубликовал первую публичную программу на TMI-OS / И1.
+Root Jumper Git repository:
+  public link after opening
 
-TMI-OS / И1 - это язык программирования широкого уровня и операционная
-поверхность над TLFL, где программирование начинается с intent: человек
-говорит, что хочет от системы, а система разворачивает это в след,
-математическую доску, guard и проверяемую границу.
+Repository status:
+  not live at audit time; GitHub returned 404
 
-Первая публичная программа:
+Publish rule:
+  do not publish a URL until the repository exists and is public/open for review.
 
-Minimal block-universe model inside a self-model point
+Safe fallback while private:
+  Root Jumper: public link after opening.
+```
 
-Формула программы:
+## Copy-ready post
 
-V : VirtualSpace
-p in V
-p : SelfModelPoint
+```text
+Я системный программист на формальной логике.
 
-D : ExternalDomain
-B := projection(D)
-B subset p
+Я пишу на связке:
 
-B = (x1, x2, x3, t)
-s subset B
+LLM/GPT/Codex -> Lean -> TLFL -> И1
 
-tau := touch(p, s)
-TimeTick(tau) := SelfModelContact(p, s)
+Для меня это программирование на математике:
+
+Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+
+Сегодня я оформляю TMI-OS / И1 как инженерную поверхность:
+не просто сайт,
+не просто доску,
+не просто визуализацию,
+а способ переводить intent в каноническую запись с guard.
+
+Корневой вход в эту поверхность называется Repository Jumper.
+
+Это не installer.
+Это входная дверь.
+Он не публикует, не пушит, не деплоит и не раскрывает приватное ядро.
+Он только показывает доменный порядок:
+
+PrivateCore -> CleanSnapshot -> LeakCheck -> ClaimBoundary -> ProofStatus -> PublicArtifact
 
 Что можно программировать на И1 / TMI-OS:
 
-0. Intent-программы: сказать, что нужно от системы, и получить проверяемый
-   след.
-1. Математические доски: intent -> formal notation -> visual board.
-2. Самомодельные схемы: point, slice, tick, trace, guard.
-3. Proof-status паспорта: claim -> boundary -> certificate discipline.
-4. Визуализации формальных идей: не картинка ради картинки, а trace модели.
-5. Установочные сценарии: как открыть модель, проверить зависимости и увидеть
-   результат.
+1. Intent-программы: сказать, что нужно от системы, и получить проверяемый след.
+2. Математические доски: intent -> formal notation -> visual board.
+3. Самомодельные схемы: point, slice, tick, trace, guard.
+4. Proof-status паспорта: claim -> boundary -> certificate discipline.
+5. Визуализации формальных идей: не картинка ради картинки, а trace модели.
 6. Guard-контракты: что утверждение НЕ имеет права означать.
+7. Публикационные срезы: GitHub как живая поверхность, Zenodo как frozen artifact.
 
 Главная идея:
 
@@ -51,56 +66,58 @@ TimeTick(tau) := SelfModelContact(p, s)
 
 и дальше фраза становится программой.
 
-GitHub:
-https://github.com/osalkutsan-godaddy/TMI-OS
+Проверочная граница текущего формального слоя:
 
-Первая публичная программа:
-programs/tmi_os_mathematical_board/tmi_os_virtual_space_point.i1
+TLFL / Lean: PASS
+Z3: PASS
+Vampire: PASS
+E prover: PASS
+proof-kernel: PASS
 
-Математическая доска:
-programs/tmi_os_mathematical_board/TMI_OS_MATHEMATICAL_BOARD.html
+198 theorem targets
+63 model boundaries
+295 TPTP files
+
+Repository status:
+public link after repo creation/opening
 
 Guard:
-TMI-OS не является новым доказательным ядром, не заменяет Lean/TLFL и не
-делает биологических, юридических, сознательных или эмпирически-замыкающих
-claim. Это формальная поверхность: intent -> trace -> board -> guard ->
-proof-status boundary.
+TMI-OS / И1 не является новым доказательным ядром, не заменяет Lean/TLFL,
+не делает биологических, юридических, сознательных или эмпирически-замыкающих
+claims.
 
-Когда программирование в кайф: это когда мысль сразу оставляет след.
+Это формальная инженерная поверхность:
+intent -> trace -> board -> guard -> proof-status boundary.
+
+Когда программирование в кайф:
+это когда мысль сразу оставляет проверяемый след.
 ```
 
-Short version:
+## Short version
 
 ```text
-Первая публичная программа на TMI-OS / И1:
+TMI-OS / И1:
+LLM/GPT/Codex -> Lean -> TLFL -> И1
 
-Minimal block-universe model inside a self-model point.
+ProgrammingOnMathematics :=
+  Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
 
-И1 / TMI-OS - язык программирования широкого уровня.
-На нём можно программировать intent-формулы, математические доски, self-model
-схемы, proof-status паспорта, визуализации формальных идей и guard-контракты.
+Root Jumper - входная дверь в поверхность:
+PrivateCore -> CleanSnapshot -> LeakCheck -> ClaimBoundary -> ProofStatus -> PublicArtifact
 
-GitHub:
-https://github.com/osalkutsan-godaddy/TMI-OS
+Repository status:
+public link after repo creation/opening
 
-Программирование начинается с фразы:
-"напишем математическую доску"
+Публиковать ссылку только после открытия repo.
 
-и фраза становится программой.
+Проверочная граница:
+Lean / Z3 / Vampire / E / proof-kernel: PASS
+198 theorem targets / 63 model boundaries / 295 TPTP files
 ```
 
-Caption under graph:
+## Safe fallback if repository is still private
 
 ```text
-Первая публичная программа на TMI-OS / И1.
-
-И1 - язык программирования широкого уровня: intent -> mathematical board ->
-trace -> guard -> proof-status boundary.
-
-На И1 можно программировать intent-формулы, математические доски, self-model
-схемы, projection-slice/tick модели, proof-status паспорта, guard-контракты и
-визуализации формальных идей.
-
-GitHub:
-https://github.com/osalkutsan-godaddy/TMI-OS
+Root Jumper Git repository:
+public link after opening
 ```

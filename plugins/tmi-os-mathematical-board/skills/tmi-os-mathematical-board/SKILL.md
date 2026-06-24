@@ -122,6 +122,20 @@ d1 <=D d2 -> projection(d1) <=S projection(d2)
 domain order -> projected slice order -> reread flow
 ```
 
+When the user says manipulation around the hypothetical rotation axis creates
+curvature, keep the wording narrow:
+
+```text
+HigherTick(τ) ∧ ProjectionDesync(τ,s) ∧ HypotheticalRotationManipulation(ω,τ)
+  -> DomainShift(ω,τ,s)
+DomainShift(ω,τ,s)
+  -> ProjectionCurvature(ω,τ,s)
+```
+
+Use "higher tick", not "big tick". Reading: this is a GR-inspired curvature
+reading of the projection surface, not a proof of Einstein equations unless a
+separate physical metric/connection/stress-energy layer is supplied.
+
 When the user says slices are the strongest passport of the system-in-itself,
 use this guarded formula:
 

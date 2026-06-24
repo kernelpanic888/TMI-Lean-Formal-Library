@@ -35,6 +35,12 @@ check_no_matches() {
 say "TMI-OS export verification"
 
 require_file "index.html"
+require_file "TMI_OS_API.json"
+require_file "TMI_OS_ADMIN.html"
+require_file "TMI_OS_3D_TIME_ARTIFACT.html"
+require_file "TMI_OS_MATHEMATICAL_BOARD.html"
+require_file "TMI_OS_PROTECTED_MODEL_PAGE.html"
+require_file "I1_MINI_LANGUAGE.md"
 require_file "tmi_os_virtual_space_point.i1"
 require_file "README_RU.md"
 require_file "INSTALL_RU.md"
@@ -70,8 +76,38 @@ check_no_matches \
   'passport *= *biological|passport *= *consciousness|passport *= *legal|diagram *= *proof|VirtualSpace *= *empirical universe|TimeTick *= *external absolute time' \
   "${scan_paths[@]}"
 
-if ! grep -q 'DependencyChain(TMI-OS)' index.html; then
-  say "EXPORT-CHECK FAIL: dependency chain is missing from index.html"
+if ! grep -q 'ProgrammingOnMathematics' index.html; then
+  say "EXPORT-CHECK FAIL: site programming formula is missing from index.html"
+  fail=1
+fi
+
+if ! grep -q 'DependencyChain(TMI-OS)' TMI_OS_MATHEMATICAL_BOARD.html; then
+  say "EXPORT-CHECK FAIL: dependency chain is missing from board artifact"
+  fail=1
+fi
+
+if ! grep -q 'SliceStack(B)' TMI_OS_3D_TIME_ARTIFACT.html; then
+  say "EXPORT-CHECK FAIL: 3D time artifact slice stack is missing"
+  fail=1
+fi
+
+if ! grep -q 'StaticAdminAPI' TMI_OS_ADMIN.html; then
+  say "EXPORT-CHECK FAIL: admin API surface is missing"
+  fail=1
+fi
+
+if ! grep -q '"NoServerUpload"' TMI_OS_API.json; then
+  say "EXPORT-CHECK FAIL: static API guard is missing"
+  fail=1
+fi
+
+if ! grep -q 'ProtectedPage :=' TMI_OS_PROTECTED_MODEL_PAGE.html; then
+  say "EXPORT-CHECK FAIL: protected model page rule is missing"
+  fail=1
+fi
+
+if ! grep -q 'small kernel now, grows in use' I1_MINI_LANGUAGE.md; then
+  say "EXPORT-CHECK FAIL: I1 mini language kernel note is missing"
   fail=1
 fi
 
