@@ -109,6 +109,12 @@ Do not paste Markdown into either panel. The first line should be:
 namespace TLFLLibraryPassport
 ```
 
+A local copy-helper page is available at:
+
+```text
+tools/comparator_passport_helper.html
+```
+
 ## Zulip Text
 
 ```text
