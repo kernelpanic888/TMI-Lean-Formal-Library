@@ -36,7 +36,9 @@ Public passport:
 - [`docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md`](docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md)
 - [`docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md`](docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md)
 - [`docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md`](docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md)
+- [`docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md`](docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md)
 - [`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md)
+- [`docs/RESERVOIR_READINESS.md`](docs/RESERVOIR_READINESS.md)
 
 First public program:
 
@@ -83,9 +85,10 @@ TMI-Lean-Formal-Library
 
 Versions live in GitHub releases, tags, and status documents rather than in the
 repository slug. The current source line includes the TLFL 0.3 public
-engineering-surface slice: claim passports, public certificates, audit sheets,
-review gates, release gates, the И1 mathematical board, the 3D time artifact,
-the live intent-to-passport demo, and guarded publication surfaces.
+engineering-surface slice and the `v0.3.1-lean-community-entry` technical entry
+layer for Lean package review. The Lake package id remains
+`tmi_lean_formal_library_0_1` as a historical package identifier; release tags
+carry the public version surface.
 
 ## Canonical Import
 
@@ -172,6 +175,8 @@ Release notes:
 
 ```text
 docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md
+docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md
+docs/RESERVOIR_READINESS.md
 ```
 
 ## Build

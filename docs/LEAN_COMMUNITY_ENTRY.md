@@ -22,7 +22,7 @@ https://github.com/kernelpanic888/TMI-Lean-Formal-Library
 Current release tag:
 
 ```text
-v0.3.0-i1-engineering-surface
+v0.3.1-lean-community-entry
 ```
 
 ## What This Package Provides
@@ -41,6 +41,9 @@ Technically, the package provides:
 
 The public TMI-OS / И1 board is included as a guarded artifact surface, not as
 part of the Lean kernel.
+
+The Lake package id remains `tmi_lean_formal_library_0_1` for compatibility
+with the existing package history. Public versioning is carried by release tags.
 
 ## Canonical Imports
 
@@ -99,8 +102,8 @@ Not claimed:
 - TMI-OS / И1 is not a theorem of consciousness, biology, legal identity, or
   empirical physics;
 - visual board artifacts are not proofs by themselves;
-- `Time = Memory` and `Time = speed_of_light` are not asserted as literal
-  identities.
+- literal identities between time and memory, or between time and the
+  speed-of-light constant, are not asserted.
 
 ## Community Path
 
@@ -139,5 +142,5 @@ README.md
 docs/CLAIM_BOUNDARY.md
 docs/REPRODUCIBILITY.md
 docs/LEAN_COMMUNITY_ENTRY.md
+docs/RESERVOIR_READINESS.md
 ```
-
