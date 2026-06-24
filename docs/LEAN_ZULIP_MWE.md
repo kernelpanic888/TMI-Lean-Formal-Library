@@ -9,6 +9,7 @@ From the repository root:
 
 ```bash
 lake env lean examples/lean/TLFL_MWE.lean
+lake env lean examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean
 ```
 
 Expected:
@@ -49,6 +50,28 @@ example : ¬ OLean.boundary.introducesNewKernel := by
   exact OLean.olean_does_not_introduce_new_kernel
 ```
 
+## Standalone Canonical Passport
+
+If the target environment does not contain the TLFL package and only accepts
+plain Lean code, use the standalone passport file:
+
+```text
+examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean
+```
+
+It has no imports and starts directly with:
+
+```lean
+namespace TLFLLibraryPassport
+```
+
+This avoids two common copy/paste failure modes:
+
+```text
+Markdown headers before Lean code
+late import commands after pasted prose
+```
+
 ## Zulip Text
 
 ```text
@@ -76,4 +99,3 @@ https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/llm-gpt-codex-lea
 This MWE demonstrates package imports and boundary facts.
 It does not ask reviewers to evaluate the full philosophical surface.
 ```
-

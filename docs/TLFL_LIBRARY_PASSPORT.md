@@ -150,6 +150,9 @@ Community entry:
 Minimal working example:
   examples/lean/TLFL_MWE.lean
 
+Standalone canonical passport:
+  examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean
+
 Experiment sandbox:
   https://github.com/kernelpanic888/TMI-OS-Experiment
 ```
