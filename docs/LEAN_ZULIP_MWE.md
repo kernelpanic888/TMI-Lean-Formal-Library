@@ -10,6 +10,8 @@ From the repository root:
 ```bash
 lake env lean examples/lean/TLFL_MWE.lean
 lake env lean examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean
+lake env lean examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean
+lake env lean examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean
 ```
 
 Expected:
@@ -70,6 +72,41 @@ This avoids two common copy/paste failure modes:
 ```text
 Markdown headers before Lean code
 late import commands after pasted prose
+```
+
+## Comparator Split
+
+Comparator-style tools need two separate surfaces:
+
+```text
+Challenge panel:
+  examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean
+
+Candidate Solution panel:
+  examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean
+```
+
+The challenge file ends with a theorem admitted by `sorry`, so the challenge
+itself can build:
+
+```lean
+theorem canonical_passport_certified :
+    PassportCertified canonicalPassport := by
+  sorry
+```
+
+The solution file ends with the real proof:
+
+```lean
+theorem canonical_passport_certified :
+    PassportCertified canonicalPassport := by
+  simp [PassportCertified, canonicalPassport]
+```
+
+Do not paste Markdown into either panel. The first line should be:
+
+```lean
+namespace TLFLLibraryPassport
 ```
 
 ## Zulip Text
