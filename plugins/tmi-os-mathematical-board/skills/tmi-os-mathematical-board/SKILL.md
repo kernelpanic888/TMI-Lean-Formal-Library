@@ -88,12 +88,40 @@ Working chain:
 intent -> formal surface -> guard -> trace -> readable model action
 ```
 
+Core programming formula:
+
+```text
+ProgrammingOnMathematics :=
+  Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+```
+
 Preserve the domain order when explaining or extending the board:
 
 ```text
 d1 <=D d2 -> projection(d1) <=S projection(d2)
 domain order -> projected slice order -> reread flow
 ```
+
+When the user says slices are the strongest passport of the system-in-itself,
+use this guarded formula:
+
+```text
+SlicePassport(p, s, τ)
+  := ProjectionSlice(s)
+   + read(p, s)
+   + τ = touch(p, s)
+   + CanonicalRecord(s)
+   + PassportBoundary(s)
+   + Trace(τ)
+```
+
+Reading:
+
+```text
+slice = strongest current local passport at the read tick
+```
+
+Guard: this does not mean absolute empirical totality or proof without guard.
 
 ## Plugin Assets
 
