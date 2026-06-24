@@ -37,6 +37,12 @@ say "TMI-OS mathematical board plugin verification"
 require_file ".codex-plugin/plugin.json"
 require_file "README_RU.md"
 require_file "assets/index.html"
+require_file "assets/TMI_OS_API.json"
+require_file "assets/TMI_OS_ADMIN.html"
+require_file "assets/TMI_OS_3D_TIME_ARTIFACT.html"
+require_file "assets/TMI_OS_MATHEMATICAL_BOARD.html"
+require_file "assets/TMI_OS_PROTECTED_MODEL_PAGE.html"
+require_file "assets/I1_MINI_LANGUAGE.md"
 require_file "assets/tmi_os_virtual_space_point.i1"
 require_file "assets/EXPORT_PROJECT_RU.md"
 require_file "skills/tmi-os-mathematical-board/SKILL.md"
@@ -69,8 +75,38 @@ check_no_matches \
   'passport *= *biological|passport *= *consciousness|passport *= *legal|diagram *= *proof|VirtualSpace *= *empirical universe|TimeTick *= *external absolute time' \
   "${scan_paths[@]}"
 
-if ! grep -q 'DependencyChain(TMI-OS)' assets/index.html; then
-  say "PLUGIN-CHECK FAIL: dependency chain is missing from assets/index.html"
+if ! grep -q 'ProgrammingOnMathematics' assets/index.html; then
+  say "PLUGIN-CHECK FAIL: site programming formula is missing from assets/index.html"
+  fail=1
+fi
+
+if ! grep -q 'DependencyChain(TMI-OS)' assets/TMI_OS_MATHEMATICAL_BOARD.html; then
+  say "PLUGIN-CHECK FAIL: dependency chain is missing from board artifact"
+  fail=1
+fi
+
+if ! grep -q 'SliceStack(B)' assets/TMI_OS_3D_TIME_ARTIFACT.html; then
+  say "PLUGIN-CHECK FAIL: 3D time artifact slice stack is missing"
+  fail=1
+fi
+
+if ! grep -q 'StaticAdminAPI' assets/TMI_OS_ADMIN.html; then
+  say "PLUGIN-CHECK FAIL: admin API surface is missing"
+  fail=1
+fi
+
+if ! grep -q '"NoServerUpload"' assets/TMI_OS_API.json; then
+  say "PLUGIN-CHECK FAIL: static API guard is missing"
+  fail=1
+fi
+
+if ! grep -q 'ProtectedPage :=' assets/TMI_OS_PROTECTED_MODEL_PAGE.html; then
+  say "PLUGIN-CHECK FAIL: protected model page rule is missing"
+  fail=1
+fi
+
+if ! grep -q 'small kernel now, grows in use' assets/I1_MINI_LANGUAGE.md; then
+  say "PLUGIN-CHECK FAIL: I1 mini language kernel note is missing"
   fail=1
 fi
 

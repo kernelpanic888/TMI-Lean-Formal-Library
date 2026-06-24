@@ -83,6 +83,8 @@ domain-order preservation
 .codex-plugin/plugin.json
 skills/tmi-os-mathematical-board/SKILL.md
 assets/index.html
+assets/TMI_OS_SITE.html
+assets/TMI_OS_3D_TIME_ARTIFACT.html
 assets/tmi_os_virtual_space_point.i1
 scripts/verify_board_export.sh
 bash
@@ -114,6 +116,18 @@ python3 -m http.server 8765 --bind 127.0.0.1
 
 ```text
 http://127.0.0.1:8765/index.html
+```
+
+Публичный сайт-вход:
+
+```text
+http://127.0.0.1:8765/TMI_OS_SITE.html
+```
+
+Дополнительный 3D-артефакт:
+
+```text
+http://127.0.0.1:8765/TMI_OS_3D_TIME_ARTIFACT.html
 ```
 
 ## Проверка

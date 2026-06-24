@@ -1,0 +1,47 @@
+language "TMI-OS" version "последняя"
+language_mode "безверсионный язык"
+program LiveIntentToPassportDemo
+mode "static-local-demo"
+
+intent "написать программу на лету и показать, как мысль становится паспортом"
+
+import Matrix : (Я)-Я-я
+import SurfaceFunction : Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+
+input user_intent : Text
+
+self_model_point p_live := point("Я") inside LiveSurface
+domain D_live := IntentDomain(user_intent)
+slice s_live := projection(D_live) as CanonicalSlice
+tick tau_live := touch(p_live, s_live)
+
+record R_live := CanonicalRecord(
+  intent := user_intent,
+  point := p_live,
+  domain := D_live,
+  slice := s_live,
+  tick := tau_live,
+  pipeline := Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+)
+
+passport LivePassport := Passport(R_live)
+
+guard live_demo_boundary:
+  forbid UserIntentEqualsProof
+  forbid PassportEqualsBiologicalOrLegalIdentity
+  forbid DemoEqualsPublication
+  forbid ClosedProjectUrlLeak
+  forbid ServerUpload
+  forbid ExternalScript
+  require LocalOnly
+  require HumanReviewBeforePublication
+
+action open_board := run board with LivePassport
+action open_artifact3d := run artifact3d with LivePassport
+
+emit "Пользователь говорит на своем языке."
+emit "И1 принимает intent как исходный срез."
+emit "Формальная логика собирает каноническую запись."
+emit "Паспорт фиксирует границы действия."
+emit "Guard не дает intent превратиться в лишнее утверждение."
+emit "Действие разрешено только после паспорта."
