@@ -65,6 +65,9 @@ Date: 2026-06-24
 | `docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md` | GitHub release notes for `v0.3.1-lean-community-entry` |
 | `docs/LEAN_COMMUNITY_ENTRY.md` | Lean community-facing package entry point |
 | `docs/RESERVOIR_READINESS.md` | Reservoir/package-registry readiness checklist |
+| `docs/PASSPORT_INDEX.md` | Index of public passport surfaces |
+| `docs/TLFL_LIBRARY_PASSPORT.md` | Main TLFL library passport |
+| `docs/COMPARATOR_CHALLENGE_PASSPORT.md` | Trusted Comparator challenge hash passport |
 | `docs/GITHUB_PUBLICATION_TEXT.md` | Copy-ready GitHub repository/release publication text |
 | `docs/TLFL_EXTENDED_PUBLICATION_EN.md` | Extended English public explanation: what TLFL is and why it exists |
 | `docs/TLFL_EXTENDED_PUBLICATION_RU.md` | Extended Russian public explanation: what TLFL is and why it exists |

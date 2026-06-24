@@ -156,6 +156,10 @@ Standalone canonical passport:
 Comparator challenge / solution:
   examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean
   examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean
+  docs/COMPARATOR_CHALLENGE_PASSPORT.md
+
+Passport index:
+  docs/PASSPORT_INDEX.md
 
 Experiment sandbox:
   https://github.com/kernelpanic888/TMI-OS-Experiment

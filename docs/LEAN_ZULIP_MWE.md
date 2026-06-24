@@ -115,6 +115,12 @@ A local copy-helper page is available at:
 tools/comparator_passport_helper.html
 ```
 
+The browser-local trusted challenge hash is recorded as a passport in:
+
+```text
+docs/COMPARATOR_CHALLENGE_PASSPORT.md
+```
+
 ## Zulip Text
 
 ```text
