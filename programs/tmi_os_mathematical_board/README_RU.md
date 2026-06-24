@@ -13,6 +13,11 @@ TMI-OS / И1 - язык программирования широкого уро
 intent -> mathematical board -> trace -> guard -> proof-status boundary
 ```
 
+```text
+ProgrammingOnMathematics :=
+  Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
+```
+
 ## Что Это
 
 ```text
@@ -36,6 +41,13 @@ domain_order(d1, d2) -> slice_order(projection(d1), projection(d2))
 
 tau := touch(p, s)
 TimeTick(tau) := SelfModelContact(p, s)
+
+SlicePassport(p, s, tau) :=
+  ProjectionSlice(s)
+  and read(p, s)
+  and tau = touch(p, s)
+  and CanonicalRecord(s)
+  and PassportBoundary(s)
 ```
 
 ## Файлы
@@ -71,6 +83,7 @@ guard contracts
 formal idea visualizations
 installation and verification traces
 domain-order preserving model interfaces
+slice-passport current-state records
 ```
 
 ## Зависимости Языка

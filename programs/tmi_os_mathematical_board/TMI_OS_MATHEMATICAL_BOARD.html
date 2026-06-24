@@ -283,7 +283,7 @@
   <main>
     <section class="board" aria-label="Mathematical model of self-model point and inner block universe">
       <h1 class="title">Инженерная поверхность 01</h1>
-      <div class="subtitle">Программа: p, B ⊂ p, s, τ = touch(p,s), ΠC(p,B,s,τ).</div>
+      <div class="subtitle">Программирование на математике: p, B ⊂ p, s, τ = touch(p,s), ΠC(p,B,s,τ).</div>
 
       <svg viewBox="0 0 760 720" role="img" aria-labelledby="svgTitle svgDesc">
         <title id="svgTitle">Инженерная поверхность TMI-OS/И1</title>
@@ -387,6 +387,13 @@ p : SelfModelPoint</div>
 B := π(D)
 B ⊂ p</div>
 
+      <div class="formula definition">ProgrammingOnMathematics :=
+Intent
+→ FormalLogic
+→ CanonicalRecord
+→ Passport
+→ GuardedAction</div>
+
       <div class="formula definition">≤D : DomainOrder(D)
 ≤S : SliceOrder(S)
 d₁ ≤D d₂ ⇒ π(d₁) ≤S π(d₂)</div>
@@ -397,6 +404,14 @@ s : ProjectionSlice</div>
 
       <div class="formula definition">τ := touch(p, s)
 TimeTick(τ) := SelfModelContact(p, s)</div>
+
+      <div class="formula definition">SlicePassport(p,s,τ) :=
+ProjectionSlice(s)
+∧ read(p,s)
+∧ τ = touch(p,s)
+∧ CanonicalRecord(s)
+∧ PassportBoundary(s)
+StrongestCurrentPassport := SlicePassport(p,s,τ)</div>
 
       <div class="formula definition">ΠC : (p, B, s, τ) → C
 C := CompositionProjection(p, B, s, τ)
@@ -434,6 +449,7 @@ diagram ≠ proof by itself</div>
         есть касание p к одному срезу s. Доменный порядок сохраняется как порядок
         чтения внутренних срезов. Проекция всей композиции выводится из точки p
         рядом с блоком, но проходит через пересечения с доменной поверхностью.
+        Срез в момент чтения является локальным паспортом системы в себе.
       </div>
     </aside>
 

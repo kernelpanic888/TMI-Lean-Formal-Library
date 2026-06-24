@@ -19,6 +19,23 @@ LLM/GPT/Codex -> Lean -> TLFL -> И1
 intent -> formal surface -> guard -> trace -> readable model action
 ```
 
+Главная формула программы:
+
+```text
+ProgrammingOnMathematics :=
+  Intent
+  -> FormalLogic
+  -> CanonicalRecord
+  -> Passport
+  -> GuardedAction
+```
+
+По-русски:
+
+```text
+программирование на математике
+```
+
 Доска является визуальной проекцией. Инженерный интерфейс задаёт то, что
 именно читается, проверяется и исполняется как И1-программа.
 
@@ -269,6 +286,41 @@ Guard:
 TickOfContact != Time = Memory
 TickOfContact != Time = speed_of_light
 TickOfContact != empirical proof
+```
+
+## 5.1. Срез Как Паспорт
+
+Срез в момент чтения является самым сильным локальным паспортом системы в себе:
+
+```text
+SlicePassport(p, s, τ) :=
+  ProjectionSlice(s)
+  ∧ inside(s, p)
+  ∧ read(p, s)
+  ∧ τ = touch(p, s)
+  ∧ CanonicalRecord(s)
+  ∧ PassportBoundary(s)
+  ∧ Trace(τ)
+```
+
+Короткая запись:
+
+```text
+StrongestCurrentPassport(p, s, τ) := SlicePassport(p, s, τ)
+```
+
+И1-чтение:
+
+```text
+срез = паспорт системы в себе в момент чтения среза
+```
+
+Guard:
+
+```text
+StrongestCurrentPassport != absolute empirical totality
+StrongestCurrentPassport != proof without guard
+StrongestCurrentPassport != identity of system and world
 ```
 
 ## 6. Поток Времени
