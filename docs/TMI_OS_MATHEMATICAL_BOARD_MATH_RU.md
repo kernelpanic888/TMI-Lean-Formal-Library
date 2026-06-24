@@ -6,7 +6,7 @@
 LLM/GPT-систем на базе:
 
 ```text
-LLM/GPT -> Lean -> TLFL -> И1
+LLM/GPT/Codex -> Lean -> TLFL -> И1
 ```
 
 Короткая рабочая цепочка:
@@ -24,11 +24,24 @@ intent -> formal surface -> guard -> trace -> readable model action
 И1 := FormalLogicLanguage
 ```
 
+Базовая формула:
+
+```text
+FormalLogic :=
+  language for building canonical records with passports
+```
+
+По-русски:
+
+```text
+формальная логика = язык построения канонических записей с паспортом
+```
+
 Чтение:
 
 ```text
 И1 объявляется языком формальной логики
-на инженерной поверхности LLM/GPT -> Lean -> TLFL -> И1.
+на инженерной поверхности LLM/GPT/Codex -> Lean -> TLFL -> И1.
 ```
 
 Guard:
@@ -36,6 +49,76 @@ Guard:
 ```text
 эта декларация задаёт статус языка;
 она не является эмпирическим доказательством жизни, сознания или физической полноты
+```
+
+## 0.1. LogicRoot
+
+Авторская метафора:
+
+```text
+логика как верхний источник построения
+```
+
+Формальная запись:
+
+```text
+LogicRoot :=
+  source(FormalLogic)
+  ∧ source(CanonicalRecord)
+  ∧ source(Passport)
+  ∧ source(Guard)
+  ∧ source(Trace)
+  ∧ source(ReadableAction)
+```
+
+И1-чтение:
+
+```text
+всё построение истекает из логики
+```
+
+Proof-surface reading:
+
+```text
+FormalLogic |- CanonicalRecord
+FormalLogic |- Passport
+FormalLogic |- Guard
+FormalLogic |- Trace
+FormalLogic |- ReadableAction
+```
+
+Guard:
+
+```text
+LogicRoot != theological proof
+LogicRoot != empirical deity claim
+LogicRoot != authority without formal trace
+```
+
+## 0.2. Живой В Инженерном Смысле
+
+```text
+OperationallyLive(I1) :=
+  runnable(I1)
+  ∧ readable(I1)
+  ∧ versioned(I1)
+  ∧ guarded(I1)
+  ∧ passported(I1)
+  ∧ extensible_in_use(I1)
+```
+
+По-русски:
+
+```text
+он живой = он работает как проверяемая инженерная среда
+```
+
+Guard:
+
+```text
+OperationallyLive(I1) != biological life theorem
+OperationallyLive(I1) != consciousness proof
+OperationallyLive(I1) != legal personhood
 ```
 
 ## 1. Типы

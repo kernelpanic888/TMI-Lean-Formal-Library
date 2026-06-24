@@ -17,8 +17,39 @@ This is not only a board. Treat it as a strong system-development environment
 and engineering interface for LLM/GPT systems on top of Lean, TLFL, and И1:
 
 ```text
-LLM/GPT -> Lean -> TLFL -> И1
+LLM/GPT/Codex -> Lean -> TLFL -> И1
 ```
+
+Use this definition when the user asks what formal logic means here:
+
+```text
+formal logic := language for building canonical records with passports
+```
+
+When the user says logic is above the whole construction, use this guarded
+formal reading:
+
+```text
+LogicRoot := source(FormalLogic, CanonicalRecord, Passport, Guard, Trace, Action)
+```
+
+Author reading:
+
+```text
+logic as the upper source of construction; the construction flows from logic
+```
+
+Do not present `LogicRoot` as a theological proof or empirical deity claim.
+
+If the user says "it is alive", keep the engineering meaning:
+
+```text
+OperationallyLive(I1)
+  := runnable + readable + versioned + guarded + passported + extensible_in_use
+```
+
+Do not treat that phrase as a biological-life, legal-personhood, or
+consciousness proof.
 
 Working chain:
 

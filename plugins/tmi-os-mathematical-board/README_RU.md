@@ -17,7 +17,44 @@ CodexPlugin(TMI-OS-Board)
 LLM/GPT-систем на базе Lean, TLFL и И1:
 
 ```text
-LLM/GPT -> Lean -> TLFL -> И1
+LLM/GPT/Codex -> Lean -> TLFL -> И1
+```
+
+Формальная логика здесь читается так:
+
+```text
+formal logic := language for building canonical records with passports
+```
+
+Верхний принцип:
+
+```text
+LogicRoot := source(FormalLogic, CanonicalRecord, Passport, Guard, Trace, Action)
+```
+
+Авторское чтение:
+
+```text
+логика как верхний источник построения; всё построение истекает из неё
+```
+
+Формула живой инженерной среды:
+
+```text
+OperationallyLive(I1)
+:= runnable
+ + readable
+ + versioned
+ + guarded
+ + passported
+ + extensible_in_use
+```
+
+Guard:
+
+```text
+LogicRoot != theological proof
+OperationallyLive(I1) != biological life claim
 ```
 
 Рабочая цепочка:

@@ -3,7 +3,7 @@
 Первая публичная программа TMI-OS / И1.
 
 TMI-OS / И1 - язык программирования широкого уровня и сильная среда системной
-разработки на базе LLM/GPT -> Lean -> TLFL -> И1:
+разработки на базе LLM/GPT/Codex -> Lean -> TLFL -> И1:
 
 ```text
 intent -> mathematical board -> trace -> guard -> proof-status boundary
