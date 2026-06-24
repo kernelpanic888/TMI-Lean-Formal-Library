@@ -143,8 +143,12 @@ Lean package:
 
 Community entry:
   docs/LEAN_COMMUNITY_ENTRY.md
+  docs/LEAN_ZULIP_MWE.md
   docs/RESERVOIR_READINESS.md
   docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md
+
+Minimal working example:
+  examples/lean/TLFL_MWE.lean
 
 Experiment sandbox:
   https://github.com/kernelpanic888/TMI-OS-Experiment
