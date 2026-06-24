@@ -36,6 +36,7 @@ Public passport:
 - [`docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md`](docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md)
 - [`docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md`](docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md)
 - [`docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md`](docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md)
+- [`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md)
 
 First public program:
 
@@ -66,6 +67,11 @@ conditions, claim-status certificates, and proof targets of TMI.
 
 This is not a fork of Lean and not a new programming language. It is a Lean 4
 library whose modules are compiled by the ordinary Lean kernel.
+
+For Lean-package reviewers, start with
+[`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md). That document
+keeps the entry point technical: Lake build, canonical imports, claim boundary,
+and community-review path.
 
 ## Current Release And Versioning
 
