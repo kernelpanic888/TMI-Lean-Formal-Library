@@ -41,6 +41,12 @@ programs/tmi_os_mathematical_board/tmi_os_virtual_space_point.i1
 programs/tmi_os_mathematical_board/TMI_OS_MATHEMATICAL_BOARD.html
 ```
 
+Exportable public project:
+
+```text
+exports/tmi_os_mathematical_board_public/
+```
+
 ## TLFL Kernel Lineage
 
 TMI-Lean Formal Library (TLFL) is a Lean 4 formal library for encoding the core

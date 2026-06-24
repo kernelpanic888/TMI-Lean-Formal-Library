@@ -9,6 +9,7 @@
 publications/zenodo/
 zenodo/
 exports/zenodo/
+exports/*.zip
 tmp/zenodo/
 *_zenodo_export_*.zip
 CHECKSUMS_SHA256.txt
