@@ -28,6 +28,10 @@ and not empirical closure.
 Public passport:
 
 - [`docs/TLFL_LIBRARY_PASSPORT.md`](docs/TLFL_LIBRARY_PASSPORT.md)
+- [`examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean`](examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean)
+- [`examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean`](examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean)
+- [`examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean`](examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean)
+- [`lean/TMI/ClaimPassport.lean`](lean/TMI/ClaimPassport.lean)
 - [`docs/PASSPORT_AUDIENCE_INTROS.md`](docs/PASSPORT_AUDIENCE_INTROS.md)
 - [`docs/LEAN_ZULIP_MWE.md`](docs/LEAN_ZULIP_MWE.md)
 - [`docs/TMI_OS_PUBLIC_PASSPORT.md`](docs/TMI_OS_PUBLIC_PASSPORT.md)
