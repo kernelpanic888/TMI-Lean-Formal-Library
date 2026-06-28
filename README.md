@@ -47,6 +47,7 @@ Public passport:
 - [`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md)
 - [`docs/RESERVOIR_READINESS.md`](docs/RESERVOIR_READINESS.md)
 - [`docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md`](docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md)
+- [`publications/monumental_artifact_2026_06_29/README_RU.md`](publications/monumental_artifact_2026_06_29/README_RU.md)
 
 First public program:
 
