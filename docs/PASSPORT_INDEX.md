@@ -8,6 +8,7 @@ This index keeps the public passport surfaces easy to find.
 | `docs/TMI_OS_PUBLIC_PASSPORT.md` | Public TMI-OS surface passport |
 | `docs/COMPARATOR_CHALLENGE_PASSPORT.md` | Trusted Comparator challenge hash passport |
 | `docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md` | Guarded Codex role passport reference |
+| `publications/monumental_artifact_2026_06_29/README_RU.md` | Russian monumental artifact navigation passport |
 
 The Comparator challenge hash is:
 
