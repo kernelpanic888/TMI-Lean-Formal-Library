@@ -56,6 +56,9 @@ https://doi.org/10.5281/zenodo.21011196
 
 Proof/source package snapshot:
 https://doi.org/10.5281/zenodo.20938776
+
+LinkedIn public announcement trace:
+https://www.linkedin.com/posts/oleksiy-salkutsan-276a40184_released-tlfl-v040-a-guarded-monumental-share-7477151831459180544-aU9c/
 ```
 
 ## Claim Boundary
@@ -65,6 +68,7 @@ Allowed:
 - repository-level publication navigation;
 - proof-status and artifact-status mapping;
 - linking public publication snapshots;
+- linking public announcement traces;
 - linking internal author visual material as clearly bounded author material;
 - SHA256 integrity checks for files added in this node.
 
@@ -109,4 +113,3 @@ The GitHub release/tag should include:
 - this release note;
 - the monumental artifact folder:
   `publications/monumental_artifact_2026_06_29/`.
-

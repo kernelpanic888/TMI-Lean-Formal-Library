@@ -58,6 +58,7 @@ author visual card != public evidence
 | TMI-OS repository | https://github.com/osalkutsan-godaddy/TMI-OS | Инженерная поверхность и интерфейсная линия |
 | Elusive Graviton preprint | https://doi.org/10.5281/zenodo.21011196 | Зафиксированный Zenodo-срез кандидата |
 | Proof/source package | https://doi.org/10.5281/zenodo.20938776 | Внешняя ссылка на пруф-пакет / исходный пакет |
+| LinkedIn release post | https://www.linkedin.com/posts/oleksiy-salkutsan-276a40184_released-tlfl-v040-a-guarded-monumental-share-7477151831459180544-aU9c/ | Публичный след релиза |
 
 ## 4. Визуальная визитка
 
@@ -86,6 +87,7 @@ TLFL
 -> point_record / elusive graviton candidate
 -> author intuition / methodology layer
 -> publication and review packages
+-> public announcement trace
 ```
 
 Назначение этой карты - удерживать связи, а не смешивать классы.
@@ -145,4 +147,3 @@ ForbiddenJump := empirical_detection_claim
 AuthorVisualCard := internal_link_only
 Guard := no_overclaim
 ```
-
