@@ -27,6 +27,13 @@ and not empirical closure.
 
 Public passport:
 
+- [`docs/TLFL_LIBRARY_PASSPORT.md`](docs/TLFL_LIBRARY_PASSPORT.md)
+- [`examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean`](examples/lean/TLFL_CANONICAL_PASSPORT_STANDALONE.lean)
+- [`examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean`](examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean)
+- [`examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean`](examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean)
+- [`lean/TMI/ClaimPassport.lean`](lean/TMI/ClaimPassport.lean)
+- [`docs/PASSPORT_AUDIENCE_INTROS.md`](docs/PASSPORT_AUDIENCE_INTROS.md)
+- [`docs/LEAN_ZULIP_MWE.md`](docs/LEAN_ZULIP_MWE.md)
 - [`docs/TMI_OS_PUBLIC_PASSPORT.md`](docs/TMI_OS_PUBLIC_PASSPORT.md)
 - [`docs/TMI_OS_REPOSITORY_PROFILE.md`](docs/TMI_OS_REPOSITORY_PROFILE.md)
 - [`docs/TMI_OS_FIRST_PUBLIC_PROGRAM_RU.md`](docs/TMI_OS_FIRST_PUBLIC_PROGRAM_RU.md)
@@ -37,9 +44,11 @@ Public passport:
 - [`docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md`](docs/TMI_OS_PUBLICATION_REFUSAL_CRITERIA_RU.md)
 - [`docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md`](docs/RELEASE_v0.3.0_I1_ENGINEERING_SURFACE.md)
 - [`docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md`](docs/RELEASE_v0.3.1_LEAN_COMMUNITY_ENTRY.md)
+- [`docs/RELEASE_v0.4.0_MONUMENTAL_ARTIFACT.md`](docs/RELEASE_v0.4.0_MONUMENTAL_ARTIFACT.md)
 - [`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md)
 - [`docs/RESERVOIR_READINESS.md`](docs/RESERVOIR_READINESS.md)
 - [`docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md`](docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md)
+- [`publications/monumental_artifact_2026_06_29/README_RU.md`](publications/monumental_artifact_2026_06_29/README_RU.md)
 
 First public program:
 
@@ -97,9 +106,10 @@ TMI-Lean-Formal-Library
 ```
 
 Versions live in GitHub releases, tags, and status documents rather than in the
-repository slug. The current source line includes the TLFL 0.3 public
-engineering-surface slice and the `v0.3.1-lean-community-entry` technical entry
-layer for Lean package review. The Lake package id remains
+repository slug. The current source line includes the TLFL 0.4 monumental
+artifact publication-map slice, the TLFL 0.3 public engineering-surface slice,
+and the `v0.3.1-lean-community-entry` technical entry layer for Lean package
+review. The Lake package id remains
 `tmi_lean_formal_library_0_1` as a historical package identifier; release tags
 carry the public version surface.
 
