@@ -9,6 +9,7 @@ This index keeps the public passport surfaces easy to find.
 | `docs/COMPARATOR_CHALLENGE_PASSPORT.md` | Trusted Comparator challenge hash passport |
 | `docs/CODEX_PROJECTION_INTELLIGENCE_PASSPORT_RU.md` | Guarded Codex role passport reference |
 | `publications/monumental_artifact_2026_06_29/README_RU.md` | Russian monumental artifact navigation passport |
+| `docs/RELEASE_v0.4.0_MONUMENTAL_ARTIFACT.md` | Full publication-map release note |
 
 The Comparator challenge hash is:
 
