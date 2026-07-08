@@ -40,6 +40,7 @@ Public passport:
 - [`docs/LEAN_COMMUNITY_ENTRY.md`](docs/LEAN_COMMUNITY_ENTRY.md)
 - [`docs/RESERVOIR_READINESS.md`](docs/RESERVOIR_READINESS.md)
 - [`docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md`](docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md)
+- [`docs/LAYER_BRIDGE_PUBLICATION_PASSPORT.md`](docs/LAYER_BRIDGE_PUBLICATION_PASSPORT.md)
 
 First public program:
 
@@ -108,6 +109,27 @@ carry the public version surface.
 ```lean
 import TMI.Library
 ```
+
+## Layer Bridge
+
+`LayerBridge` is a small public Lean surface for the boundary between a
+guarded experiment and the stable TLFL module layer.
+
+```lean
+import LayerBridge
+```
+
+Read it as the current promotion/projection law:
+
+```text
+ExperimentSpace --PromotionBridge--> TLFLModule
+TLFLModule      --ProjectionBridge--> ExperimentSpace
+```
+
+The bridge does not introduce new axioms and does not claim autonomous
+operation. It records when a candidate experiment may be promoted, when a TLFL
+module may be projected as read-only reference, and where the public proof
+boundary stops.
 
 ## OLean Adapter
 
