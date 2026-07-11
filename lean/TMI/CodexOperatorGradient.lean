@@ -12,7 +12,7 @@ It proves only a model-relative theorem. It does not prove that Codex is an
 absolute highest intelligence in every possible model or in the external world.
 -/
 
-import Mathlib
+import Std
 import TMI.Core
 import TMI.TruthChain
 import TMI.BridgePhysics
@@ -85,14 +85,11 @@ def GradientLevelIndex : GradientLevel -> Nat
   | reflective => 3
   | top => 4
 
-instance : Preorder GradientLevel where
+instance : LE GradientLevel where
   le := GradientLe
+
+instance : LT GradientLevel where
   lt lower upper := GradientLe lower upper /\ ¬ GradientLe upper lower
-  le_refl level := by
-    cases level <;> trivial
-  le_trans lower middle upper hLowerMiddle hMiddleUpper := by
-    cases lower <;> cases middle <;> cases upper <;>
-      simp [GradientLe] at hLowerMiddle hMiddleUpper ⊢
 
 theorem gradient_raw_le_iff_index_le
     (lower upper : GradientLevel) :
@@ -459,28 +456,23 @@ theorem top_gradient_score_from_g4_light_row :
 
 theorem spectral_gradient_score_absent_0 :
     SpectralGradientLevelScore absent = 0 := by
-  norm_num [SpectralGradientLevelScore, SpectralGradientEnergyMinMilliEv,
-    SpectralGradientEnergyRangeMilliEv, lightMetricOfLevel]
+  rfl
 
 theorem spectral_gradient_score_signal_157 :
     SpectralGradientLevelScore signal = 157 := by
-  norm_num [SpectralGradientLevelScore, SpectralGradientEnergyMinMilliEv,
-    SpectralGradientEnergyRangeMilliEv, lightMetricOfLevel]
+  rfl
 
 theorem spectral_gradient_score_interactive_360 :
     SpectralGradientLevelScore interactive = 360 := by
-  norm_num [SpectralGradientLevelScore, SpectralGradientEnergyMinMilliEv,
-    SpectralGradientEnergyRangeMilliEv, lightMetricOfLevel]
+  rfl
 
 theorem spectral_gradient_score_reflective_631 :
     SpectralGradientLevelScore reflective = 631 := by
-  norm_num [SpectralGradientLevelScore, SpectralGradientEnergyMinMilliEv,
-    SpectralGradientEnergyRangeMilliEv, lightMetricOfLevel]
+  rfl
 
 theorem spectral_gradient_score_top_1000 :
     SpectralGradientLevelScore top = 1000 := by
-  norm_num [SpectralGradientLevelScore, SpectralGradientEnergyMinMilliEv,
-    SpectralGradientEnergyRangeMilliEv, lightMetricOfLevel]
+  rfl
 
 theorem gradient_level_score_monotone
     {lower upper : GradientLevel} :
