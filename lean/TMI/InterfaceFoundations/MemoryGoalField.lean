@@ -76,3 +76,76 @@ theorem area_probing_has_noise
   bridge.areaProbingProducesNoise carrier h
 
 end TMI.InterfaceFoundations.MemoryGoalField
+
+namespace TMI.InterfaceFoundations.MemoryGoalField
+
+/-!
+The field is set-valued. Selection is a separate operation and therefore an
+extra commitment: admissible possibilities do not choose themselves.
+-/
+
+universe x y z
+
+structure FieldOfNearestGoalsFrame
+    (Context : Type x)
+    (Action : Type y)
+    (Noise : Type z) where
+  transition : Context -> Action -> Noise -> Context
+  actionAllowed : Context -> Action -> Prop
+  noiseAllowed : Context -> Noise -> Prop
+  boundary : Context -> Prop
+  quality : Context -> Context -> Prop
+  nearby : Context -> Context -> Prop
+
+def FieldOfNearestGoals
+    {Context : Type x} {Action : Type y} {Noise : Type z}
+    (frame : FieldOfNearestGoalsFrame Context Action Noise)
+    (current : Context) : Set Context :=
+  fun candidate =>
+    frame.boundary candidate /\
+      frame.nearby current candidate /\
+      frame.quality current candidate /\
+      exists action : Action,
+        frame.actionAllowed current action /\
+          exists noise : Noise,
+            frame.noiseAllowed current noise /\
+              frame.transition current action noise = candidate
+
+def FieldOfNearestGoalsSelection
+    {Context : Type x} {Action : Type y} {Noise : Type z}
+    (frame : FieldOfNearestGoalsFrame Context Action Noise)
+    (choose : Context -> Context) : Prop :=
+  forall current : Context,
+    FieldOfNearestGoals frame current (choose current)
+
+theorem fieldOfNearestGoals_nonempty_of_selection
+    {Context : Type x} {Action : Type y} {Noise : Type z}
+    (frame : FieldOfNearestGoalsFrame Context Action Noise)
+    (choose : Context -> Context)
+    (selection : FieldOfNearestGoalsSelection frame choose)
+    (current : Context) :
+    exists candidate : Context,
+      FieldOfNearestGoals frame current candidate :=
+  ⟨choose current, selection current⟩
+
+def WanderingInsideGoalField
+    {Context : Type x} {Action : Type y} {Noise : Type z}
+    (frame : FieldOfNearestGoalsFrame Context Action Noise)
+    (areaProbe : Context -> Action -> Prop)
+    (current : Context) : Prop :=
+  exists action : Action,
+    areaProbe current action /\
+      exists noise : Noise,
+        FieldOfNearestGoals frame current
+          (frame.transition current action noise)
+
+theorem selection_is_additional_data
+    {Context : Type x} {Action : Type y} {Noise : Type z}
+    (frame : FieldOfNearestGoalsFrame Context Action Noise)
+    (choose : Context -> Context)
+    (selection : FieldOfNearestGoalsSelection frame choose) :
+    forall current : Context,
+      FieldOfNearestGoals frame current (choose current) :=
+  selection
+
+end TMI.InterfaceFoundations.MemoryGoalField

@@ -31,7 +31,8 @@ lean_lib TMI where
     `TMI.SelfThinkingUniverse,
     `TMI.InterfaceMathematics,
     `TMI.InterfaceFoundationsAlpha,
-    `TMI.InterfaceFoundationsV051Alpha
+    `TMI.InterfaceFoundationsV051Alpha,
+    `TMI.InterfaceFoundationsV052Alpha
     `TMI.Branches,
     `TMI.Library
   ]

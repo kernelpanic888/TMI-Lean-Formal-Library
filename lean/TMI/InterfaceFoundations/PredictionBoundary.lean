@@ -25,7 +25,7 @@ theorem interface_state_blocks_endpoint_exactness
     (full : LeftState -> InterfaceState -> RightState -> Observation)
     (hRelevant :
       exists left right interface₁ interface₂,
-        full left interface₁ right != full left interface₂ right) :
+        full left interface₁ right ≠ full left interface₂ right) :
     Not (exists endpointOnly : LeftState -> RightState -> Observation,
       EndpointExact full endpointOnly) := by
   rintro ⟨endpointOnly, hExact⟩
