@@ -1,5 +1,14 @@
 # TMI-OS / TMI-Lean Formal Library (TLFL)
 
+> **Current development release / Текущий экспериментальный релиз:**
+> `v0.5.0-alpha`
+>
+> **EN:** Independent Lean 4 library with a separate experimental
+> interface-foundations layer.
+>
+> **RU:** Независимая библиотека Lean 4 с отдельным экспериментальным слоем
+> оснований интерфейса.
+
 TMI-OS is the public passport layer over TLFL: a broad-level programming
 language and strong system-development environment for LLM/GPT/Codex -> Lean -> TLFL -> И1 workflows. Its strength is a guarded proof-status passport written on
 formal logic.
@@ -41,6 +50,10 @@ Public passport:
 - [`docs/RESERVOIR_READINESS.md`](docs/RESERVOIR_READINESS.md)
 - [`docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md`](docs/AUTHOR_LEAN_COMMUNITY_ENTRY_RU.md)
 - [`docs/LAYER_BRIDGE_PUBLICATION_PASSPORT.md`](docs/LAYER_BRIDGE_PUBLICATION_PASSPORT.md)
+- [`docs/RELEASE_v0.5.0_ALPHA_EN.md`](docs/RELEASE_v0.5.0_ALPHA_EN.md)
+- [`docs/RELEASE_v0.5.0_ALPHA_RU.md`](docs/RELEASE_v0.5.0_ALPHA_RU.md)
+- [`docs/TLFL_v0.5.0_ALPHA_PROOF_STATUS.md`](docs/TLFL_v0.5.0_ALPHA_PROOF_STATUS.md)
+- [`docs/ARCHITECTURE_UPSTREAM_POLICY_RU_EN.md`](docs/ARCHITECTURE_UPSTREAM_POLICY_RU_EN.md)
 
 First public program:
 
@@ -98,9 +111,10 @@ TMI-Lean-Formal-Library
 ```
 
 Versions live in GitHub releases, tags, and status documents rather than in the
-repository slug. The current source line includes the TLFL 0.3 public
-engineering-surface slice and the `v0.3.1-lean-community-entry` technical entry
-layer for Lean package review. The Lake package id remains
+repository slug. The current source line is `v0.5.0-alpha`. It preserves the
+TLFL 0.3 public engineering surface and the `v0.3.1-lean-community-entry`
+technical entry layer while adding an explicitly experimental interface
+foundations module. The Lake package id remains
 `tmi_lean_formal_library_0_1` as a historical package identifier; release tags
 carry the public version surface.
 
@@ -109,6 +123,37 @@ carry the public version surface.
 ```lean
 import TMI.Library
 ```
+
+The canonical import remains the stable aggregation surface. The alpha module
+must be requested explicitly:
+
+```lean
+import TMI.InterfaceFoundationsAlpha
+```
+
+## TLFL v0.5.0-alpha: Interface Foundations
+
+The alpha layer records a formal vocabulary for:
+
+```text
+L <-> Sigma <-> R
+PlanckTouch < admissible interface corridor < HorizonTouch
+Sigma = state + memory + energy + evolution + backreaction
+physical time relation x internal record time
+prediction gate = improvement over a baseline on a bounded error target
+```
+
+The module status is `experimental`. Its definitions and elementary
+propositional lemmas are Lean source objects; the release does not convert the
+authorial geometry into established physics. `PlanckTouch` does not by itself
+imply `HorizonTouch`, and an upper boundary requires an additional corridor
+witness.
+
+Release documents:
+
+- [`docs/RELEASE_v0.5.0_ALPHA_EN.md`](docs/RELEASE_v0.5.0_ALPHA_EN.md)
+- [`docs/RELEASE_v0.5.0_ALPHA_RU.md`](docs/RELEASE_v0.5.0_ALPHA_RU.md)
+- [`docs/TLFL_v0.5.0_ALPHA_PROOF_STATUS.md`](docs/TLFL_v0.5.0_ALPHA_PROOF_STATUS.md)
 
 ## Layer Bridge
 
@@ -221,6 +266,7 @@ lake env lean lean/TMI/Library.lean
 lake env lean lean/OLean.lean
 lake env lean lean/OLean/SelfCheck.lean
 lake env lean lean/OLean/SelfCheckAsThinker.lean
+lake env lean lean/TMI/InterfaceFoundationsAlpha.lean
 lake build TMI
 lake build OLean
 ```
@@ -277,6 +323,7 @@ lean/TMI/Bridge.lean
 lean/TMI/ProofStatusClassification.lean
 lean/TMI/ProofChainSelfModel.lean
 lean/TMI/ClaimPassport.lean
+lean/TMI/InterfaceFoundationsAlpha.lean
 lean/TMI/Branches/MD.lean
 lean/TMI/Branches/QC.lean
 lean/TMI/Branches/QG.lean

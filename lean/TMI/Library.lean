@@ -1,10 +1,12 @@
 /-
-TMI-Lean Formal Library 0.1.
+TMI-Lean Formal Library v0.5.0-alpha package manifest.
 
 This is the canonical public import for the standalone library package. It
-keeps the first release focused on stable formal surfaces: core interface
+keeps the canonical import focused on stable formal surfaces: core interface
 theory, formula interfaces, bridge physics signatures, truth chains,
-self-thinking universe boundaries, and interface mathematics.
+self-thinking universe boundaries, and interface mathematics. Experimental
+v0.5 interface foundations remain available through the separate explicit
+import `TMI.InterfaceFoundationsAlpha`.
 -/
 
 import TMI.Core
@@ -32,10 +34,13 @@ def libraryName : String :=
   "TMI-Lean Formal Library"
 
 def libraryVersion : String :=
-  "0.1"
+  "0.5.0-alpha"
 
 def libraryTagline : String :=
   "Formal Library for Interface-Event Theory in Lean 4"
+
+def experimentalInterfaceFoundationsImport : String :=
+  "TMI.InterfaceFoundationsAlpha"
 
 structure LibraryManifest where
   name : String
