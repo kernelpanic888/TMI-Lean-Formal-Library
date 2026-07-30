@@ -1,7 +1,7 @@
 # TMI-OS / TMI-Lean Formal Library (TLFL)
 
 > **Current development release / Текущий экспериментальный релиз:**
-> `v0.5.0-alpha`
+> `v0.5.1-alpha`
 >
 > **EN:** Independent Lean 4 library with a separate experimental
 > interface-foundations layer.
@@ -111,7 +111,7 @@ TMI-Lean-Formal-Library
 ```
 
 Versions live in GitHub releases, tags, and status documents rather than in the
-repository slug. The current source line is `v0.5.0-alpha`. It preserves the
+repository slug. The current source line is `v0.5.1-alpha`. It preserves the
 TLFL 0.3 public engineering surface and the `v0.3.1-lean-community-entry`
 technical entry layer while adding an explicitly experimental interface
 foundations module. The Lake package id remains
@@ -128,10 +128,10 @@ The canonical import remains the stable aggregation surface. The alpha module
 must be requested explicitly:
 
 ```lean
-import TMI.InterfaceFoundationsAlpha
+import TMI.InterfaceFoundationsV051Alpha
 ```
 
-## TLFL v0.5.0-alpha: Interface Foundations
+## TLFL v0.5.1-alpha: Interface Foundations
 
 The alpha layer records a formal vocabulary for:
 
@@ -339,3 +339,18 @@ docs/API_REFERENCE.md
 docs/EXTERNAL_PROOFS.md
 docs/GLOSSARY.md
 ```
+
+### Interface Foundations v0.5.1-alpha modules
+
+The experimental root `TMI.InterfaceFoundationsV051Alpha` composes:
+
+- `TMI.InterfaceFoundations.Question`
+- `TMI.InterfaceFoundations.TwoSidedInterface`
+- `TMI.InterfaceFoundations.MinimumContact`
+- `TMI.InterfaceFoundations.TwoAxisTime`
+- `TMI.InterfaceFoundations.PredictionBoundary`
+- `TMI.InterfaceFoundations.TwoPointTrace`
+- `TMI.InterfaceFoundations.SemisimplicialBoundary`
+- `TMI.InterfaceFoundations.MemoryGoalField`
+
+Release notes: [RU](docs/RELEASE_v0.5.1_ALPHA_RU.md) · [EN](docs/RELEASE_v0.5.1_ALPHA_EN.md) · [proof status](docs/TLFL_v0.5.1_ALPHA_PROOF_STATUS.md).
