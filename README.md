@@ -68,7 +68,13 @@ Exportable public project:
 
 ```text
 exports/tmi_os_mathematical_board_public/
+exports/chertogi_first_distinction_public/
 ```
+
+The second export is the self-contained public research surface for the
+Chambers of the First Distinction, including the TIDL/DL reader route and the
+executable DL-04 living-model candidate. Live site:
+https://chertogi-razuma-research.kernelpanic888.chatgpt.site/
 
 Codex plugin:
 
