@@ -1,0 +1,57 @@
+{
+  "schema": "certified-system-steward/passport-v1",
+  "passportId": "macos-cache-cleanup-v1",
+  "platform": "darwin",
+  "workspaceRoot": "/Users/test/Documents/Codex/2026-07-26/sites-plugin-sites-openai-bundled-build-3",
+  "operation": "remove-reproducible-caches",
+  "confirmation": "CERTIFY-AND-CLEAN",
+  "auditDirectory": "tools/continuity-audit",
+  "provider": {
+    "kind": "macos-openat-v1",
+    "source": "tools/platform/macos-safe-remove.c"
+  },
+  "allowedKinds": {
+    "lake": ".lake",
+    "nodeModules": "node_modules"
+  },
+  "targets": [
+    {
+      "path": "outputs/chambers-of-a-mad-mind-public/research/interface-foundations-v0.1/formal/.lake",
+      "kind": "lake"
+    },
+    {
+      "path": "formal-conjectures-pr-4626/.lake",
+      "kind": "lake"
+    },
+    {
+      "path": "external/ai-safety-formalization-atlas/.lake",
+      "kind": "lake"
+    },
+    {
+      "path": "outputs/chambers-of-a-mad-mind/node_modules",
+      "kind": "nodeModules"
+    },
+    {
+      "path": "outputs/true-intellectual-digital-life-preview/node_modules",
+      "kind": "nodeModules"
+    },
+    {
+      "path": "outputs/chambers-of-a-mad-mind-public/node_modules",
+      "kind": "nodeModules"
+    },
+    {
+      "path": "outputs/new-hire-portal/node_modules",
+      "kind": "nodeModules"
+    }
+  ],
+  "protectedPaths": [
+    "tools/CertifiedSystemSteward.lean",
+    "tools/CertifiedSystemStewardAudit.lean",
+    "tools/certified-system-steward.mjs",
+    "tools/certified-cache-cleanup.sh",
+    "tools/safe-cache-cleanup.sh",
+    "tools/CERTIFIED_CACHE_CLEANUP.md",
+    "tools/passports/macos-cache-cleanup.json",
+    "tools/platform/macos-safe-remove.c"
+  ]
+}
