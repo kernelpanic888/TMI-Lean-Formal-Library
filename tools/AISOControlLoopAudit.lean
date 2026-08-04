@@ -1,0 +1,11 @@
+import AISOControlLoop
+
+#print axioms selected_action_is_admissible
+#print axioms selected_action_is_objective_maximal
+#print axioms selected_action_improves_quality
+#print axioms selected_action_preserves_protected_invariants
+#print axioms selected_action_has_rollback_witness
+#print axioms hold_selects_noop
+#print axioms hold_preserves_state
+#print axioms learning_requires_post_verification
+
