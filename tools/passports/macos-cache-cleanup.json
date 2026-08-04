@@ -7,7 +7,7 @@
   "confirmation": "CERTIFY-AND-CLEAN",
   "auditDirectory": "tools/continuity-audit",
   "provider": {
-    "kind": "macos-openat-v1",
+    "kind": "macos-openat-quarantine-v2",
     "source": "tools/platform/macos-safe-remove.c"
   },
   "allowedKinds": {

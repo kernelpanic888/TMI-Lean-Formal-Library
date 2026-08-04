@@ -30,7 +30,7 @@ async function fixture() {
     operation: "remove-reproducible-caches",
     confirmation: "TEST-AND-CLEAN",
     auditDirectory: "audit",
-    provider: { kind: "macos-openat-v1", source: "provider/macos-safe-remove.c" },
+    provider: { kind: "macos-openat-quarantine-v2", source: "provider/macos-safe-remove.c" },
     allowedKinds: { lake: ".lake", nodeModules: "node_modules" },
     targets: [
       { path: "alpha/.lake", kind: "lake" },
@@ -86,6 +86,37 @@ test("a symlink inside an admitted cache is removed without following it", async
   const result = await runTransition(passport, { mode: "apply", confirmation: "TEST-AND-CLEAN" });
   assert.equal(result.status, "ACCEPTED");
   assert.equal(await fsp.readFile(sentinel, "utf8"), "survives\n");
+});
+
+test("a symlink in place of the owned quarantine is rejected", async (t) => {
+  const scene = await fixture();
+  t.after(() => fsp.rm(scene.root, { recursive: true, force: true }));
+  const outside = await fsp.mkdtemp(path.join(os.tmpdir(), "certified-steward-quarantine-sentinel-"));
+  t.after(() => fsp.rm(outside, { recursive: true, force: true }));
+  const sentinel = path.join(outside, "must-survive.txt");
+  await fsp.writeFile(sentinel, "survives\n");
+  await fsp.symlink(outside, path.join(scene.root, ".certified-system-steward-quarantine"));
+  const passport = await loadPassport(scene.passportFile);
+  await assert.rejects(
+    runTransition(passport, { mode: "apply", confirmation: "TEST-AND-CLEAN" }),
+    /quarantine|directory component|OS-level provider/i,
+  );
+  await fsp.access(path.join(scene.root, "alpha", ".lake"));
+  assert.equal(await fsp.readFile(sentinel, "utf8"), "survives\n");
+});
+
+test("a writable quarantine is rejected before the target moves", async (t) => {
+  const scene = await fixture();
+  t.after(() => fsp.rm(scene.root, { recursive: true, force: true }));
+  const quarantine = path.join(scene.root, ".certified-system-steward-quarantine");
+  await fsp.mkdir(quarantine, { mode: 0o755 });
+  await fsp.chmod(quarantine, 0o755);
+  const passport = await loadPassport(scene.passportFile);
+  await assert.rejects(
+    runTransition(passport, { mode: "apply", confirmation: "TEST-AND-CLEAN" }),
+    /quarantine|OS-level provider/i,
+  );
+  await fsp.access(path.join(scene.root, "alpha", ".lake"));
 });
 
 test("a changed action field is blocked before deletion", async (t) => {

@@ -164,7 +164,7 @@ export async function loadPassport(passportFile) {
     throw new StewardError("Passport contains duplicate protected paths.");
   }
 
-  if (!raw.provider || raw.provider.kind !== "macos-openat-v1") {
+  if (!raw.provider || raw.provider.kind !== "macos-openat-quarantine-v2") {
     throw new StewardError("A supported OS-level provider is required.");
   }
   const providerSource = validateRelative(raw.provider.source, "Provider source");
@@ -359,10 +359,23 @@ async function removeActionTargets(passport, action) {
       maxBuffer: 1024 * 1024,
     });
     const providerResult = JSON.parse(stdout);
-    if (providerResult.removed !== true || providerResult.provider !== passport.provider.kind) {
+    if (
+      providerResult.removed !== true ||
+      providerResult.quarantined !== true ||
+      typeof providerResult.sourceReappeared !== "boolean" ||
+      providerResult.provider !== passport.provider.kind
+    ) {
       throw new StewardError(`OS-level provider returned an invalid result for ${relative}.`);
     }
-    results.push({ path: relative, removed: true });
+    results.push({
+      path: relative,
+      removed: true,
+      quarantined: true,
+      sourceReappeared: providerResult.sourceReappeared,
+    });
+    if (providerResult.sourceReappeared) {
+      throw new StewardError(`Cleanup target name reappeared after quarantine: ${relative}`);
+    }
   }
   return { results, provider };
 }

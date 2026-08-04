@@ -21,7 +21,8 @@ The destructive operation is delegated to the protected C source
 `platform/macos-safe-remove.c`. It is compiled into a content-addressed binary
 under the temporary directory and its source and binary hashes are committed to
 the runtime result. The provider traverses from a held workspace descriptor with
-`openat`, rejects symlink components and cross-device directories, and removes
+`openat`, rejects symlink components and cross-device directories, moves the
+opened identity into a private quarantine with `renameatx_np(..., RENAME_EXCL)`, and removes
 entries with descriptor-relative `unlinkat`.
 
 ## Runtime correspondence
@@ -97,7 +98,9 @@ artifact but cannot silently accept it.
 
 ## Tests
 
-The blind suite uses temporary directories only:
+The blind suite uses temporary directories only. Its nine scenes include a
+quarantine symlink and unsafe quarantine permissions; both must fail before the
+admitted target moves:
 
 ```bash
 node --test tools/tests/certified-system-steward.test.mjs
