@@ -1,0 +1,24 @@
+name: AZ-AUTH-00
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-authorship-gate:
+    name: Canonical public authorship
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the proposed history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Reject non-canonical public identity
+        run: ./scripts/az-auth-00.sh --history
+
