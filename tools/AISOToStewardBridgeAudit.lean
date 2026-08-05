@@ -1,0 +1,10 @@
+import AISOToStewardBridge
+
+open AISOToStewardBridge
+
+#print axioms bound_receipt_certifies_selected_transition
+#print axioms bound_receipt_action_cannot_drift
+#print axioms bound_receipt_state_cannot_drift
+#print axioms receipt_bound_learning_is_post_verified
+#print axioms mismatched_action_blocks_binding
+

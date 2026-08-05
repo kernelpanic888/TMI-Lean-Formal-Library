@@ -9,7 +9,8 @@ import path from "node:path";
 
 const execFileAsync = promisify(execFile);
 const ZERO_HEAD = "0".repeat(64);
-const RECEIPT_PROTOCOL = "CSS-RUNTIME-RECEIPT-v1";
+export const RECEIPT_PROTOCOL = "CSS-RUNTIME-RECEIPT-v1";
+export const AISO_SELECTION_PROTOCOL = "AISO-CSS-SELECTION-v1";
 const WITNESS_PROTOCOL = "SCCP-COMPACT-WITNESS-v1";
 
 export class StewardError extends Error {
@@ -453,15 +454,47 @@ function actionSummary(observation, action) {
   };
 }
 
+export function bindAisoSelection(passport, observation, field, action, score) {
+  if (!actionInField(action, field)) {
+    throw new StewardError("AISO action escaped the current CSS field.", "AISO_FIELD_MISMATCH");
+  }
+  const binding = {
+    protocol: AISO_SELECTION_PROTOCOL,
+    passportId: passport.passportId,
+    policyHash: passport.policyHash,
+    observation: {
+      targetSnapshot: observation.targetSnapshot,
+      protectedRoot: observation.protectedRoot,
+    },
+    fieldHash: hashValue(field),
+    action,
+    score,
+  };
+  return Object.freeze({ ...binding, selectionHash: hashValue(binding) });
+}
+
+export function validateAisoSelection(passport, observation, field, selection) {
+  if (!selection || selection.protocol !== AISO_SELECTION_PROTOCOL) {
+    throw new StewardError("Unsupported AISO selection envelope.", "AISO_SELECTION_INVALID");
+  }
+  const expected = bindAisoSelection(passport, observation, field, selection.action, selection.score);
+  if (selection.selectionHash !== expected.selectionHash) {
+    throw new StewardError("AISO selection is not bound to the current observation and field.", "AISO_BINDING_MISMATCH");
+  }
+  return selection.action;
+}
+
 export async function runTransition(passport, options = {}) {
   const mode = options.mode ?? "preview";
   const hooks = options.hooks ?? {};
   const before = await observe(passport);
   const field = buildActionField(passport, before);
-  const action = selectAction(before, field);
+  const action = options.selection
+    ? validateAisoSelection(passport, before, field, options.selection)
+    : selectAction(before, field);
   const summary = actionSummary(before, action);
 
-  if (mode === "preview") return { status: "PREVIEW", before, field, action, summary };
+  if (mode === "preview") return { status: "PREVIEW", before, field, action, summary, selectionHash: options.selection?.selectionHash ?? null };
   if (mode !== "apply") throw new StewardError(`Unsupported transition mode: ${mode}`);
   if (options.confirmation !== passport.confirmation) throw new StewardError("Confirmation phrase does not match the passport.");
   if (!action) return { status: "NO_ACTION", before, field, action: null, summary };
@@ -479,6 +512,7 @@ export async function runTransition(passport, options = {}) {
     policyHash: passport.policyHash,
     field: field.map((candidate) => candidate.actionId),
     action,
+    selectionHash: options.selection?.selectionHash ?? null,
     before: { targetSnapshot: before.targetSnapshot, protectedRoot: before.protectedRoot },
     createdAt: new Date().toISOString(),
   };
@@ -537,6 +571,7 @@ export async function runTransition(passport, options = {}) {
       intentHash,
       resultHash,
       actionId: action.actionId,
+      selectionHash: options.selection?.selectionHash ?? null,
       before: { protectedRoot: preflight.protectedRoot, targetSnapshot: preflight.targetSnapshot },
       after: { protectedRoot: after.protectedRoot, targetSnapshot: after.targetSnapshot },
       certification,
@@ -556,6 +591,7 @@ export async function runTransition(passport, options = {}) {
       policyHash: passport.policyHash,
       intentHash,
       resultHash,
+      selectionHash: options.selection?.selectionHash ?? null,
       status: "PASS",
     };
     await writeAtomic(path.join(auditDirectory, `witness-${String(candidateEpoch).padStart(6, "0")}.json`), witness);
