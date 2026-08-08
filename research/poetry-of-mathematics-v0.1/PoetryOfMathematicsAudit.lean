@@ -1,0 +1,16 @@
+import PoetryOfMathematics
+
+open TMI.PoetryOfMathematics
+
+#print axioms shadow_membership_iff
+#print axioms occlusion_witness_is_strictly_bounded
+#print axioms obstacle_behind_receiver_is_not_occluding
+#print axioms visibility_weight_between_zero_and_kernel
+#print axioms irradiance_bounds
+#print axioms soft_shadow_identity
+#print axioms sigma_between_zero_and_one
+#print axioms radiometric_sigma_between_zero_and_one
+#print axioms boundary_subset_projected_tangencies
+#print axioms boundary_eq_projected_visible_tangencies
+#print axioms metaphysical_canon_is_not_a_kernel_theorem
+#print axioms other_worlds_claim_is_outside_the_theory
