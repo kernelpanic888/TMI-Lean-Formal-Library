@@ -33,6 +33,9 @@ lean_lib TMI where
     `TMI.InterfaceFoundationsAlpha,
     `TMI.InterfaceFoundationsV051Alpha,
     `TMI.InterfaceFoundationsV052Alpha,
+    `TMI.SpinorOntology,
+    `TMI.ActivationRelicTwoAxisTime,
+    `TMI.ActivationRelicTwoAxisTimeAudit,
     `TMI.Branches,
     `TMI.Library
   ]

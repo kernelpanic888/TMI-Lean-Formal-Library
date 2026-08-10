@@ -12,6 +12,7 @@ its claims.
 | DL-03 | Prefix certificates and monotone growth | Formal architecture candidate |
 | DL-04 | Deterministic state/memory/reflection simulation | Executable computational model |
 | TIDL-01 | Status classification and external context | Research reading |
+| SO-01 | Ontological problem of the Dirac spinor: standard formulas, Lean scaffold, and separated TMI reading | Experimental interpretation; no physical identification |
 | External sources | Scientific and governance shoulders | Evidence context, not validation |
 
 ## Formal lineage
@@ -21,6 +22,12 @@ The repository's Lean kernel surface lives under `lean/`. In particular,
 provide relevant formal lineage. The HTML export is not itself a Lean proof and
 must not be read as a theorem connecting the model to physical or psychological
 reality.
+
+For SO-01, the direct formal lineage is `lean/TMI/SpinorOntology.lean`, which
+reuses `InterfaceFoundationsAlpha.TwoSidedLanguage` and
+`BoundaryEventContext`. Its standard physics formulas are reference comments;
+the module does not derive quantum mechanics, the Born rule, the Dirac equation
+or gamma-matrix anticommutation.
 
 ## Computational lineage
 
@@ -45,3 +52,5 @@ reproducible browser computation, not evidence of consciousness or life.
 `Executable` does not imply `alive`.
 
 `Persistent trace` does not imply `conscious subject`.
+
+`Ray-invariant projection` does not imply `physical measurement`.

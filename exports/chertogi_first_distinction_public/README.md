@@ -23,6 +23,10 @@ or build step is required.
 - `DL-03`: monotone growth and certificates.
 - `DL-04`: executable model in a virtual domain.
 - `TIDL-01`: claim-status reader and external research context.
+- `SO-01`: “The Ontological Problem of the Dirac Spinor,” from Dirac
+  formalism to the primary interface of distinction; standard physics
+  references, opt-in Lean scaffold and explicitly separated TMI hypothesis
+  (`readers/spinor-ontology/`).
 
 ## Claim boundary
 
