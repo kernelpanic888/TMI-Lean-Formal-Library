@@ -36,6 +36,14 @@ lean_lib TMI where
     `TMI.SpinorOntology,
     `TMI.ActivationRelicTwoAxisTime,
     `TMI.ActivationRelicTwoAxisTimeAudit,
+    `TMI.DigitalLifeTwoAxisTick,
+    `TMI.DigitalLifeTwoAxisTickAudit,
+    `TMI.DigitalLifeRuntimeAdapter,
+    `TMI.DigitalLifeRuntimeAdapterAudit,
+    `TMI.DigitalLifeNeuralProposer,
+    `TMI.DigitalLifeNeuralProposerAudit,
+    `TMI.DigitalLifeBoundedLearning,
+    `TMI.DigitalLifeBoundedLearningAudit,
     `TMI.Branches,
     `TMI.Library
   ]
