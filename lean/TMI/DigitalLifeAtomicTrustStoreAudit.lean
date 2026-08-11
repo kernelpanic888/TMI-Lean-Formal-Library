@@ -1,0 +1,21 @@
+import TMI.DigitalLifeAtomicTrustStore
+
+namespace TMI.DigitalLifeAtomicTrustStoreAudit
+
+open TMI.DigitalLifeAtomicTrustStore
+
+#check receipt_commit_of_ready
+#check receipt_hold_of_rejected
+#check rotation_commit_of_ready
+#check rotation_hold_of_rejected
+#check receipt_commit_invalidates_same_generation
+#check rotation_commit_invalidates_same_generation
+
+#print axioms receipt_commit_of_ready
+#print axioms receipt_hold_of_rejected
+#print axioms rotation_commit_of_ready
+#print axioms rotation_hold_of_rejected
+#print axioms receipt_commit_invalidates_same_generation
+#print axioms rotation_commit_invalidates_same_generation
+
+end TMI.DigitalLifeAtomicTrustStoreAudit
