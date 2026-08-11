@@ -46,6 +46,8 @@ lean_lib TMI where
     `TMI.DigitalLifeBoundedLearningAudit,
     `TMI.DigitalLifeValidationAdapter,
     `TMI.DigitalLifeValidationAdapterAudit,
+    `TMI.DigitalLifeValidationCapability,
+    `TMI.DigitalLifeValidationCapabilityAudit,
     `TMI.Branches,
     `TMI.Library
   ]
