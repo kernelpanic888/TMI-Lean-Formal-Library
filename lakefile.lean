@@ -44,6 +44,8 @@ lean_lib TMI where
     `TMI.DigitalLifeNeuralProposerAudit,
     `TMI.DigitalLifeBoundedLearning,
     `TMI.DigitalLifeBoundedLearningAudit,
+    `TMI.DigitalLifeValidationAdapter,
+    `TMI.DigitalLifeValidationAdapterAudit,
     `TMI.Branches,
     `TMI.Library
   ]

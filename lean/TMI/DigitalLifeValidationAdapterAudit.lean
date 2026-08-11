@@ -1,0 +1,14 @@
+import TMI.DigitalLifeValidationAdapter
+
+namespace TMI.DigitalLifeValidationAdapterAudit
+
+open TMI.DigitalLifeValidationAdapter
+
+#print axioms validator_computes_candidate_loss
+#print axioms independent_cycle_accepts
+#print axioms independent_cycle_holds_on_worse_validation
+#print axioms improving_holdout_admits
+#print axioms adversarial_holdout_holds
+#print axioms admitted_cycle_preserves_identity
+
+end TMI.DigitalLifeValidationAdapterAudit
