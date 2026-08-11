@@ -1,0 +1,9 @@
+import CertifiedSystemSteward
+
+#print axioms CertifiedSystemSteward.admitted_preserves_protected
+#print axioms CertifiedSystemSteward.action_outside_field_is_rejected
+#print axioms CertifiedSystemSteward.policy_rejection_blocks_transition
+#print axioms CertifiedSystemSteward.receipt_preserves_protected
+#print axioms CertifiedSystemSteward.no_self_fork
+#print axioms CertifiedSystemSteward.applyCleanup_preserves_protected
+#print axioms CertifiedSystemSteward.portable_protected_invariant

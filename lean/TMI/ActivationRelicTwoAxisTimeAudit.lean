@@ -1,0 +1,8 @@
+import TMI.ActivationRelicTwoAxisTime
+
+open TMI.ActivationRelicTwoAxisTime
+
+#print axioms shadow_is_not_directly_observed
+#print axioms activation_relic_is_a_channel_record
+#print axioms observation_factors_through_relic
+#print axioms timeTouch_has_two_coordinates

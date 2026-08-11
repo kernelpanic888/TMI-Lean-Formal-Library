@@ -22,3 +22,7 @@ docs/ZENODO_UPDATE_NOTE*.md
 /CANONICAL_*.md
 /SELF_SYSTEM_*.md
 docs/intelligence_*/
+
+# Private operator surfaces and local notes do not belong in the public source tree.
+.claude/
+_local/

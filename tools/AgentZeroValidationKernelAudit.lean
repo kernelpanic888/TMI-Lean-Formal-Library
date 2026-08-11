@@ -1,0 +1,10 @@
+import AgentZeroValidationKernel
+
+open AgentZeroValidationKernel
+
+#print axioms execute_some_iff_triple_admission
+#print axioms execute_none_iff_rejected
+#print axioms self_rejection_means_noop
+#print axioms external_rejection_means_noop
+#print axioms safety_rejection_means_noop
+#print axioms execution_never_substitutes_action

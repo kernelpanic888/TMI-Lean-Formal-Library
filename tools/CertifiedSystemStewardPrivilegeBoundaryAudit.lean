@@ -1,0 +1,8 @@
+import CertifiedSystemStewardPrivilegeBoundary
+
+open CertifiedSystemStewardPrivilegeBoundary
+
+#print axioms principals_distinct
+#print axioms admitted_preserves_protected_state
+#print axioms admitted_excludes_source_reappearance
+#print axioms admitted_receipt_binds_exact_request

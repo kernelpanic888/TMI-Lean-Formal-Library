@@ -6,6 +6,10 @@ package tmi_lean_formal_library_0_1 where
   -- The public OLean adapter is compiled by the Lean kernel through Lake.
   weakLeanArgs := #["-j", "1"]
 
+lean_lib LayerBridge where
+  srcDir := "lean"
+  roots := #[`LayerBridge]
+
 lean_lib TMI where
   srcDir := "lean"
   roots := #[
@@ -26,6 +30,12 @@ lean_lib TMI where
     `TMI.IESTA,
     `TMI.SelfThinkingUniverse,
     `TMI.InterfaceMathematics,
+    `TMI.InterfaceFoundationsAlpha,
+    `TMI.InterfaceFoundationsV051Alpha,
+    `TMI.InterfaceFoundationsV052Alpha,
+    `TMI.SpinorOntology,
+    `TMI.ActivationRelicTwoAxisTime,
+    `TMI.ActivationRelicTwoAxisTimeAudit,
     `TMI.Branches,
     `TMI.Library
   ]

@@ -7,3 +7,5 @@ theorem-target mirrors.
 -/
 
 import TMI.FormulaInterface.Theorems
+
+import TMI.FormulaInterface.ParadoxicalFormulaTheorem
