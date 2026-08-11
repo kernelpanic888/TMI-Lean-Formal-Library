@@ -48,9 +48,20 @@ lean_lib TMI where
     `TMI.DigitalLifeValidationAdapterAudit,
     `TMI.DigitalLifeValidationCapability,
     `TMI.DigitalLifeValidationCapabilityAudit,
+    `TMI.DigitalLifeValidationWire,
+    `TMI.DigitalLifeValidationWireAudit,
+    `TMI.DigitalLifeValidationWireRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
+
+lean_exe i3_trainer where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeTrainerMain
+
+lean_exe i3_validator where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeValidatorMain
 
 lean_lib OLean where
   srcDir := "lean"
