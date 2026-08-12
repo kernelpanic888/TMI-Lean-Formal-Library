@@ -75,6 +75,9 @@ lean_lib TMI where
     `TMI.DigitalLifeTransportAttestation,
     `TMI.DigitalLifeTransportAttestationAudit,
     `TMI.DigitalLifeTransportAttestationRuntime,
+    `TMI.DigitalLifeHardwareAttestation,
+    `TMI.DigitalLifeHardwareAttestationAudit,
+    `TMI.DigitalLifeHardwareAttestationRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
@@ -118,6 +121,10 @@ lean_exe i3_remote_witness where
 lean_exe i3_attestation where
   srcDir := "lean"
   root := `TMI.DigitalLifeTransportAttestationMain
+
+lean_exe i3_hardware where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeHardwareAttestationMain
 
 lean_lib OLean where
   srcDir := "lean"

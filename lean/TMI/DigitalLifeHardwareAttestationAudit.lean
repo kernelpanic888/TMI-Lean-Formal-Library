@@ -1,0 +1,11 @@
+import TMI.DigitalLifeHardwareAttestation
+
+open TMI.DigitalLifeHardwareAttestation
+
+#print axioms hardware_and_split_custody_admits
+#print axioms unsigned_platform_receipt_holds
+#print axioms untrusted_quote_chain_holds
+#print axioms rejected_measurements_hold
+#print axioms insufficient_split_approvals_hold
+#print axioms duplicate_verifier_domain_holds
+#print axioms denied_approval_holds
