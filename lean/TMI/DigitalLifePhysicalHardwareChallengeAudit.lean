@@ -1,0 +1,8 @@
+import TMI.DigitalLifePhysicalHardwareChallenge
+
+open TMI.DigitalLifePhysicalHardwareChallenge
+
+#print axioms local_hardware_pass_without_remote
+#print axioms global_hardware_admission_requires_both
+#print axioms invalid_local_evidence_holds
+#print axioms rejected_remote_evidence_is_not_global
