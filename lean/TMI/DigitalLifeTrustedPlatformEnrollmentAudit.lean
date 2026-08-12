@@ -1,0 +1,8 @@
+import TMI.DigitalLifeTrustedPlatformEnrollment
+
+open TMI.DigitalLifeTrustedPlatformEnrollment
+
+#print axioms exact_enrollment_authorizes_probe
+#print axioms rejected_enrollment_holds
+#print axioms ready_implies_exact_enrollment
+#print axioms one_failed_gate_prevents_probe

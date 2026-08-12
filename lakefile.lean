@@ -81,6 +81,9 @@ lean_lib TMI where
     `TMI.DigitalLifePhysicalHardwareChallenge,
     `TMI.DigitalLifePhysicalHardwareChallengeAudit,
     `TMI.DigitalLifePhysicalHardwareChallengeRuntime,
+    `TMI.DigitalLifeTrustedPlatformEnrollment,
+    `TMI.DigitalLifeTrustedPlatformEnrollmentAudit,
+    `TMI.DigitalLifeTrustedPlatformEnrollmentRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
@@ -132,6 +135,10 @@ lean_exe i3_hardware where
 lean_exe i3_physical where
   srcDir := "lean"
   root := `TMI.DigitalLifePhysicalHardwareChallengeMain
+
+lean_exe i3_enrollment where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeTrustedPlatformEnrollmentMain
 
 lean_lib OLean where
   srcDir := "lean"
