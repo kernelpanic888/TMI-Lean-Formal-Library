@@ -1,0 +1,11 @@
+import TMI.DigitalLifeExternalRollbackWitness
+
+open TMI.DigitalLifeExternalRollbackWitness
+
+#print axioms witness_append_of_ready
+#print axioms witness_hold_of_rejected
+#print axioms witness_sequence_advances_once
+#print axioms next_anchor_is_exact_after_append
+#print axioms previous_anchor_is_rollback_after_append
+#print axioms same_generation_different_head_is_rollback
+#print axioms exact_anchor_not_rollback

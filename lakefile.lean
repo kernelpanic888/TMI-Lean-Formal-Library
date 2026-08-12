@@ -57,6 +57,9 @@ lean_lib TMI where
     `TMI.DigitalLifeAtomicTrustStore,
     `TMI.DigitalLifeAtomicTrustStoreAudit,
     `TMI.DigitalLifeAtomicTrustStoreRuntime,
+    `TMI.DigitalLifeExternalRollbackWitness,
+    `TMI.DigitalLifeExternalRollbackWitnessAudit,
+    `TMI.DigitalLifeExternalRollbackWitnessRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
@@ -76,6 +79,10 @@ lean_exe i3_trust where
 lean_exe i3_trust_tx where
   srcDir := "lean"
   root := `TMI.DigitalLifeAtomicTrustMain
+
+lean_exe i3_witness where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeWitnessMain
 
 lean_lib OLean where
   srcDir := "lean"
