@@ -60,6 +60,9 @@ lean_lib TMI where
     `TMI.DigitalLifeExternalRollbackWitness,
     `TMI.DigitalLifeExternalRollbackWitnessAudit,
     `TMI.DigitalLifeExternalRollbackWitnessRuntime,
+    `TMI.DigitalLifeProcessIsolation,
+    `TMI.DigitalLifeProcessIsolationAudit,
+    `TMI.DigitalLifeProcessIsolationRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
@@ -83,6 +86,10 @@ lean_exe i3_trust_tx where
 lean_exe i3_witness where
   srcDir := "lean"
   root := `TMI.DigitalLifeWitnessMain
+
+lean_exe i3_isolation where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeIsolationMain
 
 lean_lib OLean where
   srcDir := "lean"

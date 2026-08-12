@@ -1,0 +1,12 @@
+import TMI.DigitalLifeProcessIsolation
+
+/-! Kernel-visible dependency audit for I3-L08. -/
+
+#print axioms TMI.DigitalLifeProcessIsolation.no_single_role_owns_end_to_end_authority
+#print axioms TMI.DigitalLifeProcessIsolation.only_validator_mints_receipts
+#print axioms TMI.DigitalLifeProcessIsolation.only_trust_store_rewrites_head
+#print axioms TMI.DigitalLifeProcessIsolation.only_external_witness_advances_witness
+#print axioms TMI.DigitalLifeProcessIsolation.bound_request_uses_only_proposed_delta
+#print axioms TMI.DigitalLifeProcessIsolation.stale_generation_cannot_bind
+#print axioms TMI.DigitalLifeProcessIsolation.unbounded_proposal_cannot_bind
+#print axioms TMI.DigitalLifeProcessIsolation.ready_proposal_binds
