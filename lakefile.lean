@@ -72,6 +72,9 @@ lean_lib TMI where
     `TMI.DigitalLifeRemoteWitnessChallenge,
     `TMI.DigitalLifeRemoteWitnessChallengeAudit,
     `TMI.DigitalLifeRemoteWitnessChallengeRuntime,
+    `TMI.DigitalLifeTransportAttestation,
+    `TMI.DigitalLifeTransportAttestationAudit,
+    `TMI.DigitalLifeTransportAttestationRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
@@ -111,6 +114,10 @@ lean_exe i3_domain_quorum where
 lean_exe i3_remote_witness where
   srcDir := "lean"
   root := `TMI.DigitalLifeRemoteWitnessChallengeMain
+
+lean_exe i3_attestation where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeTransportAttestationMain
 
 lean_lib OLean where
   srcDir := "lean"

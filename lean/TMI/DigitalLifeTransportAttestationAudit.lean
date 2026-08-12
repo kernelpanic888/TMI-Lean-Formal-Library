@@ -1,0 +1,11 @@
+import TMI.DigitalLifeTransportAttestation
+
+open TMI.DigitalLifeTransportAttestation
+
+#print axioms independently_attested_node_admits
+#print axioms unsigned_attestation_holds
+#print axioms unsigned_observation_holds
+#print axioms same_custody_observer_holds
+#print axioms independently_attested_quorum_admits
+#print axioms duplicate_custody_quorum_holds
+#print axioms insufficient_attested_quorum_holds
