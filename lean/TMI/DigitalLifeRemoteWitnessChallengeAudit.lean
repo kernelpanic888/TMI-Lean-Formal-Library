@@ -1,0 +1,11 @@
+import TMI.DigitalLifeRemoteWitnessChallenge
+
+open TMI.DigitalLifeRemoteWitnessChallenge
+
+#print axioms fresh_remote_response_admits
+#print axioms replayed_challenge_holds
+#print axioms expired_challenge_holds
+#print axioms redirected_endpoint_holds
+#print axioms changed_tls_peer_holds
+#print axioms unsigned_response_holds
+#print axioms admitted_remote_vote_is_domain_bound
