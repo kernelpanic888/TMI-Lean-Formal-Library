@@ -84,6 +84,8 @@ lean_lib TMI where
     `TMI.DigitalLifeTrustedPlatformEnrollment,
     `TMI.DigitalLifeTrustedPlatformEnrollmentAudit,
     `TMI.DigitalLifeTrustedPlatformEnrollmentRuntime,
+    `TMI.DigitalLifeIndependentHardwareAdmission,
+    `TMI.DigitalLifeIndependentHardwareAdmissionRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
@@ -139,6 +141,10 @@ lean_exe i3_physical where
 lean_exe i3_enrollment where
   srcDir := "lean"
   root := `TMI.DigitalLifeTrustedPlatformEnrollmentMain
+
+lean_exe i3_remote_hardware where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeIndependentHardwareAdmissionMain
 
 lean_lib OLean where
   srcDir := "lean"
