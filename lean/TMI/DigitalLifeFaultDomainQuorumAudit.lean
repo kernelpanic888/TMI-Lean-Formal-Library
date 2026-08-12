@@ -1,0 +1,11 @@
+import TMI.DigitalLifeFaultDomainQuorum
+
+open TMI.DigitalLifeFaultDomainQuorum
+
+#print axioms independent_ready_admits
+#print axioms shared_admin_domain_holds
+#print axioms shared_network_domain_holds
+#print axioms shared_host_domain_holds
+#print axioms changed_domain_policy_holds
+#print axioms independent_admission_is_exact
+#print axioms live_of_available_independent_set

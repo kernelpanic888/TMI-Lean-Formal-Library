@@ -66,6 +66,9 @@ lean_lib TMI where
     `TMI.DigitalLifeWitnessQuorum,
     `TMI.DigitalLifeWitnessQuorumAudit,
     `TMI.DigitalLifeWitnessQuorumRuntime,
+    `TMI.DigitalLifeFaultDomainQuorum,
+    `TMI.DigitalLifeFaultDomainQuorumAudit,
+    `TMI.DigitalLifeFaultDomainQuorumRuntime,
     `TMI.Branches,
     `TMI.Library
   ]
@@ -97,6 +100,10 @@ lean_exe i3_isolation where
 lean_exe i3_quorum where
   srcDir := "lean"
   root := `TMI.DigitalLifeQuorumMain
+
+lean_exe i3_domain_quorum where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeFaultDomainQuorumMain
 
 lean_lib OLean where
   srcDir := "lean"
