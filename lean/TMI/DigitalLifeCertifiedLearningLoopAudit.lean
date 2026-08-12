@@ -1,0 +1,19 @@
+import TMI.DigitalLifeCertifiedLearningLoop
+
+namespace TMI.DigitalLifeCertifiedLearningLoopAudit
+
+open TMI.DigitalLifeCertifiedLearningLoop
+
+#print axioms admitted_requires_certified_act
+#print axioms admitted_requires_bounded_learning
+#print axioms learned_runtime_identity
+#print axioms learned_model_identity
+#print axioms learned_generation_advances_once
+#print axioms admitted_loss_does_not_increase
+#print axioms rollback_is_exact
+#print axioms rejected_learning_holds
+#print axioms certified_chain_preserves_identity
+#print axioms demo_learning_is_admitted
+#print axioms demo_learning_certifies
+
+end TMI.DigitalLifeCertifiedLearningLoopAudit

@@ -44,6 +44,8 @@ lean_lib TMI where
     `TMI.DigitalLifeNeuralProposerAudit,
     `TMI.DigitalLifeBoundedLearning,
     `TMI.DigitalLifeBoundedLearningAudit,
+    `TMI.DigitalLifeCertifiedLearningLoop,
+    `TMI.DigitalLifeCertifiedLearningLoopAudit,
     `TMI.DigitalLifeValidationAdapter,
     `TMI.DigitalLifeValidationAdapterAudit,
     `TMI.DigitalLifeValidationCapability,
@@ -151,6 +153,10 @@ lean_exe i3_remote_hardware where
 lean_exe i3_cognitive_act where
   srcDir := "lean"
   root := `TMI.DigitalLifeCertifiedCognitiveActMain
+
+lean_exe i3_learning_loop where
+  srcDir := "lean"
+  root := `TMI.DigitalLifeCertifiedLearningLoopMain
 
 lean_lib OLean where
   srcDir := "lean"
