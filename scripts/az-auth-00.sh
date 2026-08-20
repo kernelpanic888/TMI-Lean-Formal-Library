@@ -223,4 +223,6 @@ if [[ "$run_local" == true ]]; then
   check_local_identity
   check_index
 fi
-[[ "$run_history" == true ]] && check_history
+if [[ "$run_history" == true ]]; then
+  check_history
+fi
