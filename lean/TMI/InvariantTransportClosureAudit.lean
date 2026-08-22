@@ -1,0 +1,10 @@
+import TMI.InvariantTransportClosure
+
+open TMI.InvariantTransportClosure
+
+#print axioms PersistenceStep.has_transition
+#print axioms PersistenceStep.carries
+#print axioms ClosedTurn.selected_invariant_returns
+#print axioms ClosureRecord.exposes_separate_witnesses
+#print axioms ClosureRecord.to_recorded_boundary_event
+#print axioms selected_return_does_not_imply_transport_identity

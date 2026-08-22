@@ -34,6 +34,8 @@ lean_lib TMI where
     `TMI.InterfaceFoundationsV051Alpha,
     `TMI.InterfaceFoundationsV052Alpha,
     `TMI.SpinorOntology,
+    `TMI.InvariantTransportClosure,
+    `TMI.InvariantTransportClosureAudit,
     `TMI.ActivationRelicTwoAxisTime,
     `TMI.ActivationRelicTwoAxisTimeAudit,
     `TMI.DigitalLifeTwoAxisTick,

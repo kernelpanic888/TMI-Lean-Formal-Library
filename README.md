@@ -161,6 +161,14 @@ Release documents:
 - [`docs/RELEASE_v0.5.0_ALPHA_RU.md`](docs/RELEASE_v0.5.0_ALPHA_RU.md)
 - [`docs/TLFL_v0.5.0_ALPHA_PROOF_STATUS.md`](docs/TLFL_v0.5.0_ALPHA_PROOF_STATUS.md)
 
+### Invariant Transport Closure · opt-in RC
+
+`TMI.InvariantTransportClosure` formalizes persistence as an explicit
+transition plus invariant transport, selected-invariant return along a closed
+typed path, and a guarded adapter to `TMI.BoundaryEvent`.  The source map and
+claim boundary are recorded in
+[`research/invariant-transport-closure-v0.1/README.md`](research/invariant-transport-closure-v0.1/README.md).
+
 ## Layer Bridge
 
 `LayerBridge` is a small public Lean surface for the boundary between a
@@ -273,6 +281,8 @@ lake env lean lean/OLean.lean
 lake env lean lean/OLean/SelfCheck.lean
 lake env lean lean/OLean/SelfCheckAsThinker.lean
 lake env lean lean/TMI/InterfaceFoundationsAlpha.lean
+lake build TMI.InvariantTransportClosure
+lake build TMI.InvariantTransportClosureAudit
 lake build TMI
 lake build OLean
 ```
