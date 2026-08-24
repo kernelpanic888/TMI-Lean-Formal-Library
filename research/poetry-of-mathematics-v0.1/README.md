@@ -16,7 +16,10 @@ reader. The reader is for people; this package is for deep verification.
 → derived identity `E_U = E_0(1 − σ)`
 → `0 ≤ σ ≤ 1` under explicit radiometric hypotheses
 → projected-tangency boundary inclusion
-→ boundary equality under an explicit two-sided regularity contract.
+→ boundary equality under an explicit two-sided regularity contract
+→ structural beauty candidate `B = C + I + G + R`
+→ a reality-trace candidate only with a separate `Checked` witness
+→ poetry modeled as a readable interface to magic, not its synonym.
 
 The package also encodes a hard status boundary: the metaphysical canon is an
 author interpretation, not a kernel theorem; “other worlds” remain outside the
@@ -29,7 +32,7 @@ formal theory.
 ## Reproduce / Воспроизведение
 
 ```bash
-lake build
+lake build PoetryOfMathematics PoetryOfMathematicsAudit
 lake env lean PoetryOfMathematicsAudit.lean
 ```
 
@@ -46,9 +49,11 @@ Release gates:
 Lean verifies the definitions, algebra, order bounds, integral monotonicity,
 set inclusion, and conditional equality. It does **not** empirically validate
 geometric optics, infer smoothness/visibility assumptions for an arbitrary
-scene, or prove the poetic/metaphysical reading.
+scene, turn beauty into evidence, derive an external check from beauty, or
+prove the poetic/metaphysical reading.
 
 Lean проверяет определения, алгебру, границы порядка, монотонность интеграла,
 включение множеств и условное равенство. Он **не** выполняет эмпирическую
 валидацию геометрической оптики, не выводит условия гладкости/видимости для
-произвольной сцены и не доказывает поэтическое или метафизическое прочтение.
+произвольной сцены, не превращает красоту в свидетельство, не выводит внешнюю
+проверку из красоты и не доказывает поэтическое или метафизическое прочтение.

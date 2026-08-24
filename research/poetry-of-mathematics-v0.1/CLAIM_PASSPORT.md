@@ -9,9 +9,9 @@ Mathlib: tag `v4.31.0`, locked revision
 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`
 
 Source SHA-256:
-`883c8d39fda00c3f06e38c082e319965d87013d01d3401d4dea6b869382fb105`  
+`22bbd7a4c950a5535bc8822ab0bd655abd12b754fb53149b6f4b4f802658a807`
 Audit SHA-256:
-`aed17625ec2137704cbb039b0034d03e5dbac7c242ed99ae25cb64fc96ed4540`
+`fd4e37d2ef2706f9e6a68d5f2032b8abc758e9b70ebf58c78702c4bef5f774b0`
 
 ## Inputs / Входы
 
@@ -35,27 +35,34 @@ Audit SHA-256:
 8. the radiometric hypotheses instantiate the `σ` bound;
 9. tangency generation implies boundary inclusion in projected tangencies;
 10. the two-sided regularity contract implies exact boundary equality;
-11. the metaphysical canon is not tagged as a kernel theorem;
-12. the “other worlds” claim is tagged outside the theory.
+11. `B = C + I + G + R` is encoded as an explicit structural conjunction;
+12. a reality-trace candidate projects to a separate `Checked` witness;
+13. a beauty candidate with a failed check is not a reality-trace candidate;
+14. poetic reading projects to both magic and an explicit readability layer;
+15. the metaphysical canon is not tagged as a kernel theorem;
+16. the “other worlds” claim is tagged outside the theory.
 
 ## Axiom audit / Аудит аксиом
 
-The first ten exports depend only on Mathlib's standard logical foundations:
-`propext`, `Classical.choice`, and `Quot.sound`. The two status-boundary exports
-depend on no axioms. No project-defined axiom is introduced.
+The geometric and radiometric exports depend only on Mathlib's standard
+logical foundations: `propext`, `Classical.choice`, and `Quot.sound`. The new
+structural projections and the two status-boundary exports depend on no
+axioms. No project-defined axiom is introduced.
 
-Первые десять экспортов зависят только от стандартных логических оснований
-Mathlib: `propext`, `Classical.choice` и `Quot.sound`. Два экспорта границы
-статусов не зависят ни от каких аксиом. Авторские аксиомы не вводятся.
+Геометрические и радиометрические экспорты зависят только от стандартных
+логических оснований Mathlib: `propext`, `Classical.choice` и `Quot.sound`.
+Новые структурные проекции и два экспорта границы статусов не зависят ни от
+каких аксиом. Авторские аксиомы не вводятся.
 
 ## Red boundary / Красная граница
 
 This theory does not prove geometric optics empirically, does not derive the
 regularity contract for every obstacle, and does not prove metaphysics, poetry,
-consciousness, or other worlds. Those are not hidden assumptions; they are
-outside the formal claim ceiling.
+consciousness, beauty as evidence, magic as supernatural fact, or other worlds.
+Those are not hidden assumptions; they are outside the formal claim ceiling.
 
 Теория не подтверждает геометрическую оптику эмпирически, не выводит контракт
 регулярности для любого препятствия и не доказывает метафизику, поэзию,
-сознание или иные миры. Это не скрытые предпосылки: они находятся за пределами
-формального потолка утверждений.
+сознание, красоту как свидетельство, магию как сверхъестественный факт или иные
+миры. Это не скрытые предпосылки: они находятся за пределами формального потолка
+утверждений.

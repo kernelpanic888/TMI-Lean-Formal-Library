@@ -91,6 +91,6 @@
    "inputRev": "v4.31.0",
    "inherited": true,
    "configFile": "lakefile.toml"}],
- "name": "HodgeFormalization",
+ "name": "poetry_of_mathematics",
  "lakeDir": ".lake",
  "fixedToolchain": false}

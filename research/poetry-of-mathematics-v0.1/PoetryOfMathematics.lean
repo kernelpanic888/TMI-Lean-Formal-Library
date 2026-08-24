@@ -189,7 +189,65 @@ theorem boundary_eq_projected_visible_tangencies
   · rintro p ⟨x, hx, rfl⟩
     exact hReg.visibleWitnessLandsOnBoundary hx
 
-/-! ## 4. Claim boundary: theorem, assumption, interpretation -/
+/-! ## 4. Beauty, verification, magic, and poetic reading -/
+
+/-- `B = C + I + G + R` is represented as a structural conjunction rather
+than an arithmetic equality. The four predicates remain explicit inputs. -/
+def BeautyCandidate
+    {α : Type*}
+    (Coherent Invariant Generative Repeatable : α → Prop) (x : α) : Prop :=
+  Coherent x ∧ Invariant x ∧ Generative x ∧ Repeatable x
+
+/-- A beautiful form becomes a candidate trace of reality only when a
+separate check is supplied. This definition does not identify beauty with
+proof and does not say what empirical protocol must implement `Checked`. -/
+def RealityTraceCandidate
+    {α : Type*}
+    (Coherent Invariant Generative Repeatable Checked : α → Prop)
+    (x : α) : Prop :=
+  BeautyCandidate Coherent Invariant Generative Repeatable x ∧ Checked x
+
+/-- The verification requirement is a projection from the definition, not a
+claim that beauty manufactures its own evidence. -/
+theorem reality_trace_candidate_requires_check
+    {α : Type*}
+    {Coherent Invariant Generative Repeatable Checked : α → Prop}
+    {x : α}
+    (h : RealityTraceCandidate
+      Coherent Invariant Generative Repeatable Checked x) :
+    Checked x := by
+  exact h.2
+
+/-- If the external check is absent, a structurally beautiful candidate is not
+a reality-trace candidate in this model. -/
+theorem unverified_beauty_is_not_reality_trace
+    {α : Type*}
+    {Coherent Invariant Generative Repeatable Checked : α → Prop}
+    {x : α}
+    (_hBeauty : BeautyCandidate Coherent Invariant Generative Repeatable x)
+    (hUnchecked : ¬ Checked x) :
+    ¬ RealityTraceCandidate
+      Coherent Invariant Generative Repeatable Checked x := by
+  intro hTrace
+  exact hUnchecked hTrace.2
+
+/-- Poetry is modeled as a human reading of magic, not as a synonym for magic.
+`Readable` is an explicit interface and is not derived from `Magic`. -/
+def PoeticReading
+    {α : Type*} (Magic Readable : α → Prop) (x : α) : Prop :=
+  Magic x ∧ Readable x
+
+theorem poetic_reading_presupposes_magic
+    {α : Type*} {Magic Readable : α → Prop} {x : α}
+    (h : PoeticReading Magic Readable x) : Magic x := by
+  exact h.1
+
+theorem poetic_reading_requires_readability
+    {α : Type*} {Magic Readable : α → Prop} {x : α}
+    (h : PoeticReading Magic Readable x) : Readable x := by
+  exact h.2
+
+/-! ## 5. Claim boundary: theorem, assumption, interpretation -/
 
 inductive ClaimStatus where
   | standardOpticsAssumption
@@ -202,6 +260,9 @@ deriving DecidableEq, Repr
 def hardShadowStatus : ClaimStatus := .definedHere
 def softIdentityStatus : ClaimStatus := .kernelTheorem
 def regularBoundaryStatus : ClaimStatus := .kernelTheorem
+def beautyFormulaStatus : ClaimStatus := .definedHere
+def verifiedTraceProjectionStatus : ClaimStatus := .kernelTheorem
+def magicPoetryRelationStatus : ClaimStatus := .definedHere
 def metaphysicalCanonStatus : ClaimStatus := .authorInterpretation
 def otherWorldsStatus : ClaimStatus := .redBoundary
 

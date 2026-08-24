@@ -12,5 +12,9 @@ open TMI.PoetryOfMathematics
 #print axioms radiometric_sigma_between_zero_and_one
 #print axioms boundary_subset_projected_tangencies
 #print axioms boundary_eq_projected_visible_tangencies
+#print axioms reality_trace_candidate_requires_check
+#print axioms unverified_beauty_is_not_reality_trace
+#print axioms poetic_reading_presupposes_magic
+#print axioms poetic_reading_requires_readability
 #print axioms metaphysical_canon_is_not_a_kernel_theorem
 #print axioms other_worlds_claim_is_outside_the_theory
