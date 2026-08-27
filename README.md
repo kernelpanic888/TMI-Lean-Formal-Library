@@ -171,20 +171,26 @@ claim boundary are recorded in
 
 ### PM-01 · Hypothesis Orbit Geometry
 
-The existing Poetry of Mathematics research package now contains a
+The existing Poetry of Mathematics research package contains a
 verification-gated epistemic geometry: a confirmed core `C`, hypotheses `H_i`
 on nonnegative orbits, free angular interpretation with `dr = 0`, and an
-independent-evidence requirement for inward motion or fact promotion. The
-Lean carrier, axiom audit, TPTP mirror, Vampire/E proof traces and claim
-boundary live together in
+independent-evidence requirement for inward motion or fact promotion. Its
+`AmariVerificationLayer` now imports Spectra's pinned upstream
+`StatisticalManifold` / Fisher–Rao foundation and keeps epistemic status and
+verification as a separate TLFL layer. The Lean carrier, axiom audit, TPTP
+mirror, Vampire/E proof traces, upstream audit and claim boundary live together in
 [`research/poetry-of-mathematics-v0.1/`](research/poetry-of-mathematics-v0.1/).
 
 Public reader:
 [`exports/chertogi_first_distinction_public/readers/poetry-of-mathematics/index.html`](exports/chertogi_first_distinction_public/readers/poetry-of-mathematics/index.html).
 
-This is an epistemic state-space model, not yet Amari information geometry:
-no Fisher information metric, statistical manifold, α-connection or
-divergence is claimed by the current release.
+The public surface is bilingual and live: its home banner and laboratory use a
+tested handwritten browser wrapper of the named Lean operations. The wrapper
+is not Lean extraction or a second proof kernel. The Fisher base is now
+imported rather than rewritten, but the abstract orbit radius is still not
+identified with Fisher–Rao distance, KL divergence or a geodesic coordinate.
+Spectra's alpha-connection chain remains pinned and cited but outside the TLFL
+build until it is compatible with final Mathlib `v4.31.0`.
 
 ## Layer Bridge
 

@@ -12,7 +12,7 @@ its claims.
 | DL-03 | Prefix certificates and monotone growth | Formal architecture candidate |
 | DL-04 | Deterministic state/memory/reflection simulation | Executable computational model |
 | TIDL-01 | Status classification and external context | Research reading |
-| PM-01 | Optics, poetry, and hypothesis-orbit verification gate | Kernel-checked abstract model; no empirical or Fisher–Rao identification |
+| PM-01 | Optics, hypothesis-orbit verification gate, upstream Fisher base, live reader | Kernel-checked abstract gate + imported Fisher metric; no empirical or orbit-radius/Fisher–Rao identification |
 | SO-01 | Ontological problem of the Dirac spinor: standard formulas, Lean scaffold, and separated TMI reading | Experimental interpretation; no physical identification |
 | External sources | Scientific and governance shoulders | Evidence context, not validation |
 
@@ -33,8 +33,11 @@ or gamma-matrix anticommutation.
 For PM-01, the direct formal lineage is
 `research/poetry-of-mathematics-v0.1/PoetryOfMathematics.lean`. The TPTP mirror
 and Vampire/E traces independently check its abstract gate consequences; they
-do not establish Lean-to-TPTP equivalence. The radius is not identified with a
-Fisher–Rao distance.
+do not establish Lean-to-TPTP equivalence. `AmariVerificationLayer` imports the
+pinned Spectra `StatisticalManifold` / Fisher metric foundation and keeps the
+TLFL verification predicate separate. The radius is not identified with a
+Fisher–Rao distance. Spectra's alpha-connection chain is cited but not part of
+the TLFL build at its current Mathlib compatibility boundary.
 
 ## Computational lineage
 
@@ -42,6 +45,11 @@ DL-04 computes each visible transition from its in-page state recurrence,
 memory, reflection term, trace and admission guard. The animation is therefore
 a projection of the model rather than an unrelated decorative loop. This is a
 reproducible browser computation, not evidence of consciousness or life.
+
+PM-01's banner and live laboratory compute every displayed state transition
+through `hypothesis-orbit-wrapper.js`. That wrapper mirrors named Lean
+operations and passes finite JavaScript checks; it is handwritten, not
+extracted from Lean, and does not prove implementation equivalence.
 
 ## Open obligations
 

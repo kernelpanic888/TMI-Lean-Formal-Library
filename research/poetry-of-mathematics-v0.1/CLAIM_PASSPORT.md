@@ -9,9 +9,12 @@ Mathlib: tag `v4.31.0`, locked revision
 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`
 
 Source SHA-256:
-`d4aa862d13f1a4f99fc6b784283006924f9b576120740f9725d87afbb8e4d11c`
+`ecdd822a47471977815b99296836f992911a8663c4ab5787a67e8da9090d7573`
 Audit SHA-256:
-`d96581f9ce178b99eba3c7ed4afaa46b80617ddb7fda00100c178653dcc16a71`
+`db9ba81da3d29a330498e8e0a337838bb0c9017b151afa32e543d2b89b8785c8`
+
+Pinned upstream information geometry:
+`adambornemann-glitch/Spectra@8dbaaf6728d1342ae16acf79fd7eef7c59b37e63`
 
 ## Inputs / Входы
 
@@ -25,6 +28,9 @@ Audit SHA-256:
 - the confirmed center `C` carries a separately supplied confirmation witness;
 - each `H_i` has an explicit nonnegative radius, angle and epistemic status;
 - `IndependentlyVerified` is an input predicate, not a derived empirical fact;
+- `AmariVerificationLayer` receives an upstream Spectra
+  `StatisticalManifold`; TLFL does not reconstruct the Fisher metric;
+- hypothesis-to-parameter and core-parameter maps remain explicit layer data;
 - the orbit radius is an abstract epistemic coordinate, not a declared
   Fisher–Rao distance.
 
@@ -52,6 +58,14 @@ Audit SHA-256:
 20. absence of verification blocks inward motion and fact promotion;
 21. physical identification of the orbit geometry is tagged as author
     interpretation rather than a kernel theorem.
+22. `AmariVerificationLayer` packages TLFL status and verification data over a
+    pinned upstream statistical manifold;
+23. positivity of the layer's Fisher metric reuses Spectra's kernel-checked
+    `fisherMetric_pos_def` theorem;
+24. the verification predicate remains an explicit input after the Fisher
+    base is installed;
+25. identification of the orbit radius with Fisher–Rao geometry is explicitly
+    tagged as a red-boundary claim.
 
 ## Axiom audit / Аудит аксиом
 
@@ -61,6 +75,11 @@ original structural projections and status-boundary exports depend on no
 axioms. The new real-coordinate and gate theorems use the same standard
 Mathlib logical foundation; the new physical-status boundary is axiom-free.
 No project-defined axiom is introduced.
+
+The thin `upstream_fisher_metric_positive` reuse has the same standard
+foundation reported by its imported Mathlib/Spectra dependency:
+`propext`, `Classical.choice`, and `Quot.sound`. The status theorem keeping the
+orbit-radius/Fisher identification outside the theory is axiom-free.
 
 Геометрические и радиометрические экспорты зависят только от стандартных
 логических оснований Mathlib: `propext`, `Classical.choice` и `Quot.sound`.
@@ -85,6 +104,40 @@ consequences. It was proved independently by both requested provers:
 
 This is not a mechanically generated equivalence proof between Lean and TPTP,
 and the mirror deliberately does not encode real arithmetic.
+
+## Upstream information-geometry boundary / Граница внешней геометрии
+
+The exact Spectra revision and Apache-2.0 attribution are recorded in
+`SPECTRA_UPSTREAM.md` and locked in `lake-manifest.json`. On final
+Lean/Mathlib `v4.31.0`, TLFL successfully builds the upstream chain through:
+
+- `StatisticalModel`;
+- `Score`;
+- `Fisher.Information`;
+- `Fisher.Metric`;
+- `StatisticalManifold`.
+
+The downloaded upstream `Divergence → AmariChentsov → Connection.Basic` chain
+does not compile against final Mathlib `v4.31.0`; it was written around an
+earlier release-candidate API. TLFL neither patches those files nor imports
+their alpha-connection claims. This failed compatibility check is part of the
+audit, not a hidden success claim.
+
+## Executable reader boundary / Граница исполняемого ридера
+
+The bilingual reader and home banner share a handwritten operational mirror:
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `hypothesis-orbit-wrapper.js` | `665c0a556e1f693e54af2a94477c4be96c117654b38f2a652022bd1eae2cfe22` |
+| `hypothesis-orbit-wrapper.test.cjs` | `7faf40b508d740f90e9a13d2e9241560e5592cb96e7b3d524cc6271b3004b2ca` |
+| bilingual reader `index.html` | `6381e781180f708b1f859fc30072aaa43658041caef45142c2ac64dbd8cd2e54` |
+| public home `index.html` | `12d2a7ebcaf1ac6d26d3ee3242336362a3193907c42c97d6d72d8ce832db93c7` |
+| English release image | `959e547115393e38e50ff5933e357588d94efd3821990b751dce7e60f873be39` |
+
+The ten finite wrapper checks pass. The wrapper calls operations with the same
+names and intended state fields as the Lean model, but it is not extracted
+Lean, a proof checker, or a proof of implementation equivalence.
 
 ## Red boundary / Красная граница
 

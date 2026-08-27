@@ -22,6 +22,8 @@ reader. The reader is for people; this package is for deep verification.
 → hypotheses `H_i` on nonnegative orbits around a confirmed core `C`
 → free angular interpretation `dθ` with `dr = 0`
 → inward motion and fact promotion only with independent verification
+→ pinned upstream `StatisticalManifold` / Fisher–Rao foundation from Spectra
+→ `AmariVerificationLayer`: TLFL status and verification over that base
 → poetry modeled as a readable interface to magic, not its synonym.
 
 The package also encodes a hard status boundary: the metaphysical canon is an
@@ -50,6 +52,9 @@ Release gates:
   smuggled in as conclusions.
 - the first-order gate mirror and full Vampire/E proof traces remain beside the
   Lean carrier.
+- the Spectra information-geometry dependency is locked to an exact upstream
+  commit; only its targets that compile against TLFL's final Mathlib pin are
+  imported.
 
 ## Hypothesis orbit geometry / Геометрия орбит гипотез
 
@@ -64,16 +69,26 @@ fact promotion: hypothesis -> verifiedFact -> IndependentlyVerified(H_i)
 
 The public reader is
 `../../exports/chertogi_first_distinction_public/readers/poetry-of-mathematics/index.html`.
-Release notes are in `RELEASE_HYPOTHESIS_ORBIT_GEOMETRY_v0.1.0.md`; the
-English release image is stored under that reader's `assets/` directory.
+Current release notes are in
+`RELEASE_HYPOTHESIS_ORBIT_GEOMETRY_v0.2.0.md`; the English release image is
+stored under that reader's `assets/` directory. The live reader and home banner
+share `hypothesis-orbit-wrapper.js`, whose finite checks live beside it.
 
 The thematic LinkedIn post about flow, interface, trace, interpretation space,
 verification and action is cited as motivation, not as a formal premise.
 
-This is not yet Amari information geometry. The model has no statistical
-manifold, Fisher information metric, α-connection, or divergence. Its abstract
-radius is an explicit future instantiation seam, not a renamed Fisher–Rao
-distance.
+The Fisher–Rao foundation is imported rather than recreated:
+`AmariVerificationLayer` contains Spectra's upstream `StatisticalManifold` and
+adds TLFL's explicit epistemic status and verification predicate. The exact
+pin, attribution and compatibility audit are recorded in
+`SPECTRA_UPSTREAM.md`.
+
+This does **not** yet identify the abstract orbit radius with Fisher–Rao
+distance, KL divergence or a geodesic coordinate. Spectra's downloaded
+Amari–Chentsov / alpha-connection source is not imported into the TLFL build:
+its current revision targets an earlier Mathlib release-candidate API and the
+chain fails against final `v4.31.0`. TLFL does not patch or relabel that
+upstream source.
 
 ## Claim ceiling / Потолок утверждений
 

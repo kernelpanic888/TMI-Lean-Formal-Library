@@ -2,6 +2,7 @@ import Mathlib.MeasureTheory.Integral.Bochner.Basic
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
+import Spectra.InformationGeometry.StatisticalManifold
 
 /-!
 # Poetry of Mathematics / Поэзия математики
@@ -439,7 +440,51 @@ theorem interpretation_changes_angle_not_fact_status
         (rotateBy state deltaTheta).status = state.status := by
   simp
 
-/-! ## 6. Claim boundary: theorem, assumption, interpretation -/
+/-! ## 6. Verification layer over an upstream Fisher–Rao base -/
+
+/-- A thin TLFL integration layer over Spectra's upstream statistical
+manifold.  The Fisher–Rao geometry is imported rather than reimplemented.
+
+The structure deliberately keeps the epistemic status and the independent
+verification predicate outside the statistical manifold.  It does *not* yet
+identify the orbit radius above with Fisher–Rao distance or a divergence. -/
+structure AmariVerificationLayer
+    (Hypothesis : Type*) (n : ℕ) (Sample : Type*)
+    [MeasurableSpace Sample] where
+  statisticalBase :
+    Spectra.InformationGeometry.StatisticalManifold n Sample
+  coreParameter : Spectra.InformationGeometry.ParamSpace n
+  hypothesisParameter :
+    Hypothesis → Spectra.InformationGeometry.ParamSpace n
+  status : Hypothesis → EpistemicStatus
+  independentlyVerified : Hypothesis → Prop
+
+/-- The imported Fisher metric is positive on every nonzero tangent vector
+inside the statistical model's parameter domain.  This theorem is a thin
+reuse of Spectra's upstream result, not a local reconstruction of it. -/
+theorem upstream_fisher_metric_positive
+    {Hypothesis : Type*} {n : ℕ} {Sample : Type*}
+    [MeasurableSpace Sample]
+    (layer : AmariVerificationLayer Hypothesis n Sample)
+    {θ : Spectra.InformationGeometry.ParamSpace n}
+    (hθ : θ ∈ layer.statisticalBase.domain)
+    {v : Spectra.InformationGeometry.ParamSpace n}
+    (hv : v ≠ 0) :
+    0 < layer.statisticalBase.fisherMetric.eval θ v v :=
+  layer.statisticalBase.fisherMetric_pos_def hθ hv
+
+/-- The verification predicate remains explicit after installing the upstream
+statistical base: geometry alone does not manufacture its witness. -/
+theorem amari_layer_keeps_verification_explicit
+    {Hypothesis : Type*} {n : ℕ} {Sample : Type*}
+    [MeasurableSpace Sample]
+    (layer : AmariVerificationLayer Hypothesis n Sample)
+    (hypothesis : Hypothesis)
+    (witness : layer.independentlyVerified hypothesis) :
+    layer.independentlyVerified hypothesis :=
+  witness
+
+/-! ## 7. Claim boundary: theorem, assumption, interpretation -/
 
 inductive ClaimStatus where
   | standardOpticsAssumption
@@ -457,6 +502,8 @@ def verifiedTraceProjectionStatus : ClaimStatus := .kernelTheorem
 def magicPoetryRelationStatus : ClaimStatus := .definedHere
 def hypothesisOrbitModelStatus : ClaimStatus := .definedHere
 def hypothesisOrbitInvariantStatus : ClaimStatus := .kernelTheorem
+def amariVerificationLayerStatus : ClaimStatus := .definedHere
+def orbitRadiusIsFisherRaoStatus : ClaimStatus := .redBoundary
 def physicalHypothesisGeometryStatus : ClaimStatus := .authorInterpretation
 def metaphysicalCanonStatus : ClaimStatus := .authorInterpretation
 def otherWorldsStatus : ClaimStatus := .redBoundary
@@ -464,6 +511,10 @@ def otherWorldsStatus : ClaimStatus := .redBoundary
 theorem physical_hypothesis_geometry_is_not_a_kernel_theorem :
     physicalHypothesisGeometryStatus ≠ ClaimStatus.kernelTheorem := by
   decide
+
+theorem orbit_radius_is_not_claimed_as_fisher_rao :
+    orbitRadiusIsFisherRaoStatus = ClaimStatus.redBoundary :=
+  rfl
 
 theorem metaphysical_canon_is_not_a_kernel_theorem :
     metaphysicalCanonStatus ≠ ClaimStatus.kernelTheorem := by

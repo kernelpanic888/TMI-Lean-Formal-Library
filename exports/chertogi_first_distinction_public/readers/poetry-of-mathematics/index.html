@@ -3,135 +3,149 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="PM-01 reader: hypothesis orbit geometry around a verified factual core, with Lean 4 and external prover boundaries.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="description" content="Bilingual live reader for the Lean-checked hypothesis-orbit model and its explicitly bounded browser wrapper.">
   <title>PM-01 · Hypothesis Orbit Geometry</title>
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #030a13;
-      --panel: rgba(8, 24, 40, .86);
-      --line: rgba(74, 218, 255, .28);
-      --cyan: #49dfff;
-      --amber: #ffbd3c;
-      --red: #ff664f;
-      --text: #eef8ff;
-      --muted: #9bb4c7;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(25, 129, 191, .16), transparent 34rem),
-        linear-gradient(180deg, #02070e, var(--bg));
-      color: var(--text);
-      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    a { color: var(--cyan); }
-    .page { width: min(1160px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 64px; }
-    .back { display: inline-block; margin-bottom: 30px; text-decoration: none; color: var(--muted); }
-    .eyebrow { color: var(--cyan); font: 700 12px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; }
-    h1 { max-width: 920px; margin: 10px 0 18px; font-size: clamp(38px, 7vw, 82px); line-height: .98; letter-spacing: -.05em; }
-    h2 { margin: 0 0 14px; font-size: clamp(24px, 4vw, 40px); line-height: 1.08; letter-spacing: -.025em; }
-    p { margin: 0 0 14px; }
-    .lead { max-width: 880px; color: #c9dce8; font-size: clamp(18px, 2.3vw, 24px); }
-    .status { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0 34px; }
-    .badge { border: 1px solid var(--line); border-radius: 999px; padding: 6px 11px; background: rgba(15, 53, 78, .48); font: 700 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
-    .badge.warn { border-color: rgba(255, 189, 60, .45); color: #ffd77d; }
-    figure { margin: 0 0 28px; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: #020712; box-shadow: 0 28px 80px rgba(0, 0, 0, .45); }
-    figure img { display: block; width: 100%; height: auto; }
-    figcaption { padding: 12px 16px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px 0 34px; }
-    .card { min-height: 100%; padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
-    .card strong { color: white; }
-    .formula { margin: 16px 0; padding: 17px 19px; border-left: 3px solid var(--cyan); background: rgba(10, 38, 60, .6); color: #dff8ff; font: 650 clamp(15px, 2.2vw, 20px)/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-x: auto; }
-    .formula.locked { border-left-color: var(--amber); }
-    code { color: #bff4ff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-    ul { margin: 0; padding-left: 20px; }
-    .red-boundary { margin-top: 16px; border-color: rgba(255, 102, 79, .44); background: rgba(61, 18, 21, .42); }
-    .red-boundary h2 { color: #ff9b8a; }
-    .source { color: var(--muted); font-size: 14px; }
-    footer { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .page { width: min(100% - 22px, 1160px); } .card { padding: 19px; } }
+    :root{color-scheme:dark;--bg:#020a0e;--panel:rgba(6,27,32,.91);--panel2:rgba(2,17,21,.96);--cyan:#55ddff;--mint:#7dffd0;--gold:#ffd25a;--red:#ff6652;--text:#ebfff8;--muted:#91afa9;--line:rgba(125,255,208,.24);--serif:Georgia,"Times New Roman",serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:300px;color:var(--text);background:linear-gradient(rgba(85,221,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(85,221,255,.035) 1px,transparent 1px),radial-gradient(circle at 70% 9%,rgba(85,221,255,.12),transparent 34rem),radial-gradient(circle at 18% 42%,rgba(125,255,208,.09),transparent 34rem),var(--bg);background-size:44px 44px,44px 44px,auto,auto,auto;font:16px/1.64 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:var(--cyan);text-underline-offset:.2em}button,input{font:inherit}.ru{display:none}body[data-lang=en] .ru,body[data-lang=ru] .en{display:none!important}body[data-lang=ru] .ru{display:revert}
+    .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:56px;padding:10px clamp(14px,3vw,44px);border-bottom:1px solid var(--line);background:rgba(1,10,13,.89);backdrop-filter:blur(16px);font:750 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase}.brand{color:var(--mint);text-decoration:none}.top-tools{display:flex;align-items:center;gap:14px}.status{color:var(--muted);white-space:nowrap}.langs{display:flex;border:1px solid rgba(85,221,255,.36)}.langs button{width:40px;height:30px;border:0;border-right:1px solid rgba(85,221,255,.25);color:var(--muted);background:transparent;cursor:pointer;font:800 11px/1 var(--mono)}.langs button:last-child{border-right:0}.langs button[aria-pressed=true],.langs button:hover,.langs button:focus-visible{outline:0;color:#001014;background:var(--cyan)}
+    .page{width:min(1240px,calc(100% - 28px));margin:auto;padding:clamp(38px,6vw,82px) 0 70px}.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(250px,.7fr);gap:clamp(30px,6vw,80px);align-items:end}.eyebrow{margin:0 0 13px;color:var(--cyan);font:800 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase}h1,h2,h3{font-family:var(--serif);font-weight:500}h1{max-width:900px;margin:0;font-size:clamp(48px,7.2vw,96px);line-height:.92;letter-spacing:-.055em}h1 em{color:var(--gold);font-weight:inherit}.lead{max-width:800px;margin:24px 0 0;color:#c9ddd8;font-size:clamp(18px,2.1vw,25px);line-height:1.5}.hero-side{border-left:3px solid var(--mint);padding-left:22px;color:var(--muted)}.hero-side strong{color:var(--text)}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.badge{padding:7px 10px;border:1px solid var(--line);color:var(--mint);background:rgba(7,39,37,.58);font:800 10px/1.2 var(--mono);letter-spacing:.07em}.badge.warn{border-color:rgba(255,210,90,.42);color:var(--gold)}.jump{display:inline-block;margin-top:24px;padding:12px 17px;color:#00110e;background:var(--mint);text-decoration:none;font:850 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+    .section{margin-top:clamp(58px,8vw,105px)}.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.55fr);gap:30px;align-items:end;margin-bottom:25px}h2{margin:0;font-size:clamp(34px,5vw,66px);line-height:1;letter-spacing:-.035em}.note{margin:0;color:var(--muted)}
+    .lab{border:1px solid rgba(125,255,208,.36);background:linear-gradient(145deg,rgba(6,41,42,.86),rgba(1,13,17,.97));box-shadow:0 28px 90px rgba(0,0,0,.42),inset 0 0 120px rgba(85,221,255,.035)}.toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line)}.picker{display:flex;flex-wrap:wrap;gap:7px}.picker button,.action{border:1px solid rgba(85,221,255,.35);color:var(--cyan);background:rgba(0,18,23,.75);cursor:pointer;font:800 11px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase}.picker button{min-width:44px;padding:10px 12px}.action{padding:11px 13px}.picker button[aria-pressed=true],.picker button:hover,.picker button:focus-visible,.action:hover,.action:focus-visible{outline:0;color:#001014;border-color:var(--cyan);background:var(--cyan)}
+    .stage{position:relative}#orbit-canvas{display:block;width:100%;height:clamp(430px,58vw,700px);touch-action:manipulation}.key{position:absolute;left:16px;bottom:16px;display:flex;flex-wrap:wrap;gap:14px;padding:9px 11px;color:var(--muted);background:rgba(0,14,18,.9);font:700 10px/1.3 var(--mono)}.key span{display:flex;align-items:center;gap:7px}.key i{width:22px;height:3px;background:var(--cyan)}.key .locked{background:var(--red)}.key .witness{background:var(--gold)}
+    .controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}.control{min-width:0;padding:21px;border-right:1px solid var(--line)}.control:last-child{border-right:0}.control-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:11px;color:var(--muted);font:800 10px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}output{color:var(--gold)}input[type=range]{width:100%;accent-color:var(--cyan)}.control p{min-height:45px;margin:11px 0 14px;color:var(--muted);font-size:13px}.witness-row{display:flex;align-items:center;gap:10px;min-height:29px;color:var(--gold);font:750 12px/1.3 var(--mono)}.witness-row input{width:18px;height:18px;accent-color:var(--gold)}
+    .readouts{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)}.readout{padding:15px;border-right:1px solid var(--line);background:rgba(1,22,25,.72)}.readout:last-child{border-right:0}.readout span{display:block;color:var(--muted);font:750 9px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}.readout strong{display:block;margin-top:6px;color:var(--cyan);font:800 clamp(13px,1.6vw,20px)/1.2 var(--mono);overflow-wrap:anywhere}.event{padding:16px 20px;border-top:1px solid var(--line);color:var(--text);background:rgba(4,36,32,.72);font:700 12px/1.5 var(--mono)}.event[data-kind=blocked]{color:#ff9c8e;background:rgba(65,17,15,.62)}.event[data-kind=verified]{color:#ffe59a}.wrapper-boundary{padding:15px 20px;border-top:1px solid rgba(255,210,90,.28);color:#cbbf92;background:rgba(36,30,7,.45);font-size:12px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.card{padding:clamp(21px,3vw,31px);border:1px solid var(--line);background:var(--panel)}.card h3{margin:5px 0 13px;font-size:clamp(25px,3vw,38px);line-height:1.08}.card p{margin:0;color:var(--muted)}.formula{margin:18px 0 0;padding:15px 17px;border-left:3px solid var(--cyan);color:#dffff7;background:rgba(3,28,35,.86);font:750 clamp(13px,1.8vw,18px)/1.7 var(--mono);overflow-x:auto}.formula.gated{border-left-color:var(--gold)}code{color:#bdf7ff;font-family:var(--mono)}
+    .proofs{width:100%;border-collapse:collapse;border:1px solid var(--line);background:var(--panel2)}.proofs th,.proofs td{padding:15px 17px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.proofs th{color:var(--muted);font:800 10px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}.proofs tr:last-child td{border-bottom:0}.proofs td:last-child{color:var(--mint);font:800 11px/1.4 var(--mono);white-space:nowrap}
+    .amari{display:grid;grid-template-columns:.85fr 1.15fr;border:1px solid rgba(255,210,90,.35);background:linear-gradient(115deg,rgba(40,30,5,.62),rgba(5,25,28,.9))}.amari>div{padding:clamp(23px,4vw,42px)}.amari>div+div{border-left:1px solid rgba(255,210,90,.25)}.amari h3{margin:7px 0 15px;font-size:clamp(28px,4vw,48px)}.amari p{color:#c5c0a7}
+    .sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--line)}.source{min-width:0;padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel2)}.source:nth-child(2n){border-right:0}.source h3{margin:6px 0 9px;font:800 14px/1.35 var(--mono)}.source p{margin:0;color:var(--muted);font-size:13px}.kind{color:var(--gold);font:800 9px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+    .red-boundary{padding:clamp(25px,4vw,43px);border:1px solid rgba(255,102,82,.48);border-left:8px solid var(--red);background:rgba(55,15,14,.72)}.red-boundary h2{color:#ff9d8f}.red-boundary p{max-width:1000px;color:#dbb0a9}footer{margin-top:42px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font:700 11px/1.6 var(--mono)}
+    @media(max-width:860px){.hero,.head,.amari{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.control{border-right:0;border-bottom:1px solid var(--line)}.control:last-child{border-bottom:0}.readouts{grid-template-columns:repeat(2,1fr)}.readout{border-bottom:1px solid var(--line)}.amari>div+div{border-left:0;border-top:1px solid rgba(255,210,90,.25)}}@media(max-width:620px){.status{display:none}.page{width:min(100% - 18px,1240px);padding-top:34px}.grid,.sources{grid-template-columns:1fr}.source{border-right:0}.proofs,.proofs tbody,.proofs tr,.proofs td{display:block}.proofs thead{display:none}.proofs td{padding:11px 14px}.proofs td:last-child{white-space:normal}#orbit-canvas{height:480px}.key{position:static;border-top:1px solid var(--line)}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
-<body>
+<body data-lang="en">
+  <header class="top">
+    <a class="brand" href="../../index.html"><span class="en">← First Distinction map</span><span class="ru">← Карта первого различия</span></a>
+    <div class="top-tools"><span class="status">LEAN 4 · VAMPIRE · E</span><div class="langs" role="group" aria-label="Page language"><button type="button" data-language="ru" aria-pressed="false">RU</button><button type="button" data-language="en" aria-pressed="true">EN</button></div></div>
+  </header>
+
   <main class="page">
-    <a class="back" href="../../index.html">← Return to the First Distinction map</a>
-    <p class="eyebrow">PM-01 · Lean 4 · verified interpretation boundary</p>
-    <h1>Hypothesis Orbit Geometry</h1>
-    <p class="lead">Interpretation can rotate a hypothesis through its reasoning space. It cannot move that hypothesis toward the verified factual core—or promote it to fact status—without independent confirmation.</p>
-    <div class="status" aria-label="Proof status">
-      <span class="badge">LEAN KERNEL CHECKED</span>
-      <span class="badge">VAMPIRE · SZS THEOREM</span>
-      <span class="badge">E · SZS THEOREM</span>
-      <span class="badge warn">EPISTEMIC GEOMETRY · NOT FISHER–RAO YET</span>
-    </div>
-
-    <figure>
-      <img src="assets/hypothesis-orbit-geometry-release-en.png" width="1536" height="1024" alt="Dark mathematical infographic: hypotheses H1 through H4 rotate freely around verified factual core C, while inward radial motion requires independent evidence.">
-      <figcaption>Release image · English · SHA-256 <code>959e547115393e38e50ff5933e357588d94efd3821990b751dce7e60f873be39</code></figcaption>
-    </figure>
-
-    <section class="grid" aria-label="Model map">
-      <article class="card">
-        <p class="eyebrow">Center</p>
-        <h2>C is witnessed</h2>
-        <p><code>VerifiedCore</code> contains a factual center <code>C</code> together with an explicit confirmation witness. The formal model never manufactures that witness.</p>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Orbits</p>
-        <h2>Hᵢ stays named</h2>
-        <p><code>HypothesisOrbitFamily</code> assigns each <code>Hᵢ</code> a nonnegative radius <code>rᵢ</code> and an angle. Identity, radius, angle, and epistemic status remain separate fields.</p>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Free direction</p>
-        <h2>dθ is interpretation</h2>
-        <div class="formula">rotateBy(Hᵢ, dθ)<br>⇒ dr = 0<br>∧ status′ = status</div>
-        <p>Any angular displacement is constructible. Pure interpretation preserves both the orbit radius and fact status.</p>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Locked direction</p>
-        <h2>dr &lt; 0 is evidence-gated</h2>
-        <div class="formula locked">AdmissibleMove ∧ dr &lt; 0<br>⇒ IndependentlyVerified(Hᵢ)</div>
-        <p>The same independent witness is required when a state moves from <code>hypothesis</code> to <code>verifiedFact</code>.</p>
-      </article>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">PM-01 · kernel-checked model + bounded browser wrapper</p>
+        <h1><span class="en">Hypothesis <em>Orbit</em> Geometry</span><span class="ru">Орбитальная <em>геометрия</em> гипотез</span></h1>
+        <p class="lead en">Interpretation may change angle. It cannot silently change radius or factual status. Inward motion and fact promotion expose an independent-verification obligation.</p>
+        <p class="lead ru">Интерпретация может менять угол. Она не может незаметно изменить радиус или статус факта. Радиальное сближение и повышение до факта предъявляют обязательство независимой верификации.</p>
+        <div class="badges"><span class="badge">LEAN BUILD · PASS</span><span class="badge">VAMPIRE · SZS THEOREM</span><span class="badge">E · SZS THEOREM</span><span class="badge warn"><span class="en">WRAPPER ≠ KERNEL PROOF</span><span class="ru">ОБЁРТКА ≠ ДОКАЗАТЕЛЬСТВО ЯДРА</span></span></div>
+        <a class="jump" href="#live-model"><span class="en">Enter live model ↓</span><span class="ru">Открыть живую модель ↓</span></a>
+      </div>
+      <aside class="hero-side">
+        <p class="en"><strong>Honest visual contract.</strong> Every animated transition below calls the browser wrapper of a named Lean definition. The wrapper is separately tested, but it is handwritten JavaScript—not extracted Lean and not a second proof kernel.</p>
+        <p class="ru"><strong>Честный визуальный контракт.</strong> Каждый анимированный переход ниже вызывает браузерную обёртку именованного определения Lean. Обёртка тестируется отдельно, но написана вручную на JavaScript: это не экстракция Lean и не второе доказательное ядро.</p>
+      </aside>
     </section>
 
-    <section class="card">
-      <p class="eyebrow">Kernel theorem bundle</p>
-      <h2>What is actually proved</h2>
-      <ul>
-        <li><code>dRadius_rotateBy_zero</code> and <code>dTheta_rotateBy</code> compute the two displacements.</li>
-        <li><code>radial_approach_requires_independent_verification</code> exposes the evidence witness for every admitted inward move.</li>
-        <li><code>no_verification_blocks_fact_promotion</code> blocks promotion when that witness is absent.</li>
-        <li><code>interpretation_changes_angle_not_fact_status</code> is the visual invariant shown above.</li>
-      </ul>
+    <section class="section" id="live-model">
+      <div class="head"><div><p class="eyebrow"><span class="en">Executable projection</span><span class="ru">Исполняемая проекция</span></p><h2><span class="en">The verification gate, alive</span><span class="ru">Живой шлюз верификации</span></h2></div><p class="note en">Select Hᵢ. Angular interpretation is always admitted. A proposed inward move is blocked until the independent witness is explicitly present.</p><p class="note ru">Выберите Hᵢ. Угловая интерпретация допускается всегда. Предложенное движение внутрь блокируется, пока явно не предъявлено независимое свидетельство.</p></div>
+      <div class="lab">
+        <div class="toolbar"><div class="picker" role="group" aria-label="Select hypothesis"><button type="button" data-h="0" aria-pressed="true">H1</button><button type="button" data-h="1" aria-pressed="false">H2</button><button type="button" data-h="2" aria-pressed="false">H3</button><button type="button" data-h="3" aria-pressed="false">H4</button></div><div><button class="action" id="play" type="button"><span class="en">Pause rotation</span><span class="ru">Остановить вращение</span></button> <button class="action" id="reset" type="button"><span class="en">Reset</span><span class="ru">Сбросить</span></button></div></div>
+        <div class="stage"><canvas id="orbit-canvas" role="img" aria-label="Four hypotheses orbit the verified core C; the selected radial proposal changes color according to the verification gate."></canvas><div class="key" aria-hidden="true"><span><i></i><span class="en">free dθ</span><span class="ru">свободное dθ</span></span><span><i class="locked"></i><span class="en">blocked dr</span><span class="ru">запертое dr</span></span><span><i class="witness"></i><span class="en">witnessed dr</span><span class="ru">подтверждённое dr</span></span></div></div>
+        <div class="controls">
+          <div class="control"><div class="control-head"><span><span class="en">Interpretation / dθ</span><span class="ru">Интерпретация / dθ</span></span><output id="theta-out">+45°</output></div><input id="theta" type="range" min="-180" max="180" step="1" value="45" aria-label="Angular displacement in degrees"><p class="en"><code>rotateBy</code> adds any angle while preserving radius, hypothesis identity and status.</p><p class="ru"><code>rotateBy</code> добавляет любой угол, сохраняя радиус, идентичность гипотезы и статус.</p><button class="action" id="apply-theta" type="button"><span class="en">Apply rotateBy</span><span class="ru">Применить rotateBy</span></button></div>
+          <div class="control"><div class="control-head"><span><span class="en">Radial proposal / dr</span><span class="ru">Радиальное предложение / dr</span></span><output id="radius-out">−0.60</output></div><input id="radius" type="range" min="-1.5" max="1.5" step=".05" value="-.6" aria-label="Radial displacement"><p class="en">The Lean gate constrains inward motion only. Outward motion is not prohibited by this one-sided model.</p><p class="ru">Шлюз Lean ограничивает только движение внутрь. Движение наружу этой односторонней моделью не запрещено.</p><button class="action" id="apply-radius" type="button"><span class="en">Try radial move</span><span class="ru">Проверить радиальный ход</span></button></div>
+          <div class="control"><div class="control-head"><span><span class="en">Independent witness</span><span class="ru">Независимое свидетельство</span></span><output id="gate-out">ABSENT</output></div><label class="witness-row"><input id="verification" type="checkbox"> IndependentlyVerified(Hᵢ)</label><p class="en">The switch supplies an input to the model; the browser does not establish independence in the world.</p><p class="ru">Переключатель передаёт модели вход; браузер не устанавливает независимость в реальном мире.</p><button class="action" id="promote" type="button"><span class="en">Try fact promotion</span><span class="ru">Проверить повышение до факта</span></button></div>
+        </div>
+        <div class="readouts"><div class="readout"><span><span class="en">Selected</span><span class="ru">Выбрано</span></span><strong id="sel-read">H1</strong></div><div class="readout"><span>r</span><strong id="r-read">1.35</strong></div><div class="readout"><span>θ</span><strong id="a-read">0.0°</strong></div><div class="readout"><span><span class="en">Status</span><span class="ru">Статус</span></span><strong id="s-read">HYPOTHESIS</strong></div><div class="readout"><span><span class="en">Gate preview</span><span class="ru">Предпросмотр шлюза</span></span><strong id="p-read">BLOCKED</strong></div></div>
+        <div class="event" id="event" data-kind="neutral" aria-live="polite"><span class="en">Ready. Continuous motion is a sequence of <code>rotateBy</code> calls; r and status remain fixed.</span><span class="ru">Готово. Непрерывное движение — последовательность вызовов <code>rotateBy</code>; r и статус сохраняются.</span></div>
+        <div class="wrapper-boundary"><span class="en"><strong>Boundary:</strong> the animation is computed by <a href="hypothesis-orbit-wrapper.js">the browser wrapper</a>, a handwritten operational mirror with <a href="hypothesis-orbit-wrapper.test.cjs">separate checks</a>. The Lean theorems remain authoritative.</span><span class="ru"><strong>Граница:</strong> анимацию вычисляет <a href="hypothesis-orbit-wrapper.js">браузерная обёртка</a> — написанное вручную операционное зеркало с <a href="hypothesis-orbit-wrapper.test.cjs">отдельными проверками</a>. Авторитетными остаются теоремы Lean.</span></div>
+      </div>
     </section>
 
-    <section class="grid">
-      <article class="card">
-        <p class="eyebrow">External proof layer</p>
-        <h2>Vampire + E</h2>
-        <p>A first-order TPTP mirror of the gate consequences is independently proved by Vampire 5.0.1 and E 3.2.5. Full TSTP/CNF traces ship beside the Lean source.</p>
-        <p><strong>Boundary:</strong> this is not a mechanical Lean-to-TPTP equivalence proof and does not mirror real arithmetic.</p>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Amari seam</p>
-        <h2>Not information geometry—yet</h2>
-        <p>The current radius is an abstract epistemic coordinate. A genuine Amari layer must instantiate hypotheses as probability distributions, derive a Fisher information metric, choose a divergence or geodesic distance, and prove that a stated verification update reduces it.</p>
-      </article>
+    <section class="section">
+      <div class="head"><div><p class="eyebrow"><span class="en">Formal spine</span><span class="ru">Формальный каркас</span></p><h2><span class="en">What the picture may say</span><span class="ru">Что изображение вправе утверждать</span></h2></div><p class="note en">The visual follows named declarations and conclusions. It adds no metric, probability distribution or empirical verifier.</p><p class="note ru">Визуализация следует именованным определениям и выводам. Она не добавляет метрику, вероятностное распределение или эмпирический верификатор.</p></div>
+      <div class="grid">
+        <article class="card"><p class="eyebrow">VerifiedCore</p><h3><span class="en">C arrives with a witness</span><span class="ru">C дано вместе со свидетелем</span></h3><p class="en"><code>VerifiedCore</code> stores C and an explicit proof of <code>Confirmed C</code>. The model does not manufacture confirmation.</p><p class="ru"><code>VerifiedCore</code> хранит C и явное доказательство <code>Confirmed C</code>. Модель не производит подтверждение сама.</p></article>
+        <article class="card"><p class="eyebrow">HypothesisState</p><h3><span class="en">Geometry and status are separate</span><span class="ru">Геометрия и статус разделены</span></h3><p class="en">Identity, nonnegative radius, angle and <code>EpistemicStatus</code> are separate fields. No coordinate silently promotes a fact.</p><p class="ru">Идентичность, неотрицательный радиус, угол и <code>EpistemicStatus</code> — разные поля. Ни одна координата скрыто не повышает статус.</p></article>
+        <article class="card"><p class="eyebrow">rotateBy</p><h3><span class="en">Interpretation is tangential</span><span class="ru">Интерпретация тангенциальна</span></h3><div class="formula">dTheta(state, rotateBy state δθ) = δθ<br>dRadius(state, rotateBy state δθ) = 0<br>status′ = status</div></article>
+        <article class="card"><p class="eyebrow">AdmissibleMove</p><h3><span class="en">Approach is evidence-gated</span><span class="ru">Сближение заперто доказательством</span></h3><div class="formula gated">AdmissibleMove ∧ dr &lt; 0<br>⇒ IndependentlyVerified(Hᵢ)<br><br>hypothesis → verifiedFact<br>⇒ IndependentlyVerified(Hᵢ)</div></article>
+      </div>
     </section>
 
-    <section class="card red-boundary">
-      <p class="eyebrow">Red boundary</p>
-      <h2>Formal geometry is not world-validation</h2>
-      <p>Lean proves consequences of the declared structures and predicates. It does not prove that real beliefs, experiences, social connections, or psychological states lie on literal circles; that an asserted verifier is independent; or that the radius is a Fisher–Rao distance.</p>
-      <p lang="ru"><strong>Русское чтение:</strong> интерпретация может свободно менять угол, но не статус факта. Радиальное сближение с подтверждённым ядром допускается только при отдельном независимом свидетельстве. Это эпистемическая модель с верификационным шлюзом, а не уже построенная информационная геометрия Амари.</p>
+    <section class="section">
+      <p class="eyebrow"><span class="en">Proof ledger</span><span class="ru">Реестр доказательств</span></p><h2><span class="en">Named obligations, named checks</span><span class="ru">Именованные обязательства, именованные проверки</span></h2>
+      <table class="proofs"><thead><tr><th>Theorem / artifact</th><th>Meaning</th><th>Status</th></tr></thead><tbody>
+        <tr><td><code>interpretation_changes_angle_not_fact_status</code></td><td><span class="en">Arbitrary angular change with zero radial change and unchanged status.</span><span class="ru">Произвольное изменение угла при нулевом радиальном ходе и неизменном статусе.</span></td><td>LEAN KERNEL</td></tr>
+        <tr><td><code>radial_approach_requires_independent_verification</code></td><td><span class="en">Every admitted inward move exposes the verification witness.</span><span class="ru">Каждый допущенный ход внутрь предъявляет свидетельство верификации.</span></td><td>LEAN KERNEL</td></tr>
+        <tr><td><code>no_verification_blocks_fact_promotion</code></td><td><span class="en">Without the witness, promotion is impossible inside the gate.</span><span class="ru">Без свидетеля повышение невозможно внутри шлюза.</span></td><td>LEAN KERNEL</td></tr>
+        <tr><td><code>HypothesisOrbitGate.p</code></td><td><span class="en">First-order structural mirror; no real arithmetic and no Lean↔TPTP equivalence claim.</span><span class="ru">Структурное зеркало первого порядка; без вещественной арифметики и заявления эквивалентности Lean↔TPTP.</span></td><td>VAMPIRE + E</td></tr>
+        <tr><td><code>hypothesis-orbit-wrapper.js</code></td><td><span class="en">Finite browser execution of the displayed operations.</span><span class="ru">Конечное браузерное исполнение показанных операций.</span></td><td>TESTED MIRROR</td></tr>
+      </tbody></table>
     </section>
 
-    <p class="source">Thematic source: Oleksiy Salkutsan, “The first cut is simple…”—flow → interface → trace → interpretation space → verification → action → new flow. <a href="https://www.linkedin.com/posts/oleksiy-salkutsan-276a40184_the-first-cut-is-simple-there-is-a-source-share-7498470122597023745-Lw39/">LinkedIn post</a>. The post motivates the reading; it is not a formal premise.</p>
+    <section class="section">
+      <div class="amari">
+        <div><p class="eyebrow"><span class="en">Integrated upstream base</span><span class="ru">Подключённое внешнее основание</span></p><h3><span class="en">Fisher–Rao is imported, not rewritten</span><span class="ru">Fisher–Rao импортирован, а не переписан</span></h3><p class="en">TLFL pins Spectra's external Lean formalization and imports its compiled <code>StatisticalManifold</code> / Fisher metric layer. <code>AmariVerificationLayer</code> places TLFL's status and independent-verification predicate over that upstream base.</p><p class="ru">TLFL фиксирует внешнюю Lean-формализацию Spectra и импортирует её собранный слой <code>StatisticalManifold</code> / метрики Фишера. <code>AmariVerificationLayer</code> помещает статус TLFL и предикат независимой верификации над этим внешним основанием.</p></div>
+        <div><p class="eyebrow"><span class="en">Open radial bridge</span><span class="ru">Открытый радиальный мост</span></p><h3><span class="en">The base is Amari-style; the orbit radius is not Fisher–Rao yet</span><span class="ru">Основание — в стиле Амари; орбитальный радиус ещё не Fisher–Rao</span></h3><p class="en">The accurate statement is now: “we imported an Amari-style statistical-manifold base and placed a verification layer over it.” We still do not claim that PM-01's abstract radius equals Fisher–Rao distance, KL divergence or a geodesic coordinate. The upstream α-connection chain is pinned and cited, but not imported into the TLFL build until it is compatible with final Mathlib v4.31.0.</p><p class="ru">Теперь точная формулировка: «мы импортировали основание статистического многообразия в стиле Амари и положили поверх слой верификации». Мы всё ещё не утверждаем, что абстрактный радиус PM-01 равен расстоянию Fisher–Rao, KL-дивергенции или геодезической координате. Внешняя цепочка α-связностей зафиксирована и процитирована, но не импортируется в сборку TLFL до совместимости с финальным Mathlib v4.31.0.</p></div>
+      </div>
+    </section>
 
-    <footer>PM-01 · Poetry of Mathematics / Поэзия математики · Apache-2.0 repository surface</footer>
+    <section class="section" id="sources">
+      <div class="head"><div><p class="eyebrow"><span class="en">Complete source ledger</span><span class="ru">Полный реестр источников</span></p><h2><span class="en">Proofs, tools, shoulders</span><span class="ru">Доказательства, инструменты, основания</span></h2></div><p class="note en">Repository artifacts support formal and executable claims. Literature supports terminology and the open direction, not validation of this model.</p><p class="note ru">Артефакты репозитория поддерживают формальные и исполняемые утверждения. Литература поддерживает терминологию и открытое направление, но не валидирует модель.</p></div>
+      <div class="sources">
+        <article class="source"><span class="kind">Lean source</span><h3><a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/pm01-hypothesis-orbit-geometry-v0.2.0/research/poetry-of-mathematics-v0.1/PoetryOfMathematics.lean">PoetryOfMathematics.lean ↗</a></h3><p><span class="en">Definitions, gate and kernel theorems.</span><span class="ru">Определения, шлюз и теоремы ядра.</span></p></article>
+        <article class="source"><span class="kind">Lean audit</span><h3><a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/pm01-hypothesis-orbit-geometry-v0.2.0/research/poetry-of-mathematics-v0.1/PoetryOfMathematicsAudit.lean">PoetryOfMathematicsAudit.lean ↗</a></h3><p><span class="en">Axiom audit of the theorem surface.</span><span class="ru">Аудит аксиом поверхности теорем.</span></p></article>
+        <article class="source"><span class="kind">First-order mirror</span><h3><a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/pm01-hypothesis-orbit-geometry-v0.2.0/research/poetry-of-mathematics-v0.1/HypothesisOrbitGate.p">HypothesisOrbitGate.p ↗</a></h3><p><span class="en">Bounded structural mirror checked by two external provers.</span><span class="ru">Ограниченное структурное зеркало, проверенное двумя внешними пруверами.</span></p></article>
+        <article class="source"><span class="kind">Proof traces</span><h3><a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/pm01-hypothesis-orbit-geometry-v0.2.0/research/poetry-of-mathematics-v0.1/HypothesisOrbitGate.vampire.tstp">Vampire ↗</a> · <a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/pm01-hypothesis-orbit-geometry-v0.2.0/research/poetry-of-mathematics-v0.1/HypothesisOrbitGate.eprover.tstp">E ↗</a></h3><p>SZS status Theorem · full traces.</p></article>
+        <article class="source"><span class="kind">Browser wrapper</span><h3><a href="hypothesis-orbit-wrapper.js">Wrapper source ↗</a> · <a href="hypothesis-orbit-wrapper.test.cjs">checks ↗</a></h3><p><span class="en">Handwritten projection shared by reader and home banner.</span><span class="ru">Ручная проекция, общая для ридера и баннера главной.</span></p></article>
+        <article class="source"><span class="kind">Upstream Lean foundation</span><h3><a href="https://github.com/adambornemann-glitch/Spectra/tree/8dbaaf6728d1342ae16acf79fd7eef7c59b37e63/Spectra/InformationGeometry">Spectra / InformationGeometry @ 8dbaaf6 ↗</a> · <a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/pm01-hypothesis-orbit-geometry-v0.2.0/research/poetry-of-mathematics-v0.1/SPECTRA_UPSTREAM.md">TLFL audit ↗</a></h3><p><span class="en">Apache-2.0 statistical models and Fisher–Rao foundation by Adam Bornemann / Spectra Formalization Project. Imported by exact revision.</span><span class="ru">Apache-2.0: статистические модели и основание Fisher–Rao Адама Борнеманна / Spectra Formalization Project. Импортировано по точной ревизии.</span></p></article>
+        <article class="source"><span class="kind">Claim passport</span><h3><a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/pm01-hypothesis-orbit-geometry-v0.2.0/research/poetry-of-mathematics-v0.1/CLAIM_PASSPORT.md">PM-01 claim passport ↗</a></h3><p><span class="en">Hashes, statuses and reproducibility boundary.</span><span class="ru">Хэши, статусы и граница воспроизводимости.</span></p></article>
+        <article class="source"><span class="kind">Information geometry</span><h3><a href="https://doi.org/10.1007/978-4-431-55978-8">S. Amari, Information Geometry and Its Applications ↗</a></h3><p><span class="en">Primary reference for the open Fisher/dual-connection extension.</span><span class="ru">Основной источник для открытого расширения Фишера и двойственных связностей.</span></p></article>
+        <article class="source"><span class="kind">Information geometry</span><h3><a href="https://doi.org/10.1007/s41884-025-00187-y">H. Nagaoka &amp; S. Amari, Differential geometry of smooth families… ↗</a></h3><p><span class="en">Smooth statistical families and α-connections; future seam only.</span><span class="ru">Гладкие статистические семейства и α-связности; только будущий шов.</span></p></article>
+        <article class="source"><span class="kind">Tool reference</span><h3><a href="https://lean-lang.org/doc/reference/latest/">Lean Language Reference ↗</a></h3><p><span class="en">Kernel and proof-term boundary.</span><span class="ru">Граница ядра и доказательных термов.</span></p></article>
+        <article class="source"><span class="kind">Tool references</span><h3><a href="https://vprover.github.io/">Vampire ↗</a> · <a href="https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html">E ↗</a></h3><p><span class="en">Official prover project surfaces.</span><span class="ru">Официальные страницы пруверов.</span></p></article>
+        <article class="source"><span class="kind">Thematic source</span><h3><a href="https://www.linkedin.com/posts/oleksiy-salkutsan-276a40184_the-first-cut-is-simple-there-is-a-source-share-7498470122597023745-Lw39/">Oleksiy Salkutsan, “The first cut is simple…” ↗</a></h3><p><span class="en">Motivation only; not a premise.</span><span class="ru">Только мотивация; не предпосылка.</span></p></article>
+        <article class="source"><span class="kind">Release asset</span><h3><a href="assets/hypothesis-orbit-geometry-release-en.png">English release image ↗</a></h3><p><span class="en">Editorial asset. The live wrapper above, not this raster, is the executable visual account.</span><span class="ru">Редакционный материал. Исполняемое визуальное объяснение — живая обёртка выше, а не растр.</span></p></article>
+      </div>
+    </section>
+
+    <section class="section red-boundary"><p class="eyebrow"><span class="en">Red boundary</span><span class="ru">Красная граница</span></p><h2><span class="en">A checked gate is not world-validation</span><span class="ru">Проверенный шлюз не валидирует мир</span></h2><p class="en">Lean proves consequences of declared structures and predicates. It does not prove that beliefs literally occupy circular orbits, that a selected witness is empirically independent, that radius measures truth, or that the browser wrapper is definitionally equal to Lean. Vampire and E prove the first-order mirror, not the real-coordinate Lean development. Spectra supplies a checked Fisher base; the bridge from PM-01's abstract radius to Fisher–Rao distance or α-geometry remains open.</p><p class="ru">Lean доказывает следствия объявленных структур и предикатов. Он не доказывает, что убеждения буквально лежат на круговых орбитах, что выбранный свидетель эмпирически независим, что радиус измеряет истину или что браузерная обёртка определённо равна Lean. Vampire и E доказывают зеркало первого порядка, а не Lean-разработку с вещественными координатами. Spectra даёт проверенное Fisher-основание; мост от абстрактного радиуса PM-01 к расстоянию Fisher–Rao или α-геометрии остаётся открытым.</p></section>
+    <footer>PM-01 · Poetry of Mathematics / Поэзия математики · Apache-2.0 · <a href="#sources"><span class="en">complete sources</span><span class="ru">все источники</span></a></footer>
   </main>
+
+  <script src="hypothesis-orbit-wrapper.js"></script>
+  <script>
+  (()=>{"use strict";
+    const M=window.HypothesisOrbitWrapper;if(!M)return;
+    const key="chambers-language",body=document.body,langBtns=[...document.querySelectorAll("[data-language]")];let lang="en";
+    const initial=[{hypothesis:"H1",radius:1.35,angle:-.35,speed:.29,color:"#55ddff"},{hypothesis:"H2",radius:2.2,angle:1.05,speed:-.20,color:"#7dffd0"},{hypothesis:"H3",radius:3.05,angle:2.75,speed:.14,color:"#ffd25a"},{hypothesis:"H4",radius:4,angle:4.85,speed:-.10,color:"#a994ff"}];
+    let states=initial.map(M.hypothesisState),selected=0,playing=!matchMedia("(prefers-reduced-motion: reduce)").matches,last=0,raf=0,hits=[];
+    const $=id=>document.getElementById(id),canvas=$("orbit-canvas"),ctx=canvas.getContext("2d"),theta=$("theta"),radius=$("radius"),verify=$("verification"),event=$("event"),play=$("play");
+    const tr=(en,ru)=>lang==="ru"?ru:en,signed=(v,d=2)=>`${v<0?"−":v>0?"+":""}${Math.abs(v).toFixed(d)}`,degrees=r=>((r*180/Math.PI)%360+360)%360,state=()=>states[selected],witness=()=>verify.checked,preview=()=>M.tryRadialMove(state(),Number(radius.value),witness());
+    function language(next){lang=next==="ru"?"ru":"en";body.dataset.lang=lang;document.documentElement.lang=lang;document.title=tr("PM-01 · Hypothesis Orbit Geometry","PM-01 · Орбитальная геометрия гипотез");langBtns.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.language===lang)));try{localStorage.setItem(key,lang)}catch{}read();draw()}
+    langBtns.forEach(b=>b.addEventListener("click",()=>language(b.dataset.language)));
+    function report(kind,en,ru){event.dataset.kind=kind;event.textContent=tr(en,ru)}
+    function read(){const s=state(),p=preview();$("theta-out").textContent=signed(Number(theta.value),0)+"°";$("radius-out").textContent=signed(Number(radius.value));$("gate-out").textContent=witness()?tr("PRESENT","ЕСТЬ"):tr("ABSENT","НЕТ");$("sel-read").textContent=s.hypothesis;$("r-read").textContent=s.radius.toFixed(2);$("a-read").textContent=degrees(s.angle).toFixed(1)+"°";$("s-read").textContent=s.status===M.EpistemicStatus.verifiedFact?tr("VERIFIED FACT","ПОДТВЕРЖДЁННЫЙ ФАКТ"):tr("HYPOTHESIS","ГИПОТЕЗА");$("p-read").textContent=p.ok?tr("ADMISSIBLE","ДОПУСТИМО"):tr("BLOCKED","ЗАПЕРТО");$("p-read").style.color=p.ok?"var(--mint)":"var(--red)";play.innerHTML=playing?'<span class="en">Pause rotation</span><span class="ru">Остановить вращение</span>':'<span class="en">Resume rotation</span><span class="ru">Продолжить вращение</span>'}
+    function select(i){selected=i;document.querySelectorAll("[data-h]").forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.h)===i)));report("neutral",state().hypothesis+" selected.","Выбрана "+state().hypothesis+".");read();draw()}
+    document.querySelectorAll("[data-h]").forEach(b=>b.addEventListener("click",()=>select(Number(b.dataset.h))));theta.addEventListener("input",()=>{read();draw()});radius.addEventListener("input",()=>{read();draw()});verify.addEventListener("change",()=>{report(verify.checked?"verified":"neutral",verify.checked?"Independent witness supplied as a model input.":"Independent witness removed.","Независимое свидетельство "+(verify.checked?"передано как вход модели.":"снято."));read();draw()});
+    $("apply-theta").addEventListener("click",()=>{const d=Number(theta.value),before=state(),after=M.rotateBy(before,d*Math.PI/180);states[selected]=after;report("neutral",`rotateBy(${before.hypothesis}, ${signed(d,0)}°) admitted: dr = 0, status unchanged.`,`rotateBy(${before.hypothesis}, ${signed(d,0)}°) допущен: dr = 0, статус не изменён.`);read();draw()});
+    $("apply-radius").addEventListener("click",()=>{const result=M.tryRadialMove(state(),Number(radius.value),witness());if(result.ok){states[selected]=result.after;report(result.gate.inward?"verified":"neutral",`${result.after.hypothesis}: radial move ${signed(M.dRadius(result.before,result.after))} admitted.`,`${result.after.hypothesis}: радиальный ход ${signed(M.dRadius(result.before,result.after))} допущен.`)}else report("blocked",result.before.hypothesis+": inward move blocked—independent witness absent.",result.before.hypothesis+": движение внутрь заблокировано — независимое свидетельство отсутствует.");read();draw()});
+    $("promote").addEventListener("click",()=>{const result=M.tryPromotion(state(),witness());if(result.ok){states[selected]=result.after;report("verified",result.after.hypothesis+": promotion to verifiedFact admitted.",result.after.hypothesis+": повышение до verifiedFact допущено.")}else report("blocked",result.before.hypothesis+": fact promotion blocked—independent witness absent.",result.before.hypothesis+": повышение до факта заблокировано — независимое свидетельство отсутствует.");read();draw()});
+    play.addEventListener("click",()=>{playing=!playing;last=performance.now();report("neutral",playing?"Angular rotateBy sequence resumed.":"Angular rotateBy sequence paused.",playing?"Последовательность rotateBy продолжена.":"Последовательность rotateBy остановлена.");read();if(playing&&!raf)raf=requestAnimationFrame(tick)});
+    $("reset").addEventListener("click",()=>{states=initial.map(M.hypothesisState);selected=0;verify.checked=false;theta.value="45";radius.value="-.6";document.querySelectorAll("[data-h]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.h==="0")));report("neutral","Model reset to the declared four-orbit example.","Модель возвращена к объявленному примеру с четырьмя орбитами.");read();draw()});
+    function resize(){const r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);canvas.width=Math.max(1,Math.round(r.width*d));canvas.height=Math.max(1,Math.round(r.height*d));ctx.setTransform(d,0,0,d,0,0);draw()}
+    function arrow(x,y,a,c){ctx.fillStyle=c;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-10*Math.cos(a-.45),y-10*Math.sin(a-.45));ctx.lineTo(x-10*Math.cos(a+.45),y-10*Math.sin(a+.45));ctx.closePath();ctx.fill()}
+    function draw(){if(!ctx||!canvas.width)return;const w=canvas.clientWidth,h=canvas.clientHeight,cx=w*.5,cy=h*.49,scale=Math.min(w*.098,h*.092);ctx.clearRect(0,0,w,h);const bg=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(w,h)*.55);bg.addColorStop(0,"rgba(31,128,125,.13)");bg.addColorStop(1,"rgba(0,8,12,0)");ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);ctx.strokeStyle="rgba(85,221,255,.08)";ctx.lineWidth=1;for(let x=20;x<w;x+=44){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}for(let y=20;y<h;y+=44){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+      states.forEach((s,i)=>{ctx.strokeStyle=i===selected?"rgba(125,255,208,.48)":"rgba(85,221,255,.18)";ctx.lineWidth=i===selected?2:1;ctx.beginPath();ctx.arc(cx,cy,s.radius*scale,0,Math.PI*2);ctx.stroke()});
+      const glow=ctx.createRadialGradient(cx,cy,1,cx,cy,48);glow.addColorStop(0,"rgba(255,210,90,.75)");glow.addColorStop(.25,"rgba(255,210,90,.22)");glow.addColorStop(1,"rgba(255,210,90,0)");ctx.fillStyle=glow;ctx.beginPath();ctx.arc(cx,cy,48,0,Math.PI*2);ctx.fill();ctx.fillStyle="#041116";ctx.strokeStyle="#ffd25a";ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,19,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle="#fff1b1";ctx.textAlign="center";ctx.font="800 17px IBM Plex Mono,monospace";ctx.fillText("C",cx,cy+6);ctx.fillStyle="#aebaa4";ctx.font="700 10px IBM Plex Mono,monospace";ctx.fillText(tr("VERIFIED CORE","ПОДТВЕРЖДЁННОЕ ЯДРО"),cx,cy+42);
+      hits=states.map((s,i)=>{const x=cx+Math.cos(s.angle)*s.radius*scale,y=cy+Math.sin(s.angle)*s.radius*scale,c=initial[i].color,g=ctx.createRadialGradient(x,y,0,x,y,i===selected?24:16);g.addColorStop(0,c+"aa");g.addColorStop(1,c+"00");ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,i===selected?24:16,0,Math.PI*2);ctx.fill();ctx.fillStyle=s.status===M.EpistemicStatus.verifiedFact?"#ffd25a":"#031319";ctx.strokeStyle=c;ctx.lineWidth=i===selected?4:2.5;ctx.beginPath();ctx.arc(x,y,i===selected?9:7,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle="#edfff8";ctx.textAlign=x<cx?"right":"left";ctx.font="800 12px IBM Plex Mono,monospace";ctx.fillText(`${s.hypothesis} · r=${s.radius.toFixed(2)}`,x+(x<cx?-14:14),y-12);return{x,y,i}});
+      const s=state(),R=s.radius*scale,dt=Number(theta.value)*Math.PI/180;if(Math.abs(dt)>.001){const end=s.angle+dt;ctx.strokeStyle="#55ddff";ctx.lineWidth=4;ctx.beginPath();ctx.arc(cx,cy,R,s.angle,end,dt<0);ctx.stroke();arrow(cx+Math.cos(end)*R,cy+Math.sin(end)*R,end+(dt<0?-Math.PI/2:Math.PI/2),"#55ddff")}
+      const dr=Number(radius.value);if(Math.abs(dr)>.001){const p=preview(),cr=p.candidate.radius,x1=cx+Math.cos(s.angle)*R,y1=cy+Math.sin(s.angle)*R,x2=cx+Math.cos(s.angle)*cr*scale,y2=cy+Math.sin(s.angle)*cr*scale,c=p.ok?(p.gate.inward?"#ffd25a":"#55ddff"):"#ff6652";ctx.save();ctx.setLineDash(p.ok?[]:[8,7]);ctx.strokeStyle=c;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore();arrow(x2,y2,Math.atan2(y2-y1,x2-x1),c);ctx.fillStyle=c;ctx.textAlign="center";ctx.font="800 11px IBM Plex Mono,monospace";ctx.fillText(p.ok?tr("ADMISSIBLE","ДОПУСТИМО"):tr("LOCKED · WITNESS REQUIRED","ЗАПЕРТО · НУЖЕН СВИДЕТЕЛЬ"),(x1+x2)/2,(y1+y2)/2-14)}
+    }
+    function tick(t){raf=0;if(!last)last=t;const dt=Math.min(.05,Math.max(0,(t-last)/1000));last=t;if(playing){states=states.map((s,i)=>M.rotateBy(s,initial[i].speed*dt));read();draw();raf=requestAnimationFrame(tick)}}
+    canvas.addEventListener("click",e=>{const r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,n=hits.map(p=>({...p,d:Math.hypot(p.x-x,p.y-y)})).sort((a,b)=>a.d-b.d)[0];if(n&&n.d<30)select(n.i)});new ResizeObserver(resize).observe(canvas);window.addEventListener("pagehide",()=>{if(raf)cancelAnimationFrame(raf)},{once:true});let saved="en";try{saved=localStorage.getItem(key)||"en"}catch{}language(saved);resize();read();if(playing)raf=requestAnimationFrame(tick);
+  })();
+  </script>
 </body>
 </html>

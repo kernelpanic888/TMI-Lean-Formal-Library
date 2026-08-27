@@ -24,6 +24,9 @@ open TMI.PoetryOfMathematics
 #print axioms no_verification_blocks_radial_approach
 #print axioms no_verification_blocks_fact_promotion
 #print axioms interpretation_changes_angle_not_fact_status
+#print axioms upstream_fisher_metric_positive
+#print axioms amari_layer_keeps_verification_explicit
+#print axioms orbit_radius_is_not_claimed_as_fisher_rao
 #print axioms physical_hypothesis_geometry_is_not_a_kernel_theorem
 #print axioms metaphysical_canon_is_not_a_kernel_theorem
 #print axioms other_worlds_claim_is_outside_the_theory
