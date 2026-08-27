@@ -169,6 +169,23 @@ typed path, and a guarded adapter to `TMI.BoundaryEvent`.  The source map and
 claim boundary are recorded in
 [`research/invariant-transport-closure-v0.1/README.md`](research/invariant-transport-closure-v0.1/README.md).
 
+### PM-01 · Hypothesis Orbit Geometry
+
+The existing Poetry of Mathematics research package now contains a
+verification-gated epistemic geometry: a confirmed core `C`, hypotheses `H_i`
+on nonnegative orbits, free angular interpretation with `dr = 0`, and an
+independent-evidence requirement for inward motion or fact promotion. The
+Lean carrier, axiom audit, TPTP mirror, Vampire/E proof traces and claim
+boundary live together in
+[`research/poetry-of-mathematics-v0.1/`](research/poetry-of-mathematics-v0.1/).
+
+Public reader:
+[`exports/chertogi_first_distinction_public/readers/poetry-of-mathematics/index.html`](exports/chertogi_first_distinction_public/readers/poetry-of-mathematics/index.html).
+
+This is an epistemic state-space model, not yet Amari information geometry:
+no Fisher information metric, statistical manifold, α-connection or
+divergence is claimed by the current release.
+
 ## Layer Bridge
 
 `LayerBridge` is a small public Lean surface for the boundary between a

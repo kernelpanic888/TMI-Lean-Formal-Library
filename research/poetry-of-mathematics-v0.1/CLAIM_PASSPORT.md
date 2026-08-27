@@ -9,9 +9,9 @@ Mathlib: tag `v4.31.0`, locked revision
 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f`
 
 Source SHA-256:
-`22bbd7a4c950a5535bc8822ab0bd655abd12b754fb53149b6f4b4f802658a807`
+`d4aa862d13f1a4f99fc6b784283006924f9b576120740f9725d87afbb8e4d11c`
 Audit SHA-256:
-`fd4e37d2ef2706f9e6a68d5f2032b8abc758e9b70ebf58c78702c4bef5f774b0`
+`d96581f9ce178b99eba3c7ed4afaa46b80617ddb7fda00100c178653dcc16a71`
 
 ## Inputs / Входы
 
@@ -22,6 +22,11 @@ Audit SHA-256:
 - the unoccluded irradiance is positive when `σ` is normalized;
 - the boundary inclusion and equality use separately named tangency-generation
   and regular-projection contracts.
+- the confirmed center `C` carries a separately supplied confirmation witness;
+- each `H_i` has an explicit nonnegative radius, angle and epistemic status;
+- `IndependentlyVerified` is an input predicate, not a derived empirical fact;
+- the orbit radius is an abstract epistemic coordinate, not a declared
+  Fisher–Rao distance.
 
 ## Kernel-checked outputs / Проверенные результаты
 
@@ -41,28 +46,60 @@ Audit SHA-256:
 14. poetic reading projects to both magic and an explicit readability layer;
 15. the metaphysical canon is not tagged as a kernel theorem;
 16. the “other worlds” claim is tagged outside the theory.
+17. arbitrary `dθ` rotation has `dr = 0` and preserves epistemic status;
+18. every admissible `dr < 0` move exposes an independent-verification witness;
+19. promotion from hypothesis to verified fact exposes the same witness;
+20. absence of verification blocks inward motion and fact promotion;
+21. physical identification of the orbit geometry is tagged as author
+    interpretation rather than a kernel theorem.
 
 ## Axiom audit / Аудит аксиом
 
 The geometric and radiometric exports depend only on Mathlib's standard
-logical foundations: `propext`, `Classical.choice`, and `Quot.sound`. The new
-structural projections and the two status-boundary exports depend on no
-axioms. No project-defined axiom is introduced.
+logical foundations: `propext`, `Classical.choice`, and `Quot.sound`. The
+original structural projections and status-boundary exports depend on no
+axioms. The new real-coordinate and gate theorems use the same standard
+Mathlib logical foundation; the new physical-status boundary is axiom-free.
+No project-defined axiom is introduced.
 
 Геометрические и радиометрические экспорты зависят только от стандартных
 логических оснований Mathlib: `propext`, `Classical.choice` и `Quot.sound`.
-Новые структурные проекции и два экспорта границы статусов не зависят ни от
-каких аксиом. Авторские аксиомы не вводятся.
+Исходные структурные проекции и экспорты границы статусов не зависят от аксиом.
+Новые теоремы о вещественных координатах и шлюзе используют ту же стандартную
+логическую основу Mathlib; новая граница физического статуса не зависит от
+аксиом. Авторские аксиомы не вводятся.
+
+## External prover cross-check / Внешняя перекрёстная проверка
+
+`HypothesisOrbitGate.p` is a first-order mirror of the abstract gate
+consequences. It was proved independently by both requested provers:
+
+- Vampire 5.0.1: `SZS status Theorem`, 427-line TSTP proof;
+- E 3.2.5: `SZS status Theorem`, 946-line CNF refutation.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `HypothesisOrbitGate.p` | `b03c040c30141f912f8e00f6f4e3f0083021523ee9a2db67b3808daf5d1d15c9` |
+| `HypothesisOrbitGate.vampire.tstp` | `3314ab347899ecefc2a92994fe423d508efe02c1b6fba0630ee4580090768338` |
+| `HypothesisOrbitGate.eprover.tstp` | `f48f9b8a5cfa54bb4385e3fb139163b16335844cb0cf9381f880cf9491048134` |
+
+This is not a mechanically generated equivalence proof between Lean and TPTP,
+and the mirror deliberately does not encode real arithmetic.
 
 ## Red boundary / Красная граница
 
 This theory does not prove geometric optics empirically, does not derive the
 regularity contract for every obstacle, and does not prove metaphysics, poetry,
 consciousness, beauty as evidence, magic as supernatural fact, or other worlds.
-Those are not hidden assumptions; they are outside the formal claim ceiling.
+It also does not establish that a real-world verifier is independent, that
+hypotheses occupy literal circular orbits, or that `radius` is a Fisher–Rao
+distance. Those are not hidden assumptions; they are outside the formal claim
+ceiling.
 
 Теория не подтверждает геометрическую оптику эмпирически, не выводит контракт
 регулярности для любого препятствия и не доказывает метафизику, поэзию,
 сознание, красоту как свидетельство, магию как сверхъестественный факт или иные
-миры. Это не скрытые предпосылки: они находятся за пределами формального потолка
-утверждений.
+миры. Она также не доказывает независимость реального проверяющего процесса,
+буквальные круговые орбиты гипотез или равенство `radius` расстоянию
+Fisher–Rao. Это не скрытые предпосылки: они находятся за пределами формального
+потолка утверждений.

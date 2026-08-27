@@ -19,6 +19,9 @@ reader. The reader is for people; this package is for deep verification.
 → boundary equality under an explicit two-sided regularity contract
 → structural beauty candidate `B = C + I + G + R`
 → a reality-trace candidate only with a separate `Checked` witness
+→ hypotheses `H_i` on nonnegative orbits around a confirmed core `C`
+→ free angular interpretation `dθ` with `dr = 0`
+→ inward motion and fact promotion only with independent verification
 → poetry modeled as a readable interface to magic, not its synonym.
 
 The package also encodes a hard status boundary: the metaphysical canon is an
@@ -34,6 +37,8 @@ formal theory.
 ```bash
 lake build PoetryOfMathematics PoetryOfMathematicsAudit
 lake env lean PoetryOfMathematicsAudit.lean
+vampire --mode casc --time_limit 30 --proof tptp HypothesisOrbitGate.p
+eprover --auto --cpu-limit=30 --proof-object=1 --tstp-out HypothesisOrbitGate.p
 ```
 
 Release gates:
@@ -43,14 +48,43 @@ Release gates:
 - imported theorem dependencies are reported by `#print axioms`;
 - physical and geometric hypotheses remain named inputs rather than being
   smuggled in as conclusions.
+- the first-order gate mirror and full Vampire/E proof traces remain beside the
+  Lean carrier.
+
+## Hypothesis orbit geometry / Геометрия орбит гипотез
+
+`VerifiedCore`, `HypothesisOrbitFamily`, `HypothesisState`, `rotateBy`, and
+`AdmissibleMove` formalize the release invariant:
+
+```text
+interpretation: any dθ, dr = 0, status' = status
+radial approach: dr < 0 -> IndependentlyVerified(H_i)
+fact promotion: hypothesis -> verifiedFact -> IndependentlyVerified(H_i)
+```
+
+The public reader is
+`../../exports/chertogi_first_distinction_public/readers/poetry-of-mathematics/index.html`.
+Release notes are in `RELEASE_HYPOTHESIS_ORBIT_GEOMETRY_v0.1.0.md`; the
+English release image is stored under that reader's `assets/` directory.
+
+The thematic LinkedIn post about flow, interface, trace, interpretation space,
+verification and action is cited as motivation, not as a formal premise.
+
+This is not yet Amari information geometry. The model has no statistical
+manifold, Fisher information metric, α-connection, or divergence. Its abstract
+radius is an explicit future instantiation seam, not a renamed Fisher–Rao
+distance.
 
 ## Claim ceiling / Потолок утверждений
 
 Lean verifies the definitions, algebra, order bounds, integral monotonicity,
-set inclusion, and conditional equality. It does **not** empirically validate
+set inclusion, conditional equality, and the stated hypothesis-gate
+invariants. It does **not** empirically validate
 geometric optics, infer smoothness/visibility assumptions for an arbitrary
 scene, turn beauty into evidence, derive an external check from beauty, or
-prove the poetic/metaphysical reading.
+prove the poetic/metaphysical reading. It also does not prove that a real
+verification process is independent or that the orbit radius is an
+information-geometric distance.
 
 Lean проверяет определения, алгебру, границы порядка, монотонность интеграла,
 включение множеств и условное равенство. Он **не** выполняет эмпирическую

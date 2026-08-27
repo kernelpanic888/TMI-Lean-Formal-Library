@@ -12,6 +12,7 @@ its claims.
 | DL-03 | Prefix certificates and monotone growth | Formal architecture candidate |
 | DL-04 | Deterministic state/memory/reflection simulation | Executable computational model |
 | TIDL-01 | Status classification and external context | Research reading |
+| PM-01 | Optics, poetry, and hypothesis-orbit verification gate | Kernel-checked abstract model; no empirical or Fisher–Rao identification |
 | SO-01 | Ontological problem of the Dirac spinor: standard formulas, Lean scaffold, and separated TMI reading | Experimental interpretation; no physical identification |
 | External sources | Scientific and governance shoulders | Evidence context, not validation |
 
@@ -28,6 +29,12 @@ reuses `InterfaceFoundationsAlpha.TwoSidedLanguage` and
 `BoundaryEventContext`. Its standard physics formulas are reference comments;
 the module does not derive quantum mechanics, the Born rule, the Dirac equation
 or gamma-matrix anticommutation.
+
+For PM-01, the direct formal lineage is
+`research/poetry-of-mathematics-v0.1/PoetryOfMathematics.lean`. The TPTP mirror
+and Vampire/E traces independently check its abstract gate consequences; they
+do not establish Lean-to-TPTP equivalence. The radius is not identified with a
+Fisher–Rao distance.
 
 ## Computational lineage
 

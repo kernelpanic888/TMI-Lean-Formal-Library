@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PM-01 reader: hypothesis orbit geometry around a verified factual core, with Lean 4 and external prover boundaries.">
+  <title>PM-01 · Hypothesis Orbit Geometry</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #030a13;
+      --panel: rgba(8, 24, 40, .86);
+      --line: rgba(74, 218, 255, .28);
+      --cyan: #49dfff;
+      --amber: #ffbd3c;
+      --red: #ff664f;
+      --text: #eef8ff;
+      --muted: #9bb4c7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(25, 129, 191, .16), transparent 34rem),
+        linear-gradient(180deg, #02070e, var(--bg));
+      color: var(--text);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--cyan); }
+    .page { width: min(1160px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 64px; }
+    .back { display: inline-block; margin-bottom: 30px; text-decoration: none; color: var(--muted); }
+    .eyebrow { color: var(--cyan); font: 700 12px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { max-width: 920px; margin: 10px 0 18px; font-size: clamp(38px, 7vw, 82px); line-height: .98; letter-spacing: -.05em; }
+    h2 { margin: 0 0 14px; font-size: clamp(24px, 4vw, 40px); line-height: 1.08; letter-spacing: -.025em; }
+    p { margin: 0 0 14px; }
+    .lead { max-width: 880px; color: #c9dce8; font-size: clamp(18px, 2.3vw, 24px); }
+    .status { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0 34px; }
+    .badge { border: 1px solid var(--line); border-radius: 999px; padding: 6px 11px; background: rgba(15, 53, 78, .48); font: 700 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
+    .badge.warn { border-color: rgba(255, 189, 60, .45); color: #ffd77d; }
+    figure { margin: 0 0 28px; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: #020712; box-shadow: 0 28px 80px rgba(0, 0, 0, .45); }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption { padding: 12px 16px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px 0 34px; }
+    .card { min-height: 100%; padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
+    .card strong { color: white; }
+    .formula { margin: 16px 0; padding: 17px 19px; border-left: 3px solid var(--cyan); background: rgba(10, 38, 60, .6); color: #dff8ff; font: 650 clamp(15px, 2.2vw, 20px)/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-x: auto; }
+    .formula.locked { border-left-color: var(--amber); }
+    code { color: #bff4ff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    ul { margin: 0; padding-left: 20px; }
+    .red-boundary { margin-top: 16px; border-color: rgba(255, 102, 79, .44); background: rgba(61, 18, 21, .42); }
+    .red-boundary h2 { color: #ff9b8a; }
+    .source { color: var(--muted); font-size: 14px; }
+    footer { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .page { width: min(100% - 22px, 1160px); } .card { padding: 19px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="../../index.html">← Return to the First Distinction map</a>
+    <p class="eyebrow">PM-01 · Lean 4 · verified interpretation boundary</p>
+    <h1>Hypothesis Orbit Geometry</h1>
+    <p class="lead">Interpretation can rotate a hypothesis through its reasoning space. It cannot move that hypothesis toward the verified factual core—or promote it to fact status—without independent confirmation.</p>
+    <div class="status" aria-label="Proof status">
+      <span class="badge">LEAN KERNEL CHECKED</span>
+      <span class="badge">VAMPIRE · SZS THEOREM</span>
+      <span class="badge">E · SZS THEOREM</span>
+      <span class="badge warn">EPISTEMIC GEOMETRY · NOT FISHER–RAO YET</span>
+    </div>
+
+    <figure>
+      <img src="assets/hypothesis-orbit-geometry-release-en.png" width="1536" height="1024" alt="Dark mathematical infographic: hypotheses H1 through H4 rotate freely around verified factual core C, while inward radial motion requires independent evidence.">
+      <figcaption>Release image · English · SHA-256 <code>959e547115393e38e50ff5933e357588d94efd3821990b751dce7e60f873be39</code></figcaption>
+    </figure>
+
+    <section class="grid" aria-label="Model map">
+      <article class="card">
+        <p class="eyebrow">Center</p>
+        <h2>C is witnessed</h2>
+        <p><code>VerifiedCore</code> contains a factual center <code>C</code> together with an explicit confirmation witness. The formal model never manufactures that witness.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Orbits</p>
+        <h2>Hᵢ stays named</h2>
+        <p><code>HypothesisOrbitFamily</code> assigns each <code>Hᵢ</code> a nonnegative radius <code>rᵢ</code> and an angle. Identity, radius, angle, and epistemic status remain separate fields.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Free direction</p>
+        <h2>dθ is interpretation</h2>
+        <div class="formula">rotateBy(Hᵢ, dθ)<br>⇒ dr = 0<br>∧ status′ = status</div>
+        <p>Any angular displacement is constructible. Pure interpretation preserves both the orbit radius and fact status.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Locked direction</p>
+        <h2>dr &lt; 0 is evidence-gated</h2>
+        <div class="formula locked">AdmissibleMove ∧ dr &lt; 0<br>⇒ IndependentlyVerified(Hᵢ)</div>
+        <p>The same independent witness is required when a state moves from <code>hypothesis</code> to <code>verifiedFact</code>.</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <p class="eyebrow">Kernel theorem bundle</p>
+      <h2>What is actually proved</h2>
+      <ul>
+        <li><code>dRadius_rotateBy_zero</code> and <code>dTheta_rotateBy</code> compute the two displacements.</li>
+        <li><code>radial_approach_requires_independent_verification</code> exposes the evidence witness for every admitted inward move.</li>
+        <li><code>no_verification_blocks_fact_promotion</code> blocks promotion when that witness is absent.</li>
+        <li><code>interpretation_changes_angle_not_fact_status</code> is the visual invariant shown above.</li>
+      </ul>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <p class="eyebrow">External proof layer</p>
+        <h2>Vampire + E</h2>
+        <p>A first-order TPTP mirror of the gate consequences is independently proved by Vampire 5.0.1 and E 3.2.5. Full TSTP/CNF traces ship beside the Lean source.</p>
+        <p><strong>Boundary:</strong> this is not a mechanical Lean-to-TPTP equivalence proof and does not mirror real arithmetic.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Amari seam</p>
+        <h2>Not information geometry—yet</h2>
+        <p>The current radius is an abstract epistemic coordinate. A genuine Amari layer must instantiate hypotheses as probability distributions, derive a Fisher information metric, choose a divergence or geodesic distance, and prove that a stated verification update reduces it.</p>
+      </article>
+    </section>
+
+    <section class="card red-boundary">
+      <p class="eyebrow">Red boundary</p>
+      <h2>Formal geometry is not world-validation</h2>
+      <p>Lean proves consequences of the declared structures and predicates. It does not prove that real beliefs, experiences, social connections, or psychological states lie on literal circles; that an asserted verifier is independent; or that the radius is a Fisher–Rao distance.</p>
+      <p lang="ru"><strong>Русское чтение:</strong> интерпретация может свободно менять угол, но не статус факта. Радиальное сближение с подтверждённым ядром допускается только при отдельном независимом свидетельстве. Это эпистемическая модель с верификационным шлюзом, а не уже построенная информационная геометрия Амари.</p>
+    </section>
+
+    <p class="source">Thematic source: Oleksiy Salkutsan, “The first cut is simple…”—flow → interface → trace → interpretation space → verification → action → new flow. <a href="https://www.linkedin.com/posts/oleksiy-salkutsan-276a40184_the-first-cut-is-simple-there-is-a-source-share-7498470122597023745-Lw39/">LinkedIn post</a>. The post motivates the reading; it is not a formal premise.</p>
+
+    <footer>PM-01 · Poetry of Mathematics / Поэзия математики · Apache-2.0 repository surface</footer>
+  </main>
+</body>
+</html>

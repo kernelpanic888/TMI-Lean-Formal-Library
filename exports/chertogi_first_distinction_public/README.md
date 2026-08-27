@@ -23,6 +23,9 @@ or build step is required.
 - `DL-03`: monotone growth and certificates.
 - `DL-04`: executable model in a virtual domain.
 - `TIDL-01`: claim-status reader and external research context.
+- `PM-01`: sourced optics, poetry-of-mathematics claim boundary, and the
+  verification-gated hypothesis-orbit geometry
+  (`readers/poetry-of-mathematics/`).
 - `SO-01`: “The Ontological Problem of the Dirac Spinor,” from Dirac
   formalism to the primary interface of distinction; standard physics
   references, opt-in Lean scaffold and explicitly separated TMI hypothesis

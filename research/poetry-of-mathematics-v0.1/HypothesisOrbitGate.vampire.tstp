@@ -1,0 +1,427 @@
+% Running in auto input_syntax mode. Trying TPTP
+% Detected formulas, will run a generic FOF schedule.
+% WARNING: time unlimited strategy and instruction limiting not in place - attempting to translate instructions to time
+% % WARNING: option sil not known.
+% % WARNING: option i not known.
+% lrs+1011_32_tgt=full:alpa=true:random_seed=3034462203:st=5:sd=1:ss=included:er=filter_1 on HypothesisOrbitGate for (1ds)
+% Solution written to "/var/folders/s7/lgd2nwwd447624mlx15dxlvw0000gn/T/vampire-proof-87984"
+% Refutation found. Thanks to Tanya!
+% SZS status Theorem for HypothesisOrbitGate
+% SZS output start Proof for HypothesisOrbitGate
+fof(f1,axiom,(
+  ! [X0,X1,X2] : (rotation(X0,X1,X2) => interpretation_move(X0,X1))),
+  file('HypothesisOrbitGate.p',unknown)).
+fof(f2,axiom,(
+  ! [X0,X1] : (interpretation_move(X0,X1) => admissible_move(X0,X1))),
+  file('HypothesisOrbitGate.p',unknown)).
+fof(f3,axiom,(
+  ! [X0,X1] : (interpretation_move(X0,X1) => same_radius(X0,X1))),
+  file('HypothesisOrbitGate.p',unknown)).
+fof(f4,axiom,(
+  ! [X0,X1] : (interpretation_move(X0,X1) => same_fact_status(X0,X1))),
+  file('HypothesisOrbitGate.p',unknown)).
+fof(f5,axiom,(
+  ! [X0,X1] : ((admissible_move(X0,X1) & inward_radial_move(X0,X1)) => independently_verified(subject(X0)))),
+  file('HypothesisOrbitGate.p',unknown)).
+fof(f6,axiom,(
+  ! [X0,X1] : ((admissible_move(X0,X1) & promotes_hypothesis_to_fact(X0,X1)) => independently_verified(subject(X0)))),
+  file('HypothesisOrbitGate.p',unknown)).
+fof(f7,conjecture,(
+  ! [X0,X1,X2] : (rotation(X0,X1,X2) => (admissible_move(X0,X1) & same_radius(X0,X1) & same_fact_status(X0,X1))) & ! [X0,X1] : ((admissible_move(X0,X1) & inward_radial_move(X0,X1)) => independently_verified(subject(X0))) & ! [X0,X1] : ((admissible_move(X0,X1) & promotes_hypothesis_to_fact(X0,X1)) => independently_verified(subject(X0))) & ! [X0,X1] : ((admissible_move(X0,X1) & ~independently_verified(subject(X0))) => (~inward_radial_move(X0,X1) & ~promotes_hypothesis_to_fact(X0,X1)))),
+  file('HypothesisOrbitGate.p',unknown)).
+fof(f8,negated_conjecture,(
+  ~(! [X0,X1,X2] : (rotation(X0,X1,X2) => (admissible_move(X0,X1) & same_radius(X0,X1) & same_fact_status(X0,X1))) & ! [X0,X1] : ((admissible_move(X0,X1) & inward_radial_move(X0,X1)) => independently_verified(subject(X0))) & ! [X0,X1] : ((admissible_move(X0,X1) & promotes_hypothesis_to_fact(X0,X1)) => independently_verified(subject(X0))) & ! [X0,X1] : ((admissible_move(X0,X1) & ~independently_verified(subject(X0))) => (~inward_radial_move(X0,X1) & ~promotes_hypothesis_to_fact(X0,X1))))),
+  inference(negated_conjecture,[status(cth)],[f7])).
+fof(f9,plain,(
+  ~(! [X0,X1,X2] : (rotation(X0,X1,X2) => (admissible_move(X0,X1) & same_radius(X0,X1) & same_fact_status(X0,X1))) & ! [X3,X4] : ((admissible_move(X3,X4) & inward_radial_move(X3,X4)) => independently_verified(subject(X3))) & ! [X5,X6] : ((admissible_move(X5,X6) & promotes_hypothesis_to_fact(X5,X6)) => independently_verified(subject(X5))) & ! [X7,X8] : ((admissible_move(X7,X8) & ~independently_verified(subject(X7))) => (~inward_radial_move(X7,X8) & ~promotes_hypothesis_to_fact(X7,X8))))),
+  inference(rectify,[],[f8])).
+fof(f10,plain,(
+  ! [X0,X1,X2] : (interpretation_move(X0,X1) | ~rotation(X0,X1,X2))),
+  inference(ennf_transformation,[],[f1])).
+fof(f11,plain,(
+  ! [X0,X1] : (admissible_move(X0,X1) | ~interpretation_move(X0,X1))),
+  inference(ennf_transformation,[],[f2])).
+fof(f12,plain,(
+  ! [X0,X1] : (same_radius(X0,X1) | ~interpretation_move(X0,X1))),
+  inference(ennf_transformation,[],[f3])).
+fof(f13,plain,(
+  ! [X0,X1] : (same_fact_status(X0,X1) | ~interpretation_move(X0,X1))),
+  inference(ennf_transformation,[],[f4])).
+fof(f14,plain,(
+  ! [X0,X1] : (independently_verified(subject(X0)) | (~admissible_move(X0,X1) | ~inward_radial_move(X0,X1)))),
+  inference(ennf_transformation,[],[f5])).
+fof(f15,plain,(
+  ! [X0,X1] : (independently_verified(subject(X0)) | ~admissible_move(X0,X1) | ~inward_radial_move(X0,X1))),
+  inference(flattening,[],[f14])).
+fof(f16,plain,(
+  ! [X0,X1] : (independently_verified(subject(X0)) | (~admissible_move(X0,X1) | ~promotes_hypothesis_to_fact(X0,X1)))),
+  inference(ennf_transformation,[],[f6])).
+fof(f17,plain,(
+  ! [X0,X1] : (independently_verified(subject(X0)) | ~admissible_move(X0,X1) | ~promotes_hypothesis_to_fact(X0,X1))),
+  inference(flattening,[],[f16])).
+fof(f18,plain,(
+  ? [X0,X1,X2] : ((~admissible_move(X0,X1) | ~same_radius(X0,X1) | ~same_fact_status(X0,X1)) & rotation(X0,X1,X2)) | ? [X3,X4] : (~independently_verified(subject(X3)) & (admissible_move(X3,X4) & inward_radial_move(X3,X4))) | ? [X5,X6] : (~independently_verified(subject(X5)) & (admissible_move(X5,X6) & promotes_hypothesis_to_fact(X5,X6))) | ? [X7,X8] : ((inward_radial_move(X7,X8) | promotes_hypothesis_to_fact(X7,X8)) & (admissible_move(X7,X8) & ~independently_verified(subject(X7))))),
+  inference(ennf_transformation,[],[f9])).
+fof(f19,plain,(
+  ? [X0,X1,X2] : ((~admissible_move(X0,X1) | ~same_radius(X0,X1) | ~same_fact_status(X0,X1)) & rotation(X0,X1,X2)) | ? [X3,X4] : (~independently_verified(subject(X3)) & admissible_move(X3,X4) & inward_radial_move(X3,X4)) | ? [X5,X6] : (~independently_verified(subject(X5)) & admissible_move(X5,X6) & promotes_hypothesis_to_fact(X5,X6)) | ? [X7,X8] : ((inward_radial_move(X7,X8) | promotes_hypothesis_to_fact(X7,X8)) & admissible_move(X7,X8) & ~independently_verified(subject(X7)))),
+  inference(flattening,[],[f18])).
+fof(f20,plain,(
+  ? [X7,X8] : ((inward_radial_move(X7,X8) | promotes_hypothesis_to_fact(X7,X8)) & admissible_move(X7,X8) & ~independently_verified(subject(X7))) | ~sP0),
+  introduced(definition,[new_symbols(naming,[sP0])],[predicate_definition_introduction])).
+fof(f21,plain,(
+  ? [X5,X6] : (~independently_verified(subject(X5)) & admissible_move(X5,X6) & promotes_hypothesis_to_fact(X5,X6)) | ~sP1),
+  introduced(definition,[new_symbols(naming,[sP1])],[predicate_definition_introduction])).
+fof(f22,plain,(
+  ? [X0,X1,X2] : ((~admissible_move(X0,X1) | ~same_radius(X0,X1) | ~same_fact_status(X0,X1)) & rotation(X0,X1,X2)) | ? [X3,X4] : (~independently_verified(subject(X3)) & admissible_move(X3,X4) & inward_radial_move(X3,X4)) | sP1 | sP0),
+  inference(definition_folding,[],[f19,f21,f20])).
+fof(f23,plain,(
+  ? [X5,X6] : (~independently_verified(subject(X5)) & admissible_move(X5,X6) & promotes_hypothesis_to_fact(X5,X6)) | ~sP1),
+  inference(nnf_transformation,[],[f21])).
+fof(f24,plain,(
+  ? [X0,X1] : (~independently_verified(subject(X0)) & admissible_move(X0,X1) & promotes_hypothesis_to_fact(X0,X1)) | ~sP1),
+  inference(rectify,[],[f23])).
+fof(f25,plain,(
+  ? [X0,X1] : (~independently_verified(subject(X0)) & admissible_move(X0,X1) & promotes_hypothesis_to_fact(X0,X1)) => (~independently_verified(subject(sK2)) & admissible_move(sK2,sK3) & promotes_hypothesis_to_fact(sK2,sK3))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+fof(f26,plain,(
+  (~independently_verified(subject(sK2)) & admissible_move(sK2,sK3) & promotes_hypothesis_to_fact(sK2,sK3)) | ~sP1),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK2,sK3])],[f24,f25])).
+fof(f27,plain,(
+  ? [X7,X8] : ((inward_radial_move(X7,X8) | promotes_hypothesis_to_fact(X7,X8)) & admissible_move(X7,X8) & ~independently_verified(subject(X7))) | ~sP0),
+  inference(nnf_transformation,[],[f20])).
+fof(f28,plain,(
+  ? [X0,X1] : ((inward_radial_move(X0,X1) | promotes_hypothesis_to_fact(X0,X1)) & admissible_move(X0,X1) & ~independently_verified(subject(X0))) | ~sP0),
+  inference(rectify,[],[f27])).
+fof(f29,plain,(
+  ? [X0,X1] : ((inward_radial_move(X0,X1) | promotes_hypothesis_to_fact(X0,X1)) & admissible_move(X0,X1) & ~independently_verified(subject(X0))) => ((inward_radial_move(sK4,sK5) | promotes_hypothesis_to_fact(sK4,sK5)) & admissible_move(sK4,sK5) & ~independently_verified(subject(sK4)))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+fof(f30,plain,(
+  ((inward_radial_move(sK4,sK5) | promotes_hypothesis_to_fact(sK4,sK5)) & admissible_move(sK4,sK5) & ~independently_verified(subject(sK4))) | ~sP0),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK4,sK5])],[f28,f29])).
+fof(f31,plain,(
+  ? [X0,X1,X2] : ((~admissible_move(X0,X1) | ~same_radius(X0,X1) | ~same_fact_status(X0,X1)) & rotation(X0,X1,X2)) => ((~admissible_move(sK6,sK7) | ~same_radius(sK6,sK7) | ~same_fact_status(sK6,sK7)) & rotation(sK6,sK7,sK8))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+fof(f32,plain,(
+  ? [X3,X4] : (~independently_verified(subject(X3)) & admissible_move(X3,X4) & inward_radial_move(X3,X4)) => (~independently_verified(subject(sK9)) & admissible_move(sK9,sK10) & inward_radial_move(sK9,sK10))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+fof(f33,plain,(
+  ((~admissible_move(sK6,sK7) | ~same_radius(sK6,sK7) | ~same_fact_status(sK6,sK7)) & rotation(sK6,sK7,sK8)) | (~independently_verified(subject(sK9)) & admissible_move(sK9,sK10) & inward_radial_move(sK9,sK10)) | sP1 | sP0),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK6,sK7,sK8,sK9,sK10])],[f22,f32,f31])).
+fof(f34,plain,(
+  ( ! [X2,X0,X1] : (interpretation_move(X0,X1) | ~rotation(X0,X1,X2)) )),
+  inference(cnf_transformation,[],[f10])).
+fof(f35,plain,(
+  ( ! [X0,X1] : (admissible_move(X0,X1) | ~interpretation_move(X0,X1)) )),
+  inference(cnf_transformation,[],[f11])).
+fof(f36,plain,(
+  ( ! [X0,X1] : (same_radius(X0,X1) | ~interpretation_move(X0,X1)) )),
+  inference(cnf_transformation,[],[f12])).
+fof(f37,plain,(
+  ( ! [X0,X1] : (same_fact_status(X0,X1) | ~interpretation_move(X0,X1)) )),
+  inference(cnf_transformation,[],[f13])).
+fof(f38,plain,(
+  ( ! [X0,X1] : (~inward_radial_move(X0,X1) | ~admissible_move(X0,X1) | independently_verified(subject(X0))) )),
+  inference(cnf_transformation,[],[f15])).
+fof(f39,plain,(
+  ( ! [X0,X1] : (~promotes_hypothesis_to_fact(X0,X1) | ~admissible_move(X0,X1) | independently_verified(subject(X0))) )),
+  inference(cnf_transformation,[],[f17])).
+fof(f40,plain,(
+  promotes_hypothesis_to_fact(sK2,sK3) | ~sP1),
+  inference(cnf_transformation,[],[f26])).
+fof(f41,plain,(
+  admissible_move(sK2,sK3) | ~sP1),
+  inference(cnf_transformation,[],[f26])).
+fof(f42,plain,(
+  ~independently_verified(subject(sK2)) | ~sP1),
+  inference(cnf_transformation,[],[f26])).
+fof(f43,plain,(
+  ~independently_verified(subject(sK4)) | ~sP0),
+  inference(cnf_transformation,[],[f30])).
+fof(f44,plain,(
+  admissible_move(sK4,sK5) | ~sP0),
+  inference(cnf_transformation,[],[f30])).
+fof(f45,plain,(
+  inward_radial_move(sK4,sK5) | promotes_hypothesis_to_fact(sK4,sK5) | ~sP0),
+  inference(cnf_transformation,[],[f30])).
+fof(f46,plain,(
+  rotation(sK6,sK7,sK8) | inward_radial_move(sK9,sK10) | sP1 | sP0),
+  inference(cnf_transformation,[],[f33])).
+fof(f47,plain,(
+  rotation(sK6,sK7,sK8) | admissible_move(sK9,sK10) | sP1 | sP0),
+  inference(cnf_transformation,[],[f33])).
+fof(f48,plain,(
+  rotation(sK6,sK7,sK8) | ~independently_verified(subject(sK9)) | sP1 | sP0),
+  inference(cnf_transformation,[],[f33])).
+fof(f49,plain,(
+  ~admissible_move(sK6,sK7) | ~same_radius(sK6,sK7) | ~same_fact_status(sK6,sK7) | inward_radial_move(sK9,sK10) | sP1 | sP0),
+  inference(cnf_transformation,[],[f33])).
+fof(f50,plain,(
+  ~admissible_move(sK6,sK7) | ~same_radius(sK6,sK7) | ~same_fact_status(sK6,sK7) | admissible_move(sK9,sK10) | sP1 | sP0),
+  inference(cnf_transformation,[],[f33])).
+fof(f51,plain,(
+  ~admissible_move(sK6,sK7) | ~same_radius(sK6,sK7) | ~same_fact_status(sK6,sK7) | ~independently_verified(subject(sK9)) | sP1 | sP0),
+  inference(cnf_transformation,[],[f33])).
+fof(f52,definition,(
+  subject(sK9) = sF11),
+  introduced(definition,[new_symbols(definition,[sF11])],[function_definition])).
+fof(f53,plain,(
+  ~admissible_move(sK6,sK7) | ~same_radius(sK6,sK7) | ~same_fact_status(sK6,sK7) | ~independently_verified(sF11) | sP1 | sP0),
+  inference(definition_folding,[],[f51,f52])).
+fof(f54,plain,(
+  rotation(sK6,sK7,sK8) | ~independently_verified(sF11) | sP1 | sP0),
+  inference(definition_folding,[],[f48,f52])).
+fof(f56,definition,(
+  spl12_1 <=> sP0),
+  introduced(definition,[new_symbols(naming,[spl12_1])],[avatar_definition])).
+fof(f60,definition,(
+  spl12_2 <=> sP1),
+  introduced(definition,[new_symbols(naming,[spl12_2])],[avatar_definition])).
+fof(f64,definition,(
+  spl12_3 <=> inward_radial_move(sK9,sK10)),
+  introduced(definition,[new_symbols(naming,[spl12_3])],[avatar_definition])).
+fof(f66,plain,(
+  inward_radial_move(sK9,sK10) | ~spl12_3),
+  inference(avatar_component_clause,[],[f64])).
+fof(f68,definition,(
+  spl12_4 <=> rotation(sK6,sK7,sK8)),
+  introduced(definition,[new_symbols(naming,[spl12_4])],[avatar_definition])).
+fof(f70,plain,(
+  rotation(sK6,sK7,sK8) | ~spl12_4),
+  inference(avatar_component_clause,[],[f68])).
+fof(f71,plain,(
+  spl12_1 | spl12_2 | spl12_3 | spl12_4),
+  inference(avatar_split_clause,[],[f46,f68,f64,f60,f56])).
+fof(f73,definition,(
+  spl12_5 <=> admissible_move(sK9,sK10)),
+  introduced(definition,[new_symbols(naming,[spl12_5])],[avatar_definition])).
+fof(f75,plain,(
+  admissible_move(sK9,sK10) | ~spl12_5),
+  inference(avatar_component_clause,[],[f73])).
+fof(f76,plain,(
+  spl12_1 | spl12_2 | spl12_5 | spl12_4),
+  inference(avatar_split_clause,[],[f47,f68,f73,f60,f56])).
+fof(f78,definition,(
+  spl12_6 <=> independently_verified(sF11)),
+  introduced(definition,[new_symbols(naming,[spl12_6])],[avatar_definition])).
+fof(f80,plain,(
+  ~independently_verified(sF11) | spl12_6),
+  inference(avatar_component_clause,[],[f78])).
+fof(f81,plain,(
+  spl12_1 | spl12_2 | ~spl12_6 | spl12_4),
+  inference(avatar_split_clause,[],[f54,f68,f78,f60,f56])).
+fof(f83,definition,(
+  spl12_7 <=> same_fact_status(sK6,sK7)),
+  introduced(definition,[new_symbols(naming,[spl12_7])],[avatar_definition])).
+fof(f85,plain,(
+  ~same_fact_status(sK6,sK7) | spl12_7),
+  inference(avatar_component_clause,[],[f83])).
+fof(f87,definition,(
+  spl12_8 <=> same_radius(sK6,sK7)),
+  introduced(definition,[new_symbols(naming,[spl12_8])],[avatar_definition])).
+fof(f89,plain,(
+  ~same_radius(sK6,sK7) | spl12_8),
+  inference(avatar_component_clause,[],[f87])).
+fof(f91,definition,(
+  spl12_9 <=> admissible_move(sK6,sK7)),
+  introduced(definition,[new_symbols(naming,[spl12_9])],[avatar_definition])).
+fof(f93,plain,(
+  ~admissible_move(sK6,sK7) | spl12_9),
+  inference(avatar_component_clause,[],[f91])).
+fof(f94,plain,(
+  spl12_1 | spl12_2 | spl12_3 | ~spl12_7 | ~spl12_8 | ~spl12_9),
+  inference(avatar_split_clause,[],[f49,f91,f87,f83,f64,f60,f56])).
+fof(f95,plain,(
+  spl12_1 | spl12_2 | spl12_5 | ~spl12_7 | ~spl12_8 | ~spl12_9),
+  inference(avatar_split_clause,[],[f50,f91,f87,f83,f73,f60,f56])).
+fof(f96,plain,(
+  spl12_1 | spl12_2 | ~spl12_6 | ~spl12_7 | ~spl12_8 | ~spl12_9),
+  inference(avatar_split_clause,[],[f53,f91,f87,f83,f78,f60,f56])).
+fof(f98,definition,(
+  spl12_10 <=> independently_verified(subject(sK4))),
+  introduced(definition,[new_symbols(naming,[spl12_10])],[avatar_definition])).
+fof(f100,plain,(
+  ~independently_verified(subject(sK4)) | spl12_10),
+  inference(avatar_component_clause,[],[f98])).
+fof(f101,plain,(
+  ~spl12_1 | ~spl12_10),
+  inference(avatar_split_clause,[],[f43,f98,f56])).
+fof(f103,definition,(
+  spl12_11 <=> admissible_move(sK4,sK5)),
+  introduced(definition,[new_symbols(naming,[spl12_11])],[avatar_definition])).
+fof(f105,plain,(
+  admissible_move(sK4,sK5) | ~spl12_11),
+  inference(avatar_component_clause,[],[f103])).
+fof(f106,plain,(
+  ~spl12_1 | spl12_11),
+  inference(avatar_split_clause,[],[f44,f103,f56])).
+fof(f108,definition,(
+  spl12_12 <=> promotes_hypothesis_to_fact(sK4,sK5)),
+  introduced(definition,[new_symbols(naming,[spl12_12])],[avatar_definition])).
+fof(f110,plain,(
+  promotes_hypothesis_to_fact(sK4,sK5) | ~spl12_12),
+  inference(avatar_component_clause,[],[f108])).
+fof(f112,definition,(
+  spl12_13 <=> inward_radial_move(sK4,sK5)),
+  introduced(definition,[new_symbols(naming,[spl12_13])],[avatar_definition])).
+fof(f114,plain,(
+  inward_radial_move(sK4,sK5) | ~spl12_13),
+  inference(avatar_component_clause,[],[f112])).
+fof(f115,plain,(
+  ~spl12_1 | spl12_12 | spl12_13),
+  inference(avatar_split_clause,[],[f45,f112,f108,f56])).
+fof(f117,definition,(
+  spl12_14 <=> promotes_hypothesis_to_fact(sK2,sK3)),
+  introduced(definition,[new_symbols(naming,[spl12_14])],[avatar_definition])).
+fof(f119,plain,(
+  promotes_hypothesis_to_fact(sK2,sK3) | ~spl12_14),
+  inference(avatar_component_clause,[],[f117])).
+fof(f120,plain,(
+  ~spl12_2 | spl12_14),
+  inference(avatar_split_clause,[],[f40,f117,f60])).
+fof(f122,definition,(
+  spl12_15 <=> admissible_move(sK2,sK3)),
+  introduced(definition,[new_symbols(naming,[spl12_15])],[avatar_definition])).
+fof(f124,plain,(
+  admissible_move(sK2,sK3) | ~spl12_15),
+  inference(avatar_component_clause,[],[f122])).
+fof(f125,plain,(
+  ~spl12_2 | spl12_15),
+  inference(avatar_split_clause,[],[f41,f122,f60])).
+fof(f127,definition,(
+  spl12_16 <=> independently_verified(subject(sK2))),
+  introduced(definition,[new_symbols(naming,[spl12_16])],[avatar_definition])).
+fof(f129,plain,(
+  ~independently_verified(subject(sK2)) | spl12_16),
+  inference(avatar_component_clause,[],[f127])).
+fof(f130,plain,(
+  ~spl12_2 | ~spl12_16),
+  inference(avatar_split_clause,[],[f42,f127,f60])).
+fof(f131,plain,(
+  ~admissible_move(sK4,sK5) | independently_verified(subject(sK4)) | ~spl12_12),
+  inference(resolution,[],[f39,f110])).
+fof(f132,plain,(
+  ~admissible_move(sK2,sK3) | independently_verified(subject(sK2)) | ~spl12_14),
+  inference(resolution,[],[f39,f119])).
+fof(f133,plain,(
+  independently_verified(subject(sK2)) | (~spl12_14 | ~spl12_15)),
+  inference(forward_subsumption_resolution,[],[f132,f124])).
+fof(f134,plain,(
+  independently_verified(subject(sK4)) | (~spl12_11 | ~spl12_12)),
+  inference(forward_subsumption_resolution,[],[f131,f105])).
+fof(f135,plain,(
+  $false | (~spl12_14 | ~spl12_15 | spl12_16)),
+  inference(forward_subsumption_resolution,[],[f133,f129])).
+fof(f136,plain,(
+  ~spl12_14 | ~spl12_15 | spl12_16),
+  inference(avatar_contradiction_clause,[],[f135])).
+fof(f137,plain,(
+  $false | (spl12_10 | ~spl12_11 | ~spl12_12)),
+  inference(forward_subsumption_resolution,[],[f134,f100])).
+fof(f138,plain,(
+  spl12_10 | ~spl12_11 | ~spl12_12),
+  inference(avatar_contradiction_clause,[],[f137])).
+fof(f139,plain,(
+  ~interpretation_move(sK6,sK7) | spl12_9),
+  inference(resolution,[],[f93,f35])).
+fof(f140,plain,(
+  ( ! [X0] : (~rotation(sK6,sK7,X0)) ) | spl12_9),
+  inference(resolution,[],[f139,f34])).
+fof(f141,plain,(
+  $false | (~spl12_4 | spl12_9)),
+  inference(resolution,[],[f140,f70])).
+fof(f142,plain,(
+  ~spl12_4 | spl12_9),
+  inference(avatar_contradiction_clause,[],[f141])).
+fof(f143,plain,(
+  ~admissible_move(sK9,sK10) | independently_verified(subject(sK9)) | ~spl12_3),
+  inference(resolution,[],[f66,f38])).
+fof(f144,plain,(
+  independently_verified(subject(sK9)) | (~spl12_3 | ~spl12_5)),
+  inference(forward_subsumption_resolution,[],[f143,f75])).
+fof(f145,plain,(
+  independently_verified(sF11) | (~spl12_3 | ~spl12_5)),
+  inference(forward_demodulation,[],[f144,f52])).
+fof(f146,plain,(
+  $false | (~spl12_3 | ~spl12_5 | spl12_6)),
+  inference(forward_subsumption_resolution,[],[f145,f80])).
+fof(f147,plain,(
+  ~spl12_3 | ~spl12_5 | spl12_6),
+  inference(avatar_contradiction_clause,[],[f146])).
+fof(f148,plain,(
+  ~interpretation_move(sK6,sK7) | spl12_8),
+  inference(resolution,[],[f89,f36])).
+fof(f149,plain,(
+  ( ! [X0] : (~rotation(sK6,sK7,X0)) ) | spl12_8),
+  inference(resolution,[],[f148,f34])).
+fof(f150,plain,(
+  $false | (~spl12_4 | spl12_8)),
+  inference(resolution,[],[f149,f70])).
+fof(f151,plain,(
+  ~spl12_4 | spl12_8),
+  inference(avatar_contradiction_clause,[],[f150])).
+fof(f152,plain,(
+  ~interpretation_move(sK6,sK7) | spl12_7),
+  inference(resolution,[],[f85,f37])).
+fof(f153,plain,(
+  ( ! [X0] : (~rotation(sK6,sK7,X0)) ) | spl12_7),
+  inference(resolution,[],[f152,f34])).
+fof(f154,plain,(
+  $false | (~spl12_4 | spl12_7)),
+  inference(resolution,[],[f153,f70])).
+fof(f155,plain,(
+  ~spl12_4 | spl12_7),
+  inference(avatar_contradiction_clause,[],[f154])).
+fof(f156,plain,(
+  ~admissible_move(sK4,sK5) | independently_verified(subject(sK4)) | ~spl12_13),
+  inference(resolution,[],[f114,f38])).
+fof(f157,plain,(
+  independently_verified(subject(sK4)) | (~spl12_11 | ~spl12_13)),
+  inference(forward_subsumption_resolution,[],[f156,f105])).
+fof(f158,plain,(
+  $false | (spl12_10 | ~spl12_11 | ~spl12_13)),
+  inference(forward_subsumption_resolution,[],[f157,f100])).
+fof(f159,plain,(
+  spl12_10 | ~spl12_11 | ~spl12_13),
+  inference(avatar_contradiction_clause,[],[f158])).
+cnf(s1, plain, spl12_1 | spl12_2 | spl12_3 | spl12_4, inference(sat_conversion,[],[f71])).
+cnf(s2, plain, spl12_1 | spl12_2 | spl12_4 | spl12_5, inference(sat_conversion,[],[f76])).
+cnf(s3, plain, ~spl12_6 | spl12_1 | spl12_2 | spl12_4, inference(sat_conversion,[],[f81])).
+cnf(s4, plain, ~spl12_9 | ~spl12_8 | ~spl12_7 | spl12_1 | spl12_2 | spl12_3, inference(sat_conversion,[],[f94])).
+cnf(s5, plain, ~spl12_9 | ~spl12_8 | ~spl12_7 | spl12_1 | spl12_2 | spl12_5, inference(sat_conversion,[],[f95])).
+cnf(s6, plain, ~spl12_9 | ~spl12_8 | ~spl12_7 | ~spl12_6 | spl12_1 | spl12_2, inference(sat_conversion,[],[f96])).
+cnf(s7, plain, ~spl12_10 | ~spl12_1, inference(sat_conversion,[],[f101])).
+cnf(s8, plain, ~spl12_1 | spl12_11, inference(sat_conversion,[],[f106])).
+cnf(s9, plain, ~spl12_1 | spl12_12 | spl12_13, inference(sat_conversion,[],[f115])).
+cnf(s10, plain, ~spl12_2 | spl12_14, inference(sat_conversion,[],[f120])).
+cnf(s11, plain, ~spl12_2 | spl12_15, inference(sat_conversion,[],[f125])).
+cnf(s12, plain, ~spl12_16 | ~spl12_2, inference(sat_conversion,[],[f130])).
+cnf(s13, plain, ~spl12_15 | ~spl12_14 | spl12_16, inference(sat_conversion,[],[f136])).
+cnf(s14, plain, ~spl12_12 | ~spl12_11 | spl12_10, inference(sat_conversion,[],[f138])).
+cnf(s15, plain, ~spl12_4 | spl12_9, inference(sat_conversion,[],[f142])).
+cnf(s16, plain, ~spl12_5 | ~spl12_3 | spl12_6, inference(sat_conversion,[],[f147])).
+cnf(s17, plain, ~spl12_4 | spl12_8, inference(sat_conversion,[],[f151])).
+cnf(s18, plain, ~spl12_4 | spl12_7, inference(sat_conversion,[],[f155])).
+cnf(s19, plain, ~spl12_13 | ~spl12_11 | spl12_10, inference(sat_conversion,[],[f159])).
+cnf(s20, plain, spl12_3 | spl12_2 | spl12_1, inference(rat,[],[s4,s15,s17,s18,s1])).
+cnf(s21, plain, ~spl12_4 | spl12_2 | spl12_1, inference(rat,[],[s16,s6,s5,s15,s17,s18,s20])).
+cnf(s22, plain, spl12_2 | spl12_1, inference(rat,[],[s16,s2,s3,s21,s20])).
+cnf(s23, plain, ~spl12_2, inference(rat,[],[s13,s10,s11,s12])).
+cnf(s24, plain, spl12_1, inference(rat,[],[s22,s23])).
+cnf(s25, plain, spl12_11, inference(rat,[],[s8,s24])).
+cnf(s26, plain, ~spl12_10, inference(rat,[],[s7,s24])).
+cnf(s27, plain, ~spl12_13, inference(rat,[],[s19,s25,s26])).
+cnf(s28, plain, ~spl12_12, inference(rat,[],[s14,s25,s26])).
+cnf(s29, plain, $false, inference(rat,[],[s9,s24,s27,s28])).
+fof(f160,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[s29])).
+% SZS output end Proof for HypothesisOrbitGate
+% ------------------------------
+% Version: Vampire 5.0.1 (Release build, commit )
+% CaDiCaL version: 2.1.3
+% Termination reason: Refutation
+% Time elapsed: 0.002 s
+% Peak memory usage: 6 MB
+% ------------------------------
+% ------------------------------
+% Success in time 0.006 s

@@ -247,7 +247,199 @@ theorem poetic_reading_requires_readability
     (h : PoeticReading Magic Readable x) : Readable x := by
   exact h.2
 
-/-! ## 5. Claim boundary: theorem, assumption, interpretation -/
+/-! ## 5. Hypothesis orbits around a verified factual core -/
+
+/-- Epistemic status is not a geometric coordinate.  In particular, changing
+an angle does not silently change a hypothesis into a verified fact. -/
+inductive EpistemicStatus where
+  | hypothesis
+  | verifiedFact
+deriving DecidableEq, Repr
+
+/-- The center `C` is data together with an explicit confirmation witness.
+The structure does not manufacture that witness or prescribe an empirical
+verification protocol. -/
+structure VerifiedCore
+    (Fact : Type*) (Confirmed : Fact → Prop) where
+  C : Fact
+  confirmed : Confirmed C
+
+/-- A family of named hypotheses `H_i`, each assigned a nonnegative orbit
+radius `r_i` and an angle.  Radius represents distance from the confirmed
+core in this model, not a physical metric inferred from observations. -/
+structure HypothesisOrbitFamily (Hypothesis : Type*) where
+  hypothesisAt : Nat → Hypothesis
+  radiusAt : Nat → ℝ
+  angleAt : Nat → ℝ
+  radius_nonnegative : ∀ i, 0 ≤ radiusAt i
+
+/-- The state of one hypothesis in polar coordinates around `C`. -/
+structure HypothesisState (Hypothesis : Type*) where
+  hypothesis : Hypothesis
+  radius : ℝ
+  radius_nonnegative : 0 ≤ radius
+  angle : ℝ
+  status : EpistemicStatus
+
+/-- The initial state of `H_i` on its named orbit `r_i`. -/
+def HypothesisOrbitFamily.state
+    {Hypothesis : Type*} (family : HypothesisOrbitFamily Hypothesis) (i : Nat) :
+    HypothesisState Hypothesis where
+  hypothesis := family.hypothesisAt i
+  radius := family.radiusAt i
+  radius_nonnegative := family.radius_nonnegative i
+  angle := family.angleAt i
+  status := .hypothesis
+
+/-- Radial displacement `dr`; an inward move has `dr < 0`. -/
+def dRadius
+    {Hypothesis : Type*}
+    (before after : HypothesisState Hypothesis) : ℝ :=
+  after.radius - before.radius
+
+/-- Angular displacement `dθ`; no normalization modulo a full turn is needed
+for the epistemic invariant proved below. -/
+def dTheta
+    {Hypothesis : Type*}
+    (before after : HypothesisState Hypothesis) : ℝ :=
+  after.angle - before.angle
+
+/-- Free angular interpretation: add any `dθ`, holding radius and epistemic
+status fixed. -/
+def rotateBy
+    {Hypothesis : Type*}
+    (state : HypothesisState Hypothesis) (deltaTheta : ℝ) :
+    HypothesisState Hypothesis :=
+  { state with angle := state.angle + deltaTheta }
+
+@[simp] theorem dRadius_rotateBy_zero
+    {Hypothesis : Type*}
+    (state : HypothesisState Hypothesis) (deltaTheta : ℝ) :
+    dRadius state (rotateBy state deltaTheta) = 0 := by
+  simp [dRadius, rotateBy]
+
+@[simp] theorem dTheta_rotateBy
+    {Hypothesis : Type*}
+    (state : HypothesisState Hypothesis) (deltaTheta : ℝ) :
+    dTheta state (rotateBy state deltaTheta) = deltaTheta := by
+  simp [dTheta, rotateBy]
+
+@[simp] theorem rotateBy_preserves_status
+    {Hypothesis : Type*}
+    (state : HypothesisState Hypothesis) (deltaTheta : ℝ) :
+    (rotateBy state deltaTheta).status = state.status :=
+  rfl
+
+/-- A pure interpretation move may change angle freely, but it preserves the
+hypothesis identity, orbit radius, and epistemic status. -/
+structure InterpretationMove
+    {Hypothesis : Type*}
+    (before after : HypothesisState Hypothesis) : Prop where
+  sameHypothesis : after.hypothesis = before.hypothesis
+  radiusFixed : dRadius before after = 0
+  statusFixed : after.status = before.status
+
+/-- Every `rotateBy` operation is a pure interpretation move. -/
+def rotationMove
+    {Hypothesis : Type*}
+    (state : HypothesisState Hypothesis) (deltaTheta : ℝ) :
+    InterpretationMove state (rotateBy state deltaTheta) where
+  sameHypothesis := rfl
+  radiusFixed := dRadius_rotateBy_zero state deltaTheta
+  statusFixed := rfl
+
+/-- General admissibility gate.  An inward radial move or a promotion from
+hypothesis to verified fact is accepted only when the named hypothesis has an
+independent verification witness.  Independence remains an explicit input. -/
+structure AdmissibleMove
+    {Hypothesis : Type*}
+    (IndependentlyVerified : Hypothesis → Prop)
+    (before after : HypothesisState Hypothesis) : Prop where
+  sameHypothesis : after.hypothesis = before.hypothesis
+  inwardRequiresVerification :
+    dRadius before after < 0 → IndependentlyVerified before.hypothesis
+  promotionRequiresVerification :
+    before.status = .hypothesis →
+      after.status = .verifiedFact →
+        IndependentlyVerified before.hypothesis
+
+/-- A pure interpretation move is admissible for every verification predicate:
+it neither approaches the core nor promotes epistemic status. -/
+def InterpretationMove.toAdmissible
+    {Hypothesis : Type*}
+    {IndependentlyVerified : Hypothesis → Prop}
+    {before after : HypothesisState Hypothesis}
+    (move : InterpretationMove before after) :
+    AdmissibleMove IndependentlyVerified before after where
+  sameHypothesis := move.sameHypothesis
+  inwardRequiresVerification := by
+    intro hInward
+    rw [move.radiusFixed] at hInward
+    exact False.elim (lt_irrefl 0 hInward)
+  promotionRequiresVerification := by
+    intro hBefore hAfter
+    rw [move.statusFixed, hBefore] at hAfter
+    cases hAfter
+
+/-- `dr < 0` exposes the independent verification witness required by the
+admissibility gate. -/
+theorem radial_approach_requires_independent_verification
+    {Hypothesis : Type*}
+    {IndependentlyVerified : Hypothesis → Prop}
+    {before after : HypothesisState Hypothesis}
+    (move : AdmissibleMove IndependentlyVerified before after)
+    (hInward : dRadius before after < 0) :
+    IndependentlyVerified before.hypothesis :=
+  move.inwardRequiresVerification hInward
+
+/-- Promoting a hypothesis to fact status exposes the same independent
+verification obligation. -/
+theorem fact_promotion_requires_independent_verification
+    {Hypothesis : Type*}
+    {IndependentlyVerified : Hypothesis → Prop}
+    {before after : HypothesisState Hypothesis}
+    (move : AdmissibleMove IndependentlyVerified before after)
+    (hBefore : before.status = .hypothesis)
+    (hAfter : after.status = .verifiedFact) :
+    IndependentlyVerified before.hypothesis :=
+  move.promotionRequiresVerification hBefore hAfter
+
+/-- Without independent verification, an admissible move cannot approach the
+core.  Moving outward is not prohibited by this one-sided gate. -/
+theorem no_verification_blocks_radial_approach
+    {Hypothesis : Type*}
+    {IndependentlyVerified : Hypothesis → Prop}
+    {before after : HypothesisState Hypothesis}
+    (move : AdmissibleMove IndependentlyVerified before after)
+    (hUnverified : ¬ IndependentlyVerified before.hypothesis) :
+    ¬ dRadius before after < 0 := by
+  intro hInward
+  exact hUnverified (move.inwardRequiresVerification hInward)
+
+/-- Without independent verification, an admissible move cannot change a
+hypothesis into a verified fact. -/
+theorem no_verification_blocks_fact_promotion
+    {Hypothesis : Type*}
+    {IndependentlyVerified : Hypothesis → Prop}
+    {before after : HypothesisState Hypothesis}
+    (move : AdmissibleMove IndependentlyVerified before after)
+    (hBefore : before.status = .hypothesis)
+    (hUnverified : ¬ IndependentlyVerified before.hypothesis) :
+    after.status ≠ .verifiedFact := by
+  intro hAfter
+  exact hUnverified (move.promotionRequiresVerification hBefore hAfter)
+
+/-- Main visual invariant: interpretation may realize any angular displacement,
+while `dr = 0` and factual status remain unchanged. -/
+theorem interpretation_changes_angle_not_fact_status
+    {Hypothesis : Type*}
+    (state : HypothesisState Hypothesis) (deltaTheta : ℝ) :
+    dTheta state (rotateBy state deltaTheta) = deltaTheta ∧
+      dRadius state (rotateBy state deltaTheta) = 0 ∧
+        (rotateBy state deltaTheta).status = state.status := by
+  simp
+
+/-! ## 6. Claim boundary: theorem, assumption, interpretation -/
 
 inductive ClaimStatus where
   | standardOpticsAssumption
@@ -263,8 +455,15 @@ def regularBoundaryStatus : ClaimStatus := .kernelTheorem
 def beautyFormulaStatus : ClaimStatus := .definedHere
 def verifiedTraceProjectionStatus : ClaimStatus := .kernelTheorem
 def magicPoetryRelationStatus : ClaimStatus := .definedHere
+def hypothesisOrbitModelStatus : ClaimStatus := .definedHere
+def hypothesisOrbitInvariantStatus : ClaimStatus := .kernelTheorem
+def physicalHypothesisGeometryStatus : ClaimStatus := .authorInterpretation
 def metaphysicalCanonStatus : ClaimStatus := .authorInterpretation
 def otherWorldsStatus : ClaimStatus := .redBoundary
+
+theorem physical_hypothesis_geometry_is_not_a_kernel_theorem :
+    physicalHypothesisGeometryStatus ≠ ClaimStatus.kernelTheorem := by
+  decide
 
 theorem metaphysical_canon_is_not_a_kernel_theorem :
     metaphysicalCanonStatus ≠ ClaimStatus.kernelTheorem := by

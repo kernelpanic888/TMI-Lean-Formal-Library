@@ -16,5 +16,14 @@ open TMI.PoetryOfMathematics
 #print axioms unverified_beauty_is_not_reality_trace
 #print axioms poetic_reading_presupposes_magic
 #print axioms poetic_reading_requires_readability
+#print axioms dRadius_rotateBy_zero
+#print axioms dTheta_rotateBy
+#print axioms rotateBy_preserves_status
+#print axioms radial_approach_requires_independent_verification
+#print axioms fact_promotion_requires_independent_verification
+#print axioms no_verification_blocks_radial_approach
+#print axioms no_verification_blocks_fact_promotion
+#print axioms interpretation_changes_angle_not_fact_status
+#print axioms physical_hypothesis_geometry_is_not_a_kernel_theorem
 #print axioms metaphysical_canon_is_not_a_kernel_theorem
 #print axioms other_worlds_claim_is_outside_the_theory

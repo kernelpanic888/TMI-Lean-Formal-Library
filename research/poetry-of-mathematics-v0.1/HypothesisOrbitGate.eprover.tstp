@@ -1,0 +1,946 @@
+# Preprocessing class: FSMSSMSSSSSNFFN.
+# Configuration: G-E--_208_C18_F1_SE_CS_SOS_SP_PS_S5PRR_RG_S04AN
+# No SInE strategy applied
+# Search class: FGHNF-FFMM11-SFFFFFNN
+# Configuration: SAT001_MinMin_p005000_rr_RG
+# Initializing proof state
+# Scanning for AC axioms
+#
+#cnf(i_0_2, plain, (admissible_move(X1,X2)|~interpretation_move(X1,X2))).
+#
+#cnf(i_0_35, negated_conjecture, (rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_53, negated_conjecture, (admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_41, negated_conjecture, (admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_36, negated_conjecture, (admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_3, plain, (same_radius(X1,X2)|~interpretation_move(X1,X2))).
+#
+#cnf(i_0_4, plain, (same_fact_status(X1,X2)|~interpretation_move(X1,X2))).
+#
+#cnf(i_0_1, plain, (interpretation_move(X1,X2)|~rotation(X1,X2,X3))).
+#
+#cnf(i_0_5, plain, (independently_verified(subject(X1))|~inward_radial_move(X1,X2)|~admissible_move(X1,X2))).
+#
+#cnf(i_0_6, plain, (independently_verified(subject(X1))|~promotes_hypothesis_to_fact(X1,X2)|~admissible_move(X1,X2))).
+#
+#cnf(i_0_8, negated_conjecture, (~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_60, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_44, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_38, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_59, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_54, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_57, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_51, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_26, negated_conjecture, (admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_14, negated_conjecture, (admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_9, negated_conjecture, (admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_17, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_48, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_56, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_42, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_50, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_45, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_39, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_47, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_11, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_32, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_27, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_29, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_58, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_15, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_23, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_18, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_12, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_33, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_55, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_20, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_30, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_24, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_21, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_49, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_34, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_52, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_40, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_43, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_46, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_37, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_7, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_25, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_13, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_16, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_31, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_10, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_28, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_22, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_19, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+# Presaturation interreduction done
+#
+#cnf(i_0_2, plain, (admissible_move(X1,X2)|~interpretation_move(X1,X2))).
+#
+#cnf(i_0_3, plain, (same_radius(X1,X2)|~interpretation_move(X1,X2))).
+#
+#cnf(i_0_4, plain, (same_fact_status(X1,X2)|~interpretation_move(X1,X2))).
+#
+#cnf(i_0_1, plain, (interpretation_move(X1,X2)|~rotation(X1,X2,X3))).
+#
+#cnf(i_0_5, plain, (independently_verified(subject(X1))|~inward_radial_move(X1,X2)|~admissible_move(X1,X2))).
+#
+#cnf(i_0_6, plain, (independently_verified(subject(X1))|~promotes_hypothesis_to_fact(X1,X2)|~admissible_move(X1,X2))).
+#
+#cnf(i_0_35, negated_conjecture, (rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_53, negated_conjecture, (admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_41, negated_conjecture, (admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_36, negated_conjecture, (admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_44, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_8, negated_conjecture, (~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_60, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_26, negated_conjecture, (admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_14, negated_conjecture, (admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_9, negated_conjecture, (admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_17, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_38, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_59, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_54, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_56, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_42, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_57, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_51, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_11, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_32, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_27, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_29, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_48, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_50, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_45, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_39, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_47, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_58, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_61, negated_conjecture, (interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_15, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_23, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_18, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_12, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_55, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_80, negated_conjecture, (admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_81, negated_conjecture, (same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_82, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_84, negated_conjecture, (~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_33, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_62, negated_conjecture, (admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_20, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_30, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_24, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_21, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_49, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_97, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_98, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_99, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_101, negated_conjecture, (admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_34, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_63, negated_conjecture, (admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_7, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_25, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_13, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_16, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_52, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_119, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_120, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_121, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_123, negated_conjecture, (admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_40, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_64, negated_conjecture, (admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_10, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_43, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_37, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_31, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_46, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0))).
+#
+#cnf(i_0_144, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_145, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_146, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_150, negated_conjecture, (admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_28, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_65, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_22, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_19, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|~same_fact_status(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_171, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_67, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_172, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_174, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_173, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_175, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_176, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_66, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_223, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_177, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_201, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_68, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_226, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_224, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_227, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_228, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_229, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_225, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_69, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_270, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_70, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_273, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_71, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_276, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_271, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_272, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_274, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_275, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_277, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_72, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_278, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_279, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_300, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_324, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_75, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_319, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_342, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_343, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_344, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_346, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_73, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_320, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_76, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_366, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_77, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_369, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_321, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_367, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_368, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_370, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_371, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_74, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_363, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_388, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_405, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_78, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_424, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_364, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_425, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_426, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_428, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_365, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_79, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_420, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_256, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_376, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_458, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_443, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_421, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_459, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_422, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_460, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_470, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_83, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_471, negated_conjecture, (independently_verified(subject(esk6_0))|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_477, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0))).
+###
+#cnf(i_0_478, negated_conjecture, (independently_verified(subject(esk4_0))|admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_479, negated_conjecture, (admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_481, negated_conjecture, (admissible_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_454, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_455, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_456, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_100, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_472, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_118, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_497, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_498, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_499, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_473, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_500, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_474, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_483, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_517, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_122, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_493, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_518, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_143, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_522, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_147, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_494, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_525, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_519, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_520, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_523, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_148, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_495, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_528, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_536, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_524, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_547, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_496, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_526, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_527, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_537, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_538, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_149, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_554, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_570, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_571, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_574, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_575, negated_conjecture, (independently_verified(subject(esk8_0))|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0))).
+##
+#cnf(i_0_577, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_580, negated_conjecture, (independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_581, negated_conjecture, (admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_555, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_488, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_585, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_586, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_563, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_514, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_587, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_588, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_589, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_590, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_593, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_594, negated_conjecture, (independently_verified(subject(esk8_0))|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_521, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_595, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_599, negated_conjecture, (independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_600, negated_conjecture, (admissible_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_598, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk8_0))|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_603, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_605, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_608, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_612, negated_conjecture, (independently_verified(subject(esk8_0))|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_613, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_615, negated_conjecture, (independently_verified(subject(esk4_0))|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_545, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_618, negated_conjecture, (admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_622, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_623, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk8_0))|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_624, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_626, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_627, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_629, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_632, negated_conjecture, (independently_verified(subject(esk8_0))|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_633, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_635, negated_conjecture, (independently_verified(subject(esk4_0))|admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_567, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0))).
+#
+#cnf(i_0_638, negated_conjecture, (admissible_move(esk6_0,esk7_0))).
+#
+#cnf(i_0_568, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0))).
+#
+#cnf(i_0_569, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0))).
+#
+#cnf(i_0_642, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_643, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_644, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_645, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_646, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_649, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0))).
+#
+#cnf(i_0_650, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_651, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_652, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_653, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))|inward_radial_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_654, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_655, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0))).
+#
+#cnf(i_0_657, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_658, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_660, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_661, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0))).
+#
+#cnf(i_0_663, negated_conjecture, (independently_verified(subject(esk8_0)))).
+#
+#cnf(i_0_84, negated_conjecture, (~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_428, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0))).
+#
+#cnf(i_0_201, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_177, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_664, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0))).
+#
+#cnf(i_0_665, negated_conjecture, (independently_verified(subject(esk6_0)))).
+#
+#cnf(i_0_84, negated_conjecture, (~independently_verified(subject(esk4_0)))).
+#
+#cnf(i_0_177, negated_conjecture, (inward_radial_move(esk4_0,esk5_0))).
+
+# Proof found!
+# SZS status Theorem
+# SZS output start CNFRefutation
+fof(hypothesis_orbit_gate_bundle, conjecture, (((![X1, X2, X3]:((rotation(X1,X2,X3)=>((admissible_move(X1,X2)&same_radius(X1,X2))&same_fact_status(X1,X2))))&![X1, X2]:(((admissible_move(X1,X2)&inward_radial_move(X1,X2))=>independently_verified(subject(X1)))))&![X1, X2]:(((admissible_move(X1,X2)&promotes_hypothesis_to_fact(X1,X2))=>independently_verified(subject(X1)))))&![X1, X2]:(((admissible_move(X1,X2)&~(independently_verified(subject(X1))))=>(~(inward_radial_move(X1,X2))&~(promotes_hypothesis_to_fact(X1,X2)))))), file('HypothesisOrbitGate.p', hypothesis_orbit_gate_bundle)).
+fof(rotation_is_interpretation, axiom, ![X1, X2, X3]:((rotation(X1,X2,X3)=>interpretation_move(X1,X2))), file('HypothesisOrbitGate.p', rotation_is_interpretation)).
+fof(interpretation_preserves_status, axiom, ![X1, X2]:((interpretation_move(X1,X2)=>same_fact_status(X1,X2))), file('HypothesisOrbitGate.p', interpretation_preserves_status)).
+fof(interpretation_is_admissible, axiom, ![X1, X2]:((interpretation_move(X1,X2)=>admissible_move(X1,X2))), file('HypothesisOrbitGate.p', interpretation_is_admissible)).
+fof(interpretation_preserves_radius, axiom, ![X1, X2]:((interpretation_move(X1,X2)=>same_radius(X1,X2))), file('HypothesisOrbitGate.p', interpretation_preserves_radius)).
+fof(promotion_requires_independent_verification, axiom, ![X1, X2]:(((admissible_move(X1,X2)&promotes_hypothesis_to_fact(X1,X2))=>independently_verified(subject(X1)))), file('HypothesisOrbitGate.p', promotion_requires_independent_verification)).
+fof(inward_requires_independent_verification, axiom, ![X1, X2]:(((admissible_move(X1,X2)&inward_radial_move(X1,X2))=>independently_verified(subject(X1)))), file('HypothesisOrbitGate.p', inward_requires_independent_verification)).
+fof(c_0_7, negated_conjecture, ~((((![X1, X2, X3]:((rotation(X1,X2,X3)=>((admissible_move(X1,X2)&same_radius(X1,X2))&same_fact_status(X1,X2))))&![X1, X2]:(((admissible_move(X1,X2)&inward_radial_move(X1,X2))=>independently_verified(subject(X1)))))&![X1, X2]:(((admissible_move(X1,X2)&promotes_hypothesis_to_fact(X1,X2))=>independently_verified(subject(X1)))))&![X1, X2]:(((admissible_move(X1,X2)&~independently_verified(subject(X1)))=>(~inward_radial_move(X1,X2)&~promotes_hypothesis_to_fact(X1,X2)))))), inference(fof_simplification,[status(thm)],[inference(assume_negation,[status(cth)],[hypothesis_orbit_gate_bundle])])).
+fof(c_0_8, plain, ![X4, X5, X6]:((~rotation(X4,X5,X6)|interpretation_move(X4,X5))), inference(fof_nnf,[status(thm)],[inference(variable_rename,[status(thm)],[inference(fof_nnf,[status(thm)],[rotation_is_interpretation])])])).
+fof(c_0_9, negated_conjecture, ((((((((admissible_move(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(admissible_move(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(((admissible_move(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))))&(((admissible_move(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(~independently_verified(subject(esk6_0))|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))))&(((((admissible_move(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(admissible_move(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(((admissible_move(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))))&(((admissible_move(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(~independently_verified(subject(esk6_0))|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)))))))&(((((admissible_move(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(admissible_move(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0)))))&(((admissible_move(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0))))))&(((admissible_move(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0))))&(~independently_verified(subject(esk8_0))|(~independently_verified(subject(esk6_0))|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0)))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(~independently_verified(subject(esk4_0))|rotation(esk1_0,esk2_0,esk3_0)))))))&(((((((admissible_move(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(admissible_move(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(((admissible_move(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))))&(((admissible_move(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(~independently_verified(subject(esk6_0))|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(admissible_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))))&(((((admissible_move(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(admissible_move(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(((admissible_move(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))))&(((admissible_move(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(~independently_verified(subject(esk6_0))|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(inward_radial_move(esk4_0,esk5_0)|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))))&(((((admissible_move(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(admissible_move(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(admissible_move(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(((admissible_move(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(promotes_hypothesis_to_fact(esk6_0,esk7_0)|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))))&(((admissible_move(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)))))&(~independently_verified(subject(esk8_0))|(~independently_verified(subject(esk6_0))|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))&(inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|(~independently_verified(subject(esk6_0))|(~independently_verified(subject(esk4_0))|(~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0))))))))), inference(distribute,[status(thm)],[inference(fof_nnf,[status(thm)],[inference(skolemize,[status(esa)],[inference(variable_rename,[status(thm)],[inference(fof_nnf,[status(thm)],[c_0_7])])])])])).
+fof(c_0_10, plain, ![X11, X12]:((~interpretation_move(X11,X12)|same_fact_status(X11,X12))), inference(fof_nnf,[status(thm)],[inference(variable_rename,[status(thm)],[inference(fof_nnf,[status(thm)],[interpretation_preserves_status])])])).
+cnf(c_0_11, plain, (interpretation_move(X1,X2)|~rotation(X1,X2,X3)), inference(split_conjunct,[status(thm)],[c_0_8])).
+cnf(c_0_12, negated_conjecture, (admissible_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+fof(c_0_13, plain, ![X7, X8]:((~interpretation_move(X7,X8)|admissible_move(X7,X8))), inference(fof_nnf,[status(thm)],[inference(variable_rename,[status(thm)],[inference(fof_nnf,[status(thm)],[interpretation_is_admissible])])])).
+fof(c_0_14, plain, ![X9, X10]:((~interpretation_move(X9,X10)|same_radius(X9,X10))), inference(fof_nnf,[status(thm)],[inference(variable_rename,[status(thm)],[inference(fof_nnf,[status(thm)],[interpretation_preserves_radius])])])).
+cnf(c_0_15, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_16, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_17, negated_conjecture, (admissible_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_18, plain, (same_fact_status(X1,X2)|~interpretation_move(X1,X2)), inference(split_conjunct,[status(thm)],[c_0_10])).
+cnf(c_0_19, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_12])).
+cnf(c_0_20, plain, (admissible_move(X1,X2)|~interpretation_move(X1,X2)), inference(split_conjunct,[status(thm)],[c_0_13])).
+cnf(c_0_21, plain, (same_radius(X1,X2)|~interpretation_move(X1,X2)), inference(split_conjunct,[status(thm)],[c_0_14])).
+cnf(c_0_22, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_15])).
+cnf(c_0_23, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_11, c_0_16])).
+cnf(c_0_24, negated_conjecture, (admissible_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_25, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_26, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_27, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_17])).
+fof(c_0_28, plain, ![X15, X16]:((~admissible_move(X15,X16)|~promotes_hypothesis_to_fact(X15,X16)|independently_verified(subject(X15)))), inference(fof_nnf,[status(thm)],[inference(variable_rename,[status(thm)],[inference(fof_nnf,[status(thm)],[promotion_requires_independent_verification])])])).
+cnf(c_0_29, negated_conjecture, (admissible_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_30, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_18, c_0_19])).
+cnf(c_0_31, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_19])).
+cnf(c_0_32, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_21, c_0_19])).
+cnf(c_0_33, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_34, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_18, c_0_22])).
+cnf(c_0_35, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_22])).
+cnf(c_0_36, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_21, c_0_22])).
+cnf(c_0_37, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_38, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_18, c_0_23])).
+cnf(c_0_39, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_20, c_0_23])).
+cnf(c_0_40, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_21, c_0_23])).
+cnf(c_0_41, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_11, c_0_24])).
+cnf(c_0_42, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_25])).
+cnf(c_0_43, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_11, c_0_26])).
+cnf(c_0_44, negated_conjecture, (admissible_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+fof(c_0_45, plain, ![X13, X14]:((~admissible_move(X13,X14)|~inward_radial_move(X13,X14)|independently_verified(subject(X13)))), inference(fof_nnf,[status(thm)],[inference(variable_rename,[status(thm)],[inference(fof_nnf,[status(thm)],[inward_requires_independent_verification])])])).
+cnf(c_0_46, negated_conjecture, (admissible_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_47, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_18, c_0_27])).
+cnf(c_0_48, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_27])).
+cnf(c_0_49, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_21, c_0_27])).
+cnf(c_0_50, plain, (independently_verified(subject(X1))|~admissible_move(X1,X2)|~promotes_hypothesis_to_fact(X1,X2)), inference(split_conjunct,[status(thm)],[c_0_28])).
+cnf(c_0_51, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_29, c_0_30]), c_0_31]), c_0_32])).
+cnf(c_0_52, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_33, c_0_34]), c_0_35]), c_0_36])).
+cnf(c_0_53, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_37, c_0_38]), c_0_39]), c_0_40])).
+cnf(c_0_54, negated_conjecture, (admissible_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_55, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_18, c_0_41])).
+cnf(c_0_56, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_20, c_0_41])).
+cnf(c_0_57, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_21, c_0_41])).
+cnf(c_0_58, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_59, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_18, c_0_42])).
+cnf(c_0_60, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_42])).
+cnf(c_0_61, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_21, c_0_42])).
+cnf(c_0_62, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_63, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_18, c_0_43])).
+cnf(c_0_64, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_20, c_0_43])).
+cnf(c_0_65, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_21, c_0_43])).
+cnf(c_0_66, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_11, c_0_44])).
+cnf(c_0_67, plain, (independently_verified(subject(X1))|~admissible_move(X1,X2)|~inward_radial_move(X1,X2)), inference(split_conjunct,[status(thm)],[c_0_45])).
+cnf(c_0_68, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_46, c_0_47]), c_0_48]), c_0_49])).
+cnf(c_0_69, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_51]), c_0_52]), c_0_53])).
+cnf(c_0_70, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_54, c_0_55]), c_0_56]), c_0_57])).
+cnf(c_0_71, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_58, c_0_59]), c_0_60]), c_0_61])).
+cnf(c_0_72, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_62, c_0_63]), c_0_64]), c_0_65])).
+cnf(c_0_73, negated_conjecture, (admissible_move(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_74, negated_conjecture, (admissible_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_75, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_18, c_0_66])).
+cnf(c_0_76, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_20, c_0_66])).
+cnf(c_0_77, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_21, c_0_66])).
+cnf(c_0_78, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_68]), c_0_69]), c_0_70])).
+cnf(c_0_79, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_71]), c_0_69]), c_0_72])).
+cnf(c_0_80, negated_conjecture, (admissible_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_11, c_0_73])).
+cnf(c_0_81, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_74, c_0_75]), c_0_76]), c_0_77])).
+cnf(c_0_82, negated_conjecture, (independently_verified(subject(esk6_0))|admissible_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_78]), c_0_79])).
+cnf(c_0_83, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_84, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_85, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_86, negated_conjecture, (admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_87, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_18, c_0_80])).
+cnf(c_0_88, negated_conjecture, (admissible_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_20, c_0_80])).
+cnf(c_0_89, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_21, c_0_80])).
+cnf(c_0_90, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_81, c_0_82])).
+cnf(c_0_91, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_83])).
+cnf(c_0_92, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_93, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_84])).
+cnf(c_0_94, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_85])).
+cnf(c_0_95, negated_conjecture, (admissible_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_86, c_0_87]), c_0_88]), c_0_89])).
+cnf(c_0_96, negated_conjecture, (independently_verified(subject(esk4_0))|admissible_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_90]), c_0_69])).
+cnf(c_0_97, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_98, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_91])).
+cnf(c_0_99, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_91])).
+cnf(c_0_100, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_91])).
+cnf(c_0_101, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_102, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_92])).
+cnf(c_0_103, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_104, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_93])).
+cnf(c_0_105, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_93])).
+cnf(c_0_106, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_93])).
+cnf(c_0_107, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_94])).
+cnf(c_0_108, negated_conjecture, (admissible_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_95, c_0_96]), c_0_82])).
+cnf(c_0_109, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_97, c_0_98]), c_0_99]), c_0_100])).
+cnf(c_0_110, negated_conjecture, (admissible_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk6_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_111, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_11, c_0_101])).
+cnf(c_0_112, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_102])).
+cnf(c_0_113, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_103, c_0_104]), c_0_105]), c_0_106])).
+cnf(c_0_114, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_107]), c_0_108])]), c_0_109])).
+cnf(c_0_115, negated_conjecture, (admissible_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_110])).
+cnf(c_0_116, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_117, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_18, c_0_111])).
+cnf(c_0_118, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_20, c_0_111])).
+cnf(c_0_119, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_21, c_0_111])).
+cnf(c_0_120, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_112]), c_0_108])]), c_0_113])).
+cnf(c_0_121, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_114]), c_0_108])]), c_0_109])).
+cnf(c_0_122, negated_conjecture, (admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk6_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_123, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_115])).
+cnf(c_0_124, negated_conjecture, (admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_115])).
+cnf(c_0_125, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_115])).
+cnf(c_0_126, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_116, c_0_117]), c_0_118]), c_0_119])).
+cnf(c_0_127, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_120]), c_0_121])).
+cnf(c_0_128, negated_conjecture, (admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_122, c_0_123]), c_0_124]), c_0_125])).
+cnf(c_0_129, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_126, c_0_127])).
+cnf(c_0_130, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_128, c_0_127])).
+cnf(c_0_131, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_129]), c_0_108])]), c_0_130])).
+cnf(c_0_132, negated_conjecture, (independently_verified(subject(esk8_0))|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_131]), c_0_108])])).
+cnf(c_0_133, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_113, c_0_132])).
+cnf(c_0_134, negated_conjecture, (independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_133]), c_0_121])).
+cnf(c_0_135, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_136, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)), inference(spm,[status(thm)],[c_0_18, c_0_94])).
+cnf(c_0_137, negated_conjecture, (admissible_move(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_128, c_0_134]), c_0_132])).
+cnf(c_0_138, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)), inference(spm,[status(thm)],[c_0_21, c_0_94])).
+cnf(c_0_139, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_140, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_18, c_0_102])).
+cnf(c_0_141, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_21, c_0_102])).
+cnf(c_0_142, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_135, c_0_136]), c_0_137]), c_0_138])).
+cnf(c_0_143, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_139, c_0_140]), c_0_137]), c_0_141])).
+cnf(c_0_144, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_142]), c_0_108])]), c_0_109])).
+cnf(c_0_145, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_143]), c_0_108])]), c_0_113])).
+cnf(c_0_146, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_144]), c_0_108])]), c_0_109])).
+cnf(c_0_147, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_148, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_145]), c_0_146])).
+cnf(c_0_149, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_150, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_11, c_0_147])).
+cnf(c_0_151, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_126, c_0_148])).
+cnf(c_0_152, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_128, c_0_148])).
+cnf(c_0_153, negated_conjecture, (admissible_move(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_154, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_149])).
+cnf(c_0_155, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_156, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_18, c_0_150])).
+cnf(c_0_157, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_20, c_0_150])).
+cnf(c_0_158, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_21, c_0_150])).
+cnf(c_0_159, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_151]), c_0_108])]), c_0_152])).
+cnf(c_0_160, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_153])).
+cnf(c_0_161, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_154])).
+cnf(c_0_162, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_155, c_0_156]), c_0_157]), c_0_158])).
+cnf(c_0_163, negated_conjecture, (independently_verified(subject(esk8_0))|admissible_move(esk4_0,esk5_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_159]), c_0_108])])).
+cnf(c_0_164, negated_conjecture, (admissible_move(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_165, negated_conjecture, (admissible_move(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_166, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_160])).
+cnf(c_0_167, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_160])).
+cnf(c_0_168, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_160])).
+cnf(c_0_169, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_161]), c_0_137]), c_0_162])).
+cnf(c_0_170, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_113, c_0_163])).
+cnf(c_0_171, negated_conjecture, (admissible_move(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_164])).
+cnf(c_0_172, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_165, c_0_166]), c_0_167]), c_0_168])).
+cnf(c_0_173, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk8_0))|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_169]), c_0_108])])).
+cnf(c_0_174, negated_conjecture, (independently_verified(subject(esk6_0))|admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_170]), c_0_146])).
+cnf(c_0_175, negated_conjecture, (admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_176, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_171])).
+cnf(c_0_177, negated_conjecture, (admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_171])).
+cnf(c_0_178, negated_conjecture, (same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_171])).
+cnf(c_0_179, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)), inference(spm,[status(thm)],[c_0_172, c_0_173])).
+cnf(c_0_180, negated_conjecture, (admissible_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_128, c_0_174]), c_0_163])).
+cnf(c_0_181, negated_conjecture, (admissible_move(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_175, c_0_176]), c_0_177]), c_0_178])).
+cnf(c_0_182, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))|admissible_move(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_179]), c_0_180])])).
+cnf(c_0_183, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_184, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)), inference(spm,[status(thm)],[c_0_18, c_0_154])).
+cnf(c_0_185, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_181, c_0_182]), c_0_173])).
+cnf(c_0_186, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|admissible_move(esk6_0,esk7_0)), inference(spm,[status(thm)],[c_0_21, c_0_154])).
+cnf(c_0_187, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_183, c_0_184]), c_0_185]), c_0_186])).
+cnf(c_0_188, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_189, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_190, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_187]), c_0_180])]), c_0_162])).
+cnf(c_0_191, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_11, c_0_188])).
+cnf(c_0_192, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_11, c_0_189])).
+cnf(c_0_193, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk8_0))|admissible_move(esk6_0,esk7_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_190]), c_0_108])])).
+cnf(c_0_194, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_195, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_196, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_18, c_0_191])).
+cnf(c_0_197, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_20, c_0_191])).
+cnf(c_0_198, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)), inference(spm,[status(thm)],[c_0_21, c_0_191])).
+cnf(c_0_199, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_200, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_18, c_0_192])).
+cnf(c_0_201, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_20, c_0_192])).
+cnf(c_0_202, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))), inference(spm,[status(thm)],[c_0_21, c_0_192])).
+cnf(c_0_203, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)), inference(spm,[status(thm)],[c_0_172, c_0_193])).
+cnf(c_0_204, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_194])).
+cnf(c_0_205, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_195, c_0_196]), c_0_197]), c_0_198])).
+cnf(c_0_206, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_199, c_0_200]), c_0_201]), c_0_202])).
+cnf(c_0_207, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))|admissible_move(esk6_0,esk7_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_203]), c_0_180])])).
+cnf(c_0_208, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_209, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_210, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_204])).
+cnf(c_0_211, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_204])).
+cnf(c_0_212, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_204])).
+cnf(c_0_213, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_205]), c_0_180])]), c_0_206])).
+cnf(c_0_214, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_181, c_0_207]), c_0_193])).
+cnf(c_0_215, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_208])).
+cnf(c_0_216, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_209, c_0_210]), c_0_211]), c_0_212])).
+cnf(c_0_217, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|independently_verified(subject(esk8_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_213]), c_0_108])])).
+cnf(c_0_218, negated_conjecture, (independently_verified(subject(esk8_0))|admissible_move(esk6_0,esk7_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_214]), c_0_108])])).
+cnf(c_0_219, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_220, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_221, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_215])).
+cnf(c_0_222, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_215])).
+cnf(c_0_223, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_215])).
+cnf(c_0_224, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_216, c_0_217])).
+cnf(c_0_225, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk6_0,esk7_0)), inference(spm,[status(thm)],[c_0_172, c_0_218])).
+cnf(c_0_226, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_11, c_0_219])).
+cnf(c_0_227, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_220, c_0_221]), c_0_222]), c_0_223])).
+cnf(c_0_228, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_224]), c_0_180])])).
+cnf(c_0_229, negated_conjecture, (independently_verified(subject(esk4_0))|admissible_move(esk6_0,esk7_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_225]), c_0_180])])).
+cnf(c_0_230, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_231, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_232, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_18, c_0_226])).
+cnf(c_0_233, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_20, c_0_226])).
+cnf(c_0_234, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_21, c_0_226])).
+cnf(c_0_235, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_227, c_0_228]), c_0_217])).
+cnf(c_0_236, negated_conjecture, (admissible_move(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_181, c_0_229]), c_0_218])).
+cnf(c_0_237, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk6_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_238, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_11, c_0_230])).
+cnf(c_0_239, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_231, c_0_232]), c_0_233]), c_0_234])).
+cnf(c_0_240, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk6_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_235]), c_0_236])])).
+cnf(c_0_241, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_237])).
+cnf(c_0_242, negated_conjecture, (inward_radial_move(esk8_0,esk9_0)|promotes_hypothesis_to_fact(esk8_0,esk9_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_243, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_18, c_0_238])).
+cnf(c_0_244, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_20, c_0_238])).
+cnf(c_0_245, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(spm,[status(thm)],[c_0_21, c_0_238])).
+cnf(c_0_246, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|inward_radial_move(esk8_0,esk9_0)), inference(spm,[status(thm)],[c_0_239, c_0_240])).
+cnf(c_0_247, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk6_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_248, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_241])).
+cnf(c_0_249, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_241])).
+cnf(c_0_250, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_241])).
+cnf(c_0_251, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_242, c_0_243]), c_0_244]), c_0_245])).
+cnf(c_0_252, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))|inward_radial_move(esk8_0,esk9_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_246]), c_0_180])])).
+cnf(c_0_253, negated_conjecture, (rotation(esk1_0,esk2_0,esk3_0)|~independently_verified(subject(esk8_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk4_0))), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_254, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_247, c_0_248]), c_0_249]), c_0_250])).
+cnf(c_0_255, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_251, c_0_252]), c_0_240])).
+cnf(c_0_256, negated_conjecture, (interpretation_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_11, c_0_253])).
+cnf(c_0_257, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_254, c_0_240])).
+cnf(c_0_258, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk8_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_255]), c_0_108])])).
+cnf(c_0_259, negated_conjecture, (~independently_verified(subject(esk8_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk4_0))|~admissible_move(esk1_0,esk2_0)|~same_radius(esk1_0,esk2_0)|~same_fact_status(esk1_0,esk2_0)), inference(split_conjunct,[status(thm)],[c_0_9])).
+cnf(c_0_260, negated_conjecture, (same_fact_status(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_18, c_0_256])).
+cnf(c_0_261, negated_conjecture, (admissible_move(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_20, c_0_256])).
+cnf(c_0_262, negated_conjecture, (same_radius(esk1_0,esk2_0)|~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(spm,[status(thm)],[c_0_21, c_0_256])).
+cnf(c_0_263, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|inward_radial_move(esk4_0,esk5_0)), inference(spm,[status(thm)],[c_0_257, c_0_258])).
+cnf(c_0_264, negated_conjecture, (~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))|~independently_verified(subject(esk8_0))), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_259, c_0_260]), c_0_261]), c_0_262])).
+cnf(c_0_265, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)|independently_verified(subject(esk4_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_263]), c_0_180])])).
+cnf(c_0_266, negated_conjecture, (promotes_hypothesis_to_fact(esk8_0,esk9_0)), inference(csr,[status(thm)],[inference(csr,[status(thm)],[inference(spm,[status(thm)],[c_0_264, c_0_265]), c_0_258]), c_0_240])).
+cnf(c_0_267, negated_conjecture, (independently_verified(subject(esk8_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_266]), c_0_108])])).
+cnf(c_0_268, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|inward_radial_move(esk4_0,esk5_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[c_0_216, c_0_267])])).
+cnf(c_0_269, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)|~independently_verified(subject(esk4_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[c_0_227, c_0_267])])).
+cnf(c_0_270, negated_conjecture, (promotes_hypothesis_to_fact(esk6_0,esk7_0)), inference(csr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_268]), c_0_180])]), c_0_269])).
+cnf(c_0_271, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)|~independently_verified(subject(esk6_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[c_0_254, c_0_267])])).
+cnf(c_0_272, negated_conjecture, (independently_verified(subject(esk6_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_50, c_0_270]), c_0_236])])).
+cnf(c_0_273, negated_conjecture, (~independently_verified(subject(esk4_0))|~independently_verified(subject(esk6_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[c_0_264, c_0_267])])).
+cnf(c_0_274, negated_conjecture, (inward_radial_move(esk4_0,esk5_0)), inference(cn,[status(thm)],[inference(rw,[status(thm)],[c_0_271, c_0_272])])).
+cnf(c_0_275, negated_conjecture, (~independently_verified(subject(esk4_0))), inference(cn,[status(thm)],[inference(rw,[status(thm)],[c_0_273, c_0_272])])).
+cnf(c_0_276, negated_conjecture, ($false), inference(sr,[status(thm)],[inference(cn,[status(thm)],[inference(rw,[status(thm)],[inference(spm,[status(thm)],[c_0_67, c_0_274]), c_0_180])]), c_0_275]), ['proof']).
+# SZS output end CNFRefutation
