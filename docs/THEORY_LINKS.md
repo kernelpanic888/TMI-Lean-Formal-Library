@@ -16,6 +16,25 @@ Intent -> FormalLogic -> CanonicalRecord -> Passport -> GuardedAction
 - TMI-OS public repository: https://github.com/kernelpanic888/TMI-Lean-Formal-Library
 - TLFL progenitor line: https://github.com/kernelpanic888/TMI-Lean-Formal-Library
 
+## Publication Map
+
+This section links public publication snapshots without raising their claim
+status. A publication snapshot is a fixed artifact, not empirical closure.
+
+- Monumental artifact Russian passport node: [`publications/monumental_artifact_2026_06_29/README_RU.md`](../publications/monumental_artifact_2026_06_29/README_RU.md)
+- Elusive Graviton preprint Zenodo snapshot: https://doi.org/10.5281/zenodo.21011196
+- Proof/source package snapshot: https://doi.org/10.5281/zenodo.20938776
+- LinkedIn public announcement trace: https://www.linkedin.com/posts/oleksiy-salkutsan-276a40184_released-tlfl-v040-a-guarded-monumental-share-7477151831459180544-aU9c/
+
+Guard:
+
+```text
+publication_snapshot != empirical_detection_claim
+author_visual_card != public evidence
+repository_link != external validation
+public_announcement_trace != peer_review
+```
+
 ## Ruliad / RuliadChain Motif
 
 ```text

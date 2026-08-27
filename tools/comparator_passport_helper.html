@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TLFL Comparator Passport Helper</title>
+  <style>
+    :root {
+      --paper: #f7f4eb;
+      --ink: #25251f;
+      --muted: #6c6a60;
+      --line: #d8d0be;
+      --green: #16883b;
+      --red: #a62929;
+      --black: #181916;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(0,0,0,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 24px 24px;
+      color: var(--ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    main {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(360px, 1fr) 380px;
+      gap: 22px;
+      padding: 28px;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-family: Georgia, serif;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: .95;
+      letter-spacing: -.04em;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-family: Georgia, serif;
+      font-size: 25px;
+    }
+    p { color: var(--muted); line-height: 1.55; }
+    .left, .right {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 18px 55px rgba(34, 29, 17, .12);
+    }
+    .left { padding: 30px; }
+    .right {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+      padding: 20px;
+      border-top: 5px solid var(--green);
+    }
+    .formula {
+      padding: 18px;
+      background: #fffdf6;
+      border-left: 5px solid var(--black);
+      white-space: pre-wrap;
+      line-height: 1.55;
+    }
+    .button {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 18px;
+      margin: 8px 0;
+      color: white;
+      background: var(--black);
+      font: 800 16px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      cursor: pointer;
+    }
+    .button.challenge { background: #205fad; }
+    .button.solution { background: var(--green); }
+    .button.raw { background: #7a673e; }
+    .status {
+      min-height: 26px;
+      margin: 12px 0 0;
+      color: var(--green);
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+    .status.error { color: var(--red); }
+    .checklist {
+      margin: 18px 0 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.7);
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .delta {
+      margin: 16px 0 0;
+      padding: 14px;
+      border: 1px solid #c8d8c2;
+      background: #f0f7ee;
+      line-height: 1.55;
+    }
+    .trust {
+      margin: 16px 0 0;
+      padding: 14px;
+      border: 1px solid #d6c89d;
+      background: #fff9df;
+      color: #514823;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+    .delta code {
+      display: block;
+      margin: 7px 0;
+      padding: 8px;
+      background: white;
+      color: var(--ink);
+      white-space: pre-wrap;
+    }
+    pre {
+      max-height: 44vh;
+      overflow: auto;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #151711;
+      color: #daf7d7;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .tab {
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: white;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    .tab.active {
+      color: white;
+      background: var(--black);
+      border-color: var(--black);
+    }
+    @media (max-width: 880px) {
+      main { grid-template-columns: 1fr; }
+      .right { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="left">
+      <h1>TLFL Comparator Passport Helper</h1>
+      <p>
+        Правая панель копирует полный Lean-файл без Markdown-шума.
+        Левая панель Comparator получает Challenge, правая панель Comparator получает Solution.
+      </p>
+      <div class="formula">Rule :=
+  Challenge panel  <- full CHALLENGE file with `sorry`
+  Candidate panel  <- full SOLUTION file with `simp`
+
+First line must be:
+  namespace TLFLLibraryPassport
+
+Do not paste:
+  Markdown
+  screenshots
+  shortened `...`
+  only theorem tail</div>
+      <div class="tabs">
+        <button class="tab active" data-kind="challenge">Challenge Preview</button>
+        <button class="tab" data-kind="solution">Solution Preview</button>
+      </div>
+      <pre id="preview">loading...</pre>
+    </section>
+
+    <aside class="right">
+      <h2>Кнопки копирования</h2>
+      <button class="button challenge" id="copyChallenge">Copy Challenge: theorem target</button>
+      <button class="button solution" id="copySolution">Copy Solution: proof body</button>
+      <button class="button raw" id="openChallenge">Open Challenge Raw</button>
+      <button class="button raw" id="openSolution">Open Solution Raw</button>
+      <div id="status" class="status">ready</div>
+      <div class="delta">
+        <strong>Почему страницы похожи:</strong><br>
+        Comparator требует одну и ту же среду. Разница только в последней теореме.
+        <code>Challenge:
+theorem canonical_passport_certified :
+    PassportCertified canonicalPassport := by
+  sorry</code>
+        <code>Solution:
+theorem canonical_passport_certified :
+    PassportCertified canonicalPassport := by
+  simp [PassportCertified, canonicalPassport]</code>
+      </div>
+      <div class="trust">
+        <strong>Comparator Challenge Passport:</strong><br>
+        You have previously chosen to trust this challenge in this browser
+        (SHA256 b67c8f1be23b73884083beb319d530c9b89d9b8fd2a62c6e020226656c21855d)
+      </div>
+      <div class="checklist">
+        <strong>Проверка глазами:</strong><br>
+        Challenge заканчивается `sorry`.<br>
+        Solution заканчивается `simp [...]`.<br>
+        Оба файла начинаются с `namespace`, не с `#`.
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const urls = {
+      challenge: "https://raw.githubusercontent.com/kernelpanic888/TMI-Lean-Formal-Library/llm-gpt-codex-lean-tlfl-i1/latest-public-surface/examples/lean/TLFL_CANONICAL_PASSPORT_CHALLENGE.lean",
+      solution: "https://raw.githubusercontent.com/kernelpanic888/TMI-Lean-Formal-Library/llm-gpt-codex-lean-tlfl-i1/latest-public-surface/examples/lean/TLFL_CANONICAL_PASSPORT_SOLUTION.lean",
+    };
+    const cache = {};
+    const status = document.getElementById("status");
+    const preview = document.getElementById("preview");
+
+    async function load(kind) {
+      if (!cache[kind]) {
+        const response = await fetch(urls[kind], { cache: "no-store" });
+        if (!response.ok) throw new Error(`fetch failed: ${response.status}`);
+        cache[kind] = await response.text();
+      }
+      return cache[kind];
+    }
+
+    async function show(kind) {
+      try {
+        const text = await load(kind);
+        preview.textContent = text;
+        document.querySelectorAll(".tab").forEach(tab => {
+          tab.classList.toggle("active", tab.dataset.kind === kind);
+        });
+      } catch (error) {
+        preview.textContent = String(error);
+      }
+    }
+
+    async function copy(kind) {
+      try {
+        const text = await load(kind);
+        await navigator.clipboard.writeText(text);
+        const firstLine = text.split(/\r?\n/)[0];
+        const proofMark = kind === "challenge"
+          ? "CONTROL TAIL: `sorry` theorem target"
+          : "CONTROL TAIL: `simp` proof body";
+        status.classList.remove("error");
+        status.textContent = `${kind.toUpperCase()} copied. ${proofMark}. First line: ${firstLine}`;
+      } catch (error) {
+        status.classList.add("error");
+        status.textContent = `copy failed: ${error}`;
+      }
+    }
+
+    document.getElementById("copyChallenge").onclick = () => copy("challenge");
+    document.getElementById("copySolution").onclick = () => copy("solution");
+    document.getElementById("openChallenge").onclick = () => window.open(urls.challenge, "_blank");
+    document.getElementById("openSolution").onclick = () => window.open(urls.solution, "_blank");
+    document.querySelectorAll(".tab").forEach(tab => tab.onclick = () => show(tab.dataset.kind));
+    show("challenge");
+  </script>
+</body>
+</html>
