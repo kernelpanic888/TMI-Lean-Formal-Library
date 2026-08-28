@@ -18,10 +18,11 @@
     .two-axis{background:linear-gradient(120deg,rgba(1,37,38,.98),rgba(0,18,15,.99))}.time-model{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);gap:44px;margin-top:42px}.time-plane{position:relative;min-height:440px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 50% 50%,rgba(131,255,212,.12),transparent 34%),rgba(0,12,12,.75)}.axis-x,.axis-y{position:absolute;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}.axis-x{left:8%;right:8%;top:50%;height:1px}.axis-y{top:8%;bottom:8%;left:50%;width:1px;background:linear-gradient(transparent,var(--gold),transparent)}.axis-x:after{content:"t_lab / physical record";position:absolute;right:0;top:14px;color:var(--cyan);font-size:11px;font-weight:900}.axis-y:after{content:"τ_D / relic order";position:absolute;left:14px;top:0;color:var(--gold);font-size:11px;font-weight:900;white-space:nowrap}.event-dot{position:absolute;width:16px;height:16px;border:3px solid var(--mint);border-radius:50%;background:var(--bg);box-shadow:0 0 18px rgba(131,255,212,.5)}.event-dot.e1{left:28%;top:66%}.event-dot.e2{left:46%;top:48%}.event-dot.e3{left:66%;top:29%}.event-path{position:absolute;left:27%;top:68%;width:54%;height:1px;background:var(--mint);transform:rotate(-38deg);transform-origin:left center;opacity:.52}.time-formulas{display:grid;gap:14px}.time-formulas article{padding:24px;border:1px solid var(--line);background:rgba(0,13,12,.66)}
     .relative-time{background:radial-gradient(circle at 78% 28%,rgba(89,217,255,.1),transparent 31%),linear-gradient(132deg,rgba(2,30,39,.98),rgba(9,13,30,.99))}.rti-map{display:block;width:100%;height:auto;margin-top:42px;border:1px solid rgba(89,217,255,.45);background:#000d17;box-shadow:0 28px 70px rgba(0,0,0,.35)}.rti-caption{margin:14px 0 0;color:var(--muted);font-size:11px;line-height:1.55;letter-spacing:.05em}.boundary-note{margin-top:30px;padding:24px;border-left:4px solid var(--red);background:rgba(255,102,88,.07);color:#e6b5aa;line-height:1.68}.proof-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;font-size:11px;font-weight:900;letter-spacing:.06em}
     .quantum-article{background:radial-gradient(circle at 18% 22%,rgba(255,210,88,.09),transparent 29%),linear-gradient(125deg,rgba(17,15,41,.99),rgba(0,26,25,.99))}.experiment-line{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:42px}.experiment-line article{min-height:250px;padding:30px;border:1px solid var(--line);background:rgba(0,12,18,.72)}.experiment-line b{color:var(--gold);font:500 44px var(--serif)}.experiment-line .meet{display:grid;place-items:center;width:74px;height:74px;border:2px solid var(--gold);border-radius:50%;box-shadow:0 0 32px rgba(255,210,88,.28)}.quantum-equation{margin-top:34px;padding:30px;border:1px solid rgba(131,255,212,.48);background:rgba(0,13,18,.76)}.article-cta{margin-top:32px;padding:28px;border:1px solid var(--gold);background:rgba(255,210,88,.06)}.article-cta h3{margin:0 0 12px;font:500 31px var(--serif)}.article-cta p{color:var(--muted);line-height:1.65}@media(max-width:820px){.experiment-line{grid-template-columns:1fr}.experiment-line .meet{margin:auto}}
+    .qtm-board{position:relative;margin-top:42px;overflow:hidden;border:1px solid rgba(89,217,255,.48);background:radial-gradient(circle at 32% 42%,rgba(89,217,255,.08),transparent 28%),linear-gradient(135deg,rgba(0,10,19,.98),rgba(8,12,34,.98));box-shadow:0 30px 80px rgba(0,0,0,.34)}.qtm-board__head{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:18px 22px;border-bottom:1px solid rgba(89,217,255,.28);background:rgba(0,15,23,.78)}.qtm-board__identity{color:var(--mint);font-size:11px;font-weight:900;letter-spacing:.12em}.qtm-board__identity small{display:block;margin-top:6px;color:var(--muted);font-size:9px;letter-spacing:.1em}.qtm-board__controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.qtm-board__controls button{padding:10px 12px;border:1px solid rgba(89,217,255,.3);color:var(--muted);background:rgba(0,10,18,.72);cursor:pointer;font-size:10px;font-weight:900;letter-spacing:.08em}.qtm-board__controls button[aria-pressed=true]{border-color:var(--gold);color:#00130f;background:var(--gold)}.qtm-board__controls button[data-qtm-motion][aria-pressed=true]{border-color:var(--mint);color:var(--mint);background:rgba(131,255,212,.08)}.qtm-board__canvas-shell{position:relative;border-bottom:1px solid rgba(89,217,255,.28)}.qtm-board canvas{display:block;width:100%;height:clamp(560px,58vw,720px)}.qtm-board__readouts{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid rgba(89,217,255,.25);background:rgba(0,12,20,.72)}.qtm-board__readout{padding:16px 20px;border-right:1px solid rgba(89,217,255,.2)}.qtm-board__readout:last-child{border-right:0}.qtm-board__readout small{display:block;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.1em}.qtm-board__readout b{display:block;margin-top:7px;color:var(--gold);font:500 clamp(20px,2vw,30px) var(--serif);font-variant-numeric:tabular-nums}.qtm-board__formulae{display:grid;grid-template-columns:repeat(3,1fr);background:rgba(0,10,16,.8)}.qtm-board__formula{min-height:154px;padding:20px;border-right:1px solid rgba(89,217,255,.18);border-top:3px solid transparent;color:var(--muted);opacity:.46;transition:opacity .28s ease,border-color .28s ease,background .28s ease}.qtm-board__formula:last-child{border-right:0}.qtm-board__formula small{display:block;margin-bottom:12px;color:var(--cyan);font-size:9px;font-weight:900;letter-spacing:.1em}.qtm-board__formula code{color:inherit;font:700 13px/1.7 var(--mono);white-space:normal}.qtm-board[data-mode=gr] [data-qtm-formula=gr],.qtm-board[data-mode=rti] [data-qtm-formula=rti],.qtm-board[data-mode=qtm] [data-qtm-formula=qtm]{border-top-color:var(--gold);color:var(--mint);background:rgba(255,210,88,.045);opacity:1}.qtm-board__status{margin:0;padding:16px 22px;border-top:1px solid rgba(255,210,88,.24);color:#b9d5c7;font-size:11px;line-height:1.65}.qtm-board__status strong{color:var(--gold)}
     .red-boundary{display:grid;grid-template-columns:230px 1fr;gap:30px;padding:34px clamp(24px,6vw,110px);border-block:1px solid rgba(255,102,88,.65);background:rgba(68,23,18,.76)}.red-boundary strong{color:var(--red);font-size:12px;letter-spacing:.11em}.red-boundary p{margin:0;color:#e6b5aa;line-height:1.65}
     .sources{background:rgba(0,14,10,.97)}.source-list{grid-template-columns:repeat(2,1fr)}.source-list b{color:var(--gold)}.source-list a{font-size:11px;font-weight:900}.covers{display:block;margin-top:15px;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.08em}.source-rule{margin-top:24px;padding:22px;border-left:3px solid var(--gold);color:#b9d5c7;background:rgba(255,210,89,.055);line-height:1.62}.todo{background:linear-gradient(135deg,rgba(5,57,43,.96),rgba(0,17,14,.99))}.todo-grid{grid-template-columns:repeat(2,1fr)}.exit{display:block;margin-top:16px;color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.08em}.lean-target{margin-top:34px;padding:28px;border:1px solid var(--line);background:#00100d;color:var(--mint);line-height:1.7;overflow-x:auto;white-space:pre-wrap}.open-status{margin-top:18px;color:var(--red);font-size:11px;font-weight:900;letter-spacing:.1em}
     footer{padding:30px clamp(20px,4vw,70px);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.09em}footer nav{display:flex;gap:18px;flex-wrap:wrap}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.delta,.relic,.pulse{animation:none}}@media(max-width:1080px){.hero{grid-template-columns:1fr}.shadow-stage{min-height:540px}.status-grid{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.chain{grid-template-columns:1fr}.chain b{min-height:44px;transform:rotate(90deg)}.time-model{grid-template-columns:1fr}}@media(max-width:720px){.top{grid-template-columns:1fr auto}.state{display:none}.hero h1{font-size:clamp(49px,15vw,78px)}.hero{padding-inline:20px}.shadow-stage{min-height:480px}.delta{left:8%;width:90px;height:90px}.relic{right:8%;width:104px;height:104px}.trace{left:21%;right:21%}.pulse{left:21%}.stage-formula{font-size:12px}.formula-grid,.source-list,.todo-grid{grid-template-columns:1fr}.red-boundary{grid-template-columns:1fr}.bridge-table{display:block;overflow-x:auto}.time-plane{min-height:360px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.delta,.relic,.pulse{animation:none}.qtm-board__formula{transition:none}}@media(max-width:1080px){.hero{grid-template-columns:1fr}.shadow-stage{min-height:540px}.status-grid{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.chain{grid-template-columns:1fr}.chain b{min-height:44px;transform:rotate(90deg)}.time-model{grid-template-columns:1fr}.qtm-board__formulae{grid-template-columns:1fr}.qtm-board__formula{min-height:0;border-right:0;border-bottom:1px solid rgba(89,217,255,.18)}}@media(max-width:720px){.top{grid-template-columns:1fr auto}.state{display:none}.hero h1{font-size:clamp(49px,15vw,78px)}.hero{padding-inline:20px}.shadow-stage{min-height:480px}.delta{left:8%;width:90px;height:90px}.relic{right:8%;width:104px;height:104px}.trace{left:21%;right:21%}.pulse{left:21%}.stage-formula{font-size:12px}.formula-grid,.source-list,.todo-grid{grid-template-columns:1fr}.red-boundary{grid-template-columns:1fr}.bridge-table{display:block;overflow-x:auto}.time-plane{min-height:360px}.qtm-board__head{align-items:flex-start;flex-direction:column}.qtm-board__controls{width:100%}.qtm-board__controls button{flex:1}.qtm-board canvas{height:820px}.qtm-board__readout{padding:13px 10px}.qtm-board__readout b{font-size:19px}}
   </style>
 </head>
 <body>
@@ -141,6 +142,32 @@
         <p><span class="ru">Провокация разбирается на три уровня: стандартное различное старение, относительное чтение локальных интерфейсов и сильная квантовая reversing-ветвь.</span><span class="en">The provocation separates into three levels: standard differential aging, relative reading of local interfaces, and a strong quantum reversing branch.</span></p>
       </div>
 
+      <div class="qtm-board" id="qtm-live-board" data-mode="gr">
+        <div class="qtm-board__head">
+          <div class="qtm-board__identity">QTM-01 / DYNAMIC MATHEMATICAL BOARD<small>REUNION EXPERIMENT · LOCAL INTERFACES · QUANTUM NO-SMUGGLING BOUNDARY</small></div>
+          <div class="qtm-board__controls" role="group" aria-label="QTM-01 model layer">
+            <button type="button" data-qtm-mode="gr" aria-pressed="true">01 · GR</button>
+            <button type="button" data-qtm-mode="rti" aria-pressed="false">02 · RTI · σ=+1</button>
+            <button type="button" data-qtm-mode="qtm" aria-pressed="false">03 · QTM? · σ=−1</button>
+            <button type="button" data-qtm-motion aria-pressed="true"><span class="ru">ПАУЗА</span><span class="en">PAUSE</span></button>
+          </div>
+        </div>
+        <div class="qtm-board__canvas-shell">
+          <canvas id="qtm-board-canvas" role="img" aria-label="Dynamic mathematical diagram of Lina and Earth traveling from common departure A to reunion B along different future-directed worldlines, with a black-hole world tube, unequal proper times, two tilted local temporal interfaces, and an explicit comparison map"></canvas>
+        </div>
+        <div class="qtm-board__readouts" aria-hidden="true">
+          <div class="qtm-board__readout"><small>τ[γ<sub>L</sub>] · LINA</small><b><span data-qtm-tau-l>0.00</span> y</b></div>
+          <div class="qtm-board__readout"><small>τ[γ<sub>E</sub>] · EARTH</small><b><span data-qtm-tau-e>0</span> y</b></div>
+          <div class="qtm-board__readout"><small>Δτ · PATH DIFFERENCE</small><b><span data-qtm-delta>0.00</span> y</b></div>
+        </div>
+        <div class="qtm-board__formulae">
+          <div class="qtm-board__formula" data-qtm-formula="gr"><small>01 / STANDARD GR · CHECKED PHYSICAL LAYER</small><code>γ<sub>L</sub>, γ<sub>E</sub> : A → B<br>τ[γ] = ∫<sub>γ</sub> √(−g<sub>μν</sub>dx<sup>μ</sup>dx<sup>ν</sup>)/c<br>τ[γ<sub>L</sub>] = 1 &lt; 1000 = τ[γ<sub>E</sub>]</code></div>
+          <div class="qtm-board__formula" data-qtm-formula="rti"><small>02 / RTI · EXPLICIT COMPARISON</small><code>Θ<sub>p←q</sub> : Direction(q) → Direction(p)<br>Θ(C<sub>q</sub><sup>+</sup>) ⊆ C<sub>p</sub><sup>+</sup> ⇒ σ(p,q)=+1<br>1 &lt; 1000 ⇏ σ(p,q)=−1</code></div>
+          <div class="qtm-board__formula" data-qtm-formula="qtm"><small>03 / STRONG QTM · PHYSICAL BRIDGE OPEN</small><code>Q = (B, α, Active, Θ)<br>QTM(Q) ⇔ ∃b, Active(b) ∧<br>Θ<sub>b</sub>(C<sub>q</sub><sup>+</sup>) ⊆ C<sub>p</sub><sup>−</sup></code></div>
+        </div>
+        <p class="qtm-board__status" role="status" aria-live="polite"><strong>01 / GR · </strong><span class="ru">обе мировые линии направлены A→B; различается накопленное собственное время, а не причинная ориентация.</span><span class="en">both worldlines point from A to B; accumulated proper time differs, not causal orientation.</span></p>
+      </div>
+
       <div class="experiment-line">
         <article>
           <span class="tag external">WORLDLINE γ<sub>L</sub></span>
@@ -236,6 +263,171 @@ TARGET:
   <footer><span>AR-01 + RTI-01 + QTM-01 · BILINGUAL TMI READER · ALEKSEY SALKUTSAN</span><nav><a href="#question"><span class="ru">ВОПРОС</span><span class="en">QUESTION</span></a><a href="#model"><span class="ru">МОДЕЛЬ</span><span class="en">MODEL</span></a><a href="#physics"><span class="ru">ФИЗИКА</span><span class="en">PHYSICS</span></a><a href="#time"><span class="ru">ДВЕ ОСИ</span><span class="en">TWO AXES</span></a><a href="#relative-time">RTI-01</a><a href="#experiment">QTM-01</a><a href="#quantum-boundary"><span class="ru">ГРАНИЦА</span><span class="en">BOUNDARY</span></a><a href="https://github.com/kernelpanic888/TMI-Lean-Formal-Library/blob/main/docs/RTI_01_QUANTUM_TIME_MACHINE_ARTICLE_RU_EN.md" target="_blank" rel="noopener noreferrer"><span class="ru">СТАТЬЯ</span><span class="en">ARTICLE</span> ↗</a><a href="#sources"><span class="ru">ИСТОЧНИКИ</span><span class="en">SOURCES</span></a><a href="#lean">LEAN STATUS</a></nav></footer>
   <script>
     (()=>{const key='activation-relic-language-v1',buttons=[...document.querySelectorAll('[data-lang]')];const setLang=lang=>{document.body.dataset.lang=lang;document.documentElement.lang=lang;buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.lang===lang)));try{localStorage.setItem(key,lang)}catch{}};let initial='ru';try{initial=localStorage.getItem(key)||'ru'}catch{}setLang(initial==='en'?'en':'ru');buttons.forEach(button=>button.addEventListener('click',()=>setLang(button.dataset.lang)));})();
+    (()=>{
+      const board=document.getElementById('qtm-live-board');
+      const canvas=document.getElementById('qtm-board-canvas');
+      if(!board||!canvas)return;
+      const ctx=canvas.getContext('2d');
+      const modeButtons=[...board.querySelectorAll('[data-qtm-mode]')];
+      const motionButton=board.querySelector('[data-qtm-motion]');
+      const tauL=board.querySelector('[data-qtm-tau-l]');
+      const tauE=board.querySelector('[data-qtm-tau-e]');
+      const delta=board.querySelector('[data-qtm-delta]');
+      const status=board.querySelector('.qtm-board__status');
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+      let mode='gr';
+      let running=!reduced.matches;
+      let phase=.04;
+      let last=0;
+      let frameId=0;
+      let width=0;
+      let height=0;
+      const palette={bg:'#000b13',panel:'rgba(2,18,28,.72)',grid:'rgba(89,217,255,.12)',line:'#185748',mint:'#83ffd4',cyan:'#59d9ff',gold:'#ffd258',ivory:'#e7fff4',muted:'#91ad9f',red:'#ff6658',shadow:'#776c9f'};
+      const copy={
+        gr:{head:'01 / GR · ',ru:'обе мировые линии направлены A→B; различается накопленное собственное время, а не причинная ориентация.',en:'both worldlines point from A to B; accumulated proper time differs, not causal orientation.'},
+        rti:{head:'02 / RTI · ',ru:'явное Θ читает future(q) как future(p), σ=+1; неравенство 1<1000 само по себе не создаёт разворот.',en:'explicit Θ reads future(q) as future(p), σ=+1; the inequality 1<1000 does not create reversal.'},
+        qtm:{head:'03 / QTM? · ',ru:'кандидат σ=−1 требует явной активной ветви future(q)→past(p); физический мост остаётся открытым.',en:'a σ=−1 candidate requires an explicit active future(q)→past(p) branch; the physical bridge remains open.'}
+      };
+      const lang=()=>document.body.dataset.lang==='en'?'en':'ru';
+      const text=(value,x,y,color=palette.ivory,size=11,align='left',weight=700,maxWidth)=>{ctx.save();ctx.fillStyle=color;ctx.font=`${weight} ${size}px "Courier New", monospace`;ctx.textAlign=align;ctx.textBaseline='middle';if(maxWidth)ctx.fillText(value,x,y,maxWidth);else ctx.fillText(value,x,y);ctx.restore()};
+      const line=(x1,y1,x2,y2,color,widthValue=1,dash=[])=>{ctx.save();ctx.strokeStyle=color;ctx.lineWidth=widthValue;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore()};
+      const arrow=(x1,y1,x2,y2,color,widthValue=1.5,dash=[])=>{line(x1,y1,x2,y2,color,widthValue,dash);const angle=Math.atan2(y2-y1,x2-x1);const head=8;ctx.save();ctx.fillStyle=color;ctx.translate(x2,y2);ctx.rotate(angle);ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(-head,-head*.5);ctx.lineTo(-head,head*.5);ctx.closePath();ctx.fill();ctx.restore()};
+      const node=(x,y,label,color)=>{ctx.save();ctx.fillStyle=palette.bg;ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.restore();text(label,x+14,y-1,color,13,'left',900)};
+      const panel=(area,titleValue)=>{ctx.save();ctx.fillStyle=palette.panel;ctx.strokeStyle='rgba(89,217,255,.25)';ctx.lineWidth=1;ctx.fillRect(area.x,area.y,area.w,area.h);ctx.strokeRect(area.x+.5,area.y+.5,area.w-1,area.h-1);ctx.restore();text(titleValue,area.x+14,area.y+20,palette.cyan,10,'left',900,area.w-28)};
+      const cone=(cx,cy,angle,scale,labelValue)=>{
+        const fx=Math.sin(angle),fy=-Math.cos(angle),nx=Math.cos(angle),ny=Math.sin(angle);
+        const tipFuture={x:cx+fx*scale,y:cy+fy*scale};
+        const tipPast={x:cx-fx*scale,y:cy-fy*scale};
+        ctx.save();
+        ctx.fillStyle='rgba(89,217,255,.14)';ctx.strokeStyle='rgba(89,217,255,.75)';ctx.lineWidth=1.4;
+        ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(tipFuture.x+nx*scale*.42,tipFuture.y+ny*scale*.42);ctx.lineTo(tipFuture.x-nx*scale*.42,tipFuture.y-ny*scale*.42);ctx.closePath();ctx.fill();ctx.stroke();
+        ctx.fillStyle='rgba(119,108,159,.08)';ctx.strokeStyle='rgba(145,173,159,.46)';ctx.setLineDash([5,6]);
+        ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(tipPast.x+nx*scale*.42,tipPast.y+ny*scale*.42);ctx.lineTo(tipPast.x-nx*scale*.42,tipPast.y-ny*scale*.42);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();
+        ctx.save();ctx.fillStyle=palette.gold;ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fill();ctx.restore();
+        text(labelValue,cx+9,cy+11,palette.gold,11,'left',900);
+        return{future:tipFuture,past:tipPast,origin:{x:cx,y:cy}};
+      };
+      const linaPoint=(t,area)=>{
+        const top=area.y+46,bottom=area.y+area.h-34;
+        const earthX=area.x+area.w*.82;
+        const horizonX=area.x+area.w*.29;
+        const gate=Math.pow(Math.sin(Math.PI*t),1.34);
+        const orbitGate=Math.max(0,1-Math.abs(t-.5)/.27);
+        const orbit=Math.sin((t-.22)*Math.PI*15)*area.w*.022*orbitGate;
+        return{x:earthX-(earthX-(horizonX+area.w*.075))*gate+orbit,y:bottom-(bottom-top)*t};
+      };
+      const drawWorldlines=area=>{
+        const isEnglish=lang()==='en';
+        panel(area,isEnglish?'A → B / SHARED CAUSAL ORDER · PATH-DEPENDENT PROPER TIME':'A → B / ОБЩИЙ ПРИЧИННЫЙ ПОРЯДОК · СОБСТВЕННОЕ ВРЕМЯ ПУТИ');
+        const top=area.y+46,bottom=area.y+area.h-34;
+        const earthX=area.x+area.w*.82;
+        const horizonX=area.x+area.w*.29;
+        for(let i=0;i<=4;i++){
+          const y=bottom-(bottom-top)*i/4;
+          line(area.x+46,y,area.x+area.w-22,y,palette.grid,1);
+          text(`${i*250} y_E`,area.x+8,y,palette.muted,9,'left',700);
+        }
+        arrow(area.x+38,bottom,area.x+38,top,palette.cyan,1.2);
+        ctx.save();ctx.translate(area.x+17,(top+bottom)/2);ctx.rotate(-Math.PI/2);text(isEnglish?'causal order':'причинный порядок',0,0,palette.cyan,9,'center',900);ctx.restore();
+        const tubeW=Math.max(26,area.w*.055);
+        const tubeGradient=ctx.createLinearGradient(horizonX-tubeW,0,horizonX+tubeW,0);
+        tubeGradient.addColorStop(0,'rgba(0,0,0,0)');tubeGradient.addColorStop(.5,'rgba(0,0,0,.94)');tubeGradient.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.save();ctx.fillStyle=tubeGradient;ctx.fillRect(horizonX-tubeW,top+16,tubeW*2,bottom-top-32);ctx.strokeStyle='rgba(255,102,88,.45)';ctx.setLineDash([6,7]);ctx.strokeRect(horizonX-tubeW*.7,top+16,tubeW*1.4,bottom-top-32);ctx.restore();
+        const bhY=(top+bottom)/2;
+        const glow=ctx.createRadialGradient(horizonX,bhY,3,horizonX,bhY,tubeW*1.85);
+        glow.addColorStop(0,'rgba(0,0,0,1)');glow.addColorStop(.42,'rgba(0,0,0,1)');glow.addColorStop(.62,'rgba(255,210,88,.5)');glow.addColorStop(.74,'rgba(89,217,255,.16)');glow.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.save();ctx.fillStyle=glow;ctx.beginPath();ctx.arc(horizonX,bhY,tubeW*1.85,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(255,210,88,.65)';ctx.lineWidth=1.4;ctx.beginPath();ctx.ellipse(horizonX,bhY,tubeW*1.85,tubeW*.52,-.18,0,Math.PI*2);ctx.stroke();ctx.restore();
+        text(isEnglish?'BLACK-HOLE WORLD TUBE':'МИРОВАЯ ТРУБКА ЧЁРНОЙ ДЫРЫ',horizonX,bhY+tubeW*2.15,palette.gold,9,'center',900,area.w*.42);
+        text('r = rₕ',horizonX,bhY+tubeW*2.65,palette.red,9,'center',900);
+        line(earthX,top,earthX,bottom,palette.cyan,2.2);
+        for(let i=1;i<10;i++){const y=bottom-(bottom-top)*i/10;line(earthX-5,y,earthX+5,y,'rgba(89,217,255,.58)',1)}
+        text('γ_E',earthX+12,(top+bottom)/2,palette.cyan,12,'left',900);
+        ctx.save();ctx.strokeStyle=palette.gold;ctx.lineWidth=2.8;ctx.beginPath();for(let i=0;i<=180;i++){const p=linaPoint(i/180,area);if(i===0)ctx.moveTo(p.x,p.y);else ctx.lineTo(p.x,p.y)}ctx.stroke();ctx.restore();
+        const labelPoint=linaPoint(.63,area);text('γ_L',labelPoint.x-10,labelPoint.y-17,palette.gold,12,'center',900);
+        const earthParticle={x:earthX,y:bottom-(bottom-top)*phase};
+        const linaParticle=linaPoint(phase,area);
+        ctx.save();ctx.shadowBlur=18;ctx.shadowColor=palette.cyan;ctx.fillStyle=palette.cyan;ctx.beginPath();ctx.arc(earthParticle.x,earthParticle.y,5,0,Math.PI*2);ctx.fill();ctx.shadowColor=palette.gold;ctx.fillStyle=palette.gold;ctx.beginPath();ctx.arc(linaParticle.x,linaParticle.y,6,0,Math.PI*2);ctx.fill();ctx.restore();
+        node(earthX,bottom,'A',palette.mint);node(earthX,top,'B',palette.gold);
+        text(isEnglish?'same departure':'общее отправление',earthX-15,bottom+20,palette.muted,9,'right',700);
+        text(isEnglish?'same reunion':'общее воссоединение',earthX-15,top-17,palette.muted,9,'right',700);
+        if(mode==='qtm'){
+          ctx.save();ctx.strokeStyle=palette.red;ctx.lineWidth=1.5;ctx.setLineDash([7,7]);ctx.beginPath();ctx.moveTo(earthX-8,top+8);ctx.bezierCurveTo(area.x+area.w*.62,top+38,area.x+area.w*.64,bhY-28,area.x+area.w*.57,bhY+16);ctx.stroke();ctx.restore();
+          text(isEnglish?'b− / HYPOTHETICAL COMPARISON — NOT A WORLDLINE':'b− / ГИПОТЕТИЧЕСКОЕ СРАВНЕНИЕ — НЕ МИРОВАЯ ЛИНИЯ',area.x+area.w*.58,bhY+32,palette.red,9,'center',900,area.w*.52);
+        }
+      };
+      const drawComparison=area=>{
+        const isEnglish=lang()==='en';
+        const titles={gr:isEnglish?'DIFFERENTIAL AGING DOES NOT FIX Θ':'РАЗНОЕ СТАРЕНИЕ НЕ ЗАДАЁТ Θ',rti:isEnglish?'LOCAL INTERFACES / PRESERVED READING':'ЛОКАЛЬНЫЕ ИНТЕРФЕЙСЫ / СОХРАНЯЮЩЕЕ ЧТЕНИЕ',qtm:isEnglish?'EXPLICIT REVERSING BRANCH / OPEN':'ЯВНАЯ REVERSING-ВЕТВЬ / ОТКРЫТО'};
+        panel(area,titles[mode]);
+        const scale=Math.min(76,area.w*.18,area.h*.22);
+        const p=cone(area.x+area.w*.31,area.y+area.h*.69,.24,scale,'p = T*');
+        const q=cone(area.x+area.w*.72,area.y+area.h*.35,-.38,scale,'q = T*′');
+        text('LIGHT / FUTURE C⁺',area.x+area.w*.5,area.y+48,palette.cyan,9,'center',900,area.w-28);
+        text('SHADOW / PAST C⁻',area.x+area.w*.5,area.y+area.h-18,palette.shadow,9,'center',900,area.w-28);
+        if(mode==='gr'){
+          arrow(q.origin.x-5,q.origin.y+5,p.origin.x+7,p.origin.y-7,'rgba(145,173,159,.55)',1.2,[5,7]);
+          text('1 < 1000  ⇏  σ = −1',area.x+area.w*.5,area.y+area.h*.5,palette.gold,12,'center',900,area.w-24);
+          text(isEnglish?'Θ requires separate data':'Θ требует отдельных данных',area.x+area.w*.5,area.y+area.h*.5+20,palette.muted,9,'center',700,area.w-24);
+        }else if(mode==='rti'){
+          arrow(q.future.x,q.future.y,p.future.x,p.future.y,palette.mint,2);
+          text('Θₚ←q(Cq⁺) ⊆ Cp⁺',area.x+area.w*.52,area.y+area.h*.5,palette.mint,11,'center',900,area.w-24);
+          text('σ(p,q) = +1',area.x+area.w*.52,area.y+area.h*.5+20,palette.gold,11,'center',900);
+        }else{
+          arrow(q.future.x,q.future.y,p.past.x,p.past.y,palette.red,2,[7,6]);
+          text('∃b · Θᵦ(Cq⁺) ⊆ Cp⁻',area.x+area.w*.52,area.y+area.h*.5,palette.red,11,'center',900,area.w-24);
+          text('σ(p,q) = −1  ?  OPEN',area.x+area.w*.52,area.y+area.h*.5+20,palette.gold,11,'center',900,area.w-24);
+        }
+      };
+      const draw=()=>{
+        if(!width||!height)return;
+        ctx.clearRect(0,0,width,height);
+        const gradient=ctx.createLinearGradient(0,0,width,height);gradient.addColorStop(0,'#000b13');gradient.addColorStop(1,'#080d23');ctx.fillStyle=gradient;ctx.fillRect(0,0,width,height);
+        for(let x=0;x<width;x+=32)line(x,0,x,height,'rgba(89,217,255,.035)',1);
+        for(let y=0;y<height;y+=32)line(0,y,width,y,'rgba(89,217,255,.035)',1);
+        if(width<680){
+          drawWorldlines({x:18,y:18,w:width-36,h:height*.56});
+          drawComparison({x:18,y:height*.59,w:width-36,h:height*.38});
+        }else{
+          drawWorldlines({x:22,y:22,w:width*.58-30,h:height-44});
+          drawComparison({x:width*.58+4,y:22,w:width*.42-26,h:height-44});
+        }
+        const earthValue=phase*1000;
+        const linaValue=phase;
+        tauL.textContent=linaValue.toFixed(2);
+        tauE.textContent=Math.round(earthValue).toString();
+        delta.textContent=Math.max(0,earthValue-linaValue).toFixed(2);
+      };
+      const resize=()=>{
+        const rect=canvas.getBoundingClientRect();
+        const dpr=Math.min(window.devicePixelRatio||1,2);
+        width=Math.max(1,Math.round(rect.width));height=Math.max(1,Math.round(rect.height));
+        canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);draw();
+      };
+      const setMode=next=>{
+        mode=next;board.dataset.mode=next;
+        modeButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.qtmMode===next)));
+        const state=copy[next];status.innerHTML=`<strong>${state.head}</strong><span class="ru">${state.ru}</span><span class="en">${state.en}</span>`;
+        draw();
+      };
+      const setMotionLabel=()=>{
+        motionButton.setAttribute('aria-pressed',String(running));
+        motionButton.querySelector('.ru').textContent=running?'ПАУЗА':'ПУСК';
+        motionButton.querySelector('.en').textContent=running?'PAUSE':'PLAY';
+      };
+      const animate=now=>{
+        if(!running)return;
+        if(!last)last=now;
+        phase=(phase+Math.min(64,now-last)/11000)%1;
+        last=now;draw();frameId=requestAnimationFrame(animate);
+      };
+      modeButtons.forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.qtmMode)));
+      motionButton.addEventListener('click',()=>{running=!running;last=0;setMotionLabel();cancelAnimationFrame(frameId);if(running)frameId=requestAnimationFrame(animate);else draw()});
+      document.querySelectorAll('[data-lang]').forEach(button=>button.addEventListener('click',()=>requestAnimationFrame(draw)));
+      new ResizeObserver(resize).observe(canvas);
+      setMotionLabel();setMode('gr');resize();
+      if(running)frameId=requestAnimationFrame(animate);
+    })();
   </script>
 </body>
 </html>
