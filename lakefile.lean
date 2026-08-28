@@ -38,6 +38,8 @@ lean_lib TMI where
     `TMI.InvariantTransportClosureAudit,
     `TMI.ActivationRelicTwoAxisTime,
     `TMI.ActivationRelicTwoAxisTimeAudit,
+    `TMI.InterfaceFoundations.RelativeTemporalInterface,
+    `TMI.InterfaceFoundations.RelativeTemporalInterfaceAudit,
     `TMI.DigitalLifeTwoAxisTick,
     `TMI.DigitalLifeTwoAxisTickAudit,
     `TMI.DigitalLifeRuntimeAdapter,
