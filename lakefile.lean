@@ -42,6 +42,8 @@ lean_lib TMI where
     `TMI.InterfaceFoundations.RelativeTemporalInterfaceAudit,
     `TMI.InterfaceFoundations.QuantumComparisonBoundary,
     `TMI.InterfaceFoundations.QuantumComparisonBoundaryAudit,
+    `TMI.InterfaceFoundations.SampledHypergraphImpulse,
+    `TMI.InterfaceFoundations.SampledHypergraphImpulseAudit,
     `TMI.DigitalLifeTwoAxisTick,
     `TMI.DigitalLifeTwoAxisTickAudit,
     `TMI.DigitalLifeRuntimeAdapter,
