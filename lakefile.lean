@@ -40,6 +40,8 @@ lean_lib TMI where
     `TMI.ActivationRelicTwoAxisTimeAudit,
     `TMI.InterfaceFoundations.RelativeTemporalInterface,
     `TMI.InterfaceFoundations.RelativeTemporalInterfaceAudit,
+    `TMI.InterfaceFoundations.QuantumComparisonBoundary,
+    `TMI.InterfaceFoundations.QuantumComparisonBoundaryAudit,
     `TMI.DigitalLifeTwoAxisTick,
     `TMI.DigitalLifeTwoAxisTickAudit,
     `TMI.DigitalLifeRuntimeAdapter,
