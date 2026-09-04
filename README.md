@@ -169,6 +169,25 @@ typed path, and a guarded adapter to `TMI.BoundaryEvent`.  The source map and
 claim boundary are recorded in
 [`research/invariant-transport-closure-v0.1/README.md`](research/invariant-transport-closure-v0.1/README.md).
 
+### Contextual Interface Mathematics · CTX-01
+
+`TMI.InterfaceMathematics.ContextualInterface` is the formal carrier for the
+reader *Context That Cannot Be Erased*.  It keeps source-indexed readings
+separate, defines global-section existence and contextual obstruction, and
+proves the guarded reveal law:
+
+```text
+latent obstruction + nondisturbing probe + visible witness
+  -> revealed obstruction
+```
+
+The module also contains the required disturbing-probe counterexample and a
+physics boundary for context control: a classical mixture kernel is diagonal,
+while quantum coherence requires a nonzero off-diagonal density-kernel
+witness.  This does not identify the motivating software interface with a
+quantum system.  The separate `ContextualInterfaceAudit` module reports the
+axiom dependencies of the public theorems.
+
 ## Layer Bridge
 
 `LayerBridge` is a small public Lean surface for the boundary between a
@@ -339,6 +358,8 @@ lean/TMI/Bridge.lean
 lean/TMI/ProofStatusClassification.lean
 lean/TMI/ProofChainSelfModel.lean
 lean/TMI/ClaimPassport.lean
+lean/TMI/InterfaceMathematics/ContextualInterface.lean
+lean/TMI/InterfaceMathematics/ContextualInterfaceAudit.lean
 lean/TMI/InterfaceFoundationsAlpha.lean
 lean/TMI/Branches/MD.lean
 lean/TMI/Branches/QC.lean

@@ -1,6 +1,7 @@
 import TMI.InterfaceMathematics.ThinkerVerification
 import TMI.InterfaceMathematics.MeasurementDecoherence
 import TMI.InterfaceMathematics.InterfacehoodClasses
+import TMI.InterfaceMathematics.ContextualInterface
 import TMI.InterfaceMathematics.AIAutomaticClaimFitting
 import TMI.InterfaceMathematics.SelfModelingProver
 import TMI.InterfaceMathematics.ProofProjectionSelfModel

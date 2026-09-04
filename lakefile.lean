@@ -30,6 +30,7 @@ lean_lib TMI where
     `TMI.IESTA,
     `TMI.SelfThinkingUniverse,
     `TMI.InterfaceMathematics,
+    `TMI.InterfaceMathematics.ContextualInterfaceAudit,
     `TMI.InterfaceFoundationsAlpha,
     `TMI.InterfaceFoundationsV051Alpha,
     `TMI.InterfaceFoundationsV052Alpha,
