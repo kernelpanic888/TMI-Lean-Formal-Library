@@ -1,0 +1,16 @@
+import TMI.InterfaceMathematics.PiInterfaceModel
+
+namespace TMI.PiInterfaceModel
+
+#print axioms meaning_preserved_of_relations
+#print axioms meaning_preserved_of_common_factorization
+#print axioms semantic_commutation_of_relevant_structure
+#print axioms invariant_under_composition
+#print axioms semantic_preservation_requires_constant_on_fibers
+#print axioms same_observation_can_hide_world_difference
+#print axioms StatefulInterface.step_carrier
+#print axioms StatefulInterface.step_memory
+#print axioms ToySignChange.translate_preserves_relations
+#print axioms ToySignChange.any_relational_meaning_preserved
+
+end TMI.PiInterfaceModel
