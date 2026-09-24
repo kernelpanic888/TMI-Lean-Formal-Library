@@ -1,4 +1,4 @@
-# PIM-01 · *Pi* as an interface model
+# PIM-01 · The Film *Pi* as an interface model
 
 **Status:** Lean-checked formal interpretation · release candidate without DOI or tag<br>
 **Author:** Salkutsan Aleksey<br>
@@ -19,11 +19,15 @@ The word `interface` is not spoken in the audited film transcript. The term is
 our formal interpretation, not a hidden quotation or a claim that the film
 contains Lean mathematics.
 
+**Notation boundary:** *Pi* is the film title. The number π is one mathematical
+motif in Max's world. The symbol `ρ` below names our selection of the relevant
+relational layer; it is not the number π.
+
 ## Formal dictionary
 
 - `x`: the presented carrier — digits, letters, a graph, an image, or a signal;
 - `R x`: the structure of relations carried by `x`;
-- `π`: the explicitly selected relational layer;
+- `ρ`: the operator selecting the explicitly relevant relational layer;
 - `I`: the observation/selection/encoding/interpretation interface;
 - `μI x`: meaning relative to interface `I` and its context;
 - `T`: a change of representation;
@@ -32,15 +36,15 @@ contains Lean mathematics.
 The central factorization is:
 
 ```text
-μI(x) = Φ(π(Rₓ(x)))
+μI(x) = Φ(ρ(Rₓ(x)))
 ```
 
 For a second representation:
 
 ```text
-π(Rᵧ(T(x))) = π(Rₓ(x))
-μI(x) = Φ(π(Rₓ(x)))
-μJ(y) = Φ(π(Rᵧ(y)))
+ρ(Rᵧ(T(x))) = ρ(Rₓ(x))
+μI(x) = Φ(ρ(Rₓ(x)))
+μJ(y) = Φ(ρ(Rᵧ(y)))
 ────────────────────────
 μJ(T(x)) = μI(x)
 ```

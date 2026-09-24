@@ -1,7 +1,7 @@
 import TMI.Library
 
 /-!
-# PIM-01: *Pi* as an interface model
+# PIM-01: the film *Pi* as an interface model
 
 This module does not formalize a claim made or proved by the film. It gives a
 conditional mathematical reading of one line in *Pi* (1998): the visible
@@ -69,7 +69,8 @@ abbrev InterfaceFamily
 /-! ## Relational structure and meaning -/
 
 /-- A meaning that factors through the relevant relational layer:
-`μ(x) = Φ(π(R(x)))`. -/
+`μ(x) = Φ(ρ(R(x)))`, where `ρ` names selection of the relevant layer and is
+not the number π from the film's title. -/
 def relationalMeaning
     {Carrier : Type uX}
     {Structure : Type uS}
@@ -129,7 +130,7 @@ theorem meaning_preserved_of_relations
 
 /--
 The main theorem with explicit interface-relative meanings `μI` and `μJ`.
-Their common factorization through `Φ ∘ π ∘ R` is a separate premise.
+Their common factorization through `Φ ∘ ρ ∘ R` is a separate premise.
 -/
 theorem meaning_preserved_of_common_factorization
     {X : Type uX}
@@ -364,7 +365,7 @@ def letterCode : LetterSign → Bool
   | .circle => false
   | .stroke => true
 
-/-- Here a list of Boolean codes is the selected layer `π(R_x)`. -/
+/-- Here a list of Boolean codes is the selected layer `ρ(R_x)`. -/
 def numericRelations (xs : List NumericSign) : List Bool :=
   xs.map numericCode
 

@@ -1,6 +1,6 @@
 # PIM-01 build and axiom audit
 
-**Checked:** 2026-09-20<br>
+**Checked:** 2026-09-24<br>
 **Lean toolchain:** `leanprover/lean4:v4.31.0-rc1`<br>
 **Base:** TLFL `origin/main` at `4e43e97f8dc659dd1485e0d3739ca51c33058e16`
 
@@ -40,9 +40,9 @@ The checked results are:
 ## SHA-256 before commit
 
 ```text
-7398502e73f072c6ff021e3d89314a66fa9bad30ab8f666d44c47da970da029a  PiInterfaceModel.lean
+d98f6f240b77cd21628d51df3810fdcd155b8fda198176ad16611a00c6554f14  PiInterfaceModel.lean
 717048a9b43ded4c39610e48dc3678b1811c2df1e96f09bf3175944338315753  PiInterfaceModelAudit.lean
-145d68b9887c8262ecc10c2e1a9ab8f34f6c1b83a24b9c5ba4cc833831923aa6  README.md
+bc230db549f5d983b4a5f5656de74566c5dfd0dfc170811add5eb78ec74cc1a4  README.md
 ```
 
 ## Claim boundary
